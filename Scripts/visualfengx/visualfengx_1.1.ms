@@ -1,4 +1,3 @@
---xxxxxxxxxxxx
 ------------------------------------------------
 ------------------------------------------------
 --visualFengx-----------------------------------
@@ -209,6 +208,7 @@ rollout mainwindow "visualFengx" width:724 height:794
     
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
  
+ 
 	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
 	
 
@@ -245,6 +245,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn143 "@" pos:[248,196] width:24 height:24
 	button btn252 "所选-转存标准格式" pos:[144,296] width:128 height:32
 	button btn29 "send to GitHub" pos:[143,334] width:129 height:74
+	button btn114 "确定下" pos:[144,408] width:128 height:35
 	on mainwindow close do
 	(
 	    mainsize=GetDialogSize mainwindow 
@@ -535,7 +536,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	   ShellLaunch "explorer.exe"   saveToPath 
 	)
 	)
-	on btn29 pressed  do
+	on btn29 pressed do
 	(
 		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
 		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
@@ -545,17 +546,14 @@ rollout mainwindow "visualFengx" width:724 height:794
 		if doesFileExist GitHubFile02 do deleteFile GitHubFile02
 		try (copyFile (getdir #Scripts + "\visualfengx\visualfengx_1.1.ms") GitHubFile01 )catch messageBox "visualfengx_1.1.ms send fath!"
 		try (copyFile (getdir #startupScripts + "\visualfengx_startup_tool_01.ms")  GitHubFile02 )catch messageBox "visualfengx_startup_tool_01.ms send fath!"
-		edit GitHubFile01
+		--edit GitHubFile01
 		)
 	)
+	on btn114 pressed  do
+	(
+	edit fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms")
+	)
 )
-
-
-
-
-
-
-
 
 
 
@@ -589,7 +587,7 @@ rollout mate "mate" width:128 height:403
 	button btn275 "Directx" pos:[0,316] width:128 height:19 enabled:false
 	button btn811 "这边的还没写好的。。" pos:[241,179] width:252 height:60
 	button btn812 "最好不要按。。按坏了可不怪我的" pos:[241,339] width:253 height:60
-	button btn21 "clearObjectMultiMaterial" pos:[0,112] width:128 height:32
+	button btn21 "去除多余材质" pos:[0,112] width:128 height:32
 	on mate open do
 	(
 		
@@ -804,11 +802,12 @@ rollout mate "mate" width:128 height:403
 	)
 	on btn21 pressed do
 	(
+	undo on(
 	if $ !=undefined do 
 	(
 	fengx.clearObjectMultiMaterial $
 	)
-	
+	)
 	)
 )
 
@@ -3459,13 +3458,14 @@ fn llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 				newMM.materialList.count = n.material.count-deleteIds.count
 				for i=1 to n.material.materialIDList.count do 
 				(
-					if findItem deleteIds n.material.materialIDList[i]  ==0 then()else
-					(
+					if findItem deleteIds n.material.materialIDList[i]  ==0 do
+					(					
 						newMM[newID]=n.material[i]
-						newMM.materialList[newID]==n.material.materialList[i]
+						newMM.materialList[newID]=n.material.materialList[i]
 						newID+=1
 						)
 				)
+				subobjectLevel = 0
 				n.material=newMM
 				if n.material.count==1 do 
 				(
