@@ -562,10 +562,8 @@ rollout mainwindow "visualFengx" width:724 height:794
 		)
 	)
 	on btn32 pressed  do
-(
-		£¨
-		fengx.uninstall£¨£©
-		£©
+	(
+		fengx.uninstall()
 	)
 )
 
