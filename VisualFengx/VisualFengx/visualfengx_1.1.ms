@@ -132,6 +132,36 @@ if (classOf copyPasteSize)==OkClass do
 	copyPasteSize=[846 , 112] 
 	setIniSetting  profilePath "rolloutSetting" "copyPasteSize"  "[846, 112]"
 )
+
+-----------------windows Logic state------------------
+global windowState=execute (getIniSetting  profilePath "rolloutSetting" "windowState") -- <int>
+global windowActiveState= execute (getinisetting  profilePath "rolloutSetting" "windowsActiveState") -- <point4>
+global windowNegativeState=execute (getIniSetting  profilePath "rolloutSetting" "windowsNegativeState") -- <point2>
+
+-->initialize<
+if (classOf windowActiveState)==OkClass do 
+(
+	windowActiveState=[1,1,1,1] 
+	setIniSetting  profilePath "rolloutSetting" "windowActiveState"  "[1,1,1,1]"
+)
+if (classOf windowNegativeState)==OkClass do 
+(
+	windowNegativeState=1 
+	setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  "1"
+)
+if (classOf windowState)==OkClass do 
+(
+	windowState=1 
+	setIniSetting  profilePath "rolloutSetting" "windowState"  "1"
+)
+
+
+
+
+
+
+
+
 -------------------- profiling -----------------
 ------------------------------------------------
 
@@ -188,6 +218,20 @@ global matrix_foucs=3
 -------------------- test ----------------------
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+global canSetWindows=true
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------
 rollout mainwindow "visualFengx" width:724 height:794
@@ -196,22 +240,11 @@ rollout mainwindow "visualFengx" width:724 height:794
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	button b_06101 "Bx" pos:[396,276] width:20 height:20
-	button b_06102 "By" pos:[416,276] width:20 height:20
-	button b_06103 "Bz" pos:[436,276] width:20 height:20
-	button b_0611 "X0" pos:[376,220] width:20 height:20
-	button b_0612 "Y0" pos:[376,240] width:20 height:20
-	button b_0613 "Z0" pos:[376,260] width:20 height:20
-	button b_062 "X" pos:[376,200] width:20 height:20
-	button b_063 "Y" pos:[396,200] width:20 height:20
-	button b_064 "Z" pos:[416,200] width:20 height:20
-	button b_065 "B" pos:[436,200] width:20 height:20
-    
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
  
  
  
- 
+
 	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
 	
 
@@ -220,7 +253,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	checkbutton ckS "Snap" pos:[104,24] width:39 height:24
 	
 	
-	checkbutton ckX "X" pos:[104,0] width:39 height:24
+	checkbutton ckX "↓↑" pos:[104,0] width:39 height:24
 	checkbutton ckb127 "English" pos:[144,60] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[208,60] width:64 height:24 enabled:true checked:true
 	
@@ -229,11 +262,9 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn336 "Color" pos:[144,92] width:128 height:12
 	button btn337 "Options" pos:[64,0] width:40 height:24
 	checkbutton ckb230 "CopyPaste" pos:[0,0] width:64 height:24
-	button btn727 "这边的还没写好的。。" pos:[376,136] width:252 height:60
 	
 
 	
-	button btn728 "最好不要按。。按坏了可不怪我的" pos:[376,296] width:253 height:60
 	button btn744 "background" pos:[144,104] width:64 height:24
 	button btn35 "visualfengx_1.1.ms" pos:[144,148] width:104 height:24
 	button btn37 "startup_tool_01.ms" pos:[144,172] width:104 height:24
@@ -249,196 +280,188 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn114 "确定下" pos:[144,382] width:127 height:24
 	button btn145 "get from GitHub" pos:[144,352] width:127 height:30
 	button btn32 "卸载掉！" pos:[144,248] width:127 height:49
+	
+	
+	
+	function windowslogic=
+	(
+		
+		ckbs=#(ckP,ckM,ckF,ckS)
+		rollouts=#(poly,mate,file,snap)
+		rolloutWindows =#("ployWindow","mateWindow","fileWindow","snapWindow")
+		--rolloutSubs=#(mainwindow.sub.poly,mainwindow.sub.mate,mainwindow.sub.file,mainwindow.sub.snap)
+		-->>> change to windowsLogic
+		if windowState==1 then
+		(	
+			
+			--ckX.state=true
+			--mainWindow.width=
+			mainWindow.height=50
+			
+			tempID=1
+			for r in rolloutS do
+			( 
+				try 
+				(
+					canSetWindows=false
+					removeSubRollout mainwindow.sub r
+					)
+					catch canSetWindows=true
+				canSetWindows=true	
+				)
+			for i=1 to ckbs.count do 
+			(
+				if windowActiveState[i]==1 and rollouts[i].open==false do
+				(
+				ckbs[i].state=true
+				macros.run "visualfengx_1.1" rolloutWindows[i]
+				)
+				
+				if windowActiveState[i]==0 and rollouts[i].open==true do
+				(
+				ckbs[i].state=false
+				macros.run "visualfengx_1.1" rolloutWindows[i]
+				)
+				
+			)
+			
+			) else(
+			--ckX.state=false
+			--mainWindow.width=
+			mainWindow.height=691
+			
+			for r in rollouts do if r.open==true do destroyDialog r
+			
+			for i=1 to ckbs.count do 
+			(
+				if windowNegativeState==i do
+				(
+					for ii=1 to ckbs.count do(
+						if ii==i then AddSubRollout mainwindow.sub rollouts[ii] else
+						(
+							try 
+							(
+								canSetWindows=false
+								removeSubRollout mainwindow.sub rollouts[ii] 
+								)catch canSetWindows=true
+						)
+					)
+				)
+				)
+			)
+			
+		-->>> save windowsLogic
+		if ckX.state==true then
+		(
+			windowState=1
+			for i=1 to ckbs.count do  if ckbs[i].state==true then windowActiveState[i]=1 else windowActiveState[i]=0
+
+			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
+			setIniSetting  profilePath "rolloutSetting" "windowActiveState"  (windowActiveState as string)
+			)else (
+			windowState=0
+			for i=1 to ckbs.count do  	if ckbs[i].state==true do windowNegativeState=i 
+			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
+			setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  (windowNegativeState as string)		
+			)
+	
+		)
+	
+	function windowsLogicStart=
+	(
+		if ckX.state==true then
+		(
+		windowState=0
+		if ckP.state==true do windowNegativeState=1 
+		if ckM.state==true do windowNegativeState=2 
+		if ckF.state==true do windowNegativeState=3 
+		if ckS.state==true do windowNegativeState=4 
+		windowslogic()
+		
+		)else(
+		windowState=1
+		if ckP.state==true then windowActiveState.x=1 else windowActiveState.x=0
+		if ckM.state==true then windowActiveState.y=1 else windowActiveState.y=0
+		if ckF.state==true then windowActiveState.z=1 else windowActiveState.z=0
+		if ckS.state==true then windowActiveState.w=1 else windowActiveState.w=0
+		windowslogic() 
+		)
+	)
+	
+	on mainwindow open do
+	(
+	   
+		if windowState==1 then ckX.state=true else  ckX.state=false
+		windowslogic()
+		
+	)
 	on mainwindow close do
 	(
 	    mainsize=GetDialogSize mainwindow 
 	    setinisetting  profilePath "rolloutSetting" "mainSize" (mainSize as string )
-
 	    mainpos=GetDialogPos mainwindow
-	    setinisetting  profilePath "rolloutSetting" "mainPos" (mainpos  as string)
-	    )
-	on b_06101 pressed do
-	(    
-	    undo on(
-	    fengx.setpos("reposx")
-	    )
-	)
-	on b_06102 pressed do
-	(    
-	    undo on(
-	    
-	        fengx.setpos("reposy")
-	    )
-	)
-	on b_06103 pressed do
-	(    
-	    undo on(
-	        fengx.setpos("reposz")
-	    )
-	)
-	on b_0611 pressed do
-	(    
-	    undo on(
-	    if $==undefined then
-	    (
-	        )else
-	        (
-	            for s in fengx.selectGroupDummy($) do  s.pos.x=0
-	            )
-	        )
-	    )
-	on b_0612 pressed do
-	(    
-	    undo on(
-	    if $==undefined then
-	    (
-	        )else
-	        (
-	            for s in fengx.selectGroupDummy($) do  s.pos.y=0
-	            )
-	        )
-	    )
-	on b_0613 pressed do
-	(    
-	    undo on(
-	    if $==undefined then
-	    (
-	        )else
-	        (
-	            for s in fengx.selectGroupDummy($) do s.pos.z=0
-	            )
-	        )
-	    )
-	on b_062 pressed do
-	(
-	    fengx.setPos("averageX")
-	    )
-	on b_063 pressed do
-	(
-	    fengx.setPos("averageY")
-	    )
-	on b_064 pressed do
-	(
-	    fengx.setPos("averageZ")
-	    )
-	on b_065 pressed do
-	(
-	    fengx.setPos("resetZ")
-
-	    )
+		setinisetting  profilePath "rolloutSetting" "mainPos" (mainpos  as string)
+	    windowsLogicStart()
+		)
 	on ckP changed state do
 	(
-	if ckX.state==true then (
-	     if state==false then (
-	        if poly.open==true do destroyDialog poly
-	     )else(
-	        if poly.open==false do macros.run "visualfengx_1.1" "ployWindow" 
-	     )
-	     )else (
-	     if mainwindow.ckP.state==false then removeSubRollout mainwindow.sub poly else AddSubRollout mainwindow.sub poly
-	)	
+	if ckX.state==true do
+	(
+	if state==true do
+	(
+	    -- ckP.state=false
+	     ckM.state=false
+		ckF.state=false
+		ckS.state=false
+	)
+	)
+	    windowsLogicStart()
 	)
 	on ckM changed state do
 	(
-	if ckX.state==true then (
-	     if state==false then (
-	        if mate.open==true do destroyDialog mate
-	     )else(
-	        if mate.open==false do macros.run "visualfengx_1.1" "mateWindow" 
-	     )
-	     )else (
-	     if mainwindow.ckM.state==false then removeSubRollout mainwindow.sub mate else AddSubRollout mainwindow.sub mate
-	)	
+	if ckX.state==true do
+	(
+	if state==true do
+	(
+	     ckP.state=false
+	     --ckM.state=false
+		ckF.state=false
+		ckS.state=false
+	)
+	)
+	    windowsLogicStart()
 	)
 	on ckF changed state do
 	(
-	if ckX.state==true then (
-	     if state==false then (
-	        if file.open==true do destroyDialog file 
-	     )else(
-	        if file.open==false do macros.run "visualfengx_1.1" "fileWindow" 
-	     )
-	     )else (
-	     if mainwindow.ckF.state==false then removeSubRollout mainwindow.sub file else AddSubRollout mainwindow.sub file 
-	)	
+	if ckX.state==true do
+	(
+	if state==true do
+	(
+	     ckP.state=false
+	     ckM.state=false
+		--ckF.state=false
+		ckS.state=false
+	)
+	)
+	    windowsLogicStart()
 	)
 	on ckS changed state do
 	(
-	if ckX.state==true then (
-	     if state==false then (
-	        if snap.open==true do destroyDialog snap
-	     )else(
-	        if snap.open==false do macros.run "visualfengx_1.1" "snapWindow" 
-	     )
-	     )else (
-	     if mainwindow.ckS.state==false then removeSubRollout mainwindow.sub snap else AddSubRollout mainwindow.sub snap
-	)	
+	if ckX.state==true do
+	(
+	if state==true do
+	(
+	     ckP.state=false
+	     ckM.state=false
+		ckF.state=false
+		--ckS.state=false
+	)
+	)
+	    windowsLogicStart()
 	)
 	on ckX changed state do
 	(
-	if state==true then (
-	         mainWindow.height=50
-			if ckP.state==true do
-	         (
-	             destroyDialog poly 
-	             removeSubRollout mainwindow.sub poly 
-	             macros.run "visualfengx_1.1" "ployWindow"
-	             --mainWindow.ckP.state=false
-	          )
-
-
-			if ckM.state==true do
-	          (
-	             destroyDialog mate
-	             removeSubRollout mainwindow.sub mate 
-	             macros.run "visualfengx_1.1" "mateWindow"
-	              --mainWindow.ckM.state=false          
-
-	)
-			if ckF.state==true do
-	          (
-	             destroyDialog file
-	             removeSubRollout mainwindow.sub file
-	             macros.run "visualfengx_1.1" "fileWindow"
-	              --mainWindow.ckF.state=false          
-	)
-			if ckS.state==true do
-	          (
-	             destroyDialog snap
-	             removeSubRollout mainwindow.sub snap
-	             macros.run "visualfengx_1.1" "snapWindow"
-	             -- mainWindow.ckS.state=false          
-	)
-
-	)else(
-	if poly.open==true do --print "save poly.pos and size"
-	 mainWindow.height=691
-	if poly.open==true do
-	(
-	  destroyDialog poly 
-	  addSubRollout mainwindow.sub poly
-	  --mainWindow.ckP.state=true
-	)
-	if mate.open==true do
-	(
-	  destroyDialog mate
-	  addSubRollout mainwindow.sub mate
-	  --mainWindow.ckM.state=true
-	)
-	if file.open==true do
-	(
-	  destroyDialog file
-	  addSubRollout mainwindow.sub file
-	  --mainWindow.ckF.state=true
-	)
-	if snap.open==true do
-	(
-	  destroyDialog snap 
-	  addSubRollout mainwindow.sub snap
-	 -- mainWindow.ckS.state=true
-	)
-	)
-
+	    windowsLogicStart()
 	)
 	on ckb127 changed state do
 	(
@@ -448,7 +471,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 		languageId="中文"
 		fengx.updataLanguage()
 		setinisetting  profilePath  "Set" "language" languageId
-
+	
 		)
 	)
 	on ckb128 changed state do
@@ -473,16 +496,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 	on ckb230 changed state do
 	(
 	 macros.run "visualfengx_1.1" "copyPasteWindow"
-	)
-	on btn727 pressed do
-	(
-	messageBox "你还真按的！！！！"
-
-	)
-	on btn728 pressed do
-	(
-	messageBox "你还真按的！！！！"
-
 	)
 	on btn35 pressed do
 	(
@@ -561,7 +574,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 		--edit GitHubFile01
 		)
 	)
-	on btn32 pressed  do
+	on btn32 pressed do
 	(
 		fengx.uninstall()
 	)
@@ -604,15 +617,16 @@ rollout mate "材质" width:128 height:403
 		)
 	on mate close do
 	(
-	if mainwindow.ckM.state==false and mainWindow.ckX.state==true do 
+	if  canSetWindows==true do 
 	(
+	    mainWindow.ckM.state=false
 	    mateSize=GetDialogSize mate
 	    setinisetting  profilePath "rolloutSetting" "mateSize" (mateSize as string )
 	
 	    matepos=GetDialogPos mate
 	    setinisetting  profilePath "rolloutSetting" "matePos" (matepos as string )
 	)
-	    )
+	)
 	on btn1 pressed do
 	(
 	 undo on(
@@ -884,7 +898,7 @@ rollout poly "poly " width:629 height:561
 	button btn211 "reset" pos:[96,447] width:32 height:24
 	on poly close do
 	(
-	if mainwindow.ckP.state==false and mainWindow.ckX.state==true do  
+	if  canSetWindows==true do 
 	(
 	    polySize=GetDialogSize poly
 	    setinisetting  profilePath "rolloutSetting" "polySize" (polySize as string )
@@ -892,7 +906,7 @@ rollout poly "poly " width:629 height:561
 	    polypos=GetDialogPos poly
 	    setinisetting  profilePath "rolloutSetting" "polyPos" (polypos as string )
 	) 
-	   )
+	)
 	on btn481 pressed do
 	(
 		fengx.createBox()
@@ -1395,22 +1409,18 @@ rollout file "文件" width:927 height:634
 	button btn32 "clear" pos:[688,264] width:48 height:32
 	button btn47 "@" pos:[104,260] width:24 height:24 enabled:true
 	button btn48 "AutoBack" pos:[0,260] width:104 height:24 enabled:false
-	on file open do
-	(
-		
-		)
+
 	on file close do
 	(
-	 if mainwindow.ckF.state==false  and mainWindow.ckX.state==true do 
+	if  canSetWindows==true do 
 	(
-	
 	    fileSize=GetDialogSize file  
 	    setinisetting  profilePath "rolloutSetting" "fileSize" (fileSize as string )
 	
 	    filePosx=GetDialogPos file
 	    setinisetting  profilePath "rolloutSetting" "filePosx" (filePosx as string )
 	)
-	    )
+	)
 	on btn1 pressed do
 	(
 		if $ !=undefined do fengx.exportSelectToVisual()
@@ -1624,6 +1634,7 @@ rollout snap "吸附" width:547 height:557
 (
 	--fn box_filt obj = classof obj == Box 
 	pickbutton chooseit "Pick" pos:[0,116] width:128 height:20 --filter:Editable_Poly
+ --filter:Editable_Poly
 	checkbutton p "Pos" pos:[16,20] width:48 height:20 checked:true
 	checkbutton px "x" pos:[16,40] width:16 height:16 checked:true
 	checkbutton py "y" pos:[32,40] width:16 height:16 checked:true
@@ -1642,7 +1653,7 @@ rollout snap "吸附" width:547 height:557
 	checkbutton ptz "z" pos:[96,40] width:16 height:16 checked:false
 	
 	
-	checkbutton localPos "@" pos:[0,20] width:16 height:20
+	checkbutton localpos "@" pos:[0,20] width:16 height:20
 	checkbutton localPivot "@" pos:[112,20] width:16 height:20
 	button btn14 "Bot" pos:[104,206] width:24 height:24
 	button btn17 "Center" pos:[72,182] width:56 height:24
@@ -1661,6 +1672,7 @@ rollout snap "吸附" width:547 height:557
 	checkbutton ckb19 "Name" pos:[0,96] width:48 height:20
 	checkbutton ckb20 "Material" pos:[80,96] width:48 height:20
 	button btn115 "Right R" pos:[84,401] width:44 height:24 
+ 
 	button btn116 "Left R" pos:[0,401] width:44 height:24
 	
 	pickbutton btn99 "Pick  Surface" pos:[0,325] width:128 height:24
@@ -1686,7 +1698,7 @@ rollout snap "吸附" width:547 height:557
 	button btn611 "" pos:[44,401] width:40 height:24 enabled:false
 	on snap close do
 	(
-	if mainwindow.ckS.state==false and mainWindow.ckX.state==true do 
+	if  canSetWindows==true do 
 	(
 	
 	    snapSize=GetDialogSize snap
@@ -1805,7 +1817,7 @@ rollout snap "吸附" width:547 height:557
 	(
 		
 		)
-	on localPos changed state do
+	on localpos changed state do
 	(
 		
 		)
