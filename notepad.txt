@@ -6,5 +6,6 @@
 4. 文件结构（优化） 
 5. 安装方式（MZP格式）
 6. 版本控制
+7. copyPasteWindow  加入copy 贴图 功能
 
 ---->>>>> VisaulFengx_1.11

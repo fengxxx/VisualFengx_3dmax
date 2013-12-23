@@ -1,0 +1,8 @@
+name "Test"
+version 3.80
+
+run "install.ms"
+drop "install.ms"
+
+clear temp on MAX exit
+clear temp on reset

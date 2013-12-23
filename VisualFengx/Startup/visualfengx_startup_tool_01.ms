@@ -96,7 +96,7 @@ buttontext:"mainWindow "
 		destroyDialog mainwindow
 		if mainWindow.open==true then destroyDialog mainWindow else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
-		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu) 
+		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
 		fengx.updataLanguage()
 
 		addSubRollout mainWindow.sub snap

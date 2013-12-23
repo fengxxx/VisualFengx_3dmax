@@ -5,6 +5,7 @@
 ------------------------------------------------
 ------------------------------------------------
 
+global  VisualFengxVersions=1.11
 ------------------------------------------------
 ------------------ for snap to surface ---------
 global PGround=undefined --snaped ground  <GeometryClass>
@@ -234,7 +235,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 	
 	button btn728 "最好不要按。。按坏了可不怪我的" pos:[376,296] width:253 height:60
 	button btn744 "background" pos:[144,104] width:64 height:24
-	button btn17 "批量分开Maxs文件" pos:[144,256] width:128 height:37
 	button btn35 "visualfengx_1.1.ms" pos:[144,148] width:104 height:24
 	button btn37 "startup_tool_01.ms" pos:[144,172] width:104 height:24
 	button btn38 "edit Script" pos:[144,132] width:128 height:16 enabled:false
@@ -245,10 +245,10 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn91 "@" pos:[248,220] width:24 height:24
 	button btn142 "userMacros" pos:[144,196] width:104 height:24
 	button btn143 "@" pos:[248,196] width:24 height:24
-	button btn252 "所选-转存标准格式" pos:[144,296] width:128 height:32
-	button btn29 "send to GitHub" pos:[144,336] width:127 height:58
-	button btn114 "确定下" pos:[144,450] width:127 height:35
-	button btn145 "get from GitHub" pos:[144,394] width:127 height:56
+	button btn29 "send to GitHub" pos:[144,320] width:127 height:32
+	button btn114 "确定下" pos:[144,382] width:127 height:24
+	button btn145 "get from GitHub" pos:[144,352] width:127 height:30
+	button btn32 "卸载掉！" pos:[144,248] width:127 height:49
 	on mainwindow close do
 	(
 	    mainsize=GetDialogSize mainwindow 
@@ -484,8 +484,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 	messageBox "你还真按的！！！！"
 
 	)
-	on btn17 pressed do
-		fengx.splitMaxs()
 	on btn35 pressed do
 	(
 		dir1=getdir #Scripts + "\visualfengx\visualfengx_1.1.ms"
@@ -529,16 +527,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 	(
 	ShellLaunch "explorer.exe" (getdir #userMacros )
 	)
-	on btn252 pressed do
-	(
-	saveToPath =  getSavePath    caption:"save to"
-	local tempNodes=$
-	if saveToPath !=undefined and tempNodes!=undefined  do 
-	 (
-	   fengx.saveToStandType  tempNodes  saveToPath 
-	   ShellLaunch "explorer.exe"   saveToPath 
-	)
-	)
 	on btn29 pressed do
 	(
 		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
@@ -573,8 +561,13 @@ rollout mainwindow "visualFengx" width:724 height:794
 		--edit GitHubFile01
 		)
 	)
+	on btn32 pressed  do
+(
+		（
+		fengx.uninstall（）
+		）
+	)
 )
-
 
 
 
@@ -2518,7 +2511,31 @@ struct fengx
 fn llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
+function uninstall=
+(
+	if (queryBox "确定卸载！")==true do
+	(
+	print  VisualFengxVersions as string
+	local targetPath=getDir #scripts +"\\VisualFengx\\*"
+	local files=getFiles targetPath
+	deleteFile  (getDir #startupScripts +"\\fengx_start.ms")
+	deleteFile  (getDir #startupScripts  + "\\visualfengx_startup_tool_01.ms")
+	for f in files do deleteFile f		
+	local MacrosPath=getdir #userMacros +"\\visualfengx_1_1*.mcr"
+	local Macrosfiles = getFiles MacrosPath
+	for s in Macrosfiles do deleteFile s
+	
+	if (queryBox "卸载完成 最好重启Max！")==true do 
+	(
+		if checkForSave() then (
+		shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
+		quitmax #noPrompt
+		)
+		)
+	)
+),
 
+	
 fn BubbleSort a=
 (    
     temp = 0
