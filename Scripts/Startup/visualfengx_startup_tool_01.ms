@@ -61,15 +61,6 @@ buttontext:"quitmax"
 
 
 
-macroScript openMs
-category:"visualfengx_1.1"
---icon:#("MAXScript",1)
-tooltip:"openMs"
-buttontext:"openMs"
-(
-	fengx.openMs("nothing")
-)
-
 
 macroScript llllllllllllllllllllllllllllllllllllleditFile
 category:"visualfengx_help"
@@ -105,7 +96,7 @@ buttontext:"mainWindow "
 		destroyDialog mainwindow
 		if mainWindow.open==true then destroyDialog mainWindow else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
-		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu) 
 		fengx.updataLanguage()
 
 		addSubRollout mainWindow.sub snap
@@ -131,7 +122,7 @@ buttontext:"copyPasteWindow"
 (
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
-	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos  bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 	fengx.updataLanguage()
 	)
 	
@@ -145,7 +136,7 @@ buttontext:"fileWindow"
 (
 	if file.open==true then destroyDialog file else(
 	if fileSize.x*fileSize.y==0 do fileSize=[127, 203]
-	createdialog file fileSize.x fileSize.y pos: filePosx  bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createdialog file fileSize.x fileSize.y pos: filePosx  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
 	fengx.updataLanguage()
 	)
 	--theVoice.Speak "ºÇºÇºÇºÇ"
@@ -159,7 +150,7 @@ buttontext:"ployWindow"
 (
 	if poly.open==true then destroyDialog poly else(
 	if polySize.x*polySize.y==0 do polySize=[127 , 480]
-	createdialog poly polySize.x polySize.y pos: polyPos  bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createdialog poly polySize.x polySize.y pos: polyPos  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
 	fengx.updataLanguage()
 	)
 )
@@ -172,7 +163,7 @@ buttontext:"mateWindow"
 (
 	if mate.open==true then destroyDialog mate else(
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
-	createdialog mate mateSize.x mateSize.y pos:matePos bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createdialog mate mateSize.x mateSize.y pos:matePos bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)--
 	fengx.updataLanguage()
 	--theVoice.Speak "ºÇºÇ ½ñÌìÌìÆø²»´í°¡£¡"
 	)

@@ -26,7 +26,7 @@ global saveMapPath=""
 
 ------------------------------------------------
 -------------------- profiling -----------------
-global profilePath= sysInfo.tempdir + "visualfengx\fengx.fengx" --settings flie path <string>
+global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempdir --settings flie path <string>
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
 
 global languageId=execute (getinisetting  profilePath "Set" "language") -- Types of language <string>
@@ -111,7 +111,7 @@ if (classOf filePosx)==OkClass do
 	setIniSetting  profilePath "rolloutSetting" "filePosx"  "[100,100]"
 )
 if (classOf fileSize)==OkClass do 
-(
+(Õâ
 	fileSize=[127, 203]
 	setIniSetting  profilePath "rolloutSetting" "fileSize"  "[127, 203]"
 )
@@ -128,8 +128,8 @@ if (classOf copyPastePos)==OkClass do
 )
 if (classOf copyPasteSize)==OkClass do 
 (
-	copyPasteSize=[1312 , 121] 
-	setIniSetting  profilePath "rolloutSetting" "copyPasteSize"  "[1312, 121]"
+	copyPasteSize=[846 , 112] 
+	setIniSetting  profilePath "rolloutSetting" "copyPasteSize"  "[846, 112]"
 )
 -------------------- profiling -----------------
 ------------------------------------------------
@@ -195,18 +195,20 @@ rollout mainwindow "visualFengx" width:724 height:794
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	button b_06101 "Bx" pos:[504,240] width:20 height:20
-	button b_06102 "By" pos:[524,240] width:20 height:20
-	button b_06103 "Bz" pos:[544,240] width:20 height:20
-	button b_0611 "X0" pos:[484,184] width:20 height:20
-	button b_0612 "Y0" pos:[484,204] width:20 height:20
-	button b_0613 "Z0" pos:[484,224] width:20 height:20
-	button b_062 "X" pos:[484,164] width:20 height:20
-	button b_063 "Y" pos:[504,164] width:20 height:20
-	button b_064 "Z" pos:[524,164] width:20 height:20
-	button b_065 "B" pos:[544,164] width:20 height:20
+	button b_06101 "Bx" pos:[396,276] width:20 height:20
+	button b_06102 "By" pos:[416,276] width:20 height:20
+	button b_06103 "Bz" pos:[436,276] width:20 height:20
+	button b_0611 "X0" pos:[376,220] width:20 height:20
+	button b_0612 "Y0" pos:[376,240] width:20 height:20
+	button b_0613 "Z0" pos:[376,260] width:20 height:20
+	button b_062 "X" pos:[376,200] width:20 height:20
+	button b_063 "Y" pos:[396,200] width:20 height:20
+	button b_064 "Z" pos:[416,200] width:20 height:20
+	button b_065 "B" pos:[436,200] width:20 height:20
     
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
+ 
+ 
  
  
 	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
@@ -226,11 +228,11 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn336 "Color" pos:[144,92] width:128 height:12
 	button btn337 "Options" pos:[64,0] width:40 height:24
 	checkbutton ckb230 "CopyPaste" pos:[0,0] width:64 height:24
-	button btn727 "Õâ±ßµÄ»¹Ã»Ð´ºÃµÄ¡£¡£" pos:[484,100] width:252 height:60
+	button btn727 "Õâ±ßµÄ»¹Ã»Ð´ºÃµÄ¡£¡£" pos:[376,136] width:252 height:60
 	
 
 	
-	button btn728 "×îºÃ²»Òª°´¡£¡£°´»µÁË¿É²»¹ÖÎÒµÄ" pos:[484,260] width:253 height:60
+	button btn728 "×îºÃ²»Òª°´¡£¡£°´»µÁË¿É²»¹ÖÎÒµÄ" pos:[376,296] width:253 height:60
 	button btn744 "background" pos:[144,104] width:64 height:24
 	button btn17 "ÅúÁ¿·Ö¿ªMaxsÎÄ¼þ" pos:[144,256] width:128 height:37
 	button btn35 "visualfengx_1.1.ms" pos:[144,148] width:104 height:24
@@ -244,13 +246,14 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn142 "userMacros" pos:[144,196] width:104 height:24
 	button btn143 "@" pos:[248,196] width:24 height:24
 	button btn252 "ËùÑ¡-×ª´æ±ê×¼¸ñÊ½" pos:[144,296] width:128 height:32
-	button btn29 "send to GitHub" pos:[143,334] width:129 height:74
-	button btn114 "È·¶¨ÏÂ" pos:[144,408] width:128 height:35
+	button btn29 "send to GitHub" pos:[144,336] width:127 height:58
+	button btn114 "È·¶¨ÏÂ" pos:[144,450] width:127 height:35
+	button btn145 "get from GitHub" pos:[144,394] width:127 height:56
 	on mainwindow close do
 	(
 	    mainsize=GetDialogSize mainwindow 
 	    setinisetting  profilePath "rolloutSetting" "mainSize" (mainSize as string )
-	
+
 	    mainpos=GetDialogPos mainwindow
 	    setinisetting  profilePath "rolloutSetting" "mainPos" (mainpos  as string)
 	    )
@@ -321,7 +324,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	on b_065 pressed do
 	(
 	    fengx.setPos("resetZ")
-	
+
 	    )
 	on ckP changed state do
 	(
@@ -382,15 +385,15 @@ rollout mainwindow "visualFengx" width:724 height:794
 	             macros.run "visualfengx_1.1" "ployWindow"
 	             --mainWindow.ckP.state=false
 	          )
-	
-	
+
+
 			if ckM.state==true do
 	          (
 	             destroyDialog mate
 	             removeSubRollout mainwindow.sub mate 
 	             macros.run "visualfengx_1.1" "mateWindow"
 	              --mainWindow.ckM.state=false          
-	
+
 	)
 			if ckF.state==true do
 	          (
@@ -406,7 +409,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	             macros.run "visualfengx_1.1" "snapWindow"
 	             -- mainWindow.ckS.state=false          
 	)
-	
+
 	)else(
 	if poly.open==true do --print "save poly.pos and size"
 	 mainWindow.height=691
@@ -435,7 +438,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	 -- mainWindow.ckS.state=true
 	)
 	)
-	
+
 	)
 	on ckb127 changed state do
 	(
@@ -445,7 +448,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 		languageId="ÖÐÎÄ"
 		fengx.updataLanguage()
 		setinisetting  profilePath  "Set" "language" languageId
-	
+
 		)
 	)
 	on ckb128 changed state do
@@ -474,12 +477,12 @@ rollout mainwindow "visualFengx" width:724 height:794
 	on btn727 pressed do
 	(
 	messageBox "Äã»¹Õæ°´µÄ£¡£¡£¡£¡"
-	
+
 	)
 	on btn728 pressed do
 	(
 	messageBox "Äã»¹Õæ°´µÄ£¡£¡£¡£¡"
-	
+
 	)
 	on btn17 pressed do
 		fengx.splitMaxs()
@@ -540,18 +543,35 @@ rollout mainwindow "visualFengx" width:724 height:794
 	(
 		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
 		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
+	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx_1.1.ms")
+	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
 		if (queryBox "sure to send!")==true do 
 		(
-		if doesFileExist GitHubFile01 do deleteFile GitHubFile01
-		if doesFileExist GitHubFile02 do deleteFile GitHubFile02
+		if doesFileExist GitHubFile03 do deleteFile GitHubFile01
+		if doesFileExist GitHubFile04 do deleteFile GitHubFile02
 		try (copyFile (getdir #Scripts + "\visualfengx\visualfengx_1.1.ms") GitHubFile01 )catch messageBox "visualfengx_1.1.ms send fath!"
 		try (copyFile (getdir #startupScripts + "\visualfengx_startup_tool_01.ms")  GitHubFile02 )catch messageBox "visualfengx_startup_tool_01.ms send fath!"
 		--edit GitHubFile01
 		)
 	)
-	on btn114 pressed  do
+	on btn114 pressed do
 	(
-	edit fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms")
+	edit (fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms"))
+	)
+	on btn145 pressed do
+	(
+		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
+		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
+	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx_1.1.ms")
+	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
+		if (queryBox "sure to get!")==true do 
+		(
+		if doesFileExist GitHubFile01 do deleteFile GitHubFile03
+		if doesFileExist GitHubFile02 do deleteFile GitHubFile04
+		try (copyFile  GitHubFile01 (getdir #Scripts + "\visualfengx\visualfengx_1.1.ms") )catch messageBox "visualfengx_1.1.ms get fath!"
+		try (copyFile  GitHubFile02 (getdir #startupScripts + "\visualfengx_startup_tool_01.ms") )catch messageBox "visualfengx_startup_tool_01.ms get fath!"
+		--edit GitHubFile01
+		)
 	)
 )
 
@@ -561,14 +581,13 @@ rollout mainwindow "visualFengx" width:724 height:794
 
 
 
-
-rollout mate "mate" width:128 height:403
+rollout mate "²ÄÖÊ" width:128 height:403
 (
 	button btn1 "Clear Away" pos:[60,20] width:68 height:40 enabled:true
 	button btn7 "Save Map To" pos:[0,228] width:104 height:24 enabled:true
 	button btn8 "Off" pos:[64,335] width:64 height:44 enabled:true
 	button btn9 "On" pos:[0,335] width:64 height:44 enabled:true
-	button btn10 "Auto Naming" pos:[0,60] width:128 height:24 enabled:true
+	button btn10 "×Ô¶¯±ê×¼Ãû×Ö" pos:[0,60] width:128 height:24 enabled:true
 	button btn11 "@" pos:[104,180] width:24 height:24 enabled:true
 	button btn12 "Clear Up" pos:[0,20] width:60 height:40 enabled:true
 	button btn15 "@" pos:[104,228] width:24 height:24 enabled:true
@@ -1344,7 +1363,7 @@ rollout poly "poly " width:629 height:561
 
 
 
-rollout file "file" width:927 height:634
+rollout file "ÎÄ¼þ" width:927 height:634
 (
 	button btn1 ".visual" pos:[64,20] width:44 height:48 enabled:true
 	button btn2 ".obj" pos:[0,44] width:40 height:24 enabled:true
@@ -1366,7 +1385,7 @@ rollout file "file" width:927 height:634
 	button btn172 "" pos:[108,44] width:20 height:24 enabled:false
 	button btn829 "Õâ±ßµÄ»¹Ã»Ð´ºÃµÄ¡£¡£" pos:[604,440] width:252 height:60
 	button btn830 "×îºÃ²»Òª°´¡£¡£°´»µÁË¿É²»¹ÖÎÒµÄ" pos:[605,510] width:253 height:60
-	button btn216 "export To Stard Type" pos:[0,68] width:128 height:28
+	button btn216 "´æÎªAB±¸·Ý¸ñÊ½" pos:[0,68] width:128 height:28
 	button btn264 "ÅúÁ¿·Ö¿ªMaxsÎÄ¼þ" pos:[0,124] width:128 height:32
 	button btn265 "file IO" pos:[0,104] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[0,156] width:128 height:24
@@ -1610,7 +1629,7 @@ rollout file "file" width:927 height:634
 
 
 
-rollout snap "Snap" width:547 height:557
+rollout snap "Îü¸½" width:547 height:557
 (
 	--fn box_filt obj = classof obj == Box 
 	pickbutton chooseit "Pick" pos:[0,116] width:128 height:20 --filter:Editable_Poly
@@ -2096,7 +2115,7 @@ rollout snap "Snap" width:547 height:557
 
 
 global CPOn=ture
-rollout copyPaste "testCopyPaste" width:1850 height:420
+rollout copyPaste "Îï¼þ¸´ÖÆ¹ÜÀí" width:1850 height:420
 (
 	checkbutton ckb01 "ckb01" pos:[48,0] width:160 height:112 enabled:true
 	checkbutton ckb02 "ckb01" pos:[208,0] width:160 height:112 enabled:true
@@ -2130,8 +2149,9 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	checkbutton ckb30 "ckb01" pos:[1488,224] width:160 height:112 enabled:true
 	checkbutton ckbf "¸´ÖÆ" pos:[0,0] width:48 height:24
 	checkbutton ckbn "ð¤Ìù" pos:[0,24] width:48 height:24 checked:true
-	button btn29 "@" pos:[0,72] width:48 height:40
-	button btn84 "Çå³ý" pos:[0,48] width:48 height:24
+	button btn29 "@" pos:[0,136] width:48 height:20
+	button btn84 "Çå³ý" pos:[0,112] width:48 height:24
+	button btn34 "¡ý" pos:[0,92] width:48 height:20
 	
 	function updateImage=
 	(
@@ -2152,6 +2172,14 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 		)
 	)
 
+	checkbutton ckb42 "home" pos:[136,384] width:128 height:24
+	button btn35 "¡ü" pos:[0,184] width:48 height:20
+	button btn36 "¡ü" pos:[0,316] width:48 height:20
+	button btn37 "¡ý" pos:[0,204] width:48 height:20
+	button btn50 "¡û" pos:[0,68] width:16 height:24
+	button btn51 "¡ú" pos:[32,68] width:16 height:24
+	button btn60 "¡ü" pos:[0,48] width:48 height:20
+	button btn61 "¡ñ" pos:[16,68] width:16 height:24
 	on copyPaste open do
 	(
 	updateImage()
@@ -2160,7 +2188,7 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	(
 	    copyPasteSize=GetDialogSize copyPaste
 	    setinisetting  profilePath "rolloutSetting" "copyPasteSize" (copyPasteSize as string )
-	
+
 	    copyPastepos=GetDialogPos copyPaste
 	    setinisetting  profilePath "rolloutSetting" "copyPastePos" ( copyPastepos as string )
 	    )
@@ -2243,7 +2271,7 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	  updateImage()
 	)
 	else  fengx.pasteNodes 12
-	
+
 	)
 	on ckb13 changed state do
 	(
@@ -2276,7 +2304,7 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	  updateImage()
 	)
 	else  fengx.pasteNodes 16
-	
+
 	)
 	on ckb17 changed state do
 	(
@@ -2426,7 +2454,7 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	(
 	for i=1 to 30 do 
 	(
-	
+
 		 imagePath= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+i as string + ".jpg")
 		 maxPath = fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+i as string +	".max" )
 		 deleteFile  imagePath
@@ -2435,644 +2463,44 @@ rollout copyPaste "testCopyPaste" width:1850 height:420
 	updateImage()
 	)
 	)
-)rollout testcopyPaste "¸´ÖÆÕ³ÌùÎïÌå" width:1312 height:708
-(
-	button btn1 "¸´ÖÆOBJ" pos:[129,646] width:72 height:32
-	button btn2 "Õ³ÌùOBJ" pos:[201,646] width:72 height:32
-	
-	button btn3 "¸´ÖÆ" pos:[113,96] width:64 height:24
-	button btn4 "Õ³Ìù" pos:[177,96] width:56 height:24
-	
-	button btn5 "ËõÂÔÍ¼" pos:[129,518] width:144 height:128
-	button b01 "ËõÂÔÍ¼" pos:[113,0] width:120 height:96	
-		
-	button btn37 "¸´ÖÆ" pos:[233,96] width:40 height:24
-	button btn38 "Õ³Ìù" pos:[321,96] width:32 height:24
-	button b02 "ËõÂÔÍ¼" pos:[233,0] width:120 height:96
-		
-	button btn40 "¸´ÖÆ" pos:[353,96] width:40 height:24
-	button btn41 "Õ³Ìù" pos:[433,96] width:40 height:24
-	button b03 "ËõÂÔÍ¼" pos:[353,0] width:120 height:96
-			
-	button btn43 "¸´ÖÆ" pos:[473,96] width:40 height:24
-	button btn44 "Õ³Ìù" pos:[553,96] width:40 height:24
-	button b04 "ËõÂÔÍ¼" pos:[473,0] width:120 height:96
-		
-	button btn46 "¸´ÖÆ" pos:[593,96] width:40 height:24
-	button btn47 "Õ³Ìù" pos:[673,96] width:40 height:24
-	button b05 "ËõÂÔÍ¼" pos:[593,0] width:120 height:96
-		
-	button btn49 "¸´ÖÆ" pos:[713,96] width:40 height:24
-	button btn50 "Õ³Ìù" pos:[793,96] width:40 height:24
-	button b06 "ËõÂÔÍ¼" pos:[713,0] width:120 height:96
-		
-	button btn52 "¸´ÖÆOBJ" pos:[281,646] width:72 height:32
-	button btn53 "Õ³ÌùOBJ" pos:[353,646] width:72 height:32
-	button btn54 "ËõÂÔÍ¼" pos:[282,518] width:144 height:128
-	
-	button btn55 "¸´ÖÆOBJ" pos:[433,646] width:72 height:32
-	button btn56 "Õ³ÌùOBJ" pos:[505,646] width:72 height:32
-	button btn57 "ËõÂÔÍ¼" pos:[433,518] width:144 height:128
-	
-	button btn58 "¸´ÖÆOBJ" pos:[585,646] width:72 height:32
-	button btn59 "Õ³ÌùOBJ" pos:[657,646] width:72 height:32
-	button btn60 "ËõÂÔÍ¼" pos:[585,518] width:144 height:128
-	
-	button btn61 "¸´ÖÆOBJ" pos:[737,646] width:72 height:32
-	button btn62 "Õ³ÌùOBJ" pos:[809,646] width:72 height:32
-	button btn63 "ËõÂÔÍ¼" pos:[737,518] width:144 height:128
-	
-	
-	button btn70 "¸´ÖÆ" pos:[833,96] width:40 height:24
-	button btn71 "Õ³Ìù" pos:[905,96] width:48 height:24
-	button b07 "ËõÂÔÍ¼" pos:[833,0] width:120 height:96
-	button btn73 "¸´ÖÆ" pos:[953,96] width:40 height:24
-	button btn74 "Õ³Ìù" pos:[1033,96] width:40 height:24
-	button b08 "ËõÂÔÍ¼" pos:[953,0] width:120 height:96
-		
-	button btn76 "¸´ÖÆ" pos:[1073,96] width:48 height:24
-	button btn77 "Õ³Ìù" pos:[1153,96] width:40 height:24
-	button b09 "ËõÂÔÍ¼" pos:[1073,0] width:120 height:96
-		
-	button btn79 "¸´ÖÆ" pos:[1193,96] width:48 height:24
-	button btn80 "Õ³Ìù" pos:[1273,96] width:40 height:24
-	button b10 "ËõÂÔÍ¼" pos:[1193,0] width:120 height:96
-	
-	edittext edt2 "3" pos:[360,488] width:120 height:24
-	edittext edt3 "2" pos:[240,488] width:120 height:24
-	edittext edt4 "1" pos:[120,489] width:120 height:24
-	edittext edt5 "4" pos:[480,488] width:120 height:24
-	edittext edt6 "5" pos:[600,488] width:120 height:24
-	edittext edt7 "6" pos:[720,488] width:120 height:24
-	edittext edt8 "7" pos:[840,488] width:120 height:24
-	edittext edt9 "8" pos:[960,488] width:120 height:24
-	edittext edt10 "9" pos:[1080,488] width:120 height:24
-	edittext edt11 "10" pos:[1200,488] width:120 height:24
-	edittext edt12 "1" pos:[129,680] width:136 height:24
-	edittext edt13 "2" pos:[281,680] width:136 height:24
-	edittext edt16 "3" pos:[433,680] width:136 height:24
-	edittext edt17 "4" pos:[585,680] width:136 height:24
-	edittext edt18 "5" pos:[737,680] width:136 height:24
-	
-	button btn941 "Max" pos:[1,0] width:112 height:24 enabled:false
-	button btn942 "OBJ" pos:[0,520] width:112 height:32 enabled:false
-	button btn190 "Çå³ýËõÂÔÍ¼" pos:[1,24] width:112 height:32 enabled:false
-	button btn191 "É¾³ýËùÓÐ¿½±´" pos:[1,56] width:112 height:32
-	button btn86 "ÌáÈ¡ËõÂÔÍ¼" pos:[0,88] width:112 height:32
-	
-		
-	button btn957 "ÏÂÃæµÄµÄ»¹Ã»Ð´ºÃµÄ¡£¡£" pos:[164,409] width:252 height:60
-	button btn958 "×îºÃ²»Òª°´¡£¡£°´»µÁË¿É²»¹ÖÎÒµÄ" pos:[417,408] width:253 height:60
-	on copyPaste close do
+	on btn34 pressed do
 	(
-	    copyPasteSize=GetDialogSize copyPaste
-	    setinisetting  profilePath "rolloutSetting" "copyPasteSize" (copyPasteSize as string )
-	
-	    copyPastepos=GetDialogPos copyPaste
-	    setinisetting  profilePath "rolloutSetting" "copyPastePos" ( copyPastepos as string )
-	    )
-	on btn1 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath "/visualFengx/temp.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-	
-		try exportFile thecopypastestring  #noPrompt selectedOnly:true catch (
-		btn5.text = "µ¼³ö´íÎó£¡"
-		)
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		btn5.images = #(theBmp, undefined, 1,1,1,1,1 )
-	     
+	if copyPaste.height<336 then copyPaste.height+=112 else copyPaste.height=112
 	)
-	on btn2 pressed do
+	on ckb42 changed state do
 	(
-	     thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		try importFile thecopypastestring  #noPrompt catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		(
-		  btn5.text = "µ¼Èë´íÎó£¡"
-		)
-	
-		--bc=color 64 67 65 60 
-		--theBmp = (bitmap 200 200 color:bc)
-	     --btn5.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn3 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp01.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
 		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b01.images = #(theBmp, undefined, 1,1,1,1,1 )
 		)
-	on btn4 pressed do
+	on btn35 pressed do
 	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp01.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on btn5 pressed do
-	(  
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-		try theBmp = render outputsize:[200,200] vfb:off catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü") title:"copyPaste"
-		btn5.images = #(theBmp, undefined, 1,1,1,1,1 )
+	copyPaste.height=112
 	)
-	on b01 pressed do
+	on btn36 pressed do
 	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b01.images = #(theBmp, undefined, 1,1,1,1,1 )
+	copyPaste.height=224
 	)
 	on btn37 pressed do
 	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp02.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b02.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn38 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp02.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b02 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b02.images = #(theBmp, undefined, 1,1,1,1,1 )
+	copyPaste.height=336
 	)
-	on btn40 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp03.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b03.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn41 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp03.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b03 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b03.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn43 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp04.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b04.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn44 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp04.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b04 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b04.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn46 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp05.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b05.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn47 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp05.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b05 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b05.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn49 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp06.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b06.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
 	on btn50 pressed do
 	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp06.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b06 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b06.images = #(theBmp, undefined, 1,1,1,1,1 )
+	if copyPaste.width>208 then copyPaste.width-=160 else copyPaste.width=1648
 	)
-	on btn52 pressed do
+	on btn51 pressed do
 	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath "/visualFengx/temp02.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-	
-		try exportFile thecopypastestring  #noPrompt selectedOnly:true catch (
-		btn5.text = "µ¼³ö´íÎó£¡"
-		)
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		btn54.images = #(theBmp, undefined, 1,1,1,1,1 )
-	     
+	if copyPaste.width<1648 then copyPaste.width+=160 else copyPaste.width=208
 	)
-	on btn53 pressed do
-	(
-	     thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp02.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		try importFile thecopypastestring  #noPrompt catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		(
-		  btn5.text = "µ¼Èë´íÎó£¡"
-		)
-	
-		--bc=color 64 67 65 60 
-		--theBmp = (bitmap 200 200 color:bc)
-	     --btn54.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn54 pressed do
-	(  
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-		try theBmp = render outputsize:[200,200] vfb:off catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü") title:"copyPaste"
-		btn54.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn55 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath "/visualFengx/temp03.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-	
-		try exportFile thecopypastestring  #noPrompt selectedOnly:true catch (
-		btn5.text = "µ¼³ö´íÎó£¡"
-		)
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		btn57.images = #(theBmp, undefined, 1,1,1,1,1 )
-	     
-	)
-	on btn56 pressed do
-	(
-	     thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp03.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		try importFile thecopypastestring  #noPrompt catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		(
-		  btn5.text = "µ¼Èë´íÎó£¡"
-		)
-	
-		--bc=color 64 67 65 60 
-		--theBmp = (bitmap 200 200 color:bc)
-	     --btn5.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn57 pressed do
-	(  
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-		try theBmp = render outputsize:[200,200] vfb:off catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü") title:"copyPaste"
-		btn57.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn58 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath "/visualFengx/temp04.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-	
-		try exportFile thecopypastestring  #noPrompt selectedOnly:true catch (
-		btn5.text = "µ¼³ö´íÎó£¡"
-		)
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		btn60.images = #(theBmp, undefined, 1,1,1,1,1 )
-	     
-	)
-	on btn59 pressed do
-	(
-	     thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp04.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		try importFile thecopypastestring  #noPrompt catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		(
-		  btn5.text = "µ¼Èë´íÎó£¡"
-		)
-	
-		--bc=color 64 67 65 60 
-		--theBmp = (bitmap 200 200 color:bc)
-	     --btn5.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
 	on btn60 pressed do
-	(  
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-		try theBmp = render outputsize:[200,200] vfb:off catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü") title:"copyPaste"
-		btn60.images = #(theBmp, undefined, 1,1,1,1,1 )
+	(
+	if copyPaste.height>112 then copyPaste.height-=112 else copyPaste.height=336
 	)
 	on btn61 pressed do
 	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath "/visualFengx/temp05.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-	
-		try exportFile thecopypastestring  #noPrompt selectedOnly:true catch (
-		btn5.text = "µ¼³ö´íÎó£¡"
-		)
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		btn63.images = #(theBmp, undefined, 1,1,1,1,1 )
-	     
-	)
-	on btn62 pressed do
-	(
-	     thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp05.obj" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		try importFile thecopypastestring  #noPrompt catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		(
-		  btn5.text = "µ¼Èë´íÎó£¡"
-		)
-	
-		--bc=color 64 67 65 60 
-		--theBmp = (bitmap 200 200 color:bc)
-	     --btn63.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn63 pressed do
-	(  
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-		try theBmp = render outputsize:[200,200] vfb:off catch  messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü") title:"copyPaste"
-		btn63.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn70 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp07.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b07.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn71 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp07.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b07 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b07.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn73 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp08.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b08.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn74 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp08.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b08 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b08.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn76 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp09.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b09.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn77 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp09.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b09 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b09.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn79 pressed do
-	(
-		thecopypastedir = getdir #Scripts 
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp10.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		if $ != undefined do (
-			saveNodes $ thecopypastestring 
-	    )
-		
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b10.images = #(theBmp, undefined, 1,1,1,1,1 )
-		)
-	on btn80 pressed do
-	(
-		thecopypastedir = getdir #Scripts
-		thecopypastefile = fengx.beWindowsPath  "/visualFengx/temp10.max" 
-		thecopypastestring = thecopypastedir + thecopypastefile 
-		mergemaxfile (thecopypastedir + thecopypastefile) #select 
-		)
-	on b10 pressed do
-	(
-		bc=color 64 67 65 60 
-		theBmp = (bitmap 200 200 color:bc)
-	     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-		b10.images = #(theBmp, undefined, 1,1,1,1,1 )
-	)
-	on btn941 pressed do
-	(
-		
-		)
-	on btn191 pressed do
-	(
-	if (queryBox "È·¶¨ÒªÈ«É¾µô£¡²»¿É³·Ïú£¡")==true do 
-	(
-	for i=1 to 10 do 
-	(
-	   if i==10 then tempStr="/visualFengx/temp"+(i as string )+".max"  else ( 
-	      tempStr="/visualFengx/temp"+"0"+(i as string )+".max" 
-	     )
-				thecopypastedir = getdir #Scripts
-				thecopypastefile = fengx.beWindowsPath  tempStr  
-				thecopypastestring = thecopypastedir + thecopypastefile 
-				deleteFile  thecopypastestring -- (thecopypastedir + thecopypastefile) 
-	
-	
-	)
-	)
-	)
-	on btn86 pressed do
-	(
-			£¨
-			     if checkForSave() then (
-	                max reset file
-	                b=#(b01,b02,b03,b04,b05,b06,b07,b08,b09,b10)
-	                for i=1 to 10  do  
-	                (
-	
-				thecopypastedir = getdir #Scripts
-	                if i==10 then tempStr="/visualFengx/temp"+(i as string )+".max"  else ( 
-	                   tempStr="/visualFengx/temp"+"0"+(i as string )+".max" 
-	                )
-				thecopypastefile = fengx.beWindowsPath  tempStr  --"/visualFengx/temp.max" 
-				thecopypastestring = thecopypastedir + thecopypastefile 
-				mergemaxfile (thecopypastedir + thecopypastefile) #select 
-			 
-			     max zoomext sel all
-				
-			     bc=color 64 67 65 60 
-				theBmp = (bitmap 200 200 color:bc)
-			     try theBmp = render outputsize:[200,200] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
-				b[i].images = #(theBmp, undefined, 1,1,1,1,1 )
-			     max delete
-	                for s in sceneMaterials do  
-	                (
-	                  s=Standardmaterial ()
-			       s.name=("xxx"+i as string )
-	                 )
-	
-	                for s in  meditMaterials do  
-	                (
-	                  s=Standardmaterial ()
-			       s.name=("xxx"+i as string )
-	                 )
-	               --actionMan.executeAction 0 "203" 
-	              )
-			 )
-			£©
-		)
-	on btn957 pressed do
-	(
-	messageBox "Äã»¹Õæ°´µÄ£¡£¡£¡£¡"
-	
-	)
-	on btn958 pressed do
-	(
-	messageBox "Äã»¹Õæ°´µÄ£¡£¡£¡£¡"
-	
+	copyPaste.height=112
+	copyPaste.width=846
 	)
 )
-
-
-
-
 
 
 
@@ -3218,7 +2646,7 @@ if nodes!=undefined do
 				-->> save a thumbnail
 				--select s
 				macros.run "Tools" "Isolate_Selection"
-				--max zoomext sel all
+				max zoomext sel all
 				
 				bc=color 64 67 65 60 
 				theBmp = (bitmap 160 112 color:bc)
@@ -3227,9 +2655,7 @@ if nodes!=undefined do
 				save theBmp 
 				max views undo
 				max unhide all
-				
-			
-				
+
 				
 				for map in  (fengx.getTrueMapPath s) do
 					(
@@ -3262,16 +2688,21 @@ function  copyNodes  NO =
 	local targetPath = copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+NO as string +	".max" 
 	makeDir (copyPastePath+ "/visualFengx/copyPasteTemp")
 	targetPath = fengx.beWindowsPath targetPath 
-	
-	if $ != undefined and NO != undefined do saveNodes $  targetPath
-    
-	
+	if $ != undefined and NO != undefined do 
+	(
+	saveNodes $  targetPath
 	bc=color 64 67 65 60 
 	theBmp = (bitmap 160 112 color:bc)
-     try theBmp = render outputsize:[160,112] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
+	macros.run "Tools" "Isolate_Selection"
+	max zoomext sel all
+	try theBmp = render outputsize:[160,112] vfb:off catch messageBox("äÖÈ¾ËõÂÔÍ¼Ê§°Ü")
+	max unhide all
+	max views undo
+	max views undo
 	thebmp.filename=fengx.beWindowsPath (copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTemp"+NO as string +	".jpg")
-	print thebmp.filename
+	--print thebmp.filename
 	save theBmp 
+	)
 	),
 	
 	
@@ -3487,15 +2918,7 @@ fn llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 	)
 ),
  
-fn openTexFolder m=
-(
-	try	 dir1=fengx.dirToPath m.DiffuseMap.bitmap.filename catch print "¸ù±¾¾ÍÃ»ÌùÍ¼ ÔõÃ´´òµÄ¿ª£¡"-- messageBox(" ¸ù±¾¾ÍÃ»ÌùÍ¼ ÔõÃ´´òµÄ¿ª£¡") title:"²Á²Á²Á²Á²Á²Á£¡£¡£¡"
-	--dir="/select,"+dir
-	if (dir1!=""and dir1!=undefined )do 
-	(	
-		try  ShellLaunch "explorer.exe" dir1  catch print "Ó²ÊÇÃ»´ò¿ª£¡" --messageBox("Ó²ÊÇÃ»´ò¿ª£¡") title:"²Á²Á²Á²Á²Á²Á£¡£¡£¡"
-	)
-),
+
 fn openTexFile m=
 (
 	try	 dir2=m.DiffuseMap.bitmap.filename catch print "¸ù±¾¾ÍÃ»ÌùÍ¼ ÔõÃ´´òµÄ¿ª£¡"-- messageBox(" ¸ù±¾¾ÍÃ»ÌùÍ¼ ÔõÃ´´òµÄ¿ª£¡") title:"²Á²Á²Á²Á²Á²Á£¡£¡£¡"
@@ -4256,27 +3679,6 @@ fn showObjectNames=
     gw.updateScreen()
 ),
 
-fn divideIcon bm tn =
-(    --divide Icons, tn,total number
-    obmp = openbitmap bm
-    Icons=#()
-    h=obmp.height
-    w=obmp.width
-    sw=w/tn
-    for i in 1 to tn do
-    (    tempbm = bitmap sw h
-        p1=(i-1)*sw
-        for j in 0 to h-1 do    (
-            pxl = getPixels obmp [p1,j] sw --get a row of pixels
-            setPixels tempbm [0,j] pxl
-        )
-        Icons[i]=tempbm
-    )
-    close obmp
-    Icons
-),
-
-
 
 --<material>--<startardMaterial only>
 fn saveMateMapTo mates targetPath=
@@ -4659,8 +4061,8 @@ function getMatesTrueMapsPath mates =
 	
 function dToDNS DPath=
 (
-	mapPath=getFilenamePath    DPath
-	mapName = getFilenameFile DPath
+	mapPath=getFilenamePath     DPath
+	mapName = getFilenameFile   DPath
 	mapType =getFilenameType    DPath	
 	
 	
@@ -4668,6 +4070,7 @@ function dToDNS DPath=
 	append	mapsPathArry DPath
 	
 	namePart= filterString mapName "_"
+
 	if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
 
 	temp=""
@@ -4697,9 +4100,9 @@ function dToDNS DPath=
 	strS=""
 	for i=1 to (SName.count-1) do  strS+=SName[i]
 	SName =strS
---substring SName 1 (NName.count-1)
+	--substring SName 1 (NName.count-1)
 	
-    append	mapsPathArry (mapPath+NName+mapType)
+     append	mapsPathArry (mapPath+NName+mapType)
 	append	mapsPathArry (mapPath+SName+mapType)
 	return mapsPathArry
 	),
