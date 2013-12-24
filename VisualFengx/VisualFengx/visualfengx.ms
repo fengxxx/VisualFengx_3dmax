@@ -246,6 +246,7 @@ rollout mainwindow "visualFengx" width:420 height:724
  
  
  
+ 
 	checkbutton ckP "Poly" pos:[-1,24] width:32 height:24
 	checkbutton ckM "²ÄÖÊ" pos:[32,24] width:32 height:24
 	checkbutton ckF "ÎÄ¼þ" pos:[64,24] width:40 height:24
@@ -270,7 +271,7 @@ rollout mainwindow "visualFengx" width:420 height:724
 	button btn143 "@" pos:[248,96] width:24 height:24
 	button btn29 "send to GitHub" pos:[192,248] width:80 height:24
 	button btn145 "get from GitHub" pos:[184,176] width:87 height:24
-	button btn32 "Ð¶ÔØ£¡" pos:[152,392] width:127 height:104
+	button btn32 "Ð¶ÔØ£¡" pos:[144,328] width:127 height:104
 	
 	function 	saveWindowState=
 	(

@@ -1,11 +1,27 @@
 ---->>>>> VisaulFengx_1.10
-
-
-2. 导出到AB标准格式 -->>(1) function ToNDS  没有排除掉 非正规命名方式 （会报错！）
+----bug
+1. 主窗口 和 工具窗口 逻辑
+2. 导出到AB标准格式 -->>(1) function ToNDS 没有排除掉 非正规命名方式 （会报错！）
 3. 注册的macroScript 的 分类 （category） 改变成标准格式
- 
-
+4. 文件结构（优化）
+5. 安装方式（MZP格式）
 6. 版本控制
-7. copyPasteWindow  加入copy 贴图 功能
 
----->>>>> VisaulFengx_1.11
+----add
+
+----fix
+
+
+---->>>>> VisaulFengx_1.20
+----bug
+
+1. 导出到AB标准格式 -->>(1) function ToNDS  没有排除掉 非正规命名方式 （会报错！）
+2. 注册的macroScript 的 分类 （category） 改变成标准格式
+3. copyPasteWindow  加入copy 贴图 功能
+
+----add
+
+
+----fix
+
+---->>>>> VisaulFengx_1.30
