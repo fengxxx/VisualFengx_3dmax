@@ -169,7 +169,7 @@ theBmp =openBitMap  tempPath
 
 
 
-rollout installTool "VisualFengx_1.12" width:158 height:211
+rollout installTool R_name width:158 height:211
 (
 	button btn76 "°²×°" pos:[0,132] width:80 height:80
 	button btn77 "Ð¶ÔØ" pos:[80,132] width:80 height:80

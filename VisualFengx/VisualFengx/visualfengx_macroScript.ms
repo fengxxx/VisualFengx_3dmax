@@ -126,7 +126,7 @@ buttontext:"fileWindow"
 (
 	if file.open==true then destroyDialog file else(
 	if fileSize.x*fileSize.y==0 do fileSize=[127, 203]
-	createdialog file fileSize.x fileSize.y pos: filePosx  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
+	createdialog file fileSize.x fileSize.y pos: filePosx   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
 	fengx.updataLanguage()
 	)
 	--theVoice.Speak "最最最最"

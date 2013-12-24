@@ -235,50 +235,42 @@ global matrix_foucs=3
 global canSetWindows=true
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------
-rollout mainwindow "visualFengx" width:724 height:794
+rollout mainwindow "visualFengx" width:420 height:724
 (
    
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
+ 
+ 
+ 
+ 
 	checkbutton ckP "Poly" pos:[-1,24] width:32 height:24
-	
-
 	checkbutton ckM "材质" pos:[32,24] width:32 height:24
 	checkbutton ckF "文件" pos:[64,24] width:40 height:24
-	checkbutton ckS "Snap" pos:[104,24] width:39 height:24
-	
-	
+	checkbutton ckS "吸附" pos:[104,24] width:39 height:24
 	checkbutton ckX "↓↑" pos:[104,0] width:39 height:24
-	checkbutton ckb127 "English" pos:[144,60] width:64 height:24 enabled:true checked:false
-	checkbutton ckb128 "中文" pos:[208,60] width:64 height:24 enabled:true checked:true
-	
-	colorPicker cp6 "" pos:[208,104] width:63 height:24 color:(color 42 8 36)
-	button btn335 "Set" pos:[144,48] width:128 height:12 enabled:false
-	button btn336 "Color" pos:[144,92] width:128 height:12
+	checkbutton ckb127 "English" pos:[272,60] width:64 height:24 enabled:true checked:false
+	checkbutton ckb128 "中文" pos:[336,60] width:64 height:24 enabled:true checked:true
+	colorPicker cp6 "" pos:[336,104] width:63 height:24 enabled:false color:(color 42 8 36)
+	button btn335 "Set" pos:[272,48] width:128 height:12 enabled:false
+	button btn336 "Color" pos:[272,92] width:128 height:12
 	button btn337 "设置" pos:[64,0] width:40 height:24
 	checkbutton ckb230 "复制管理" pos:[0,0] width:64 height:24
-	
-
-	
-	button btn744 "background" pos:[144,104] width:64 height:24
-	button btn35 "visualfengx.ms" pos:[144,148] width:104 height:24
-	button btn37 "startup_tool_01.ms" pos:[144,172] width:104 height:24
-	button btn38 "edit Script" pos:[144,132] width:128 height:16 enabled:false
-	button btn21 "@" pos:[248,148] width:24 height:24
-	button btn22 "@" pos:[248,172] width:24 height:24
-	button btn23 "fengx.fengx" pos:[144,220] width:72 height:24
-	button btn24 "open" pos:[216,220] width:32 height:24
-	button btn91 "@" pos:[248,220] width:24 height:24
-	button btn142 "userMacros" pos:[144,196] width:104 height:24
-	button btn143 "@" pos:[248,196] width:24 height:24
-	button btn29 "send to GitHub" pos:[144,320] width:127 height:32
-	button btn114 "确定下" pos:[144,382] width:127 height:24
-	button btn145 "get from GitHub" pos:[144,352] width:127 height:30
-	button btn32 "卸载掉！" pos:[144,248] width:127 height:49
-	
-
+	button btn744 "background" pos:[272,104] width:64 height:24
+	button btn35 "visualfengx.ms" pos:[144,48] width:104 height:24
+	button btn37 "startup_tool_01.ms" pos:[144,72] width:104 height:24
+	button btn21 "@" pos:[248,48] width:24 height:24
+	button btn22 "@" pos:[248,72] width:24 height:24
+	button btn23 "fengx.fengx" pos:[144,120] width:72 height:24
+	button btn24 "open" pos:[216,120] width:32 height:24
+	button btn91 "@" pos:[248,120] width:24 height:24
+	button btn142 "userMacros" pos:[144,96] width:104 height:24
+	button btn143 "@" pos:[248,96] width:24 height:24
+	button btn29 "send to GitHub" pos:[192,248] width:80 height:24
+	button btn145 "get from GitHub" pos:[184,176] width:87 height:24
+	button btn32 "卸载！" pos:[152,392] width:127 height:104
 	
 	function 	saveWindowState=
 	(
@@ -311,7 +303,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 		if windowState==1 then
 		(	
 			--ckX.state=true
-			--mainWindow.width=
+			mainWindow.width=142
 			mainWindow.height=50
 			
 			tempID=1
@@ -344,7 +336,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 			
 			) else(
 			--ckX.state=false
-			--mainWindow.width=
+			mainWindow.width=142
 			mainWindow.height=691
 			
 			for r in rolloutS do
@@ -381,6 +373,14 @@ rollout mainwindow "visualFengx" width:724 height:794
 		windowslogic()
 	)
 	
+	button btn697 "send to GitHub" pos:[184,152] width:87 height:24
+	button btn698 "get from GitHub" pos:[192,272] width:80 height:24
+	button btn699 "home" pos:[144,152] width:40 height:48
+	button btn700 "company" pos:[144,248] width:48 height:48
+	button btn801 "install.ms" pos:[144,200] width:104 height:24
+	button btn802 "@" pos:[248,200] width:24 height:24
+	button btn803 "install.ms" pos:[144,296] width:104 height:24
+	button btn804 "@" pos:[248,296] width:24 height:24
 	on mainwindow open do
 	(
 	   
@@ -486,7 +486,16 @@ rollout mainwindow "visualFengx" width:724 height:794
 		)
 	on btn337 pressed do
 	(
-	if mainWindow.width!=142 then mainWindow.width=142 else mainWindow.width=270
+	if ckX.state==false then 
+	(
+	mainWindow.height=691 
+	if mainWindow.width<=142 then mainWindow.width=270 else mainWindow.width=142 
+	)else 
+	(
+	
+	)
+	
+	
 	)
 	on ckb230 changed state do
 	(
@@ -537,72 +546,82 @@ rollout mainwindow "visualFengx" width:724 height:794
 	)
 	on btn29 pressed do
 	(
-		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms") 
-		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
-	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx.ms")
-	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
-		if (queryBox "sure to send!")==true do 
-		(
-		if doesFileExist GitHubFile03 do deleteFile GitHubFile01
-		if doesFileExist GitHubFile04 do deleteFile GitHubFile02
-		try (copyFile (getdir #Scripts + "\visualfengx\visualfengx.ms") GitHubFile01 )catch messageBox "visualfengx.ms send fath!"
-		try (copyFile (getdir #startupScripts + "\visualfengx_startup_tool_01.ms")  GitHubFile02 )catch messageBox "visualfengx_startup_tool_01.ms send fath!"
-		--edit GitHubFile01
-		)
-	)
-	on btn114 pressed do
+	if (queryBox "确定要同步到 GitHub!")==true do
 	(
-	edit (fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms"))
+	worlkGitHubPath="E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\"
+	fengx.sendToGitHub  worlkGitHubPath
+	)
 	)
 	on btn145 pressed do
 	(
-		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms") 
-		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
-	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx.ms")
-	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
-		if (queryBox "sure to get!")==true do 
-		(
-		if doesFileExist GitHubFile01 do deleteFile GitHubFile03
-		if doesFileExist GitHubFile02 do deleteFile GitHubFile04
-		try (copyFile  GitHubFile01 (getdir #Scripts + "\visualfengx\visualfengx.ms") )catch messageBox "visualfengx.ms get fath!"
-		try (copyFile  GitHubFile02 (getdir #startupScripts + "\visualfengx_startup_tool_01.ms") )catch messageBox "visualfengx_startup_tool_01.ms get fath!"
-		--edit GitHubFile01
-		)
+	if (queryBox "确定从 GitHub 安装!")==true do
+	(
+	files =getFiles "K:\\VisualFengx_3dmax\\*.mzp"
+	try fileIn files[1] catch messageBox "找不到按装包！"
+	)
 	)
 	on btn32 pressed do
 	(
 		fengx.uninstall()
 	)
+	on btn697 pressed do
+	(
+	if (queryBox "确定要同步到 GitHub!")==true do
+	(
+	homeGitHubPath="K:\\VisualFengx_3dmax\\VisualFengx\\"
+	fengx.sendToGitHub  homeGitHubPath
+	)
+	)
+	on btn698 pressed do
+	(
+	if (queryBox "确定从 GitHub 安装!")==true do
+	(
+	files =getFiles "E:\\GitHub\\VisualFengx_3dmax\\*.mzp"
+	try fileIn files[1] catch messageBox "找不到按装包！"
+	)
+	)
+	on btn801 pressed do
+		try edit "K:\\VisualFengx_3dmax\\VisualFengx\\install.ms" catch messageBox "cant find the file!"
+	on btn802 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," +"K:\\VisualFengx_3dmax\\VisualFengx\\install.ms" )
+		
+	)
+	on btn803 pressed do
+		try edit "E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\install.ms" catch messageBox "cant find the file!"
+	on btn804 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\install.ms" )
+		
+	)
 )
 
 
 
-rollout mate "材质" width:128 height:403
+rollout mate "材质" width:128 height:216
 (
-	button btn1 "Clear Away" pos:[60,20] width:68 height:40 enabled:true
-	button btn7 "Save Map To" pos:[0,228] width:104 height:24 enabled:true
-	button btn8 "Off" pos:[64,335] width:64 height:44 enabled:true
-	button btn9 "On" pos:[0,335] width:64 height:44 enabled:true
-	button btn10 "自动标准名字" pos:[0,60] width:128 height:24 enabled:true
-	button btn11 "@" pos:[104,180] width:24 height:24 enabled:true
-	button btn12 "Clear Up" pos:[0,20] width:60 height:40 enabled:true
-	button btn15 "@" pos:[104,228] width:24 height:24 enabled:true
-	button btn463 "Select Mate" pos:[0,180] width:104 height:24 enabled:false
-	button btn106 "@" pos:[104,204] width:24 height:24
+	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
+	button btn7 "贴图另存为" pos:[0,112] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,192] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,163] width:128 height:29 enabled:true
+	button btn10 "自动标准名字" pos:[0,40] width:128 height:24 enabled:true
+	button btn11 "@" pos:[232,96] width:24 height:24 enabled:true
+	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
+	button btn15 "@" pos:[104,112] width:24 height:24 enabled:true
+	button btn463 "Select Mate" pos:[128,96] width:104 height:24 enabled:false
+	button btn106 "@" pos:[232,120] width:24 height:24
 	
 	
-	button btn107 "Select Object" pos:[0,204] width:104 height:24 enabled:false
-	button btn119 "Objet" pos:[0,84] width:64 height:24 enabled:false
-	button btn120 "Mate" pos:[64,84] width:64 height:24 enabled:false
-	button btn14 "Import Map" pos:[0,264] width:128 height:24
-	button btn56 "Import Mate Map" pos:[0,288] width:128 height:24
-	button btn273 "Materials" pos:[0,0] width:128 height:20 enabled:false
+	button btn107 "Select Object" pos:[128,120] width:104 height:24 enabled:false
+	button btn119 "Objet" pos:[128,40] width:64 height:24 enabled:false
+	button btn120 "Mate" pos:[192,40] width:64 height:24 enabled:false
+	button btn14 "Import Map" pos:[128,160] width:128 height:24
+	button btn56 "Import Mate Map" pos:[128,184] width:128 height:24
+	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
-	button btn274 "Map" pos:[0,160] width:128 height:20 enabled:false
-	button btn275 "Directx" pos:[0,316] width:128 height:19 enabled:false
-	button btn811 "这边的还没写好的。。" pos:[241,179] width:252 height:60
-	button btn812 "最好不要按。。按坏了可不怪我的" pos:[241,339] width:253 height:60
-	button btn21 "去除多余材质" pos:[0,112] width:128 height:32
+	button bmap "贴图" pos:[0,96] width:128 height:16 enabled:false
+	button btn275 "Directx" pos:[0,144] width:128 height:19 enabled:false
+	button btn21 "去除多余子材质" pos:[0,64] width:128 height:24
 	on mate open do
 	(
 		
@@ -806,16 +825,6 @@ rollout mate "材质" width:128 height:403
 				)
 			
 	)
-	on btn811 pressed do
-	(
-	messageBox "你还真按的！！！！"
-	
-	)
-	on btn812 pressed do
-	(
-	messageBox "你还真按的！！！！"
-	
-	)
 	on btn21 pressed do
 	(
 	undo on(
@@ -831,62 +840,76 @@ rollout mate "材质" width:128 height:403
 
 
 
-rollout poly "poly " width:128 height:232
+rollout poly "poly " width:863 height:653
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
 
 	button btn501 "Cylinder" pos:[128,0] width:64 height:24
 	button btn511 "Sphere" pos:[128,24] width:64 height:24
-	button btn521 "Plane" pos:[128,48] width:64 height:24
+	button btn521 "Plane" pos:[256,0] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[192,0] width:64 height:24 enabled:false
-	button btn7 "Big +" pos:[16,108] width:48 height:24
-	button btn13 "Small -" pos:[16,132] width:48 height:24
-	button btn151 "重置模型" pos:[64,108] width:64 height:48 enabled:false
+	button btn7 "Big +" pos:[16,276] width:48 height:24
+	button btn13 "Small -" pos:[16,300] width:48 height:24
+	button btn151 "重置模型" pos:[64,276] width:64 height:48 
+ 
+ 
+ 
 	
 
-	button btn102 "Bot" pos:[364,68] width:28 height:24
-	button btn103 "Center" pos:[340,44] width:52 height:24
-	button btn104 "Reset Pos" pos:[328,92] width:64 height:24
-	
-	button btn105 "+" pos:[304,20] width:24 height:24
-	button btn106 "-" pos:[264,20] width:24 height:24
-	button btn107 "+" pos:[304,44] width:24 height:24
-	button btn108 "-" pos:[264,44] width:24 height:24
-	button btn109 "+" pos:[304,68] width:24 height:24
-	button btn110 "-" pos:[264,68] width:24 height:24
-	button btn111 "X" pos:[288,20] width:16 height:24
-	button btn112 "Y" pos:[288,44] width:16 height:24
-	button btn113 "Z" pos:[288,68] width:16 height:24
-	button btn114 "Reset Pivot" pos:[264,92] width:64 height:24
-	button btn159 "Edit UV" pos:[0,180] width:56 height:24
-	checkbutton BS "#" pos:[0,108] width:16 height:48
+	button btn159 "Edit UV" pos:[0,396] width:56 height:24
+	checkbutton BS "#" pos:[0,276] width:16 height:48
 	button btn97 "排序" pos:[72,56] width:56 height:24
 	checkbutton sx "x" pos:[0,56] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,56] width:24 height:24
 	checkbutton sz "z" pos:[48,56] width:24 height:24
-	button btn51 "Show Infor" pos:[192,24] width:64 height:48 enabled:false
-	checkbutton c1 "1" pos:[128,88] width:24 height:24 enabled:true checked:true
-	checkbutton c2 "2" pos:[152,88] width:16 height:24
-	checkbutton c3 "3" pos:[168,88] width:16 height:24
-	checkbutton c4 "4" pos:[184,88] width:16 height:24 enabled:true checked:false
-	checkbutton c5 "5" pos:[200,88] width:16 height:24
-	checkbutton c6 "6" pos:[216,88] width:16 height:24
+	button btn51 "Show Infor" pos:[192,24] width:64 height:24 enabled:false
+	checkbutton c1 "1" pos:[128,56] width:24 height:24 enabled:true checked:true
+	checkbutton c2 "2" pos:[152,56] width:16 height:24
+	checkbutton c3 "3" pos:[168,56] width:16 height:24
+	checkbutton c4 "4" pos:[184,56] width:16 height:24 enabled:true checked:false
+	checkbutton c5 "5" pos:[200,56] width:16 height:24
+	checkbutton c6 "6" pos:[216,56] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,88] width:128 height:20 enabled:false
-	button btn355 "Pivot" pos:[264,0] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,160] width:128 height:20 enabled:false
-	button btn222 "" pos:[328,20] width:64 height:24 enabled:false
-	button btn223 "" pos:[328,68] width:36 height:24 enabled:false
-	button btn224 "" pos:[328,44] width:12 height:24 enabled:false
-	button btn225 "" pos:[56,180] width:72 height:24 enabled:false
-	checkbutton ckb133 "send to Uvlayout" pos:[0,204] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,204] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,256] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,376] width:128 height:20 enabled:false
+	button btn225 "" pos:[56,396] width:72 height:24 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,420] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,420] width:96 height:24
 	
-	button btn211 "重来" pos:[96,204] width:32 height:24
+	button btn211 "重来" pos:[96,420] width:32 height:24
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
+	button btn490 "右旋" pos:[64,348] width:64 height:24
+ 
+ 
+ 
+ 
+	button btn491 "左旋" pos:[0,348] width:64 height:24
+	
+	button btn492 "智能旋转" pos:[0,328] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[73,154] width:56 height:24
+	button btn564 "归中" pos:[73,130] width:56 height:24
+	button btn565 "Pos" pos:[1,201] width:24 height:24
+	
+	button btn566 "+" pos:[49,106] width:24 height:24
+	button btn567 "-" pos:[1,106] width:24 height:24
+	button btn568 "+" pos:[49,130] width:24 height:24
+	button btn569 "-" pos:[1,130] width:24 height:24
+	button btn570 "+" pos:[49,154] width:24 height:24
+	button btn571 "-" pos:[1,154] width:24 height:24
+	button btn572 "X" pos:[25,106] width:24 height:24
+	button btn573 "Y" pos:[25,130] width:24 height:24
+	button btn574 "Z" pos:[25,154] width:24 height:24
+	button btn575 "Pivot" pos:[1,225] width:32 height:24
+	button btn576 "Rotate" pos:[37,201] width:40 height:24
+	button btn577 "Scale" pos:[33,225] width:44 height:24
+	button btn578 "所有" pos:[77,201] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,182] width:129 height:19 enabled:false
+	button btn580 "置顶" pos:[73,106] width:56 height:24
+	button btn581 "Pivot" pos:[1,88] width:129 height:18 enabled:false
+	button btn582 "" pos:[25,201] width:12 height:24 enabled:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -947,140 +970,6 @@ rollout poly "poly " width:128 height:232
 	on btn151 pressed do
 	(
 		fengx.resetModel()
-	)
-	on btn102 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do 
-				if classOf(s)==Dummy then
-				(
-					CenterPivot s
-					s.pivot.z=s.min.z
-					)else
-					(
-						CenterPivot s
-						print s
-						s.pivot.z = s.min.z
-						)
-					)
-			)
-	)
-	on btn103 pressed do
-	(	
-		undo on(
-		if $!=undefined do 
-		(
-			for s in fengx.selectGroupDummy($) do 
-			CenterPivot s
-			)
-		)
-	)
-	on btn104 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.pos=[0,0,0]
-				)
-		)
-	)
-	on btn105 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=s.max.x
-			)
-		)
-	)
-	on btn106 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=s.min.x 
-			)
-		)
-	)
-	on btn107 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=s.max.y
-			)
-		)
-	)
-	on btn108 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=s.min.y
-			)
-		)
-	)
-	on btn109 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=s.max.z
-			)
-		)
-	)
-	on btn110 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=s.min.z
-			)
-		)
-	)
-	on btn111 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=(s.max.x+s.min.x)/2
-			)
-		)
-	)
-	on btn112 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=(s.max.y+s.min.y)/2
-			)
-		)
-	)
-	on btn113 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=(s.max.z+s.min.z)/2
-			)
-		)
-	)
-	on btn114 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.pivot=[0,0,0]
-				)
-		)
 	)
 	on btn159 pressed do
 	(
@@ -1281,18 +1170,6 @@ rollout poly "poly " width:128 height:232
 	c4.state=false
 	c5.state=false
 	)
-	on btn223 pressed do
-	(
-	if (queryBox "设置uvlayout 的路径 选择claunch-uvlayout.exe   一般在 文件夹headus UVLayout v2 Professional 里面")==true do 
-			(
-					tempPath=getOpenFileName    caption:"claunch-uvlayout.exe "
-					if uvlayoutPath  !=undefined do 
-					(
-						uvlayoutPath = tempPath
-						setIniSetting  profilePath "uvlayout" "path"  uvlayoutPath 
-					)
-			)	
-	)
 	on ckb133 changed state do
 	(
 	tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +".out"
@@ -1301,7 +1178,7 @@ rollout poly "poly " width:128 height:232
 	    if $!=undefined then
 	    (
 	    fengx.sendToUVlayout() 
-	    ckb133.text="get From Uvlayout"    
+	    ckb133.text="从 Uvlayout 获取"    
 	    )else (
 	       if (queryBox "没选择物体!")==true then poly.ckb133.state=false else poly.ckb133.state=false
 	    )
@@ -1310,13 +1187,13 @@ rollout poly "poly " width:128 height:232
 	    if doesFileExist tempCopyPath ==true then
 	    (
 	      fengx.getFromUvlayout()
-	      ckb133.text="send to Uvlayout"    
+	      ckb133.text="发送到Uvlayout"    
 	     )else
 	     (
 	       if (queryBox "uvlayout 上还没点 send ！")==true then  
 	          (
 	            poly.ckb133.state=false
-	            ckb133.text="send to Uvlayout"    
+	            ckb133.text="发送到Uvlayout"    
 	            )else poly.ckb133.state=true
 	     )
 	)
@@ -1338,7 +1215,244 @@ rollout poly "poly " width:128 height:232
 	on btn211 pressed do
 	(
 	poly.ckb133.state=false
-	ckb133.text="send to Uvlayout"  
+	ckb133.text="发送到 Uvlayout"  
+	)
+	on btn490 pressed do
+	(
+	
+		if keyboard.shiftpressed then fengx.smartRotate 30
+		else fengx.smartRotate 90
+		)
+	on btn491 pressed do
+	(
+	
+		if keyboard.shiftpressed then fengx.smartRotate -30
+		else fengx.smartRotate -90
+		)
+	on btn492 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
+				)
+		)
+	)
+	on btn563 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do 
+				if classOf(s)==Dummy then
+				(
+					CenterPivot s
+					s.pivot.z=s.min.z
+					)else
+					(
+						CenterPivot s
+						print s
+						s.pivot.z = s.min.z
+						)
+					)
+			)
+	)
+	on btn564 pressed do
+	(	
+		undo on(
+		if $!=undefined do 
+		(
+			for s in fengx.selectGroupDummy($) do 
+			CenterPivot s
+			)
+		)
+	)
+	on btn565 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.pos=[0,0,0]
+				)
+		)
+	)
+	on btn566 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.x=s.max.x
+			)
+		)
+	)
+	on btn567 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.x=s.min.x 
+			)
+		)
+	)
+	on btn568 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.y=s.max.y
+			)
+		)
+	)
+	on btn569 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.y=s.min.y
+			)
+		)
+	)
+	on btn570 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.z=s.max.z
+			)
+		)
+	)
+	on btn571 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.z=s.min.z
+			)
+		)
+	)
+	on btn572 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.x=(s.max.x+s.min.x)/2
+			)
+		)
+	)
+	on btn573 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.y=(s.max.y+s.min.y)/2
+			)
+		)
+	)
+	on btn574 pressed do
+	(
+		undo on(
+		if $!=undefined do
+		(
+			for s in fengx.selectGroupDummy($) do s.pivot.z=(s.max.z+s.min.z)/2
+			)
+		)
+	)
+	on btn575 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.pivot=[0,0,0]
+				)
+		)
+	)
+	on btn576 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
+				)
+		)
+	)
+	on btn577 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.scale=[1,1,1]
+				)
+		)
+	)
+	on btn578 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do( 
+	                if classOf(s)==Dummy then
+				    (
+					CenterPivot s
+					s.pivot.z=s.min.z
+					)else
+					(
+						CenterPivot s
+						print s
+						s.pivot.z = s.min.z
+						)
+				  s.pos=[0,0,0]
+	                s.rotation=(quat 0 0 0 0)
+	                s.scale=[1,1,1]
+	                s.pivot=[0,0,0]
+	        )
+		)
+	)
+	)
+	on btn579 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
+				)
+		)
+	)
+	on btn580 pressed do
+	(
+		undo on(
+		if $==undefined then
+		(
+			)else
+			(
+				for s in fengx.selectGroupDummy($) do 
+				if classOf(s)==Dummy then
+				(
+					CenterPivot s
+					s.pivot.z=s.min.z
+					)else
+					(
+						CenterPivot s
+						print s
+						s.pivot.z = s.max.z
+						)
+					)
+			)
 	)
 )
 
@@ -1358,47 +1472,43 @@ rollout poly "poly " width:128 height:232
 
 
 
-rollout file "文件" width:927 height:634
+rollout file "文件" width:128 height:272
 (
-	button btn1 ".visual" pos:[64,20] width:44 height:48 enabled:true
-	button btn2 ".obj" pos:[0,44] width:40 height:24 enabled:true
-	button btn3 ".max" pos:[0,20] width:40 height:24 enabled:true
-	button btn17 "@" pos:[108,20] width:20 height:24 enabled:true
-	button btn19 "@" pos:[40,44] width:24 height:24 enabled:true
-	button btn20 "@" pos:[40,20] width:24 height:24 enabled:true
-	button btn330 "@" pos:[48,212] width:28 height:24 enabled:true
-	button btn345 "Restart" pos:[0,288] width:64 height:64 enabled:true
-	button btn346 "Eixt" pos:[64,288] width:64 height:64 enabled:true
-	button btn10 "@" pos:[104,236] width:24 height:24 enabled:true
-	button btn11 "This File " pos:[0,212] width:48 height:24 enabled:false
-	button btn12 "This Script" pos:[0,236] width:104 height:24 enabled:false
+	button btn1 ".visual" pos:[0,16] width:64 height:24 enabled:true
+	button btn2 ".obj" pos:[0,64] width:64 height:24 enabled:true
+	button btn3 ".max" pos:[0,40] width:64 height:24 enabled:true
+	button btn17 "显示文件" pos:[64,16] width:64 height:24 enabled:true
+	button btn19 "显示文件" pos:[64,64] width:64 height:24 enabled:true
+	button btn20 "显示文件" pos:[64,40] width:64 height:24 enabled:true
+	button btn330 "显示文件" pos:[64,148] width:64 height:24 enabled:true
+	button btn345 "Restart" pos:[0,208] width:64 height:64 enabled:true
+	button btn346 "Eixt" pos:[64,208] width:64 height:64 enabled:true
+	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
+	button btn11 "本文件" pos:[0,148] width:64 height:24 enabled:false
+	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
-	button btn239 "export select" pos:[0,0] width:128 height:20 enabled:false
+	button btn239 "导出（所选）" pos:[0,0] width:128 height:16 enabled:false
 	
-	button btn240 "system" pos:[0,192] width:128 height:20 enabled:false
-	button btn171 "" pos:[76,212] width:52 height:24 enabled:false
-	button btn172 "" pos:[108,44] width:20 height:24 enabled:false
-	button btn829 "这边的还没写好的。。" pos:[604,440] width:252 height:60
-	button btn830 "最好不要按。。按坏了可不怪我的" pos:[605,510] width:253 height:60
-	button btn216 "存为AB备份格式" pos:[0,68] width:128 height:28
-	button btn264 "批量分开Maxs文件" pos:[0,124] width:128 height:32
-	button btn265 "file IO" pos:[0,104] width:128 height:20 enabled:false
-	button btn395 "importMaxs" pos:[0,156] width:128 height:24
-	edittext edt1 "import path" pos:[168,24] width:520 height:168
-	button btn23 "输出" pos:[224,264] width:112 height:88
-	edittext edt2 "export path" pos:[168,208] width:520 height:24
-	button btn25 "......" pos:[688,24] width:48 height:24
-	button btn26 "paste" pos:[688,48] width:48 height:32
-	button btn80 "paste" pos:[688,232] width:48 height:32
-	button btn109 "......" pos:[688,208] width:48 height:24
-	button btn137 "打开输出文件夹" pos:[576,232] width:112 height:32
-	checkbutton ckb1 "创建同名文件夹" pos:[224,232] width:112 height:32 enabled:true checked:true
-	button btn85 "copy" pos:[688,112] width:48 height:32
-	button btn86 "copy" pos:[688,296] width:48 height:32
-	button btn31 "clear" pos:[688,80] width:48 height:32
-	button btn32 "clear" pos:[688,264] width:48 height:32
-	button btn47 "@" pos:[104,260] width:24 height:24 enabled:true
-	button btn48 "AutoBack" pos:[0,260] width:104 height:24 enabled:false
+	button btn240 "系统" pos:[0,128] width:128 height:20 enabled:false
+	button btn216 "存为AB备份格式" pos:[0,88] width:128 height:28
+	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
+	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
+	button btn395 "importMaxs" pos:[136,420] width:128 height:24
+	edittext edt1 "import path" pos:[136,0] width:520 height:168
+	button btn23 "输出" pos:[192,240] width:464 height:88
+	edittext edt2 "export path" pos:[136,184] width:520 height:24
+	button btn25 "......" pos:[656,0] width:48 height:24
+	button btn26 "paste" pos:[656,24] width:48 height:32
+	button btn80 "paste" pos:[656,208] width:48 height:32
+	button btn109 "......" pos:[656,184] width:48 height:24
+	button btn137 "打开输出文件夹" pos:[544,208] width:112 height:32
+	checkbutton ckb1 "创建同名文件夹" pos:[192,208] width:112 height:32 enabled:true checked:true
+	button btn85 "copy" pos:[656,88] width:48 height:32
+	button btn86 "copy" pos:[656,272] width:48 height:32
+	button btn31 "clear" pos:[656,56] width:48 height:32
+	button btn32 "clear" pos:[656,240] width:48 height:32
+	button btn47 "显示文件" pos:[64,172] width:64 height:24 enabled:true
+	button btn48 "备份文件" pos:[0,172] width:64 height:24 enabled:false
 
 	on file close do
 	(
@@ -1479,16 +1589,6 @@ rollout file "文件" width:927 height:634
 	(
 		
 		)
-	on btn829 pressed do
-	(
-	messageBox "你还真按的！！！！"
-	
-	)
-	on btn830 pressed do
-	(
-	messageBox "你还真按的！！！！"
-	
-	)
 	on btn216 pressed do
 	(
 	saveToPath =  getSavePath    caption:"save to"
@@ -1620,11 +1720,10 @@ rollout file "文件" width:927 height:634
 
 
 
-rollout snap "吸附" width:547 height:557
+rollout snap "吸附" width:362 height:562
 (
 	--fn box_filt obj = classof obj == Box 
-	pickbutton chooseit "Pick" pos:[0,116] width:128 height:20 --filter:Editable_Poly
- --filter:Editable_Poly
+	pickbutton chooseit "拾取物体" pos:[0,116] width:128 height:20 --filter:Editable_Poly
 	checkbutton p "Pos" pos:[16,20] width:48 height:20 checked:true
 	checkbutton px "x" pos:[16,40] width:16 height:16 checked:true
 	checkbutton py "y" pos:[32,40] width:16 height:16 checked:true
@@ -1645,47 +1744,47 @@ rollout snap "吸附" width:547 height:557
 	
 	checkbutton localpos "@" pos:[0,20] width:16 height:20
 	checkbutton localPivot "@" pos:[112,20] width:16 height:20
-	button btn14 "Bot" pos:[104,206] width:24 height:24
-	button btn17 "Center" pos:[72,182] width:56 height:24
-	button btn18 "Pos" pos:[0,253] width:24 height:24
+	button btn14 "置底" pos:[200,66] width:56 height:24
+	button btn17 "归中" pos:[200,42] width:56 height:24
+	button btn18 "Pos" pos:[128,113] width:24 height:24
 	
-	button bpxa "+" pos:[48,158] width:24 height:24
-	button bpxr "-" pos:[0,158] width:24 height:24
-	button btn152 "+" pos:[48,182] width:24 height:24
-	button btn153 "-" pos:[0,182] width:24 height:24
-	button btn154 "+" pos:[48,206] width:24 height:24
-	button btn155 "-" pos:[0,206] width:24 height:24
-	button btn156 "X" pos:[24,158] width:24 height:24
-	button btn157 "Y" pos:[24,182] width:24 height:24
-	button btn158 "Z" pos:[24,206] width:24 height:24
-	button btn224 "Pivot" pos:[0,277] width:32 height:24
+	button bpxa "+" pos:[176,18] width:24 height:24
+	button bpxr "-" pos:[128,18] width:24 height:24
+	button btn152 "+" pos:[176,42] width:24 height:24
+	button btn153 "-" pos:[128,42] width:24 height:24
+	button btn154 "+" pos:[176,66] width:24 height:24
+	button btn155 "-" pos:[128,66] width:24 height:24
+	button btn156 "X" pos:[152,18] width:24 height:24
+	button btn157 "Y" pos:[152,42] width:24 height:24
+	button btn158 "Z" pos:[152,66] width:24 height:24
+	button btn224 "Pivot" pos:[128,137] width:32 height:24
 	checkbutton ckb19 "Name" pos:[0,96] width:48 height:20
 	checkbutton ckb20 "Material" pos:[80,96] width:48 height:20
-	button btn115 "Right R" pos:[84,401] width:44 height:24 
+	button btn115 "右旋" pos:[192,188] width:64 height:24 
  
-	button btn116 "Left R" pos:[0,401] width:44 height:24
+ 
+ 
+ 
+ 
+	button btn116 "左旋" pos:[128,188] width:64 height:24
 	
-	pickbutton btn99 "Pick  Surface" pos:[0,325] width:128 height:24
-	button btn119 "Snap Dir" pos:[0,349] width:56 height:28 enabled:true
-	button btn174 "Snap Pos" pos:[72,349] width:56 height:28 enabled:true
-	button btn78 "Rotate" pos:[36,253] width:40 height:24
-	button btn79 "Scale" pos:[32,277] width:44 height:24
-	button btn122 "All" pos:[76,253] width:52 height:48
-	button btn123 "Reset" pos:[-4,234] width:132 height:19 enabled:false
-	button btn63 "Up" pos:[104,158] width:24 height:24
-	button btn53 "Pickup" pos:[0,0] width:128 height:20 enabled:false
+	pickbutton btn99 "设置吸附目标对象" pos:[0,163] width:128 height:24
+	button btn119 "吸附（带方向）" pos:[0,187] width:128 height:27 enabled:true
+	button btn174 "吸附（仅位置）" pos:[0,214] width:128 height:28 enabled:true
+	button btn78 "Rotate" pos:[164,113] width:40 height:24
+	button btn79 "Scale" pos:[160,137] width:44 height:24
+	button btn122 "所有" pos:[204,113] width:52 height:48
+	button btn123 "重置（所选）属性" pos:[128,94] width:128 height:19 enabled:false
+	button btn63 "置顶" pos:[200,18] width:56 height:24
+	button btn53 "吸取属性" pos:[0,0] width:128 height:20 enabled:false
 		
-	button btn54 "Pivot" pos:[-8,140] width:136 height:18 enabled:false
-	button btn126 "Snap to surface" pos:[0,306] width:128 height:19 enabled:false
-	button btn127 "smart rotate" pos:[0,381] width:128 height:20 enabled:false
-	button btn255 "" pos:[72,158] width:32 height:24 enabled:false
-	button btn256 "" pos:[72,206] width:32 height:24 enabled:false
-	button btn257 "" pos:[24,253] width:12 height:24 enabled:false
-	button btn258 "" pos:[56,349] width:16 height:28 enabled:false
+	button btn54 "Pivot" pos:[128,0] width:128 height:18 enabled:false
+	button btn126 "吸附表面" pos:[0,144] width:128 height:19 enabled:false
+	button btn127 "智能旋转" pos:[128,168] width:128 height:20 enabled:false
+	button btn257 "" pos:[152,113] width:12 height:24 enabled:false
 	button btn259 "" pos:[48,56] width:32 height:60 enabled:false
 	button btn294 "" pos:[0,40] width:16 height:16 enabled:false
 	button btn295 "" pos:[112,40] width:16 height:16 enabled:false
-	button btn611 "" pos:[44,401] width:40 height:24 enabled:false
 	on snap close do
 	(
 	if  canSetWindows==true do 
@@ -2511,6 +2610,24 @@ struct fengx
 fn llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
+function sendToGithub GitHubPath=
+(
+	local oPath=getDir #scripts +"\\visualfengx\\" 
+	local startFile=getDir #startupScripts +"\\fengx_start.ms"
+	local files=getFiles (oPath+"*")
+	for f in files do 
+	(
+		local fName=filenameFromPath f 
+		local newPath=GitHubPath as string +"\\visualfengx\\" + fName
+		if doesFileExist newPath do deleteFile newPath
+		if (copyFile f newPath) then () else (messageBOx ("复制失败"+f) )
+		)
+	local newStartFilePath=GitHubPath as string +"Startup\\fengx_start.ms"
+	if doesFileExist newStartFilePath do deleteFile newStartFilePath
+	if (copyFile startFile newStartFilePath )then () else (messageBOx ("复制失败"+startFile) )
+	),
+	
+	
 function uninstall=
 (
 	if (queryBox "确定卸载！")==true do
