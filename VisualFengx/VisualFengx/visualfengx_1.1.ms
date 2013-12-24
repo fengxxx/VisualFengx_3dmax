@@ -241,11 +241,8 @@ rollout mainwindow "visualFengx" width:724 height:794
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
- 
- 
- 
 
-	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
+	checkbutton ckP "Poly" pos:[-1,24] width:32 height:24
 	
 
 	checkbutton ckM "Mate" pos:[32,24] width:32 height:24
@@ -281,8 +278,28 @@ rollout mainwindow "visualFengx" width:724 height:794
 	button btn145 "get from GitHub" pos:[144,352] width:127 height:30
 	button btn32 "Ð¶ÔØµô£¡" pos:[144,248] width:127 height:49
 	
+
 	
-	
+	function 	saveWindowState=
+	(
+		ckbs=#(ckP,ckM,ckF,ckS)
+		--rollouts=#(poly,mate,file,snap)
+	-->>> save windowsLogic
+		if ckX.state==true  then
+		(
+			windowState=1
+			for i=1 to ckbs.count do  if ckbs[i].state==true then windowActiveState[i]=1 else windowActiveState[i]=0
+
+			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
+			setIniSetting  profilePath "rolloutSetting" "windowActiveState"  (windowActiveState as string)
+			)else (
+			windowState=0
+			for i=1 to ckbs.count do  	if ckbs[i].state==true do windowNegativeState=i 
+			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
+			setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  (windowNegativeState as string)		
+			)
+			)
+
 	function windowslogic=
 	(
 		
@@ -293,7 +310,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 		-->>> change to windowsLogic
 		if windowState==1 then
 		(	
-			
 			--ckX.state=true
 			--mainWindow.width=
 			mainWindow.height=50
@@ -311,18 +327,19 @@ rollout mainwindow "visualFengx" width:724 height:794
 				)
 			for i=1 to ckbs.count do 
 			(
-				if windowActiveState[i]==1 and rollouts[i].open==false do
+				if windowActiveState[i]==1 and rollouts[i].open==false then
 				(
 				ckbs[i].state=true
 				macros.run "visualfengx_1.1" rolloutWindows[i]
-				)
-				
-				if windowActiveState[i]==0 and rollouts[i].open==true do
+				)else
 				(
-				ckbs[i].state=false
-				macros.run "visualfengx_1.1" rolloutWindows[i]
+					if windowActiveState[i]==0 and rollouts[i].open==true do
+					(
+					ckbs[i].state=false
+					macros.run "visualfengx_1.1" rolloutWindows[i]
+					)
 				)
-				
+					
 			)
 			
 			) else(
@@ -330,62 +347,38 @@ rollout mainwindow "visualFengx" width:724 height:794
 			--mainWindow.width=
 			mainWindow.height=691
 			
-			for r in rollouts do if r.open==true do destroyDialog r
-			
-			for i=1 to ckbs.count do 
-			(
-				if windowNegativeState==i do
+			for r in rolloutS do
+			( 
+				if r.open==true do destroyDialog r
+				try 
 				(
-					for ii=1 to ckbs.count do(
-						if ii==i then AddSubRollout mainwindow.sub rollouts[ii] else
-						(
-							try 
-							(
-								canSetWindows=false
-								removeSubRollout mainwindow.sub rollouts[ii] 
-								)catch canSetWindows=true
-						)
+					canSetWindows=false
+					removeSubRollout mainwindow.sub r
 					)
+					catch canSetWindows=true
+				canSetWindows=true	
 				)
-				)
-			)
-			
-		-->>> save windowsLogic
-		if ckX.state==true then
-		(
-			windowState=1
-			for i=1 to ckbs.count do  if ckbs[i].state==true then windowActiveState[i]=1 else windowActiveState[i]=0
+			AddSubRollout mainwindow.sub rollouts[windowNegativeState]
+			--ckbs[windowNegativeState].state=true
+				
 
-			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
-			setIniSetting  profilePath "rolloutSetting" "windowActiveState"  (windowActiveState as string)
-			)else (
-			windowState=0
-			for i=1 to ckbs.count do  	if ckbs[i].state==true do windowNegativeState=i 
-			setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
-			setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  (windowNegativeState as string)		
 			)
-	
 		)
 	
 	function windowsLogicStart=
 	(
+		ckbs=#(ckP,ckM,ckF,ckS)
+		--rollouts=#(poly,mate,file,snap)
 		if ckX.state==true then
 		(
-		windowState=0
-		if ckP.state==true do windowNegativeState=1 
-		if ckM.state==true do windowNegativeState=2 
-		if ckF.state==true do windowNegativeState=3 
-		if ckS.state==true do windowNegativeState=4 
-		windowslogic()
-		
+			--windowState=1
+			for i=1 to ckbs.count do  if ckbs[i].state==true then windowActiveState[i]=1 else windowActiveState[i]=0
 		)else(
-		windowState=1
-		if ckP.state==true then windowActiveState.x=1 else windowActiveState.x=0
-		if ckM.state==true then windowActiveState.y=1 else windowActiveState.y=0
-		if ckF.state==true then windowActiveState.z=1 else windowActiveState.z=0
-		if ckS.state==true then windowActiveState.w=1 else windowActiveState.w=0
-		windowslogic() 
-		)
+			--windowState=0
+			for i=1 to ckbs.count do  	if ckbs[i].state==true do windowNegativeState=i 
+			)
+		saveWindowState()
+		windowslogic()
 	)
 	
 	on mainwindow open do
@@ -401,67 +394,69 @@ rollout mainwindow "visualFengx" width:724 height:794
 	    setinisetting  profilePath "rolloutSetting" "mainSize" (mainSize as string )
 	    mainpos=GetDialogPos mainwindow
 		setinisetting  profilePath "rolloutSetting" "mainPos" (mainpos  as string)
-	    windowsLogicStart()
+	    --windowsLogicStart()
 		)
 	on ckP changed state do
 	(
-	if ckX.state==true do
+	if ckX.state ==false do
 	(
-	if state==true do
+	ckbs=#(ckP,ckM,ckF,ckS)
+	for i=1 to ckbs.count do 
 	(
-	    -- ckP.state=false
-	     ckM.state=false
-		ckF.state=false
-		ckS.state=false
+	if i!=1 do ckbs[i].state=false
 	)
 	)
+	
 	    windowsLogicStart()
 	)
 	on ckM changed state do
 	(
-	if ckX.state==true do
+	if ckX.state ==false do(
+	ckbs=#(ckP,ckM,ckF,ckS)
+	for i=1 to ckbs.count do 
 	(
-	if state==true do
-	(
-	     ckP.state=false
-	     --ckM.state=false
-		ckF.state=false
-		ckS.state=false
+	if i!=2 do ckbs[i].state=false
 	)
 	)
 	    windowsLogicStart()
 	)
 	on ckF changed state do
 	(
-	if ckX.state==true do
+	if ckX.state ==false do(
+	ckbs=#(ckP,ckM,ckF,ckS)
+	for i=1 to ckbs.count do 
 	(
-	if state==true do
-	(
-	     ckP.state=false
-	     ckM.state=false
-		--ckF.state=false
-		ckS.state=false
+	if i!=3 do ckbs[i].state=false
 	)
 	)
 	    windowsLogicStart()
 	)
 	on ckS changed state do
 	(
-	if ckX.state==true do
+	if ckX.state ==false do(
+	ckbs=#(ckP,ckM,ckF,ckS)
+	for i=1 to ckbs.count do 
 	(
-	if state==true do
-	(
-	     ckP.state=false
-	     ckM.state=false
-		ckF.state=false
-		--ckS.state=false
+	if i!=4 do ckbs[i].state=false
 	)
 	)
+	
 	    windowsLogicStart()
 	)
 	on ckX changed state do
 	(
-	    windowsLogicStart()
+	if state==true then windowState=1 else
+	(
+		windowState=0
+		
+		ckbs=#(ckP,ckM,ckF,ckS)
+		for i=1 to ckbs.count do 
+		(
+		if i!=windowNegativeState do ckbs[i].state=false
+		)
+		)
+	setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
+	windowsLogic()
 	)
 	on ckb127 changed state do
 	(

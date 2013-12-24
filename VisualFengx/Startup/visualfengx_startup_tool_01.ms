@@ -81,7 +81,6 @@ buttontext:"saveSelect"
 	if $ !=undefined do fengx.backupMax($)
 )
 
-global windowsOn=true
 
 macroScript mainWindow 
 category:"visualfengx_1.1"
@@ -89,27 +88,18 @@ category:"visualfengx_1.1"
 tooltip:"mainWindow "
 buttontext:"mainWindow "
 (
-	if windowsOn==true then (
+	if mainwindow.open==true then (
+		rollouts=#(poly,mate,file,snap)
+		for r in rolloutS do
+		( 
+			if r.open==true do destroyDialog r
+			)
 		destroyDialog mainwindow
-		windowsOn=false
 	)else(
-		destroyDialog mainwindow
-		if mainWindow.open==true then destroyDialog mainWindow else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
 		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
 		fengx.updataLanguage()
-
-		addSubRollout mainWindow.sub snap
-		mainWindow.ckS.state=true
-		addSubRollout mainWindow.sub file
-		mainWindow.ckF.state=true
-		addSubRollout mainWindow.sub poly
-		mainWindow.ckP.state=true
-		addSubRollout mainWindow.sub mate
-		mainWindow.ckM.state=true
-		mainWindow.height=691
-		windowsOn=true
-		)
+		mainwindow.windowsLogicStart()
 	)
 )
 
