@@ -336,3 +336,4 @@ Item12=2|0|0|31|3|2053995757|9|0|0|"Disable Anim Layer"|"Disable Anim Layer"|-1|
 [Colors]
 GridIntensity=115
 WhiteOrigin=0
+UseGridColor=0

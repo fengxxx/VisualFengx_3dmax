@@ -1,4 +1,4 @@
-fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_1.1.ms")
---edit (getdir #Scripts +"\\visualfengx\\visualfengx_1.1.ms")
-fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_1.1.ms")
- 
+fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
+fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
+fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
+fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")

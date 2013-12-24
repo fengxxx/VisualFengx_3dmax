@@ -4,8 +4,9 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
+global  VisualFengxVersions=1.12
 
-global  VisualFengxVersions=1.11
+global  V=VisualFengxVersions
 ------------------------------------------------
 ------------------ for snap to surface ---------
 global PGround=undefined --snaped ground  <GeometryClass>
@@ -151,8 +152,8 @@ if (classOf windowNegativeState)==OkClass do
 )
 if (classOf windowState)==OkClass do 
 (
-	windowState=1 
-	setIniSetting  profilePath "rolloutSetting" "windowState"  "1"
+	windowState=0
+	setIniSetting  profilePath "rolloutSetting" "windowState"  "0"
 )
 
 
@@ -191,7 +192,7 @@ global uvlayoutPath=(getinisetting  profilePath "uvlayout" "path")
 -->initialize<
 if (classOf uvlayoutPath)==OkClass  or getFilenameFile uvlayoutPath != "claunch-uvlayout" do 
 (
-	uvlayoutPath = "C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout1.exe"
+	uvlayoutPath = "C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout.exe"
 	if  doesFileExist uvlayoutPath ==true do	setIniSetting  profilePath "uvlayout" "path"  uvlayoutPath 
 )
 
@@ -241,12 +242,11 @@ rollout mainwindow "visualFengx" width:724 height:794
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
-
 	checkbutton ckP "Poly" pos:[-1,24] width:32 height:24
 	
 
-	checkbutton ckM "Mate" pos:[32,24] width:32 height:24
-	checkbutton ckF "File" pos:[64,24] width:40 height:24
+	checkbutton ckM "材质" pos:[32,24] width:32 height:24
+	checkbutton ckF "文件" pos:[64,24] width:40 height:24
 	checkbutton ckS "Snap" pos:[104,24] width:39 height:24
 	
 	
@@ -257,13 +257,13 @@ rollout mainwindow "visualFengx" width:724 height:794
 	colorPicker cp6 "" pos:[208,104] width:63 height:24 color:(color 42 8 36)
 	button btn335 "Set" pos:[144,48] width:128 height:12 enabled:false
 	button btn336 "Color" pos:[144,92] width:128 height:12
-	button btn337 "Options" pos:[64,0] width:40 height:24
-	checkbutton ckb230 "CopyPaste" pos:[0,0] width:64 height:24
+	button btn337 "设置" pos:[64,0] width:40 height:24
+	checkbutton ckb230 "复制管理" pos:[0,0] width:64 height:24
 	
 
 	
 	button btn744 "background" pos:[144,104] width:64 height:24
-	button btn35 "visualfengx_1.1.ms" pos:[144,148] width:104 height:24
+	button btn35 "visualfengx.ms" pos:[144,148] width:104 height:24
 	button btn37 "startup_tool_01.ms" pos:[144,172] width:104 height:24
 	button btn38 "edit Script" pos:[144,132] width:128 height:16 enabled:false
 	button btn21 "@" pos:[248,148] width:24 height:24
@@ -464,7 +464,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 		( 
 		ckb128.state=false
 		languageId="中文"
-		fengx.updataLanguage()
+		--fengx.updataLanguage()
 		setinisetting  profilePath  "Set" "language" languageId
 	
 		)
@@ -475,7 +475,7 @@ rollout mainwindow "visualFengx" width:724 height:794
 	(		
 		ckb127.state=false
 		languageId="English"
-		fengx.updataLanguage()	
+		--fengx.updataLanguage()	
 		setinisetting  profilePath "Set" "language" languageId
 		)
 	)
@@ -494,25 +494,25 @@ rollout mainwindow "visualFengx" width:724 height:794
 	)
 	on btn35 pressed do
 	(
-		dir1=getdir #Scripts + "\visualfengx\visualfengx_1.1.ms"
+		dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
 		--dir2=getdir #startupScripts + "\visualfengx_startup_tool_01.ms"
 		--edit dir2
 		edit dir1
 	)
 	on btn37 pressed do
 	(
-		--dir1=getdir #Scripts + "\visualfengx\visualfengx_1.1.ms"
-		dir2=getdir #startupScripts + "\visualfengx_startup_tool_01.ms"
+		--dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
+		dir2=getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms"
 		edit dir2
 		--edit dir1
 	)
 	on btn21 pressed do
 	(
-	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx_1.1.ms")
+	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx.ms")
 	)
 	on btn22 pressed do
 	(
-	ShellLaunch "explorer.exe" ("/select," + getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
+	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms")
 	)
 	on btn23 pressed do
 	(
@@ -537,34 +537,34 @@ rollout mainwindow "visualFengx" width:724 height:794
 	)
 	on btn29 pressed do
 	(
-		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
+		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms") 
 		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
-	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx_1.1.ms")
+	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx.ms")
 	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
 		if (queryBox "sure to send!")==true do 
 		(
 		if doesFileExist GitHubFile03 do deleteFile GitHubFile01
 		if doesFileExist GitHubFile04 do deleteFile GitHubFile02
-		try (copyFile (getdir #Scripts + "\visualfengx\visualfengx_1.1.ms") GitHubFile01 )catch messageBox "visualfengx_1.1.ms send fath!"
+		try (copyFile (getdir #Scripts + "\visualfengx\visualfengx.ms") GitHubFile01 )catch messageBox "visualfengx.ms send fath!"
 		try (copyFile (getdir #startupScripts + "\visualfengx_startup_tool_01.ms")  GitHubFile02 )catch messageBox "visualfengx_startup_tool_01.ms send fath!"
 		--edit GitHubFile01
 		)
 	)
 	on btn114 pressed do
 	(
-	edit (fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms"))
+	edit (fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms"))
 	)
 	on btn145 pressed do
 	(
-		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx_1.1.ms") 
+		GitHubFile01=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\visualfengx\visualfengx.ms") 
 		GitHubFile02=fengx.beStringPath("K:\VisualFengx_3dmax\Scripts" + "\Startup\visualfengx_startup_tool_01.ms")
-	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx_1.1.ms")
+	     GitHubFile03=fengx.beStringPath( getdir #Scripts + "\visualfengx\visualfengx.ms")
 	     GitHubFile04=fengx.beStringPath(getdir #startupScripts + "\visualfengx_startup_tool_01.ms")
 		if (queryBox "sure to get!")==true do 
 		(
 		if doesFileExist GitHubFile01 do deleteFile GitHubFile03
 		if doesFileExist GitHubFile02 do deleteFile GitHubFile04
-		try (copyFile  GitHubFile01 (getdir #Scripts + "\visualfengx\visualfengx_1.1.ms") )catch messageBox "visualfengx_1.1.ms get fath!"
+		try (copyFile  GitHubFile01 (getdir #Scripts + "\visualfengx\visualfengx.ms") )catch messageBox "visualfengx.ms get fath!"
 		try (copyFile  GitHubFile02 (getdir #startupScripts + "\visualfengx_startup_tool_01.ms") )catch messageBox "visualfengx_startup_tool_01.ms get fath!"
 		--edit GitHubFile01
 		)
@@ -574,9 +574,6 @@ rollout mainwindow "visualFengx" width:724 height:794
 		fengx.uninstall()
 	)
 )
-
-
-
 
 
 
@@ -834,63 +831,62 @@ rollout mate "材质" width:128 height:403
 
 
 
-rollout poly "poly " width:629 height:561
+rollout poly "poly " width:128 height:232
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
 
-	button btn501 "Cylinder" pos:[0,44] width:64 height:24
-	button btn511 "Sphere" pos:[0,68] width:64 height:24
-	button btn521 "Plane" pos:[0,92] width:64 height:24
-	button btn531 "Standard" pos:[64,20] width:64 height:24
-	button btn591 "Big Group" pos:[64,44] width:64 height:24 enabled:false
-	button btn7 "Big +" pos:[16,233] width:48 height:24
-	button btn13 "Small -" pos:[16,257] width:48 height:24
-	button btn151 "Reset Poly" pos:[64,233] width:64 height:48 enabled:false
+	button btn501 "Cylinder" pos:[128,0] width:64 height:24
+	button btn511 "Sphere" pos:[128,24] width:64 height:24
+	button btn521 "Plane" pos:[128,48] width:64 height:24
+	button btn531 "比例人" pos:[64,20] width:64 height:24
+	button btn591 "Big Group" pos:[192,0] width:64 height:24 enabled:false
+	button btn7 "Big +" pos:[16,108] width:48 height:24
+	button btn13 "Small -" pos:[16,132] width:48 height:24
+	button btn151 "重置模型" pos:[64,108] width:64 height:48 enabled:false
 	
 
-	button btn102 "Bot" pos:[100,352] width:28 height:24
-	button btn103 "Center" pos:[76,328] width:52 height:24
-	button btn104 "Reset Pos" pos:[64,376] width:64 height:24
+	button btn102 "Bot" pos:[364,68] width:28 height:24
+	button btn103 "Center" pos:[340,44] width:52 height:24
+	button btn104 "Reset Pos" pos:[328,92] width:64 height:24
 	
-	button btn105 "+" pos:[40,304] width:24 height:24
-	button btn106 "-" pos:[0,304] width:24 height:24
-	button btn107 "+" pos:[40,328] width:24 height:24
-	button btn108 "-" pos:[0,328] width:24 height:24
-	button btn109 "+" pos:[40,352] width:24 height:24
-	button btn110 "-" pos:[0,352] width:24 height:24
-	button btn111 "X" pos:[24,304] width:16 height:24
-	button btn112 "Y" pos:[24,328] width:16 height:24
-	button btn113 "Z" pos:[24,352] width:16 height:24
-	button btn114 "Reset Pivot" pos:[0,376] width:64 height:24
-	button btn159 "Edit UV" pos:[0,423] width:56 height:24
-	checkbutton BS "#" pos:[0,233] width:16 height:48
-	button btn97 "Sort" pos:[24,162] width:104 height:48
-	checkbutton sx "x" pos:[0,138] width:24 height:24 enabled:true checked:true
-	checkbutton sy "y" pos:[0,162] width:24 height:24
-	checkbutton sz "z" pos:[0,186] width:24 height:24
-	button btn51 "Show Infor" pos:[64,68] width:64 height:48 enabled:false
-	checkbutton c1 "1" pos:[24,138] width:24 height:24 enabled:true checked:true
-	checkbutton c2 "2" pos:[48,138] width:16 height:24
-	checkbutton c3 "3" pos:[64,138] width:16 height:24
-	checkbutton c4 "4" pos:[80,138] width:16 height:24 enabled:true checked:false
-	checkbutton c5 "5" pos:[96,138] width:16 height:24
-	checkbutton c6 "6" pos:[112,138] width:16 height:24
-	button btn352 "Create Poly" pos:[0,0] width:128 height:20 enabled:false
+	button btn105 "+" pos:[304,20] width:24 height:24
+	button btn106 "-" pos:[264,20] width:24 height:24
+	button btn107 "+" pos:[304,44] width:24 height:24
+	button btn108 "-" pos:[264,44] width:24 height:24
+	button btn109 "+" pos:[304,68] width:24 height:24
+	button btn110 "-" pos:[264,68] width:24 height:24
+	button btn111 "X" pos:[288,20] width:16 height:24
+	button btn112 "Y" pos:[288,44] width:16 height:24
+	button btn113 "Z" pos:[288,68] width:16 height:24
+	button btn114 "Reset Pivot" pos:[264,92] width:64 height:24
+	button btn159 "Edit UV" pos:[0,180] width:56 height:24
+	checkbutton BS "#" pos:[0,108] width:16 height:48
+	button btn97 "排序" pos:[72,56] width:56 height:24
+	checkbutton sx "x" pos:[0,56] width:24 height:24 enabled:true checked:true
+	checkbutton sy "y" pos:[24,56] width:24 height:24
+	checkbutton sz "z" pos:[48,56] width:24 height:24
+	button btn51 "Show Infor" pos:[192,24] width:64 height:48 enabled:false
+	checkbutton c1 "1" pos:[128,88] width:24 height:24 enabled:true checked:true
+	checkbutton c2 "2" pos:[152,88] width:16 height:24
+	checkbutton c3 "3" pos:[168,88] width:16 height:24
+	checkbutton c4 "4" pos:[184,88] width:16 height:24 enabled:true checked:false
+	checkbutton c5 "5" pos:[200,88] width:16 height:24
+	checkbutton c6 "6" pos:[216,88] width:16 height:24
 	
 
-	button btn353 "Sort" pos:[0,118] width:128 height:20 enabled:false
-	button btn354 "Edit Poly" pos:[0,213] width:128 height:20 enabled:false
-	button btn355 "Pivot" pos:[0,284] width:128 height:20 enabled:false
-	button btn356 "Edit UV" pos:[0,403] width:128 height:20 enabled:false
-	button btn222 "" pos:[64,304] width:64 height:24 enabled:false
-	button btn223 "" pos:[64,352] width:36 height:24 enabled:false
-	button btn224 "" pos:[64,328] width:12 height:24 enabled:false
-	button btn225 "" pos:[56,423] width:72 height:24 enabled:false
-	checkbutton ckb133 "send to Uvlayout" pos:[0,447] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,447] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,88] width:128 height:20 enabled:false
+	button btn355 "Pivot" pos:[264,0] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,160] width:128 height:20 enabled:false
+	button btn222 "" pos:[328,20] width:64 height:24 enabled:false
+	button btn223 "" pos:[328,68] width:36 height:24 enabled:false
+	button btn224 "" pos:[328,44] width:12 height:24 enabled:false
+	button btn225 "" pos:[56,180] width:72 height:24 enabled:false
+	checkbutton ckb133 "send to Uvlayout" pos:[0,204] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,204] width:96 height:24
 	
-	button btn211 "reset" pos:[96,447] width:32 height:24
+	button btn211 "重来" pos:[96,204] width:32 height:24
+	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1345,7 +1341,6 @@ rollout poly "poly " width:629 height:561
 	ckb133.text="send to Uvlayout"  
 	)
 )
-
 
 
 
@@ -2524,9 +2519,8 @@ function uninstall=
 	local targetPath=getDir #scripts +"\\VisualFengx\\*"
 	local files=getFiles targetPath
 	deleteFile  (getDir #startupScripts +"\\fengx_start.ms")
-	deleteFile  (getDir #startupScripts  + "\\visualfengx_startup_tool_01.ms")
 	for f in files do deleteFile f		
-	local MacrosPath=getdir #userMacros +"\\visualfengx_1_1*.mcr"
+	local MacrosPath=getdir #userMacros +"\\visualfengx*.mcr"
 	local Macrosfiles = getFiles MacrosPath
 	for s in Macrosfiles do deleteFile s
 	
@@ -3635,7 +3629,7 @@ function getFromUvlayout =
 
 fn sendToUVlayout =
 (
-	if doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
+	if uvlayoutPath!=undeifend and doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
 	(
 		makedir (getFilenamePath uvSendPath )
 		
@@ -3648,10 +3642,12 @@ fn sendToUVlayout =
 	)else (
 		if (queryBox "设置uvlayout 的路径 选择claunch-uvlayout.exe   一般在 文件夹headus UVLayout v2 Professional 里面")==true then 
 		(
-			tempPath=getOpenFileName    caption:"claunch-uvlayout.exe "
+			tempPath=getOpenFileName    caption:"claunch-uvlayout.exe " filename: "C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout.exe"
+
+
 			if uvlayoutPath  !=undefined do 
 			(
-				uvlayoutPath = tempPath
+				uvlayoutPath = tempPath as string
 				setIniSetting  profilePath "uvlayout" "path"  uvlayoutPath 
 			)
 			poly.ckb133.state=false

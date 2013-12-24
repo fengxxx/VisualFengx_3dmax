@@ -97,7 +97,7 @@ buttontext:"mainWindow "
 		destroyDialog mainwindow
 	)else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
-		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor: bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
+		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
 		fengx.updataLanguage()
 		mainwindow.windowsLogicStart()
 	)
@@ -112,7 +112,7 @@ buttontext:"copyPasteWindow"
 (
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
-	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 	fengx.updataLanguage()
 	)
 	
@@ -140,7 +140,7 @@ buttontext:"ployWindow"
 (
 	if poly.open==true then destroyDialog poly else(
 	if polySize.x*polySize.y==0 do polySize=[127 , 480]
-	createdialog poly polySize.x polySize.y pos: polyPos  bgcolor: bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
+	createdialog poly polySize.x polySize.y pos: polyPos  style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
 	fengx.updataLanguage()
 	)
 )
@@ -153,7 +153,7 @@ buttontext:"mateWindow"
 (
 	if mate.open==true then destroyDialog mate else(
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
-	createdialog mate mateSize.x mateSize.y pos:matePos bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)--
+	createdialog mate mateSize.x mateSize.y pos:matePos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
 	fengx.updataLanguage()
 	--theVoice.Speak "呵呵 今天天气不错啊！"
 	)
@@ -169,7 +169,7 @@ buttontext:"snapWindow"
 	on Execute do(
 	if snap.open==true then destroyDialog snap else(
 	if snapSize.x*snapSize.y==0 do snapSize=[127, 425]
-	createDialog snap snapSize.x snapSize.y pos:snapPos  bgcolor: bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createDialog snap snapSize.x snapSize.y pos:snapPos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
 	fengx.updataLanguage()
 	)
 )
