@@ -1,11 +1,18 @@
---VisualFengx 1.12 install MZP
+--VisualFengx 1.20 install MZP
 
-Versions=1.12
+Versions=1.20
+installTool
+setupStart
+setup_progress_update
 R_name="VisualFengx_"  + Versions as string 
 --local _LocalPath=find_MZP_path()
 --ShellLaunch "explorer.exe" tempStr 
 
-	
+function setup_progress_update prct msg=(
+	installTool.pb_bar.value = prct
+	installTool.lb01.text = msg as string
+)	
+
 function beWindowsPath thePath=
 (
 	a=true
@@ -63,18 +70,21 @@ function find_MZP_path=
 	return MZP_path
 	)	
 	
-	
+
 function install=
 (
 	print  VisualFengxVersions as string
 	local _LocalPath=find_MZP_path()
 	--ShellLaunch "explorer.exe" (beWindowsPath  _LocalPath)
 	local targetPath=getDir #scripts +"/VisualFengx/"
+	tempStr="-->>> 拷贝文件到 "+targetPath
+	setup_progress_update 10 tempstri
 	makeDir (beWindowsPath  targetPath)
 	local files=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/*"))
 	local startFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/Startup/*"))
-	print files
-	print startFiles
+	--print files
+	--print startFiles
+	prct=10
 	for f in files do
 	(
 		local fileName= filenameFromPath f	
@@ -83,17 +93,23 @@ function install=
 		--print newPath
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print  (f +" copy fath!")
+		tempStr="-->>> 拷贝文件 "+f as string
+		prct=prct*1.4
+		setup_progress_update  prct tempStr
+
 	)
+	
 	for f in startFiles do
 	(
 		local fileName= filenameFromPath f	
 		local newPath=beWindowsPath ((getDir #startupScripts) + "/"+fileName)
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print (f +" copy fath!")
+		setup_progress_update 60 "-->> 拷贝startScript文件"
 	)
 	
 	try fileIn (getDir #startupScripts +"\\fengx_start.ms") catch (print "cant find fengx_start.ms!")
-	
+	setup_progress_update 100  "-->> 安装完成"
 	if (queryBox "安装完成 最好重启Max！")==true do 
 	(
 		if checkForSave() then (
@@ -108,11 +124,11 @@ function install=
 
 
 
-
 function setupStart=
 (	
 	if  VisualFengxVersions==undefined then 
 	(
+		setup_progress_update 1 "-->>> 开始....."
 		install()
 	)else(
 	if Versions >VisualFengxVersions ==true do 	
@@ -120,7 +136,8 @@ function setupStart=
 		tempM="当前版本 " +VisualFengxVersions as string +"  更新到" + Versions as string
 		if (queryBox tempM)==true do
 		(
-		 install()
+			setup_progress_update 1 "-->>> 开始....."
+			install()
 		)
 	)
 	
@@ -129,7 +146,8 @@ function setupStart=
 		tempM="当前版本 " +VisualFengxVersions as string  +"更高！ 确定要退回到" + Versions as string
 		if (queryBox tempM)==true do
 		(
-		 install()
+			setup_progress_update 1 "-->>> 开始....."
+			install()
 		)
 	)
 	if Versions ==VisualFengxVersions do 
@@ -137,12 +155,12 @@ function setupStart=
 	tempM="和当前版本 " +VisualFengxVersions as string  +"一致  确定覆盖安装！"
 	if (queryBox tempM)==true do
 	(
+	 setup_progress_update 1 "-->>> 开始....."
 	 install()
 	)
 	)
 )
 )
-	
 
 bc=color 64 67 65 60 
 theBmp = (BitMap 160 112 color:bc) 
@@ -150,14 +168,18 @@ tempPath=find_MZP_path() +"\\VisualFengx\\setup_bg.png"
 theBmp =openBitMap  tempPath
 
 
-rollout installTool R_name width:152 height:149
+
+rollout installTool "VisualFengx_1.12" width:158 height:211
 (
-	button btn76 "安装" pos:[0,110] width:80 height:40
-	button btn77 "卸载" pos:[80,110] width:80 height:40
-	button bt01 " xx" pos:[-1,-1] width:160 height:112 images:#(theBmp, undefined, 1, 1, 1, 1, 1)
-	
+	button btn76 "安装" pos:[0,132] width:80 height:80
+	button btn77 "卸载" pos:[80,132] width:80 height:80
+	button bt01 " xx" pos:[-1,-1] width:160 height:112 
+	progressBar pb_bar "ProgressBar" pos:[-2,110] width:162 height:22 color:[0,100,60]
+	label lb01 "-->>> 开始....." pos:[0,213] width:159 height:22
+
 	on btn76 pressed do
 	(
+	installTool.height=230
 	setupStart()
 	)
 	on btn77 pressed do
@@ -168,5 +190,8 @@ rollout installTool R_name width:152 height:149
 
 
 
-createdialog installTool  style:#(#style_border,#style_titlebar,#style_toolwindow, #style_sysmenu)
 
+
+
+createdialog installTool  style:#(#style_border,#style_titlebar,#style_toolwindow, #style_sysmenu)
+installTool.bt01.images=#(theBmp, undefined, 1, 1, 1, 1, 1)
