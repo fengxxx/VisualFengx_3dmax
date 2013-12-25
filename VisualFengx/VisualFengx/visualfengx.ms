@@ -4,9 +4,25 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions=1.3
-global  V=VisualFengxVersions
+global  VisualFengxVersions=1.4
+global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
+global  updateMsg=""
+
+
+
+function test=
+(
+	VisualFengxVersions=0.1
+	)
+if (classOf alertUpdate)==OkClass do 
+(
+	copyPastePos=true
+	setIniSetting  profilePath "upDate" "alertupDate" "true"
+)
+
+
+
 
 ------------------------------------------------
 ------------------ for snap to surface ---------
@@ -36,6 +52,9 @@ global languageId=execute (getinisetting  profilePath "Set" "language") -- Types
 -->initialize<
 languageId=(getinisetting  profilePath "Set" "language")as string
 if languageId==undefined do setinisetting  profilePath "Set" "language" "English"
+
+
+global  alertUpdate= execute (getinisetting  profilePath "upDate" "alertupDate") 
 
 -----------------rollout pos and size -----------
 -----------------main window --------------------
@@ -247,7 +266,6 @@ rollout mainwindow "visualFengx" width:400 height:720
  
  
  
- 
 	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
 	checkbutton ckM "材质" pos:[32,24] width:32 height:24
 	checkbutton ckF "文件" pos:[64,24] width:40 height:24
@@ -384,6 +402,7 @@ rollout mainwindow "visualFengx" width:400 height:720
 	button btn803 "install.ms" pos:[144,248] width:104 height:24
 	button btn804 "@" pos:[248,248] width:24 height:24
 	button btn53 "检查更新！" pos:[144,384] width:127 height:64
+
 	on mainwindow open do
 	(
 	   
@@ -599,16 +618,20 @@ rollout mainwindow "visualFengx" width:400 height:720
 	)
 	on btn53 pressed do
 	(
-	if fengx.checkUpdate()==true and	newVersions > VisualFengxVersions then
+	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
 	( 
-		msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
-		if (queryBox msg)==true do fengx.update()
-		updateA=true 
+		if alertUpdate==true do 
+	     (
+	     msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
+		if (queryBox msg)==true do(
+	         createdialog checkUpDateWindow --fengx.update()
+		    checkUpDateWindow.lb01.text= updateMsg
+	      )
+	      )
 		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	
 	)
-
 )
 
 
@@ -2610,6 +2633,59 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+U_bc=color 64 67 65 60 
+U_updateBmp = (BitMap 160 112 color:U_bc) 
+U_imagePath=  (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
+if doesFileExist U_imagePath do U_updateBmp=openBitMap  U_imagePath
+	
+rollout checkUpDateWindow "UpDate" width:160 height:324
+(
+	button btn54 "x" pos:[0,-1] width:160 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
+	label lb01 "" pos:[1,112] width:159 height:136
+	button btn55 "更新" pos:[80,248] width:80 height:48
+	button btn56 "下次在说" pos:[0,248] width:80 height:48
+	button btn57 "不要提醒了" pos:[0,296] width:160 height:24
+
+
+	
+	on btn55 pressed  do
+	(
+	fengx.upDate()
+	)
+	on btn56 pressed  do
+	(
+	try destroyDialog checkUpDateWindow catch ()
+	)
+	on btn57 pressed  do
+	(
+	alertUpdate=false
+	try destroyDialog checkUpDateWindow catch ()
+	)
+)
+	
+
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------------------------------------------------------------
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 
@@ -2670,7 +2746,6 @@ local web = dotNetObject "System.Net.WebClient"
 local updateFileUrl = "https://raw.github.com/fengxxx/VisualFengx_3dmax/Netease/update"
 local updateFilePath = getDir #downloads +"\\update"
 local tempon=true
---local newVersions=0
 
 try web.DownloadFile updateFileUrl  updateFilePath catch
 (
@@ -2687,13 +2762,28 @@ if (doesFileExist updateFilePath )==true then
 	)
 	
 	if tempon==true do(
-		lineStr = readLine updateFile
-		if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch 
-			(
-				print "update file 写错了吧！ 版本号不是数字!"
-				tempon=false
-				)	
+		--lineStr = readLine updateFile
+		--if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch 
+			--(
+				--print "update file 写错了吧！ 版本号不是数字!"
+				--tempon=false
+				--)	
 		
+		i=1
+		tempMsg=""
+		while not eof updateFile do
+		(
+		lineStr = readLine updateFile
+		if i==1 then( if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch (tempon=false))else
+			(
+				tempMsg+=lineStr 
+				)
+		i+=1
+		)
+		upDateMsg=tempMsg
+				
+				
+				
 		if 	newVersions > VisualFengxVersions then
 		( 
 			updateA=true 
@@ -2706,6 +2796,7 @@ if (doesFileExist updateFilePath )==true then
 )else print ("cant find update file! in " +updateFilePath )
 return updateA
 ),
+
 
 function update=
 (
@@ -2723,6 +2814,7 @@ if tempon==true do
 	tempstr ="VisualFengx "+ (newVersions as string ) +" 下载完成！ 是否开始更新" 
 	if (queryBox tempstr)==true do
 	(
+		try destroyDialog checkUpDateWindow catch ()
 		fileIn installFilePath
 	)
 )
