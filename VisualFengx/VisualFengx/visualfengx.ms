@@ -235,7 +235,7 @@ global matrix_foucs=3
 global canSetWindows=true
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------
-rollout mainwindow "visualFengx" width:420 height:724
+rollout mainwindow "visualFengx" width:400 height:720
 (
    
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
@@ -247,31 +247,31 @@ rollout mainwindow "visualFengx" width:420 height:724
  
  
  
-	checkbutton ckP "Poly" pos:[-1,24] width:32 height:24
+	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
 	checkbutton ckM "材质" pos:[32,24] width:32 height:24
 	checkbutton ckF "文件" pos:[64,24] width:40 height:24
 	checkbutton ckS "吸附" pos:[104,24] width:39 height:24
 	checkbutton ckX "↓↑" pos:[104,0] width:39 height:24
-	checkbutton ckb127 "English" pos:[272,60] width:64 height:24 enabled:true checked:false
-	checkbutton ckb128 "中文" pos:[336,60] width:64 height:24 enabled:true checked:true
-	colorPicker cp6 "" pos:[336,104] width:63 height:24 enabled:false color:(color 42 8 36)
-	button btn335 "Set" pos:[272,48] width:128 height:12 enabled:false
-	button btn336 "Color" pos:[272,92] width:128 height:12
+	checkbutton ckb127 "English" pos:[272,12] width:64 height:24 enabled:true checked:false
+	checkbutton ckb128 "中文" pos:[336,12] width:64 height:24 enabled:true checked:true
+	colorPicker cp6 "" pos:[336,56] width:63 height:24 enabled:false color:(color 42 8 36)
+	button btn335 "Set" pos:[272,0] width:128 height:12 enabled:false
+	button btn336 "Color" pos:[272,44] width:128 height:12
 	button btn337 "设置" pos:[64,0] width:40 height:24
 	checkbutton ckb230 "复制管理" pos:[0,0] width:64 height:24
-	button btn744 "background" pos:[272,104] width:64 height:24
-	button btn35 "visualfengx.ms" pos:[144,48] width:104 height:24
-	button btn37 "startup_tool_01.ms" pos:[144,72] width:104 height:24
-	button btn21 "@" pos:[248,48] width:24 height:24
-	button btn22 "@" pos:[248,72] width:24 height:24
-	button btn23 "fengx.fengx" pos:[144,120] width:72 height:24
-	button btn24 "open" pos:[216,120] width:32 height:24
-	button btn91 "@" pos:[248,120] width:24 height:24
-	button btn142 "userMacros" pos:[144,96] width:104 height:24
-	button btn143 "@" pos:[248,96] width:24 height:24
-	button btn29 "send to GitHub" pos:[192,248] width:80 height:24
-	button btn145 "get from GitHub" pos:[184,176] width:87 height:24
-	button btn32 "卸载！" pos:[144,328] width:127 height:104
+	button btn744 "background" pos:[272,56] width:64 height:24
+	button btn35 "visualfengx.ms" pos:[144,0] width:104 height:24
+	button btn37 "startup_tool_01.ms" pos:[144,24] width:104 height:24
+	button btn21 "@" pos:[248,0] width:24 height:24
+	button btn22 "@" pos:[248,24] width:24 height:24
+	button btn23 "fengx.fengx" pos:[144,72] width:72 height:24
+	button btn24 "open" pos:[216,72] width:32 height:24
+	button btn91 "@" pos:[248,72] width:24 height:24
+	button btn142 "userMacros" pos:[144,48] width:104 height:24
+	button btn143 "@" pos:[248,48] width:24 height:24
+	button btn29 "send to GitHub" pos:[192,200] width:80 height:24
+	button btn145 "get from GitHub" pos:[184,128] width:87 height:24
+	button btn32 "卸载！" pos:[144,280] width:127 height:104
 	
 	function 	saveWindowState=
 	(
@@ -374,14 +374,14 @@ rollout mainwindow "visualFengx" width:420 height:724
 		windowslogic()
 	)
 	
-	button btn697 "send to GitHub" pos:[184,152] width:87 height:24
-	button btn698 "get from GitHub" pos:[192,272] width:80 height:24
-	button btn699 "home" pos:[144,152] width:40 height:48
-	button btn700 "company" pos:[144,248] width:48 height:48
-	button btn801 "install.ms" pos:[144,200] width:104 height:24
-	button btn802 "@" pos:[248,200] width:24 height:24
-	button btn803 "install.ms" pos:[144,296] width:104 height:24
-	button btn804 "@" pos:[248,296] width:24 height:24
+	button btn697 "send to GitHub" pos:[184,104] width:87 height:24
+	button btn698 "get from GitHub" pos:[192,224] width:80 height:24
+	button btn699 "home" pos:[144,104] width:40 height:48
+	button btn700 "company" pos:[144,200] width:48 height:48
+	button btn801 "install.ms" pos:[144,152] width:104 height:24
+	button btn802 "@" pos:[248,152] width:24 height:24
+	button btn803 "install.ms" pos:[144,248] width:104 height:24
+	button btn804 "@" pos:[248,248] width:24 height:24
 	on mainwindow open do
 	(
 	   
@@ -596,8 +596,6 @@ rollout mainwindow "visualFengx" width:420 height:724
 		
 	)
 )
-
-
 
 rollout mate "材质" width:128 height:216
 (
@@ -1473,25 +1471,24 @@ rollout poly "poly " width:863 height:653
 
 
 
-rollout file "文件" width:128 height:272
+rollout file "文件" width:128 height:448
 (
-	button btn1 ".visual" pos:[0,16] width:64 height:24 enabled:true
-	button btn2 ".obj" pos:[0,64] width:64 height:24 enabled:true
-	button btn3 ".max" pos:[0,40] width:64 height:24 enabled:true
-	button btn17 "显示文件" pos:[64,16] width:64 height:24 enabled:true
-	button btn19 "显示文件" pos:[64,64] width:64 height:24 enabled:true
-	button btn20 "显示文件" pos:[64,40] width:64 height:24 enabled:true
-	button btn330 "显示文件" pos:[64,148] width:64 height:24 enabled:true
-	button btn345 "Restart" pos:[0,208] width:64 height:64 enabled:true
-	button btn346 "Eixt" pos:[64,208] width:64 height:64 enabled:true
+	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true
+	button btn2 ".obj" pos:[0,72] width:64 height:24 enabled:true
+	button btn3 ".max" pos:[0,48] width:64 height:24 enabled:true
+	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true
+	button btn19 "显示文件" pos:[64,72] width:64 height:24 enabled:true
+	button btn20 "显示文件" pos:[64,48] width:64 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,156] width:128 height:24 enabled:true
+	button btn345 "Restart" pos:[0,216] width:64 height:64 enabled:true
+	button btn346 "Eixt" pos:[64,216] width:64 height:64 enabled:true
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
-	button btn11 "本文件" pos:[0,148] width:64 height:24 enabled:false
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
-	button btn239 "导出（所选）" pos:[0,0] width:128 height:16 enabled:false
+	button btn239 "导出（所选）" pos:[0,0] width:128 height:24 enabled:false
 	
-	button btn240 "系统" pos:[0,128] width:128 height:20 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,88] width:128 height:28
+	button btn240 "系统" pos:[0,136] width:128 height:20 enabled:false
+	button btn216 "存为AB备份格式" pos:[0,96] width:128 height:28
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -1508,8 +1505,7 @@ rollout file "文件" width:128 height:272
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示文件" pos:[64,172] width:64 height:24 enabled:true
-	button btn48 "备份文件" pos:[0,172] width:64 height:24 enabled:false
+	button btn47 "显示 备份文件" pos:[0,180] width:128 height:24 enabled:true
 
 	on file close do
 	(
@@ -1709,7 +1705,6 @@ rollout file "文件" width:128 height:272
 	ShellLaunch "explorer.exe" (getdir #autoback)
 	)
 )
-
 
 
 

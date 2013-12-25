@@ -25,3 +25,16 @@
 ----fix
 
 ---->>>>> VisaulFengx_1.30
+----bug
+
+1.吸附表面不能后退
+2.工具图标
+1. 导出到AB标准格式 -->>(1) function ToNDS  没有排除掉 非正规命名方式 （会报错！）
+2. 注册的macroScript 的 分类 （category） 改变成标准格式
+3. copyPasteWindow  加入copy 贴图 功能
+
+
+----add
+
+
+----fix
