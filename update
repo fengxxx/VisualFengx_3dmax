@@ -1,14 +1,13 @@
 1.4
 -->> VisualFengx 1.4
-
--->> fix 
+-->> 以修复
 1.修复更新窗口
-
--->> not fix
-1. function ToNDS 没有排除掉非正规命名方式 （会报错！）
-2. 注册的macroScript 的分类 （category） 改变成标准格式
-3. copyPasteWindow 加入copy 贴图功能
+2.update 中文乱码
+-->> 增加功能
+无
+-->> 未修复
+1. function ToNDS 正规命名报错！
+2. macroScript category命名
+3. copyPaste增加贴图拷贝功能
 4. 工具图标
 4. 卸载完全
-5. 更新说明不能显示中文
--->> add
