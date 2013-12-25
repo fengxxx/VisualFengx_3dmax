@@ -1,12 +1,14 @@
 1.4
--->> VisualFengx 1.4
--->> 以修复
+--->> VisualFengx 1.4 <<---
+--->>      已修复     <<---
 1.修复更新窗口
 2.update 中文乱码
--->> 增加功能
+
+--->>     增加功能    <<---
 无
--->> 未修复
-1. function ToNDS 正规命名报错！
+
+--->>      未修复     <<---
+1. fengx.ToNDS 正规命名报错！
 2. macroScript category命名
 3. copyPaste增加贴图拷贝功能
 4. 工具图标
