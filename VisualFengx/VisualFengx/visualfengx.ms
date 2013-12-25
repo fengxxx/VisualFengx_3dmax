@@ -5,8 +5,9 @@
 ------------------------------------------------
 ------------------------------------------------
 global  VisualFengxVersions=1.20
-
 global  V=VisualFengxVersions
+global  newVersions=0
+
 ------------------------------------------------
 ------------------ for snap to surface ---------
 global PGround=undefined --snaped ground  <GeometryClass>
@@ -382,6 +383,7 @@ rollout mainwindow "visualFengx" width:400 height:720
 	button btn802 "@" pos:[248,152] width:24 height:24
 	button btn803 "install.ms" pos:[144,248] width:104 height:24
 	button btn804 "@" pos:[248,248] width:24 height:24
+	button btn53 "检查更新！" pos:[144,384] width:127 height:64
 	on mainwindow open do
 	(
 	   
@@ -595,8 +597,11 @@ rollout mainwindow "visualFengx" width:400 height:720
 	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\install.ms" )
 		
 	)
+	on btn53 pressed do
+	(
+		fengx.checkUpdate()
+	)
 )
-
 rollout mate "材质" width:128 height:216
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
@@ -2647,6 +2652,71 @@ function uninstall=
 	)
 ),
 
+function checkUpdate=
+(
+updateA=false
+local web = dotNetObject "System.Net.WebClient"
+local updateFileUrl = "https://raw.github.com/fengxxx/VisualFengx_3dmax/Netease/update"
+local updateFilePath = getDir #downloads +"\\update"
+local tempon=true
+--local newVersions=0
+
+try web.DownloadFile updateFileUrl  updateFilePath catch
+(
+tempon=false 
+ messageBox "检测更新失败!"
+)
+if (doesFileExist updateFilePath )==true then 
+(
+	
+	try updateFile=openFile updateFilePath  catch
+	(
+	 messageBox "update fath! -->> open  update file fath!"
+	 tempon=fasle
+	)
+	
+	if tempon==true do(
+		lineStr = readLine updateFile
+		if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch 
+			(
+				print "update file 写错了吧！ 版本号不是数字!"
+				tempon=false
+				)	
+		
+		if 	newVersions > VisualFengxVersions then
+		( 
+			updateA=true 
+			msg="可以更新到 " + (newVersions as string)+"是否下载更新！"
+			if (queryBox msg)==true do fengx.update()
+			
+			)else 
+		(
+			messageBox "该版本已经为最新！无需更新"
+		)
+	)	
+
+)else print ("cant find update file! in " +updateFilePath )
+),
+
+function update=
+(
+local web = dotNetObject "System.Net.WebClient"
+local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
+local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+tempon=true
+try web.DownloadFile installFileUrl  installFilePath catch
+(
+tempon=false 
+ messageBox "下载更新失败"
+)
+if tempon==true do 
+(
+	if (queryBox "下载完成！ 是否开始更新")==true do
+	(
+		fileIn installFilePath
+	)
+)
+),
 	
 fn BubbleSort a=
 (    
