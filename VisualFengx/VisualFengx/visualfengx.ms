@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions=1.4
+global  VisualFengxVersions=1.3
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -262,6 +262,7 @@ rollout mainwindow "visualFengx" width:400 height:720
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
+ 
  
  
  
@@ -622,11 +623,11 @@ rollout mainwindow "visualFengx" width:400 height:720
 	( 
 		if alertUpdate==true do 
 	     (
-	     msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
-		if (queryBox msg)==true do(
+	     --msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
+		--if (queryBox msg)==true do(
 	         createdialog checkUpDateWindow --fengx.update()
 		    checkUpDateWindow.lb01.text= updateMsg
-	      )
+	     --)
 	      )
 		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
@@ -2651,25 +2652,25 @@ U_updateBmp = (BitMap 160 112 color:U_bc)
 U_imagePath=  (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
 if doesFileExist U_imagePath do U_updateBmp=openBitMap  U_imagePath
 	
-rollout checkUpDateWindow "UpDate" width:160 height:324
+rollout checkUpDateWindow "UpDate" width:159 height:390
 (
-	button btn54 "x" pos:[0,-1] width:160 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
-	label lb01 "" pos:[1,112] width:159 height:136
-	button btn55 "更新" pos:[80,248] width:80 height:48
-	button btn56 "下次在说" pos:[0,248] width:80 height:48
-	button btn57 "不要提醒了" pos:[0,296] width:160 height:24
+	button btn54 "x" pos:[-1,-1] width:160 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
+	label lb01 "" pos:[1,112] width:159 height:208
+	button btn55 "更新" pos:[80,320] width:80 height:48
+	button btn56 "下次在说" pos:[0,320] width:80 height:48
+	button btn57 "不要提醒了" pos:[0,368] width:160 height:24
 
 
 	
-	on btn55 pressed  do
+	on btn55 pressed do
 	(
 	fengx.upDate()
 	)
-	on btn56 pressed  do
+	on btn56 pressed do
 	(
 	try destroyDialog checkUpDateWindow catch ()
 	)
-	on btn57 pressed  do
+	on btn57 pressed do
 	(
 	alertUpdate=false
 	try destroyDialog checkUpDateWindow catch ()
@@ -2762,13 +2763,6 @@ if (doesFileExist updateFilePath )==true then
 	)
 	
 	if tempon==true do(
-		--lineStr = readLine updateFile
-		--if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch 
-			--(
-				--print "update file 写错了吧！ 版本号不是数字!"
-				--tempon=false
-				--)	
-		
 		i=1
 		tempMsg=""
 		while not eof updateFile do
@@ -2776,11 +2770,11 @@ if (doesFileExist updateFilePath )==true then
 		lineStr = readLine updateFile
 		if i==1 then( if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch (tempon=false))else
 			(
-				tempMsg+=lineStr 
+				tempMsg+=(lineStr  as string + "\n")
 				)
 		i+=1
 		)
-		upDateMsg=tempMsg
+		upDateMsg=tempMsg as string
 				
 				
 				

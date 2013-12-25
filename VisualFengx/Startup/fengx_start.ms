@@ -16,10 +16,10 @@ if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
 ( 
      if alertUpdate==true do 
      (
-        msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
-	if (queryBox msg)==true do(
-         createdialog checkUpDateWindow --fengx.update()
+       -- msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
+	--if (queryBox msg)==true do(
+		createdialog checkUpDateWindow --fengx.update()
 	    checkUpDateWindow.lb01.text= updateMsg
-      )
+      --)
       )
 	)else print  "VsiaulFengx 该版本已经为最新！无需更新!" 
