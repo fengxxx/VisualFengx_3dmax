@@ -2646,7 +2646,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 
 U_bc=color 64 67 65 60 
 U_updateBmp = (BitMap 233 112 color:U_bc) 
-U_imagePath=  fengx.beWindowsPath (getDir #Scripts+ "\\visualFengx\\update_bg.jpg")
+U_imagePath= (getDir #Scripts+ "\\visualFengx\\update_bg.jpg")
 if doesFileExist U_imagePath do U_updateBmp=openBitMap  U_imagePath
 	
 rollout checkUpDateWindow "Update" width:232 height:392
