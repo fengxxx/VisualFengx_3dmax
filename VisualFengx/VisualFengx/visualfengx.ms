@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions=1.3
+global  VisualFengxVersions=1.4
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -15,11 +15,6 @@ function test=
 (
 	VisualFengxVersions=0.1
 	)
-if (classOf alertUpdate)==OkClass do 
-(
-	copyPastePos=true
-	setIniSetting  profilePath "upDate" "alertupDate" "true"
-)
 
 
 
@@ -53,8 +48,15 @@ global languageId=execute (getinisetting  profilePath "Set" "language") -- Types
 languageId=(getinisetting  profilePath "Set" "language")as string
 if languageId==undefined do setinisetting  profilePath "Set" "language" "English"
 
-
+	
 global  alertUpdate= execute (getinisetting  profilePath "upDate" "alertupDate") 
+if (classOf alertUpdate)==OkClass do 
+(
+	alertUpdate=true
+	setIniSetting  profilePath "upDate" "alertupDate" "true"
+)
+
+
 
 -----------------rollout pos and size -----------
 -----------------main window --------------------
@@ -262,6 +264,7 @@ rollout mainwindow "visualFengx" width:400 height:720
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
+ 
  
  
  
@@ -621,14 +624,8 @@ rollout mainwindow "visualFengx" width:400 height:720
 	(
 	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
 	( 
-		if alertUpdate==true do 
-	     (
-	     --msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
-		--if (queryBox msg)==true do(
-	         createdialog checkUpDateWindow --fengx.update()
-		    checkUpDateWindow.lb01.text= updateMsg
-	     --)
-	      )
+	        createdialog checkUpDateWindow --fengx.update()
+		   checkUpDateWindow.lb01.text= updateMsg
 		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	
@@ -2673,6 +2670,7 @@ rollout checkUpDateWindow "UpDate" width:159 height:390
 	on btn57 pressed do
 	(
 	alertUpdate=false
+	setIniSetting  profilePath "upDate" "alertupDate" "false"
 	try destroyDialog checkUpDateWindow catch ()
 	)
 )
