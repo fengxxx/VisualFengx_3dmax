@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions=1.4
+global  VisualFengxVersions =1.4
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -2766,8 +2766,10 @@ if (doesFileExist updateFilePath )==true then
 		while not eof updateFile do
 		(
 		lineStr = readLine updateFile
-		if i==1 then( if lineStr !=undefind and lineStr !="" do try  newVersions = (lineStr as float) catch (tempon=false))else
+
+		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false))else
 			(
+
 				tempMsg+=(lineStr  as string + "\n")
 				)
 		i+=1
