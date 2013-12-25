@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions=1.20
+global  VisualFengxVersions=1.3
 global  V=VisualFengxVersions
 global  newVersions=0
 
@@ -599,9 +599,20 @@ rollout mainwindow "visualFengx" width:400 height:720
 	)
 	on btn53 pressed do
 	(
-		fengx.checkUpdate()
+	if fengx.checkUpdate()==true and	newVersions > VisualFengxVersions then
+	( 
+		msg="VisualFengx 可以更新到 " + (newVersions as string)+"是否下载更新！"
+		if (queryBox msg)==true do fengx.update()
+		updateA=true 
+		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
+	
+	
 	)
+
 )
+
+
+
 rollout mate "材质" width:128 height:216
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
@@ -2686,16 +2697,14 @@ if (doesFileExist updateFilePath )==true then
 		if 	newVersions > VisualFengxVersions then
 		( 
 			updateA=true 
-			msg="可以更新到 " + (newVersions as string)+"是否下载更新！"
-			if (queryBox msg)==true do fengx.update()
-			
 			)else 
 		(
-			messageBox "该版本已经为最新！无需更新"
+			print "该版本已经为最新！无需更新!"
 		)
 	)	
 
 )else print ("cant find update file! in " +updateFilePath )
+return updateA
 ),
 
 function update=
@@ -2707,11 +2716,12 @@ tempon=true
 try web.DownloadFile installFileUrl  installFilePath catch
 (
 tempon=false 
- messageBox "下载更新失败"
+ messageBox "VisualFengx 下载更新失败"
 )
 if tempon==true do 
-(
-	if (queryBox "下载完成！ 是否开始更新")==true do
+(	
+	tempstr ="VisualFengx "+ (newVersions as string ) +" 下载完成！ 是否开始更新" 
+	if (queryBox tempstr)==true do
 	(
 		fileIn installFilePath
 	)
