@@ -2754,7 +2754,7 @@ tempon=false
 if (doesFileExist updateFilePath )==true then 
 (
 	
-	try updateFile=openFile updateFilePath  catch
+	try (updateFile=openFile updateFilePath   mode: "rb" ) catch
 	(
 	 messageBox "update fath! -->> open  update file fath!"
 	 tempon=fasle
@@ -2766,7 +2766,9 @@ if (doesFileExist updateFilePath )==true then
 		while not eof updateFile do
 		(
 		lineStr = readLine updateFile
-
+				print lineStr 
+				print (lineStr as string)
+			
 		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false))else
 			(
 
@@ -2785,6 +2787,8 @@ if (doesFileExist updateFilePath )==true then
 		(
 			print "该版本已经为最新！无需更新!"
 		)
+		try close updateFile catch()
+		try deleteFile updateFilePath catch ()
 	)	
 
 )else print ("cant find update file! in " +updateFilePath )
@@ -2810,6 +2814,7 @@ if tempon==true do
 	(
 		try destroyDialog checkUpDateWindow catch ()
 		fileIn installFilePath
+		try deleteFile installFilePath catch ()
 	)
 )
 ),
