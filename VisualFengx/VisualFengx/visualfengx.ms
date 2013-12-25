@@ -2645,17 +2645,17 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 
 
 U_bc=color 64 67 65 60 
-U_updateBmp = (BitMap 160 112 color:U_bc) 
-U_imagePath=  (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
+U_updateBmp = (BitMap 233 112 color:U_bc) 
+U_imagePath=  fengx.beWindowsPath (getDir #Scripts+ "\\visualFengx\\update_bg.jpg")
 if doesFileExist U_imagePath do U_updateBmp=openBitMap  U_imagePath
 	
-rollout checkUpDateWindow "UpDate" width:159 height:390
+rollout checkUpDateWindow "Update" width:232 height:392
 (
-	button btn54 "x" pos:[-1,-1] width:160 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
-	label lb01 "" pos:[1,112] width:159 height:208
-	button btn55 "更新" pos:[80,320] width:80 height:48
-	button btn56 "下次在说" pos:[0,320] width:80 height:48
-	button btn57 "不要提醒了" pos:[0,368] width:160 height:24
+	button btn54 "x" pos:[-1,-1] width:233 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
+	label lb01 "" pos:[1,112] width:231 height:208
+	button btn55 "更新" pos:[120,320] width:112 height:48
+	button btn56 "下次在说" pos:[0,320] width:120 height:48
+	button btn57 "不要再提醒了" pos:[0,368] width:232 height:24
 
 
 	
@@ -2766,8 +2766,8 @@ if (doesFileExist updateFilePath )==true then
 		while not eof updateFile do
 		(
 		lineStr = readLine updateFile
-				print lineStr 
-				print (lineStr as string)
+				--print lineStr 
+				--print (lineStr as string)
 			
 		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false))else
 			(
