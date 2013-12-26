@@ -342,13 +342,13 @@ rollout mainwindow "visualFengx" width:544 height:720
 				if windowActiveState[i]==1 and rollouts[i].open==false then
 				(
 				ckbs[i].state=true
-				macros.run "visualfengx_1.1" rolloutWindows[i]
+				macros.run "visualfengx" rolloutWindows[i]
 				)else
 				(
 					if windowActiveState[i]==0 and rollouts[i].open==true do
 					(
 					ckbs[i].state=false
-					macros.run "visualfengx_1.1" rolloutWindows[i]
+					macros.run "visualfengx" rolloutWindows[i]
 					)
 				)
 					
@@ -528,7 +528,7 @@ rollout mainwindow "visualFengx" width:544 height:720
 	)
 	on ckb230 changed state do
 	(
-	 macros.run "visualfengx_1.1" "copyPasteWindow"
+	 macros.run "visualfengx" "copyPasteWindow"
 	)
 	on btn142 pressed do
 	(
