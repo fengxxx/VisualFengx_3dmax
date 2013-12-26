@@ -160,7 +160,7 @@ function setupStart=
 
 bc=color 64 67 65 60 
 theBmp = (BitMap 160 112 color:bc) 
-tempPath=find_MZP_path() +"\\VisualFengx\\setup_bg.png"
+tempPath=find_MZP_path() +"\\VisualFengx\\setup_bg.jpg"
 try theBmp =openBitMap  tempPath catch print "cant find install_bg_map!"
 
 

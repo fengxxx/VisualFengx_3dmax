@@ -619,29 +619,22 @@ rollout mainwindow "visualFengx" width:544 height:720
 	VisualFengxVersions =tempV
 	)
 	on btn531 pressed do
+	(
 		ShellLaunch "notepad++.exe"  "K:\\VisualFengx_3dmax\\update"
+	)
 	on btn55 pressed do
 	(
-			ShellLaunch "notepad++.exe"  "E:\\GitHub\\VisualFengx_3dmax\\update"(
-			ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
-			
-			)
+		ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
 		)
 	on btn56 pressed do
 	(
 	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\update" )
 		
-	)(
-	ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
-	
 	)
 	on btn57 pressed do
 	(
 	ShellLaunch "explorer.exe" ("/select," +"K:\\VisualFengx_3dmax\\update" )
 		
-	)(
-	app="notepad++.exe"
-	
 	)
 	on btn196 pressed do
 	(
