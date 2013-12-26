@@ -14,7 +14,7 @@ global  updateMsg=""
 function test=
 (
 	VisualFengxVersions=0.1
-	)
+)
 
 
 
@@ -255,46 +255,47 @@ global matrix_foucs=3
 
 
 global canSetWindows=true
+global app="notepad++.exe"
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------
-rollout mainwindow "visualFengx" width:400 height:720
+rollout mainwindow "visualFengx" width:544 height:720
 (
    
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,48] width:142 height:616 
- 
- 
- 
- 
- 
- 
 	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
 	checkbutton ckM "材质" pos:[32,24] width:32 height:24
 	checkbutton ckF "文件" pos:[64,24] width:40 height:24
 	checkbutton ckS "吸附" pos:[104,24] width:39 height:24
 	checkbutton ckX "↓↑" pos:[104,0] width:39 height:24
-	checkbutton ckb127 "English" pos:[272,12] width:64 height:24 enabled:true checked:false
-	checkbutton ckb128 "中文" pos:[336,12] width:64 height:24 enabled:true checked:true
-	colorPicker cp6 "" pos:[336,56] width:63 height:24 enabled:false color:(color 42 8 36)
-	button btn335 "Set" pos:[272,0] width:128 height:12 enabled:false
-	button btn336 "Color" pos:[272,44] width:128 height:12
+	checkbutton ckb127 "English" pos:[272,0] width:64 height:24 enabled:true checked:false
+	checkbutton ckb128 "中文" pos:[336,0] width:64 height:24 enabled:true checked:true
+	colorPicker cp6 "" pos:[336,24] width:63 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[64,0] width:40 height:24
 	checkbutton ckb230 "复制管理" pos:[0,0] width:64 height:24
-	button btn744 "background" pos:[272,56] width:64 height:24
-	button btn35 "visualfengx.ms" pos:[144,0] width:104 height:24
-	button btn37 "startup_tool_01.ms" pos:[144,24] width:104 height:24
-	button btn21 "@" pos:[248,0] width:24 height:24
-	button btn22 "@" pos:[248,24] width:24 height:24
-	button btn23 "fengx.fengx" pos:[144,72] width:72 height:24
-	button btn24 "open" pos:[216,72] width:32 height:24
-	button btn91 "@" pos:[248,72] width:24 height:24
-	button btn142 "userMacros" pos:[144,48] width:104 height:24
-	button btn143 "@" pos:[248,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[192,200] width:80 height:24
-	button btn145 "get from GitHub" pos:[184,128] width:87 height:24
-	button btn32 "卸载！" pos:[144,280] width:127 height:104
+	button btn744 "background" pos:[272,24] width:64 height:24
+	button btn142 "userMacros" pos:[272,48] width:104 height:24
+	button btn143 "@" pos:[376,48] width:24 height:24
+	button btn29 "send to GitHub" pos:[192,304] width:80 height:24
+	button btn145 "get from GitHub" pos:[184,208] width:87 height:24
+	button btn32 "卸载！" pos:[144,420] width:127 height:104
+	
+	button btn697 "send to GitHub" pos:[184,184] width:87 height:24
+	button btn698 "get from GitHub" pos:[192,328] width:80 height:24
+	button btn699 "home" pos:[144,184] width:40 height:48
+	button btn700 "company" pos:[144,304] width:48 height:48
+	button btn801 "install.ms" pos:[144,232] width:104 height:24
+	button btn802 "@" pos:[248,232] width:24 height:24
+	button btn803 "install.ms" pos:[144,352] width:104 height:24
+	button btn804 "@" pos:[248,352] width:24 height:24
+	button btn53 "检查更新！" pos:[144,524] width:127 height:64
+	button btn26 "强制更新！" pos:[144,588] width:128 height:32
+	button btn531 "update" pos:[144,256] width:104 height:24
+	button btn55 "update" pos:[144,376] width:104 height:24
+	button btn56 "@" pos:[248,376] width:24 height:24
+	button btn57 "@" pos:[248,256] width:24 height:24
 	
 	function 	saveWindowState=
 	(
@@ -397,16 +398,23 @@ rollout mainwindow "visualFengx" width:400 height:720
 		windowslogic()
 	)
 	
-	button btn697 "send to GitHub" pos:[184,104] width:87 height:24
-	button btn698 "get from GitHub" pos:[192,224] width:80 height:24
-	button btn699 "home" pos:[144,104] width:40 height:48
-	button btn700 "company" pos:[144,200] width:48 height:48
-	button btn801 "install.ms" pos:[144,152] width:104 height:24
-	button btn802 "@" pos:[248,152] width:24 height:24
-	button btn803 "install.ms" pos:[144,248] width:104 height:24
-	button btn804 "@" pos:[248,248] width:24 height:24
-	button btn53 "检查更新！" pos:[144,384] width:127 height:64
 
+	
+	button btn196 "visualfengx.ms" pos:[143,48] width:80 height:24
+	button btn197 "startup_tool_01.ms" pos:[143,72] width:80 height:24
+	button btn198 "@" pos:[247,48] width:24 height:24
+	button btn199 "@" pos:[247,72] width:24 height:24
+	button btn200 "fengx.fengx" pos:[143,120] width:80 height:24
+	button btn201 "@" pos:[247,120] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[143,96] width:80 height:24
+	button btn203 "@" pos:[247,96] width:24 height:24
+	button btn204 "○" pos:[223,48] width:24 height:24
+	button btn205 "○" pos:[223,72] width:24 height:24
+	button btn206 "○" pos:[223,96] width:24 height:24
+	button btn207 "notepad++" pos:[143,0] width:128 height:24
+	button btn208 "sublime_text" pos:[143,24] width:128 height:24
+	button btn209 "○" pos:[223,120] width:24 height:24
+	button btn210 "run" pos:[143,144] width:128 height:32
 	on mainwindow open do
 	(
 	   
@@ -527,41 +535,6 @@ rollout mainwindow "visualFengx" width:400 height:720
 	(
 	 macros.run "visualfengx_1.1" "copyPasteWindow"
 	)
-	on btn35 pressed do
-	(
-		dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
-		--dir2=getdir #startupScripts + "\visualfengx_startup_tool_01.ms"
-		--edit dir2
-		edit dir1
-	)
-	on btn37 pressed do
-	(
-		--dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
-		dir2=getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms"
-		edit dir2
-		--edit dir1
-	)
-	on btn21 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx.ms")
-	)
-	on btn22 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms")
-	)
-	on btn23 pressed do
-	(
-		edit profilePath
-	)
-	on btn24 pressed do
-	(
-	ShellLaunch "explorer.exe" profilePath
-	)
-	on btn91 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," +profilePath)
-		
-	)
 	on btn142 pressed do
 	(
 	ShellLaunch "explorer.exe" (getdir #userMacros )
@@ -629,8 +602,135 @@ rollout mainwindow "visualFengx" width:400 height:720
 		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	
+	)(
+	 startPath=getdir #startupScripts + "\\fengx_start.ms"
+	ShellLaunch "explorer.exe" ("/select," + startPath)
+	)
+	on btn26 pressed do
+	(
+	tempV=VisualFengxVersions 
+	VisualFengxVersions =1.0
+	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
+	( 
+	        createdialog checkUpDateWindow --fengx.update()
+		   checkUpDateWindow.lb01.text= updateMsg
+		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
+	
+	VisualFengxVersions =tempV
+	)
+	on btn531 pressed do
+		ShellLaunch "notepad++.exe"  "K:\\VisualFengx_3dmax\\update"
+	on btn55 pressed do
+	(
+			ShellLaunch "notepad++.exe"  "E:\\GitHub\\VisualFengx_3dmax\\update"(
+			ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+			
+			)
+		)
+	on btn56 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\update" )
+		
+	)(
+	ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+	
+	)
+	on btn57 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," +"K:\\VisualFengx_3dmax\\update" )
+		
+	)(
+	app="notepad++.exe"
+	
+	)
+	on btn196 pressed do
+	(
+		dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
+		--dir2=getdir #startupScripts + "\visualfengx_startup_tool_01.ms"
+		--edit dir2
+		edit dir1
+	)
+	on btn197 pressed do
+	(
+		--dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
+		dir2=getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms"
+		edit dir2
+		--edit dir1
+	)
+	on btn198 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx.ms")
+	)
+	on btn199 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," + getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms")
+	)
+	on btn200 pressed do
+	(
+		edit profilePath
+	)
+	on btn201 pressed do
+	(
+	ShellLaunch "explorer.exe" ("/select," +profilePath)
+		
+	)
+	on btn202 pressed do
+	(
+		dir2=getdir #startupScripts + "\\fengx_start.ms"
+		edit dir2
+	)
+	on btn203 pressed do
+	(
+	 startPath=getdir #startupScripts + "\\fengx_start.ms"
+	ShellLaunch "explorer.exe" ("/select," + startPath)
+	)
+	on btn204 pressed do
+	(
+	ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+	
+	)
+	on btn205 pressed do
+	(
+	ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+	
+	)
+	on btn206 pressed do
+	(
+	ShellLaunch app  (getdir #startupScripts + "\\fengx_start.ms")
+	
+	)
+	on btn207 pressed do
+	(
+	app="notepad++.exe"
+	
+	)
+	on btn208 pressed do
+	(
+	app="C:\Users\fengx\Desktop\application\Sublime Text Build 3047 x64\sublime_text.exe"
+	)
+	on btn209 pressed do
+	(
+	ShellLaunch app   profilePath
+	
+	
+	)
+	on btn210 pressed do
+	(
+	--fileIn (getDir #startupScripts +"\\fengx_start.ms")
+	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
+	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
 )
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2705,9 +2805,12 @@ function sendToGithub GitHubPath=
 	for f in files do 
 	(
 		local fName=filenameFromPath f 
+		if fName!="fengx.fengx" do 
+		(
 		local newPath=GitHubPath as string +"\\visualfengx\\" + fName
 		if doesFileExist newPath do deleteFile newPath
 		if (copyFile f newPath) then () else (messageBOx ("复制失败"+f) )
+		)
 		)
 	local newStartFilePath=GitHubPath as string +"Startup\\fengx_start.ms"
 	if doesFileExist newStartFilePath do deleteFile newStartFilePath
