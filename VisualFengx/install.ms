@@ -165,14 +165,13 @@ try theBmp =openBitMap  tempPath catch print "cant find install_bg_map!"
 
 
 
-rollout installTool "VisualFengx_1.4" width:232 height:216
+rollout installTool "VisualFengx_1.4" width:232 height:239
 (
-	button btn76 "安装" pos:[0,135] width:112 height:80
-	button btn77 "卸载" pos:[112,135] width:120 height:80
-	progressBar pb_bar "ProgressBar" pos:[-1,112] width:234 height:22 color:[0,100,60]
-	label lb01 "-->>> 开始....." pos:[0,216] width:232 height:19
-
-	button btn293 "x" pos:[0,0] width:233 height:112 images:#(theBmp, undefined, 1, 1, 1, 1, 1)
+	button btn76 "安装" pos:[0,134] width:112 height:80
+	button btn77 "卸载" pos:[112,134] width:120 height:80
+	progressBar pb_bar "ProgressBar" pos:[-1,111] width:234 height:22 color:[0,100,60]
+	label lb01 "-->>> 开始....." pos:[0,215] width:232 height:19
+	button btn293 "x" pos:[-1,-1] width:233 height:112 images:#(theBmp, undefined, 1, 1, 1, 1, 1)
 	on btn76 pressed do
 	(
 	installTool.height=230
@@ -183,7 +182,6 @@ rollout installTool "VisualFengx_1.4" width:232 height:216
 	if  VisualFengxVersions==undefined then messageBox "没有安装过！没法卸载！" else fengx.uninstall()
 	)
 )
-
 
 
 

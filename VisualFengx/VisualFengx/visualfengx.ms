@@ -401,7 +401,7 @@ rollout mainwindow "visualFengx" width:544 height:720
 
 	
 	button btn196 "visualfengx.ms" pos:[143,48] width:80 height:24
-	button btn197 "startup_tool_01.ms" pos:[143,72] width:80 height:24
+	button btn197 "macroScript" pos:[143,72] width:80 height:24
 	button btn198 "@" pos:[247,48] width:24 height:24
 	button btn199 "@" pos:[247,72] width:24 height:24
 	button btn200 "fengx.fengx" pos:[143,120] width:80 height:24
@@ -602,9 +602,6 @@ rollout mainwindow "visualFengx" width:544 height:720
 		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	
-	)(
-	 startPath=getdir #startupScripts + "\\fengx_start.ms"
-	ShellLaunch "explorer.exe" ("/select," + startPath)
 	)
 	on btn26 pressed do
 	(
@@ -624,7 +621,7 @@ rollout mainwindow "visualFengx" width:544 height:720
 	)
 	on btn55 pressed do
 	(
-		ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+		ShellLaunch app  "E:\\GitHub\\VisualFengx_3dmax\\update" 
 		)
 	on btn56 pressed do
 	(
@@ -684,7 +681,8 @@ rollout mainwindow "visualFengx" width:544 height:720
 	)
 	on btn205 pressed do
 	(
-	ShellLaunch app  (getdir #Scripts + "\\visualfengx\\visualfengx.ms")
+	ShellLaunch app  ("/select," + getdir #Scripts + "\visualfengx\visualfengx_macroScript.ms")
+	
 	
 	)
 	on btn206 pressed do
@@ -714,7 +712,6 @@ rollout mainwindow "visualFengx" width:544 height:720
 	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
 )
-
 
 
 
@@ -2906,12 +2903,13 @@ tempon=false
 if tempon==true do 
 (	
 	tempstr ="VisualFengx "+ (newVersions as string ) +" 下载完成！ 是否开始更新" 
-	if (queryBox tempstr)==true do
-	(
+	--if (queryBox tempstr)==true do
+	--(
+		print  "更新下载完成！"
 		try destroyDialog checkUpDateWindow catch ()
 		fileIn installFilePath
 		try deleteFile installFilePath catch ()
-	)
+	--)
 )
 ),
 	
