@@ -129,7 +129,7 @@ buttontext:"fileWindow"
 	createdialog file fileSize.x fileSize.y pos: filePosx   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
 	fengx.updataLanguage()
 	)
-	--theVoice.Speak "å‘µå‘µå‘µå‘µ"
+	--theVoice.Speak "ºÇºÇºÇºÇ"
 )
 
 macroScript ployWindow
@@ -155,7 +155,7 @@ buttontext:"mateWindow"
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
 	createdialog mate mateSize.x mateSize.y pos:matePos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
 	fengx.updataLanguage()
-	--theVoice.Speak "å‘µå‘µ ä»Šå¤©å¤©æ°”ä¸é”™å•Šï¼"
+	--theVoice.Speak "ºÇºÇ ½ñÌìÌìÆø²»´í°¡£¡"
 	)
 )
 
@@ -203,7 +203,7 @@ buttontext:"showMaxFile"
 	     if (getfiles (maxfilepath+maxfilename)).count != 0 then(
 	    filePath="/select,"+maxfilepath+maxfilename
 	    try  ShellLaunch "explorer.exe" filePath   catch print "cant open explorer!"
-	)else messageBox ("è¿˜æ²¡å­˜å‘¢ï¼")
+	)else messageBox ("»¹Ã»´æÄØ£¡")
 	)
 
 macroScript exportToVisual
@@ -514,8 +514,8 @@ buttontext:"copyObject"
 	if $ != undefined do(
 		try (
 		  saveNodes $ thecopypastestring
-		  print "å¤åˆ¶æˆåŠŸ"
-            )  catch print "å¤åˆ¶å¤±è´¥"
+		  print "¸´ÖÆ³É¹¦"
+            )  catch print "¸´ÖÆÊ§°Ü"
     )
 )
 macroScript pasteObject
@@ -697,16 +697,16 @@ buttontext:"clearMate"
 		(
 		  if scenematerials[i].DiffuseMap!=undefined do
 		  (
-		 	try ls[i]=scenematerials[i] catch print" clearMate ä¸çŸ¥é“å‘ç”Ÿäº†ä»€ä¹ˆé—®é¢˜ï¼"
+		 	try ls[i]=scenematerials[i] catch print" clearMate ²»ÖªµÀ·¢ÉúÁËÊ²Ã´ÎÊÌâ£¡"
           	)
 		)
 		if classof(scenematerials[i])==MultiMaterial  do 
 		(
-			try ls[i]=scenematerials[i] catch print" clearMate ä¸çŸ¥é“å‘ç”Ÿäº†ä»€ä¹ˆé—®é¢˜ï¼"
+			try ls[i]=scenematerials[i] catch print" clearMate ²»ÖªµÀ·¢ÉúÁËÊ²Ã´ÎÊÌâ£¡"
 
 		  --if scenematerials[i].name!="Standardmaterial" and  scenematerials[i].DiffuseMap!=undefined do
 		  --(
-		 	--try ls[i]=scenematerials[i] catch print" clearMate ä¸çŸ¥é“å‘ç”Ÿäº†ä»€ä¹ˆé—®é¢˜ï¼"
+		 	--try ls[i]=scenematerials[i] catch print" clearMate ²»ÖªµÀ·¢ÉúÁËÊ²Ã´ÎÊÌâ£¡"
           	--)
 		)
 
@@ -734,7 +734,7 @@ buttontext:"clearSenceMate"
 	 macros.run "Medit Tools" "clear_medit_slots"
 	 for s in scenematerials do 
       (
-         try s=standmaterial catch print" clearSenceMate ä¸çŸ¥é“å‘ç”Ÿäº†ä»€ä¹ˆé—®é¢˜ï¼"
+         try s=standmaterial catch print" clearSenceMate ²»ÖªµÀ·¢ÉúÁËÊ²Ã´ÎÊÌâ£¡"
         )        
 )
 )
@@ -798,7 +798,7 @@ buttontext:"mateToStandardName"
 	fengx.TexNameToMateName()
 
 )
---æ‰“å¼€æ‰€é€‰æè´¨çš„è´´å›¾æ–‡ä»¶å¤¹
+--´ò¿ªËùÑ¡²ÄÖÊµÄÌùÍ¼ÎÄ¼ş¼Ğ
 macroScript openMateMapFolder
 category:"visualFengx"
 --icon:#("MAXScript",1)
@@ -824,7 +824,7 @@ buttontext:"openMateMapFolder"
 	)
 
 )
---æ‰“å¼€æ‰€é€‰æè´¨çš„è´´å›¾æ–‡ä»¶å¤¹
+--´ò¿ªËùÑ¡²ÄÖÊµÄÌùÍ¼ÎÄ¼ş¼Ğ
 macroScript showMapInExplorer
 category:"visualFengx"
 --icon:#("MAXScript",1)
@@ -850,7 +850,7 @@ buttontext:"showMapInExplorer"
 	)
 
 )
---å¦å­˜ä¸ºé€‰æ‹©ç‰©ä½“é¢˜å›¾
+--Áí´æÎªÑ¡ÔñÎïÌåÌâÍ¼
 macroScript saveMapTo
 category:"visualFengx"
 --icon:#("MAXScript",1)

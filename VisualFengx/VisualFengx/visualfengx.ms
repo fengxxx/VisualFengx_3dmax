@@ -11,11 +11,6 @@ global  updateMsg=""
 
 
 
-function test=
-(
-	VisualFengxVersions=0.1
-)
-
 
 
 
