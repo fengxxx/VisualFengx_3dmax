@@ -9,7 +9,7 @@ buttontext:"systemTool"
 
 
 macroScript ambientWhite
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"ambientWhite"
 buttontext:"ambientWhite"
@@ -20,7 +20,7 @@ buttontext:"ambientWhite"
 )
 
 macroScript ambientBlack
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"ambientBlack"
 buttontext:"ambientBlack"
@@ -40,7 +40,7 @@ buttontext:"setting"
 )
 
 macroScript reStart
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"restart"
 buttontext:"restart"
@@ -48,7 +48,7 @@ buttontext:"restart"
 	fengx.restart()	
 )
 macroScript quitmax
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"quitmax"
 buttontext:"quitmax"
@@ -72,7 +72,7 @@ buttontext:"editFile"
 )
 --------------------edit file---------------------------
 macroScript saveSelect
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"saveSelect"
 buttontext:"saveSelect"
@@ -83,10 +83,10 @@ buttontext:"saveSelect"
 
 
 macroScript mainWindow 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
-tooltip:"visualfengx"
-buttontext:"visualfengx"
+tooltip:"mainWindow "
+buttontext:"mainWindow "
 (
 	if mainwindow.open==true then (
 		rollouts=#(poly,mate,file,snap)
@@ -105,7 +105,7 @@ buttontext:"visualfengx"
 
 
 macroScript copyPasteWindow
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"copyPasteWindow"
 buttontext:"copyPasteWindow"
@@ -119,7 +119,7 @@ buttontext:"copyPasteWindow"
 )
 
 macroScript fileWindow
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"fileWindow"
 buttontext:"fileWindow"
@@ -129,11 +129,11 @@ buttontext:"fileWindow"
 	createdialog file fileSize.x fileSize.y pos: filePosx   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
 	fengx.updataLanguage()
 	)
-	--theVoice.Speak "ÂëµÂëµÂëµÂëµ"
+	--theVoice.Speak "∫«∫«∫«∫«"
 )
 
 macroScript ployWindow
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"ployWindow"
 buttontext:"ployWindow"
@@ -146,7 +146,7 @@ buttontext:"ployWindow"
 )
 
 macroScript mateWindow
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"mateWindow"
 buttontext:"mateWindow"
@@ -155,12 +155,12 @@ buttontext:"mateWindow"
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
 	createdialog mate mateSize.x mateSize.y pos:matePos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
 	fengx.updataLanguage()
-	--theVoice.Speak "ÂëµÂëµ ‰ªäÂ§©Â§©Ê∞î‰∏çÈîôÂïäÔºÅ"
+	--theVoice.Speak "∫«∫« ΩÒÃÏÃÏ∆¯≤ª¥Ì∞°£°"
 	)
 )
 
 macroScript snapWindow
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"snapWindow"
 buttontext:"snapWindow"
@@ -176,7 +176,7 @@ buttontext:"snapWindow"
 )
 
 macroScript exportSelect
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"exportSelect"
 buttontext:"exportSelect"
@@ -187,7 +187,7 @@ buttontext:"exportSelect"
 
 
 macroScript resetModel
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"resetModel"
 buttontext:"resetModel"
@@ -195,19 +195,19 @@ buttontext:"resetModel"
 	fengx.resetModel()
 )
 macroScript showMaxFile
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"showMaxFile"
 buttontext:"showMaxFile"
 (	--actionMan.executeAction -841213575 "1"
 	     if (getfiles (maxfilepath+maxfilename)).count != 0 then(
 	    filePath="/select,"+maxfilepath+maxfilename
-	    try  ShellLaunch "explorer.exe" filePath   catch print "cant open explorer!"
-	)else messageBox ("ËøòÊ≤°Â≠òÂë¢ÔºÅ")
+	    try  ShellLaunch "explorer.exe" filePath   catch messageBox("”≤ «√ª¥Úø™£°") title:"≤¡≤¡≤¡≤¡≤¡≤¡£°£°£°"
+	)else messageBox ("ªπ√ª¥Êƒÿ£°")
 	)
 
 macroScript exportToVisual
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"exportToVisual"
 buttontext:"exportToVisual"
@@ -228,7 +228,7 @@ buttontext:"createSomething"
 )
 --------------------create something--------------------
 macroScript createMyBox
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"createMyBox"
 buttontext:"createMyBox"
@@ -239,7 +239,7 @@ buttontext:"createMyBox"
 	
 )
 macroScript createCylinder
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"createCylinder"
 buttontext:"createCylinder"
@@ -249,7 +249,7 @@ buttontext:"createCylinder"
 	)
 )
 macroScript createSphere
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"createSphere"
 buttontext:"createSphere"
@@ -259,7 +259,7 @@ buttontext:"createSphere"
 	)
 )
 macroScript createPlane
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"createPlane"
 buttontext:"createPlane"
@@ -270,7 +270,7 @@ buttontext:"createPlane"
 )
 
 macroScript createStandMen
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"createStandMen"
 buttontext:"createStandMen"
@@ -291,7 +291,7 @@ buttontext:"editModel"
 --------------------edit model--------------------------
 --------------------edit model--------------------------
 macroScript autosmooth 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"autosmooth "
 buttontext:"autosmooth "
@@ -300,7 +300,7 @@ buttontext:"autosmooth "
 )
 
 macroScript smartCloneD
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"smartCloneD"
 buttontext:"smartCloneD"
@@ -312,7 +312,7 @@ buttontext:"smartCloneD"
 )
 
 macroScript smartCloneP
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"smartCloneP"
 buttontext:"smartCloneP"
@@ -324,7 +324,7 @@ buttontext:"smartCloneP"
 )
 
 macroScript convertToPoly
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"convertToPoly"
 buttontext:"convertToPoly"
@@ -335,7 +335,7 @@ buttontext:"convertToPoly"
 	)
 )
 macroScript cloneObject
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"cloneObject"
 buttontext:"cloneObject"
@@ -349,7 +349,7 @@ buttontext:"cloneObject"
 		)
 )
 macroScript instanceOBJ
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"instanceOBJ"
 buttontext:"instanceOBJ"
@@ -357,7 +357,7 @@ buttontext:"instanceOBJ"
 	if $!=undfined do maxOps.cloneNodes $  cloneType:#instance
 )
 macroScript subobjectLevel
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"subobjectLevel"
 buttontext:"subobjectLevel"
@@ -366,7 +366,7 @@ buttontext:"subobjectLevel"
 )
 
 macroScript bigGroup
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"bigGroup"
 buttontext:"bigGroup"
@@ -374,7 +374,7 @@ buttontext:"bigGroup"
 	fengx.createBoxGizmo()
 )
 macroScript Povitbot
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"Povitbot"
 buttontext:"Povitbot"
@@ -400,7 +400,7 @@ buttontext:"Povitbot"
 		)
 )
 macroScript botPovit
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"botPovit"
 buttontext:"botPovit"
@@ -425,7 +425,7 @@ buttontext:"botPovit"
 		)
 )
 macroScript centerPovit
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"centerPovit"
 buttontext:"centerPovit"
@@ -439,7 +439,7 @@ buttontext:"centerPovit"
 	)
 )
 macroScript resetPos
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"resetPos"
 buttontext:"resetPos"
@@ -454,7 +454,7 @@ buttontext:"resetPos"
 	)
 )
 macroScript speedScaleBig
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"speedScaleBig"
 buttontext:"speedScaleBig"
@@ -466,7 +466,7 @@ buttontext:"speedScaleBig"
 	)
 )
 macroScript speedScaleSmall
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"speedScaleSmall"
 buttontext:"speedScaleSmall"
@@ -478,7 +478,7 @@ buttontext:"speedScaleSmall"
 	)
 )
 macroScript groupOpen
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"groupOpen"
 buttontext:"groupOpen"
@@ -490,7 +490,7 @@ buttontext:"groupOpen"
 	)
 )
 macroScript groupClose
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"groupClose"
 buttontext:"groupClose"
@@ -503,7 +503,7 @@ buttontext:"groupClose"
 )
 global copyObj=undefined
 macroScript copyObject
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"copyObject"
 buttontext:"copyObject"
@@ -514,12 +514,12 @@ buttontext:"copyObject"
 	if $ != undefined do(
 		try (
 		  saveNodes $ thecopypastestring
-		  print "Â§çÂà∂ÊàêÂäü"
-            )  catch print "Â§çÂà∂Â§±Ë¥•"
+		  print "∏¥÷∆≥…π¶"
+            )  catch print "∏¥÷∆ ß∞‹"
     )
 )
 macroScript pasteObject
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"pasteObject"
 buttontext:"pasteObject"
@@ -531,7 +531,7 @@ buttontext:"pasteObject"
 )
 
 macroScript smartRotationL
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"smartRotationL"
 buttontext:"smartRotationL"
@@ -545,7 +545,7 @@ on execute do
 )
 
 macroScript smartRotationR
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"smartRotationR"
 buttontext:"smartRotationR"
@@ -561,7 +561,7 @@ on execute do
 
 
 macroScript clearSelection
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"clearSelection"
 buttontext:"clearSelection"
@@ -580,7 +580,7 @@ buttontext:"editUV"
 )
 
 macroScript alignU
-category:"visualFengx"
+category:"visualfengx_1.1"
 --InternalCategory:"Unwrap UVW" 
 --icon:#("MAXScript",1)
 tooltip:"alignU"
@@ -590,7 +590,7 @@ buttontext:"alignU"
 )
 
 macroScript alignV
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"alignV"
 buttontext:"alignV"
@@ -602,7 +602,7 @@ buttontext:"alignV"
 
 
 macroScript preserveUV
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"preserveUV"
 buttontext:"preserveUV"
@@ -613,7 +613,7 @@ try(
 )
 
 macroScript editUV
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"editUV"
 buttontext:"editUV"
@@ -640,7 +640,7 @@ undo on(
 		 )
 )
 macroScript HorizontalUV
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"HorizontalUV"
 buttontext:"HorizontalUV"
@@ -652,14 +652,14 @@ undo on(
 )
 
 macroScript alignU
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"alignU"
 buttontext:"alignU"
 (
 	)
 macroScript VerticalUV
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"VerticalUV"
 buttontext:"VerticalUV"
@@ -683,7 +683,7 @@ buttontext:"editMate"
 )
 
 macroScript clearMate 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"clearMate"
 buttontext:"clearMate"
@@ -697,16 +697,16 @@ buttontext:"clearMate"
 		(
 		  if scenematerials[i].DiffuseMap!=undefined do
 		  (
-		 	try ls[i]=scenematerials[i] catch print" clearMate ‰∏çÁü•ÈÅìÂèëÁîü‰∫Ü‰ªÄ‰πàÈóÆÈ¢òÔºÅ"
+		 	try ls[i]=scenematerials[i] catch print" clearMate ≤ª÷™µ¿∑¢…˙¡À ≤√¥Œ Ã‚£°"
           	)
 		)
 		if classof(scenematerials[i])==MultiMaterial  do 
 		(
-			try ls[i]=scenematerials[i] catch print" clearMate ‰∏çÁü•ÈÅìÂèëÁîü‰∫Ü‰ªÄ‰πàÈóÆÈ¢òÔºÅ"
+			try ls[i]=scenematerials[i] catch print" clearMate ≤ª÷™µ¿∑¢…˙¡À ≤√¥Œ Ã‚£°"
 
 		  --if scenematerials[i].name!="Standardmaterial" and  scenematerials[i].DiffuseMap!=undefined do
 		  --(
-		 	--try ls[i]=scenematerials[i] catch print" clearMate ‰∏çÁü•ÈÅìÂèëÁîü‰∫Ü‰ªÄ‰πàÈóÆÈ¢òÔºÅ"
+		 	--try ls[i]=scenematerials[i] catch print" clearMate ≤ª÷™µ¿∑¢…˙¡À ≤√¥Œ Ã‚£°"
           	--)
 		)
 
@@ -714,7 +714,7 @@ buttontext:"clearMate"
    )        
 )
 macroScript clearEditMate 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"clearEditMate"
 buttontext:"clearEditMate"
@@ -725,7 +725,7 @@ buttontext:"clearEditMate"
 )
 
 macroScript clearSenceMate 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"clearSenceMate"
 buttontext:"clearSenceMate"
@@ -734,12 +734,12 @@ buttontext:"clearSenceMate"
 	 macros.run "Medit Tools" "clear_medit_slots"
 	 for s in scenematerials do 
       (
-         try s=standmaterial catch print" clearSenceMate ‰∏çÁü•ÈÅìÂèëÁîü‰∫Ü‰ªÄ‰πàÈóÆÈ¢òÔºÅ"
+         try s=standmaterial catch print" clearSenceMate ≤ª÷™µ¿∑¢…˙¡À ≤√¥Œ Ã‚£°"
         )        
 )
 )
 macroScript DXoff 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"DXoff"
 buttontext:"DXoff"
@@ -755,7 +755,7 @@ buttontext:"DXoff"
 )
 
 macroScript DXon 
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"DXon"
 buttontext:"DXon"
@@ -772,7 +772,7 @@ buttontext:"DXon"
 --------------------edit Mate--------------------------
 --------------------reset material----------------------
 macroScript resetMate
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"resetMate"
 buttontext:"resetMate"
@@ -790,7 +790,7 @@ buttontext:"resetMate"
 )
 
 macroScript mateToStandardName
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"mateToStandardName"
 buttontext:"mateToStandardName"
@@ -798,9 +798,9 @@ buttontext:"mateToStandardName"
 	fengx.TexNameToMateName()
 
 )
---ÊâìÂºÄÊâÄÈÄâÊùêË¥®ÁöÑË¥¥ÂõæÊñá‰ª∂Â§π
+--¥Úø™À˘—°≤ƒ÷ µƒÃ˘ÕºŒƒº˛º–
 macroScript openMateMapFolder
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"openMateMapFolder"
 buttontext:"openMateMapFolder"
@@ -824,9 +824,9 @@ buttontext:"openMateMapFolder"
 	)
 
 )
---ÊâìÂºÄÊâÄÈÄâÊùêË¥®ÁöÑË¥¥ÂõæÊñá‰ª∂Â§π
+--¥Úø™À˘—°≤ƒ÷ µƒÃ˘ÕºŒƒº˛º–
 macroScript showMapInExplorer
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"showMapInExplorer"
 buttontext:"showMapInExplorer"
@@ -850,9 +850,9 @@ buttontext:"showMapInExplorer"
 	)
 
 )
---Âè¶Â≠ò‰∏∫ÈÄâÊã©Áâ©‰ΩìÈ¢òÂõæ
+--¡Ì¥ÊŒ™—°‘ÒŒÔÃÂÃ‚Õº
 macroScript saveMapTo
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"saveMapTo"
 buttontext:"saveMapTo"
@@ -870,7 +870,7 @@ buttontext:"justTest"
 	print "justTest"	
 )
 macroScript SnapSurface
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"SnapSurface"
 buttontext:"SnapSurface"
@@ -881,7 +881,7 @@ buttontext:"SnapSurface"
 	--PGround.wirecolor = red
 )
 macroScript snapToSurfaceD
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"snapToSurfaceD"
 buttontext:"snapToSurfaceD"
@@ -895,7 +895,7 @@ if PGround !=undefined do
 )
 
 macroScript snapToSurfaceP
-category:"visualFengx"
+category:"visualfengx_1.1"
 --icon:#("MAXScript",1)
 tooltip:"snapToSurfaceP"
 buttontext:"snapToSurfaceP"
