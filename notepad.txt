@@ -38,3 +38,12 @@
 
 
 ----fix
+
+
+-------------....
+highlight the snaped ground！
+复制的时候  会 unhide 掉
+
+复制管理 的清除当个物体
+
+导入文件管理  图形化处理

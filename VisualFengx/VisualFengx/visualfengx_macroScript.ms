@@ -299,30 +299,6 @@ buttontext:"autosmooth "
 	try $.EditablePoly.autosmooth () catch print "autosmooth fath!"
 )
 
-macroScript smartCloneD
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"smartCloneD"
-buttontext:"smartCloneD"
-(
-	if $ !=undefined do 
-	(
-		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
-	)
-)
-
-macroScript smartCloneP
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"smartCloneP"
-buttontext:"smartCloneP"
-(
-	if $ !=undefined do 
-	(
-		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
-	)
-)
-
 macroScript convertToPoly
 category:"visualFengx"
 --icon:#("MAXScript",1)
@@ -501,34 +477,7 @@ buttontext:"groupClose"
 		)
 	)
 )
-global copyObj=undefined
-macroScript copyObject
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"copyObject"
-buttontext:"copyObject"
-(	
-	thecopypastedir = getdir #Scripts 
-	thecopypastefile = fengx.changePath  "/visualFengx/copyPaste.max" 
-	thecopypastestring = thecopypastedir + thecopypastefile 
-	if $ != undefined do(
-		try (
-		  saveNodes $ thecopypastestring
-		  print "复制成功"
-            )  catch print "复制失败"
-    )
-)
-macroScript pasteObject
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"pasteObject"
-buttontext:"pasteObject"
-(
-	thecopypastedir = getdir #Scripts
-	thecopypastefile = fengx.changePath  "/visualFengx/copyPaste.max" 
-	thecopypastestring = thecopypastedir + thecopypastefile 
-	mergemaxfile (thecopypastedir + thecopypastefile) #select 
-)
+
 
 macroScript smartRotationL
 category:"visualFengx"
@@ -558,16 +507,6 @@ on execute do
 	)
 )
 
-
-
-macroScript clearSelection
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"clearSelection"
-buttontext:"clearSelection"
-(
-	clearSelection()
-)
 
 --------------------edit UV--------------------------
 macroScript llllllllllllllllllllllllllllllllllllleditUV
