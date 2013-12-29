@@ -22,4 +22,4 @@ if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
 	    checkUpDateWindow.lb01.text= updateMsg
       --)
       )
-	)else print  "VsiaulFengx 该版本已经为最新！无需更新!" 
+	)else --print  "VsiaulFengx 该版本已经为最新！无需更新!" 

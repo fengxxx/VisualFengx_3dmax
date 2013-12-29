@@ -8,50 +8,27 @@ buttontext:"systemTool"
 )
 
 
-macroScript ambientWhite
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"ambientWhite"
-buttontext:"ambientWhite"
+macroScript ambientWhite category:"visualFengx" tooltip:"ambientWhite" buttontext:"ambientWhite"
 (
 	fengx.fixAmbientColor "+"
 	gw.updateScreen()
 	print ambientColor 
 )
 
-macroScript ambientBlack
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"ambientBlack"
-buttontext:"ambientBlack"
+macroScript ambientBlack category:"visualFengx" tooltip:"ambientBlack" buttontext:"ambientBlack"
 (
 	fengx.fixAmbientColor "-"	
 	gw.updateScreen()
 	print ambientColor 
 )
 --------------------system tool-------------------------
-macroScript Setting
-category:"visualfengx_help"
---icon:#("MAXScript",1)
-tooltip:"setting"
-buttontext:"setting"
-(
-	actionMan.executeAction 0 "59226"
-)
 
-macroScript reStart
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"restart"
-buttontext:"restart"
+macroScript reStart category:"visualFengx" tooltip:"restart" buttontext:"restart"
 (
 	fengx.restart()	
 )
-macroScript quitmax
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"quitmax"
-buttontext:"quitmax"
+
+macroScript quitmax category:"visualFengx" tooltip:"quitmax" buttontext:"quitmax"
 (
 	if checkForSave() do
 	(
@@ -60,33 +37,19 @@ buttontext:"quitmax"
 )
 
 
-
-
-macroScript llllllllllllllllllllllllllllllllllllleditFile
-category:"visualfengx_help"
---icon:#("MAXScript",1)
-tooltip:"editFile"
-buttontext:"editFile"
+macroScript llllllllllllllllllllllllllllllllllllleditFile category:"visualfengx_help"  tooltip:"editFile" buttontext:"editFile"
 (
 	print "nothing"	
 )
+
 --------------------edit file---------------------------
-macroScript saveSelect
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"saveSelect"
-buttontext:"saveSelect"
+macroScript saveSelect category:"visualFengx" tooltip:"saveSelect" buttontext:"saveSelect"
 (
-	--if $ !=undefined do fengx.saveNodeToMax($)
-	if $ !=undefined do fengx.backupMax($)
+	if $ !=undefined do fengx.saveToMax($)
 )
 
 
-macroScript mainWindow 
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"visualfengx"
-buttontext:"visualfengx"
+macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:"visualfengx"
 (
 	if mainwindow.open==true then (
 		rollouts=#(poly,mate,file,snap)
@@ -104,11 +67,7 @@ buttontext:"visualfengx"
 )
 
 
-macroScript copyPasteWindow
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"copyPasteWindow"
-buttontext:"copyPasteWindow"
+macroScript copyPasteWindow category:"visualFengx" tooltip:"copyPasteWindow" buttontext:"copyPasteWindow"
 (
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
@@ -118,6 +77,13 @@ buttontext:"copyPasteWindow"
 	
 )
 
+macroScript clipboardWindow category:"visualFengx" tooltip:"clipboard" buttontext:"clipboard"
+(
+	if clipboard.open==true then destroyDialog clipboard else(
+	createdialog clipboard 160 112 pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+	)
+	
+)
 macroScript fileWindow
 category:"visualFengx"
 --icon:#("MAXScript",1)
@@ -299,6 +265,30 @@ buttontext:"autosmooth "
 	try $.EditablePoly.autosmooth () catch print "autosmooth fath!"
 )
 
+macroScript smartCloneD
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartCloneD"
+buttontext:"smartCloneD"
+(
+	if $ !=undefined do 
+	(
+		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
+	)
+)
+
+macroScript smartCloneP
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartCloneP"
+buttontext:"smartCloneP"
+(
+	if $ !=undefined do 
+	(
+		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
+	)
+)
+
 macroScript convertToPoly
 category:"visualFengx"
 --icon:#("MAXScript",1)
@@ -478,6 +468,27 @@ buttontext:"groupClose"
 	)
 )
 
+
+macroScript copyObject category:"visualFengx" tooltip:"copyObject" buttontext:"copyObject"
+(
+if clipboard.open==true then destroyDialog clipboard else(
+createdialog clipboard 160 112 pos: copyPastePos 
+)
+if $!=undefined do
+	( 
+		--if clipboard.open==true then destroyDialog clipboard else(
+		createdialog clipboard 160 112 pos: copyPastePos  -- style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+		--)
+		fengx.copyNodes 0 
+		 updateClipboardImages()
+		)
+)
+
+macroScript pasteObject category:"visualFengx" tooltip:"pasteObject" buttontext:"pasteObject"
+(
+  fengx.pasteNodes 0
+   destroyDialog clipboard
+)
 
 macroScript smartRotationL
 category:"visualFengx"

@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.5
+global  VisualFengxVersions =1.1
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -259,37 +259,39 @@ rollout mainwindow "visualFengx" width:544 height:720
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,48] width:142 height:616 
-	checkbutton ckP "Poly" pos:[0,24] width:32 height:24
-	checkbutton ckM "材质" pos:[32,24] width:32 height:24
-	checkbutton ckF "文件" pos:[64,24] width:40 height:24
-	checkbutton ckS "吸附" pos:[104,24] width:39 height:24
-	checkbutton ckX "↓↑" pos:[104,0] width:39 height:24
+
+	subRollout sub "fengx" pos:[0,44] width:142 height:616 
+ 
+	checkbutton ckP "Poly" pos:[0,24] width:32 height:20
+	checkbutton ckM "材质" pos:[32,24] width:32 height:20
+	checkbutton ckF "文件" pos:[64,24] width:40 height:20
+	checkbutton ckS "吸附" pos:[104,24] width:39 height:20
+	checkbutton ckX "↓↑" pos:[115,0] width:28 height:24
 	checkbutton ckb127 "English" pos:[272,0] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[336,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[336,24] width:63 height:24 enabled:false color:(color 42 8 36)
-	button btn337 "设置" pos:[64,0] width:40 height:24
-	checkbutton ckb230 "复制管理" pos:[0,0] width:64 height:24
+	button btn337 "设置" pos:[52,0] width:32 height:24
+	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:24
 	button btn744 "background" pos:[272,24] width:64 height:24
 	button btn142 "userMacros" pos:[272,48] width:104 height:24
 	button btn143 "@" pos:[376,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[192,304] width:80 height:24
+	button btn29 "send to GitHub" pos:[192,288] width:80 height:24
 	button btn145 "get from GitHub" pos:[184,208] width:87 height:24
-	button btn32 "卸载！" pos:[144,420] width:127 height:104
+	button btn32 "卸载！" pos:[144,392] width:127 height:104
 	
 	button btn697 "send to GitHub" pos:[184,184] width:87 height:24
-	button btn698 "get from GitHub" pos:[192,328] width:80 height:24
+	button btn698 "get from GitHub" pos:[192,312] width:80 height:24
 	button btn699 "home" pos:[144,184] width:40 height:48
-	button btn700 "company" pos:[144,304] width:48 height:48
+	button btn700 "company" pos:[144,288] width:48 height:48
 	button btn801 "install.ms" pos:[144,232] width:104 height:24
 	button btn802 "@" pos:[248,232] width:24 height:24
-	button btn803 "install.ms" pos:[144,352] width:104 height:24
-	button btn804 "@" pos:[248,352] width:24 height:24
-	button btn53 "检查更新！" pos:[144,524] width:127 height:64
-	button btn26 "强制更新！" pos:[144,588] width:128 height:32
+	button btn803 "install.ms" pos:[144,336] width:104 height:24
+	button btn804 "@" pos:[248,336] width:24 height:24
+	button btn53 "检查更新！" pos:[144,496] width:127 height:64
+	button btn26 "强制更新！" pos:[144,560] width:128 height:32
 	button btn531 "update" pos:[144,256] width:104 height:24
-	button btn55 "update" pos:[144,376] width:104 height:24
-	button btn56 "@" pos:[248,376] width:24 height:24
+	button btn55 "update" pos:[144,360] width:104 height:24
+	button btn56 "@" pos:[248,360] width:24 height:24
 	button btn57 "@" pos:[248,256] width:24 height:24
 	
 	function 	saveWindowState=
@@ -410,6 +412,10 @@ rollout mainwindow "visualFengx" width:544 height:720
 	button btn208 "sublime_text" pos:[143,24] width:128 height:24
 	button btn209 "○" pos:[223,120] width:24 height:24
 	button btn210 "run" pos:[143,144] width:128 height:32
+	button btn570 "帮助" pos:[84,0] width:32 height:24
+		
+	--hyperLink hy_help "帮助" color:(color 100 100 100 100)  hoverColor: (color 0 100 100 100)   visitedColor:(color 100 0 100 100)  address:"www.baidu.com"
+
 	on mainwindow open do
 	(
 	   
@@ -1650,7 +1656,7 @@ rollout file "文件" width:128 height:448
 	)
 	on btn3 pressed do
 	(
-	    if $ !=undefined do fengx.backupMax($)
+	    if $ !=undefined do fengx.saveToMax($)
 	)
 	on btn17 pressed do
 	(
@@ -1858,14 +1864,11 @@ rollout snap "吸附" width:362 height:562
 	checkbutton ptx "x" pos:[64,40] width:16 height:16 checked:false
 	checkbutton pty "y" pos:[80,40] width:16 height:16 checked:false
 	checkbutton ptz "z" pos:[96,40] width:16 height:16 checked:false
-	
-	
 	checkbutton localpos "@" pos:[0,20] width:16 height:20
 	checkbutton localPivot "@" pos:[112,20] width:16 height:20
 	button btn14 "置底" pos:[200,66] width:56 height:24
 	button btn17 "归中" pos:[200,42] width:56 height:24
 	button btn18 "Pos" pos:[128,113] width:24 height:24
-	
 	button bpxa "+" pos:[176,18] width:24 height:24
 	button bpxr "-" pos:[128,18] width:24 height:24
 	button btn152 "+" pos:[176,42] width:24 height:24
@@ -1879,13 +1882,7 @@ rollout snap "吸附" width:362 height:562
 	checkbutton ckb19 "Name" pos:[0,96] width:48 height:20
 	checkbutton ckb20 "Material" pos:[80,96] width:48 height:20
 	button btn115 "右旋" pos:[192,188] width:64 height:24 
- 
- 
- 
- 
- 
 	button btn116 "左旋" pos:[128,188] width:64 height:24
-	
 	pickbutton btn99 "设置吸附目标对象" pos:[0,163] width:128 height:24
 	button btn119 "吸附（带方向）" pos:[0,187] width:128 height:27 enabled:true
 	button btn174 "吸附（仅位置）" pos:[0,214] width:128 height:28 enabled:true
@@ -1895,7 +1892,6 @@ rollout snap "吸附" width:362 height:562
 	button btn123 "重置（所选）属性" pos:[128,94] width:128 height:19 enabled:false
 	button btn63 "置顶" pos:[200,18] width:56 height:24
 	button btn53 "吸取属性" pos:[0,0] width:128 height:20 enabled:false
-		
 	button btn54 "Pivot" pos:[128,0] width:128 height:18 enabled:false
 	button btn126 "吸附表面" pos:[0,144] width:128 height:19 enabled:false
 	button btn127 "智能旋转" pos:[128,168] width:128 height:20 enabled:false
@@ -1903,6 +1899,7 @@ rollout snap "吸附" width:362 height:562
 	button btn259 "" pos:[48,56] width:32 height:60 enabled:false
 	button btn294 "" pos:[0,40] width:16 height:16 enabled:false
 	button btn295 "" pos:[112,40] width:16 height:16 enabled:false
+	
 	on snap close do
 	(
 	if  canSetWindows==true do 
@@ -1915,6 +1912,7 @@ rollout snap "吸附" width:362 height:562
 	    setinisetting  profilePath "rolloutSetting" "snapPos" (snappos as string )
 	    )
 	)
+	
 	on chooseit picked obj do
 	( 
 	 if obj != undefined and $!= undefined do
@@ -2714,9 +2712,36 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 
 
 
+rollout clipboard "clipboard" width:160 height:116
+(
+	checkbutton ckb01 "ckb01" pos:[0,0] width:160 height:112 enabled:true
+	
+	on clipboard open  do
+(
+	updateClipboardImages()
+	)
+	on ckb01 changed state do
+	(
+	 fengx.pasteNodes 0
+	)
 
+)
+	
+function updateClipboardImages=
+(
+	bc=color 64 67 65 60 
+	theBmp = (BitMap 160 112 color:bc) 
+	theDefultBmp = (BitMap 160 112 color:bc) 
 
-
+	imagePath= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/copyTemp0.jpg")
+	if doesFileExist imagePath then(
+		theBmp =openBitMap  imagePath
+		)else(
+		imagePath= fengx.beWindowsPath  (getDir #Scripts+ "/visualFengx/copyPasteDefult.png")
+		if doesFileExist imagePath  do theBmp =openBitMap  imagePath
+		)
+	try clipboard.ckb01.images=#(theBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+	)
 
 
 
@@ -2779,7 +2804,7 @@ struct fengx
 (
 
 ------------------创建窗口------------------------------
-fn llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
+function llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
 function sendToGithub GitHubPath=
@@ -2908,7 +2933,7 @@ if tempon==true do
 )
 ),
 	
-fn BubbleSort a=
+function BubbleSort a=
 (    
     temp = 0
     for i = 1 to a.count do 
@@ -2929,7 +2954,7 @@ fn BubbleSort a=
             )
         )
     ),
-fn bubbleSortArry b=
+function bubbleSortArry b=
 (    
     temp = undefined
     for i = 1 to b.count do 
@@ -2951,8 +2976,9 @@ fn bubbleSortArry b=
         )
     return b
     ),
-	
-fn backupMax nodes=
+
+-->>save select to max 	
+function saveToMax nodes=
 (
     if nodes !=undefined do
     (	
@@ -2972,7 +2998,7 @@ fn backupMax nodes=
 
 ),
 
-fn splitMaxs =
+function splitMaxs =
 (
 exportPath="d:/"
 maxsPath=getSavePath   caption:"get to"
@@ -3102,7 +3128,7 @@ function  pasteNodes NO=
 	if NO != undefined do  mergemaxfile  targetPath  #select  
 	),
 	
-fn exportSelectToVisual=
+function exportSelectToVisual=
 (
 	name=maxfilename
 	try $.count catch name=$.name 
@@ -3124,7 +3150,7 @@ fn exportSelectToVisual=
 	visualPath=fengx.beWindowsPath TargetPath
 ),
 
-fn getNamePath n=
+function getNamePath n=
 (
 	path="E:/mf_pangu/tw2/res/scene/common/"
 	tw1=""
@@ -3151,7 +3177,7 @@ fn getNamePath n=
 	return path
 ),
 
-fn getLetter n=
+function getLetter n=
 (
 	name=""
 	for i=1 to n.count do(
@@ -3159,7 +3185,7 @@ fn getLetter n=
 	)
 	return name
 ),
-fn exportSelectToOBJ=
+function exportSelectToOBJ=
 (
 	name=maxfilename
 	try $.count==undefined catch name=$.name
@@ -3175,7 +3201,7 @@ fn exportSelectToOBJ=
     		objPath=fengx.beWindowsPath (targetPath+".obj")
 	)
 ),
-fn randomColor=
+function randomColor=
 (
     a=undefined
     r=(random 0 225)
@@ -3185,7 +3211,7 @@ fn randomColor=
     return a
 ),
 
-fn beWindowsPath thePath=
+function beWindowsPath thePath=
 (
 	a=true
 	windowsPath=""
@@ -3198,7 +3224,7 @@ fn beWindowsPath thePath=
 	)
 	return windowsPath
 ),
-fn beStringPath thePath=
+function beStringPath thePath=
 (
 	a=true
 	windowsPath=""
@@ -3213,7 +3239,7 @@ fn beStringPath thePath=
 ),
 
 
-fn restart =
+function restart =
 (
     if checkForSave() then (
         shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
@@ -3221,7 +3247,7 @@ fn restart =
     )
 ),
     
-fn fixAmbientColor n=
+function fixAmbientColor n=
 (
 	undo on(
 		if n=="+" do
@@ -3239,7 +3265,7 @@ fn fixAmbientColor n=
 -------------------------------------------------------------
 -------------------------system tool-------------------------
 
-fn llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
+function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 -------------------------matelrial tool----------------------
  function clearObjectMultiMaterial nodes=
 (
@@ -3308,7 +3334,7 @@ fn llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 ),
  
 
-fn openTexFile m=
+function openTexFile m=
 (
 	try	 dir2=m.DiffuseMap.bitmap.filename catch print "根本就没贴图 怎么打的开！"-- messageBox(" 根本就没贴图 怎么打的开！") title:"擦擦擦擦擦擦！！！"
 	if dir2!=""and dir2!=undefined do 
@@ -3321,7 +3347,7 @@ fn openTexFile m=
 ),
 
 ---材质命名
-fn  TexNameToMateName=
+function  TexNameToMateName=
 (    
     undo on(
     if $==undefined do
@@ -3357,7 +3383,7 @@ fn  TexNameToMateName=
     )
 ),
 
-fn namedMate mate s=
+function namedMate mate s=
 ( 
 	undo on (
 	str=""
@@ -3376,8 +3402,8 @@ fn namedMate mate s=
 
 -------------------------matelrial tool----------------------
 -------------------------UV tool-----------------------------
-fn lllllllllllllllllllllllllllllllllllllllllllllllleditUVFn=(),
-fn alignU=
+function lllllllllllllllllllllllllllllllllllllllllllllllleditUVFn=(),
+function alignU=
 (
 if $!=undifined and classOf(modpanel.getcurrentobject())==Unwrap_UVW do 
 (
@@ -3402,7 +3428,7 @@ undo "Align U" on
 )
 ),
 
-fn alignV=
+function alignV=
 (
 if $!=undifined and classOf(modpanel.getcurrentobject())==Unwrap_UVW do 
 (
@@ -3429,10 +3455,10 @@ if $!=undifined and classOf(modpanel.getcurrentobject())==Unwrap_UVW do
 
 
 -------------------------UV tool-----------------------------
-fn lllllllllllllllllllllllllllllllllllllllllllllllleditModelFn=(),
+function lllllllllllllllllllllllllllllllllllllllllllllllleditModelFn=(),
 -------------------------edit model--------------------------
 --将选中的模型导出Obj 在导入 借此来重置下
-fn showInfor=(
+function showInfor=(
 	if $ != undefined do 
 	(
 	try $.count catch(
@@ -3449,7 +3475,7 @@ fn showInfor=(
 )
 ),
 
-fn resetModel =
+function resetModel =
 (    
 undo on(
 	if $ != undefined do 
@@ -3483,7 +3509,7 @@ undo on(
 )
 ),
 
-fn matrixSort =
+function matrixSort =
 (
 	if $!=undefined do(
 	   if $.count>100 do(
@@ -3551,7 +3577,7 @@ fn matrixSort =
 
 
 --物体重新矩阵排列
-fn setpos n=
+function setpos n=
 (
     undo on(
     allx=0
@@ -3650,7 +3676,7 @@ fn setpos n=
 ),
 
 --排除掉已经归入组的物体   node 或者 node[]
-fn selectGroupDummy select=
+function selectGroupDummy select=
 (    
     GroupDummy=#()
     --theDummy=undefined 
@@ -3664,7 +3690,7 @@ fn selectGroupDummy select=
 	return GroupDummy
 ),
 -- reject != StandardMaterial
-fn toStandardMate mate=
+function toStandardMate mate=
 (	
 	mateStandard=#()
 	try(
@@ -3684,7 +3710,7 @@ fn toStandardMate mate=
 
 
 
-fn smartColneD message intRay obj faceNumber shift ctrl alt =
+function smartColneD message intRay obj faceNumber shift ctrl alt =
 (
 	 
 	returnValue = case message of
@@ -3708,7 +3734,7 @@ fn smartColneD message intRay obj faceNumber shift ctrl alt =
 	returnValue
 ),
 
-fn smartColneP message intRay obj faceNumber shift ctrl alt =
+function smartColneP message intRay obj faceNumber shift ctrl alt =
 (
 	 
 	returnValue = case message of
@@ -3740,10 +3766,10 @@ fn smartColneP message intRay obj faceNumber shift ctrl alt =
 
 
 
-fn llllllllllllllllllllllllllllllllllllllllllllllllcreateObjectFn=(),
+function llllllllllllllllllllllllllllllllllllllllllllllllcreateObjectFn=(),
 -------------------------create model-------------------------
 
-fn createBox=
+function createBox=
 (
 undo on(
     bpos=[0,0,0]
@@ -3773,7 +3799,7 @@ undo on(
     )
     )
 ),
-fn createCylinder=
+function createCylinder=
 (
 undo on(
     bpos=[0,0,0]
@@ -3800,7 +3826,7 @@ undo on(
         )    
     )
 ),
-fn createSphere=
+function createSphere=
 (
 undo on(
     bpos=[0,0,0]
@@ -3827,7 +3853,7 @@ undo on(
         )    
     )
 ),
-fn createPlane=
+function createPlane=
 (
     undo on(
     bpos=[0,0,0]
@@ -3852,7 +3878,7 @@ fn createPlane=
 )
 ),
 --标准人物创建
-fn stdMen=(
+function stdMen=(
     undo on(
     bpos=[0,0,0]
     if $ !=undefined do 
@@ -3865,7 +3891,7 @@ fn stdMen=(
     a.material=Standardmaterial ()
     )
 ),    
-fn createBoxGizmo=
+function createBoxGizmo=
 (    
     lColor = fengx.randomColor()
     lColor = color 112 112 112 112
@@ -3940,7 +3966,7 @@ fn createBoxGizmo=
     )
 ),
 
-fn drawLine pointA pointB lineColor =
+function drawLine pointA pointB lineColor =
 (
     ss = SplineShape pos:pointA
     addNewSpline ss
@@ -3952,7 +3978,7 @@ fn drawLine pointA pointB lineColor =
 
 ),
 
-fn dirToPath dir1=
+function dirToPath dir1=
 (	pathStr=dir1
 	tempStr=getFilenameFile dir1
 	print tempStr
@@ -3969,7 +3995,7 @@ fn dirToPath dir1=
 )
 	,
 -------------------------create model-------------------------  
-fn maxminf n=
+function maxminf n=
 (
     maxf=n[1]
     minf=n[1]
@@ -4000,7 +4026,7 @@ function getFromUvlayout =
 	
 ),
 
-fn sendToUVlayout =
+function sendToUVlayout =
 (
 	if uvlayoutPath!=undeifend and doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
 	(
@@ -4034,7 +4060,7 @@ fn sendToUVlayout =
 
 ),
 --显示物体名字
-fn showname=
+function showname=
 (    
     if $==undefined then
     (
@@ -4056,7 +4082,7 @@ fn showname=
 ),
     
 --显示物体名字
-fn showObjectNames=
+function showObjectNames=
 (
     gw.setTransform(Matrix3 1)
     for o in objects where not o.isHidden do
@@ -4072,7 +4098,7 @@ fn showObjectNames=
 
 
 --<material>--<startardMaterial only>
-fn saveMateMapTo mates targetPath=
+function saveMateMapTo mates targetPath=
 (	
 	-->>>   forbid anything was not standarMaterial 
 	local standerdMates=#()
@@ -4110,7 +4136,7 @@ fn saveMateMapTo mates targetPath=
 	
 	
 
-fn updataLanguage=
+function updataLanguage=
 (
 	if languageId=="English" do
 		( 
@@ -4292,7 +4318,7 @@ fn updataLanguage=
 		snap.btn224.text= "Pivot" 
 	)
 ),
-fn getViewDir =
+function getViewDir =
 (
 -- The affine TM transforms from world coords to view coords -- so we need the inverse of this matrix
 local coordSysTM = Inverse(getViewTM())
@@ -4304,7 +4330,7 @@ local viewPt = coordSysTM.row4
 --print viewDir
 return viewDir --ray viewPt viewDir
 ),
-fn geTrotateDir n=
+function geTrotateDir n=
 (
 	rotatedir=[0,0,0]
 	x=abs(n.x)
@@ -4326,7 +4352,7 @@ fn geTrotateDir n=
 	if n[count]<0 then rotateDir[count]=-1 else rotateDir[count]=1
 	return rotateDir
 ),
-fn smartRotate n=
+function smartRotate n=
 (
 	if $!=undefined do
 	(
@@ -4335,7 +4361,7 @@ fn smartRotate n=
 	)
 ),
 
-fn importMap=
+function importMap=
 (
 FilesPath=getSavePath   caption:"get to"  
 if FilesPath !=undefined do 
@@ -4362,7 +4388,7 @@ for f in files do
 	)
 )
 ),
-fn importMaxs =
+function importMaxs =
 (
 maxsPath=getSavePath   caption:"get to"  
 if maxsPath!=undefined do 
@@ -4516,7 +4542,7 @@ for s in $.material do  (
 	)
 
 ),
-fn llllllllllllllllllllllllllllllllllllllllllllllllfileFn=(),
+function llllllllllllllllllllllllllllllllllllllllllllllllfileFn=(),
 -------------------------create model-------------------------
 
 function geMapPathFromeVisal targetPath=
