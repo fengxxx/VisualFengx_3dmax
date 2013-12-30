@@ -47,3 +47,5 @@ highlight the snaped ground！
 复制管理 的清除当个物体
 
 导入文件管理  图形化处理
+
+复制黏贴进来的时候 去除改名界面

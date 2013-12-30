@@ -72,7 +72,7 @@ macroScript copyPasteWindow category:"visualFengx" tooltip:"copyPasteWindow" but
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
 	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
-	fengx.updataLanguage()
+	--fengx.updataLanguage()
 	)
 	
 )
@@ -468,26 +468,34 @@ buttontext:"groupClose"
 	)
 )
 
-
 macroScript copyObject category:"visualFengx" tooltip:"copyObject" buttontext:"copyObject"
 (
-if clipboard.open==true then destroyDialog clipboard else(
-createdialog clipboard 160 112 pos: copyPastePos 
+--if clipboard.open==true then destroyDialog clipboard else(
+--createdialog clipboard 160 112 pos: copyPastePos 
+--)
+
+if copyPaste.open==false do 
+(
+if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
+createdialog copyPaste 206 112   pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 )
 if $!=undefined do
 	( 
-		--if clipboard.open==true then destroyDialog clipboard else(
-		createdialog clipboard 160 112 pos: copyPastePos  -- style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
-		--)
-		fengx.copyNodes 0 
-		 updateClipboardImages()
-		)
+	--if clipboard.open==true then destroyDialog clipboard else(
+	--createdialog clipboard 160 112 pos: copyPastePos  -- style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+	--)
+	fengx.copyNodes 1 
+	updateClipboardImages()
+	)
 )
+
 
 macroScript pasteObject category:"visualFengx" tooltip:"pasteObject" buttontext:"pasteObject"
 (
-  fengx.pasteNodes 0
-   destroyDialog clipboard
+  fengx.pasteNodes 1
+  -- destroyDialog clipboard
+  
+  try destroyDialog  copyPaste catch()
 )
 
 macroScript smartRotationL

@@ -2396,7 +2396,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	(
 	    copyPasteSize=GetDialogSize copyPaste
 	    setinisetting  profilePath "rolloutSetting" "copyPasteSize" (copyPasteSize as string )
-
+	
 	    copyPastepos=GetDialogPos copyPaste
 	    setinisetting  profilePath "rolloutSetting" "copyPastePos" ( copyPastepos as string )
 	    )
@@ -2479,7 +2479,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	  updateImage()
 	)
 	else  fengx.pasteNodes 12
-
+	
 	)
 	on ckb13 changed state do
 	(
@@ -2512,7 +2512,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	  updateImage()
 	)
 	else  fengx.pasteNodes 16
-
+	
 	)
 	on ckb17 changed state do
 	(
@@ -2662,7 +2662,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	(
 	for i=1 to 30 do 
 	(
-
+	
 		 imagePath= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+i as string + ".jpg")
 		 maxPath = fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+i as string +	".max" )
 		 deleteFile  imagePath
@@ -2705,13 +2705,16 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	)
 	on btn61 pressed do
 	(
+	if copyPaste.width<1646 then (
+	copyPaste.height=336
+	copyPaste.width=1646
+	)else
+	(
 	copyPaste.height=112
 	copyPaste.width=846
 	)
+	)
 )
-
-
-
 rollout clipboard "clipboard" width:160 height:116
 (
 	checkbutton ckb01 "ckb01" pos:[0,0] width:160 height:112 enabled:true
