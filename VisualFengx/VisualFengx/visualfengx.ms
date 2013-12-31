@@ -722,16 +722,16 @@ rollout mainwindow "visualFengx" width:544 height:720
 
 
 
-rollout mate "材质" width:128 height:216
+rollout mate "材质" width:128 height:244
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,112] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,192] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,163] width:128 height:29 enabled:true
+	button btn7 "贴图另存为" pos:[0,136] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,216] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,187] width:128 height:29 enabled:true
 	button btn10 "自动标准名字" pos:[0,40] width:128 height:24 enabled:true
 	button btn11 "@" pos:[232,96] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,112] width:24 height:24 enabled:true
+	button btn15 "@" pos:[104,136] width:24 height:24 enabled:true
 	button btn463 "Select Mate" pos:[128,96] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,120] width:24 height:24
 	
@@ -744,8 +744,9 @@ rollout mate "材质" width:128 height:216
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
 	button bmap "贴图" pos:[0,96] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,144] width:128 height:19 enabled:false
+	button btn275 "Directx" pos:[0,168] width:128 height:19 enabled:false
 	button btn21 "去除多余子材质" pos:[0,64] width:128 height:24
+	button btn20 "自动替换资源贴图" pos:[0,112] width:128 height:24 enabled:true
 	on mate open do
 	(
 		
@@ -958,9 +959,14 @@ rollout mate "材质" width:128 height:216
 	)
 	)
 	)
+	on btn20 pressed do
+	(
+	if $!=undefined do
+	(
+	for s in $ do  fengx.findMapResource s
+	)
+	)
 )
-
-
 
 
 
@@ -3268,6 +3274,43 @@ function fixAmbientColor n=
 
 function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 -------------------------matelrial tool----------------------
+function mapChangeToResource mapPath=
+ (
+ 	local mapRPath=mapPath
+	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\\common\\"
+	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\sjcs\\","jz\\jztj\\sjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
+	if mapPath!=undefined and mapPath !="" do
+	(
+	mapName=filenameFromPath mapPath
+	for d in dirs do 
+	(
+		tempDir=Rdir+d+mapName
+		if  doesFileExist tempDir do mapRPath=tempDir
+	)
+	)
+ 	return mapRPath
+ ),
+
+function  findMapResource nodes=
+(
+	if nodes!=defined do
+	(
+	 mates=fengx.toStandardMate nodes.material
+	 for m in mates do 
+	 (
+	  -->>diffuse
+	mapOn=true
+	try m.diffusemap.filename catch mapOn=false
+	if mapOn==true do
+	(
+	newPath=fengx.mapChangeToResource m.diffusemap.filename 
+	 m.diffusemap =  Bitmaptexture fileName: newPath
+	 )
+	)
+	)
+
+),
+
  function clearObjectMultiMaterial nodes=
 (
 	if nodes!=undefined do
@@ -3694,18 +3737,25 @@ function selectGroupDummy select=
 function toStandardMate mate=
 (	
 	mateStandard=#()
-	try(
-	for s in mate do(
-		if classof(s)==Standardmaterial do append mateStandard s
-		if classof(s)==Multimaterial do 
-		(
-			for sm in s do 
-			(
-				if classof(sm)==Standardmaterial do append mateStandard sm
+	local tempOn=true
+	try mate.count catch tempOn=false
+	if tempOn==true then 
+	(
+		--try(
+		for s in mate do(
+			if classof(s)==Standardmaterial do append mateStandard s
+			--if classof(s)==Multimaterial do 
+			--(
+			--	for sm in s do 
+			--	(
+			--		if classof(sm)==Standardmaterial do append mateStandard sm
+			--	)
+			--)
 			)
-		)
-		)
-	) catch print "no material!"
+		--) catch print "no material!"
+	)else append mateStandard mate
+	
+
 	return mateStandard
 ),-------------------------edit model---------------------------
 
