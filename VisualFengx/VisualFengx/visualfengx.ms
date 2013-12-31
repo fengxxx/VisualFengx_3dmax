@@ -4,13 +4,10 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.1
+global  VisualFengxVersions =1.5
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
-
-
-
 
 
 
@@ -3115,6 +3112,7 @@ function  copyNodes  NO =
 	max zoomext sel all
 	try theBmp = render outputsize:[160,112] vfb:off catch messageBox("‰÷»æÀı¬‘Õº ß∞‹")
 	max unhide all
+	--macros.run "Tools" "Isolate_Selection"
 	max views undo
 	max views undo
 	thebmp.filename=fengx.beWindowsPath (copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTemp"+NO as string +	".jpg")
