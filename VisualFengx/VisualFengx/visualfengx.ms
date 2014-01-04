@@ -2382,26 +2382,40 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	
 	function updateImage=
 	(
-		cbks=#(ckb01,ckb02,ckb03,ckb04,ckb05,ckb06,ckb07,ckb08,ckb09,ckb10,ckb11,ckb12,ckb13,ckb14,ckb15,ckb16,ckb17,ckb18,ckb19,ckb20,ckb21,ckb22,ckb23,ckb24,ckb25,ckb26,ckb27,ckb28,ckb29,ckb30)
+		local cbks=#(ckb01,ckb02,ckb03,ckb04,ckb05,ckb06,ckb07,ckb08,ckb09,ckb10,ckb11,ckb12,ckb13,ckb14,ckb15,ckb16,ckb17,ckb18,ckb19,ckb20,ckb21,ckb22,ckb23,ckb24,ckb25,ckb26,ckb27,ckb28,ckb29,ckb30)
 
-		bc=color 64 67 65 60 
-		c1=color 10 10 100 60 
-		c2=color 10 100 10 60 
-		c3=color 100 10 10 60 
-		cls=#(c1,c2,c3)
-		posRect=[-10,-10,-10,-10]
-		theBmp = (BitMap 160 112 color:cls[CPD_Type]) 
-		theDefultBmp = (BitMap 160 112 color:cls[CPD_Type]) 
-		theDefultUpBmp = (BitMap 160 112 color:cls[CPD_Type]) 
-		theUpBmp= (BitMap 160 112 color:cls[CPD_Type]) 
+		local bc=color 64 67 65 60 
+		local c1=color 10 10 100 60 
+		local c2=color 10 100 10 60 
+		local c3=color 100 10 10 60 
+		local cls=#(c1,c2,c3)
+		local posRect=[-10,-10,-10,-10]
+		local posRect1=[0,102,10,160]
+		--local posRect1=[0,0,20,160]
+		
+		local theBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		local theDefultBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		local theDefultUpBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		local theUpBmp= (BitMap 160 112 color:cls[CPD_Type]) 
 		-->>DefultImage
-		DefultImagePath= (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
+		local DefultImagePath= (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
 		if doesFileExist DefultImagePath ==true  do theDefultUpBmp  = openBitMap  DefultImagePath 
+	
+		for i=posRect1.y to (posRect1.w+posRect1.y) do
+		(
+			colorA=getPixels theDefultBmp [posRect1.x,i]  posRect1.w
+			for i=1 to colorA.count do colorA[i]*=0.46
+			setPixels  theDefultUpBmp   [posRect1.x,i]  colorA
+			)
+		
+			
+		/*
 		for i=-posRect.y to  (theDefultUpBmp .height+posRect.w) do
 		(
 			colorA=getPixels theDefultUpBmp [-posRect.x,i] (theDefultUpBmp .width+posRect.x+posRect.z)
 			setPixels theDefultBmp  [-posRect.x,i]  colorA
-			)	
+			)
+		*/		
 		-->>Image
 		for i=1 to 30 do 
 		(
@@ -2409,15 +2423,24 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 		if doesFileExist imagePath then(
 			theUpBmp =openBitMap  imagePath
 			theBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+			/*
 			for i=-posRect.y to  (theUpBmp.height+posRect.w) do
 			(
 				colorA=getPixels theUpBmp [-posRect.x,i] (theUpBmp.width+posRect.x+posRect.z)
 				setPixels theBmp  [-posRect.x,i]  colorA
 				)	
-			--theBmp=theUpBmp 
+			*/
+			
+			for i=posRect1.y to (posRect1.w+posRect1.y) do
+			(
+			colorA=getPixels  theBmp [posRect1.x,i]  posRect1.w
+			for i=1 to colorA.count do colorA[i]*=0.5
+			setPixels  theUpBmp  [posRect1.x,i]  colorA
+			)
+			theBmp=theUpBmp 
 			)else(
 			
-			theBmp=theDefultBmp
+			theBmp=theDefultupBmp
 			)
 			try cbks[i].images=#(theBmp, undefined, 1,1,1,1,1 ) catch (print "-->>>> setImages error! in copyPaste.ckb"+i as string )
 		)
