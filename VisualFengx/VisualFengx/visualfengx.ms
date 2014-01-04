@@ -256,19 +256,18 @@ rollout mainwindow "visualFengx" width:544 height:720
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-
-	subRollout sub "fengx" pos:[0,44] width:142 height:616 
+	subRollout sub "fengx" pos:[0,40] width:142 height:616 
  
-	checkbutton ckP "Poly" pos:[0,24] width:32 height:20
-	checkbutton ckM "材质" pos:[32,24] width:32 height:20
-	checkbutton ckF "文件" pos:[64,24] width:40 height:20
-	checkbutton ckS "吸附" pos:[104,24] width:39 height:20
-	checkbutton ckX "↓↑" pos:[115,0] width:28 height:24
+	checkbutton ckP "Poly" pos:[0,20] width:32 height:20
+	checkbutton ckM "材质" pos:[32,20] width:32 height:20
+	checkbutton ckF "文件" pos:[64,20] width:40 height:20
+	checkbutton ckS "吸附" pos:[104,20] width:39 height:20
+	checkbutton ckX "↓↑" pos:[115,0] width:28 height:20
 	checkbutton ckb127 "English" pos:[272,0] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[336,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[336,24] width:63 height:24 enabled:false color:(color 42 8 36)
-	button btn337 "设置" pos:[52,0] width:32 height:24
-	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:24
+	button btn337 "设置" pos:[52,0] width:36 height:20
+	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:20
 	button btn744 "background" pos:[272,24] width:64 height:24
 	button btn142 "userMacros" pos:[272,48] width:104 height:24
 	button btn143 "@" pos:[376,48] width:24 height:24
@@ -290,7 +289,26 @@ rollout mainwindow "visualFengx" width:544 height:720
 	button btn55 "update" pos:[144,360] width:104 height:24
 	button btn56 "@" pos:[248,360] width:24 height:24
 	button btn57 "@" pos:[248,256] width:24 height:24
+	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
 	
+	button btn196 "visualfengx.ms" pos:[143,48] width:80 height:24
+	button btn197 "macroScript" pos:[143,72] width:80 height:24
+	button btn198 "@" pos:[247,48] width:24 height:24
+	button btn199 "@" pos:[247,72] width:24 height:24
+	button btn200 "fengx.fengx" pos:[143,120] width:80 height:24
+	button btn201 "@" pos:[247,120] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[143,96] width:80 height:24
+	button btn203 "@" pos:[247,96] width:24 height:24
+	button btn204 "○" pos:[223,48] width:24 height:24
+	button btn205 "○" pos:[223,72] width:24 height:24
+	button btn206 "○" pos:[223,96] width:24 height:24
+	button btn207 "notepad++" pos:[143,0] width:128 height:24
+	button btn208 "sublime_text" pos:[143,24] width:128 height:24
+	button btn209 "○" pos:[223,120] width:24 height:24
+	button btn210 "run" pos:[143,144] width:128 height:32
+		
+	HyperLink hy_help "帮助" pos:[90,3] width:28 height:16 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -393,25 +411,6 @@ rollout mainwindow "visualFengx" width:544 height:720
 	)
 	
 
-	
-	button btn196 "visualfengx.ms" pos:[143,48] width:80 height:24
-	button btn197 "macroScript" pos:[143,72] width:80 height:24
-	button btn198 "@" pos:[247,48] width:24 height:24
-	button btn199 "@" pos:[247,72] width:24 height:24
-	button btn200 "fengx.fengx" pos:[143,120] width:80 height:24
-	button btn201 "@" pos:[247,120] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[143,96] width:80 height:24
-	button btn203 "@" pos:[247,96] width:24 height:24
-	button btn204 "○" pos:[223,48] width:24 height:24
-	button btn205 "○" pos:[223,72] width:24 height:24
-	button btn206 "○" pos:[223,96] width:24 height:24
-	button btn207 "notepad++" pos:[143,0] width:128 height:24
-	button btn208 "sublime_text" pos:[143,24] width:128 height:24
-	button btn209 "○" pos:[223,120] width:24 height:24
-	button btn210 "run" pos:[143,144] width:128 height:32
-	button btn570 "帮助" pos:[84,0] width:32 height:24
-		
-	--hyperLink hy_help "帮助" color:(color 100 100 100 100)  hoverColor: (color 0 100 100 100)   visitedColor:(color 100 0 100 100)  address:"www.baidu.com"
 
 	on mainwindow open do
 	(
@@ -802,8 +801,15 @@ rollout mate "材质" width:128 height:244
 	(
 	  undo on(
 			  if $!=undefined do (
-				for s in fengx.toStandardMate($.material)do(
-					try s.DirectX_Manager.dxStdMat = on catch print s.name + " is not have DirectX_Manager!"
+				for o in $ do 
+				(
+					if o.material !=undefined do 
+					(
+						for s in fengx.toStandardMate(o.material)do(
+						try s.DirectX_Manager.dxStdMat = on catch print s.name + " is not have DirectX_Manager!"
+						)
+					
+					)
 				)
 			)
 	    )        
@@ -2325,7 +2331,7 @@ rollout snap "吸附" width:362 height:562
 
 
 
-global CPOn=ture
+global CPD_type=2 -->> 1=copy 2=paste 3=delete
 rollout copyPaste "物件复制管理" width:1850 height:420
 (
 	checkbutton ckb01 "ckb01" pos:[48,0] width:160 height:112 enabled:true
@@ -2358,39 +2364,156 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	checkbutton ckb29 "ckb01" pos:[1328,224] width:160 height:112 enabled:true
 	checkbutton ckb20 "ckb01" pos:[1488,112] width:160 height:112 enabled:true
 	checkbutton ckb30 "ckb01" pos:[1488,224] width:160 height:112 enabled:true
-	checkbutton ckbf "复制" pos:[0,0] width:48 height:24
-	checkbutton ckbn "黏贴" pos:[0,24] width:48 height:24 checked:true
-	button btn29 "@" pos:[0,136] width:48 height:20
-	button btn84 "清除" pos:[0,112] width:48 height:24
-	button btn34 "↓" pos:[0,92] width:48 height:20
+	checkbutton ckb_C "复制" pos:[0,0] width:48 height:20
+	checkbutton ckb_P "黏贴" pos:[0,20] width:48 height:20 checked:true
+	button btn29 "@" pos:[0,132] width:48 height:20
+	button btn84 "清除" pos:[0,108] width:48 height:24
+	button btn34 "↓" pos:[0,92] width:48 height:16
+	button btn35 "↑" pos:[24,204] width:24 height:20
+	button btn36 "↑" pos:[0,316] width:48 height:20
+	button btn37 "↓" pos:[0,204] width:24 height:20
+	button btn50 "←" pos:[0,76] width:16 height:16
+	button btn51 "→" pos:[32,76] width:16 height:16
+	button btn60 "↑" pos:[0,60] width:48 height:16
+	button btn61 "●" pos:[16,76] width:16 height:16
+	checkbutton ckb_D "删除" pos:[0,40] width:48 height:20 checked:false
+	button btn31 "整理" pos:[0,152] width:48 height:20
+	
 	
 	function updateImage=
 	(
 		cbks=#(ckb01,ckb02,ckb03,ckb04,ckb05,ckb06,ckb07,ckb08,ckb09,ckb10,ckb11,ckb12,ckb13,ckb14,ckb15,ckb16,ckb17,ckb18,ckb19,ckb20,ckb21,ckb22,ckb23,ckb24,ckb25,ckb26,ckb27,ckb28,ckb29,ckb30)
+
 		bc=color 64 67 65 60 
-		theBmp = (BitMap 160 112 color:bc) 
-		theDefultBmp = (BitMap 160 112 color:bc) 
+		c1=color 10 10 100 60 
+		c2=color 10 100 10 60 
+		c3=color 100 10 10 60 
+		cls=#(c1,c2,c3)
+		posRect=[-10,-10,-10,-10]
+		theBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		theDefultBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		theDefultUpBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+		theUpBmp= (BitMap 160 112 color:cls[CPD_Type]) 
+		-->>DefultImage
+		DefultImagePath= (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
+		if doesFileExist DefultImagePath ==true  do theDefultUpBmp  = openBitMap  DefultImagePath 
+		for i=-posRect.y to  (theDefultUpBmp .height+posRect.w) do
+		(
+			colorA=getPixels theDefultUpBmp [-posRect.x,i] (theDefultUpBmp .width+posRect.x+posRect.z)
+			setPixels theDefultBmp  [-posRect.x,i]  colorA
+			)	
+		-->>Image
 		for i=1 to 30 do 
 		(
-		imagePath= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+i as string + ".jpg")
+		imagePath=copyPastePath + "\\visualFengx\\copyPasteTemp\\" +"copyTemp"+i as string + ".jpg"
 		if doesFileExist imagePath then(
-			theBmp =openBitMap  imagePath
+			theUpBmp =openBitMap  imagePath
+			theBmp = (BitMap 160 112 color:cls[CPD_Type]) 
+			for i=-posRect.y to  (theUpBmp.height+posRect.w) do
+			(
+				colorA=getPixels theUpBmp [-posRect.x,i] (theUpBmp.width+posRect.x+posRect.z)
+				setPixels theBmp  [-posRect.x,i]  colorA
+				)	
+			--theBmp=theUpBmp 
 			)else(
-			imagePath= fengx.beWindowsPath  (getDir #Scripts+ "/visualFengx/copyPasteDefult.png")
-			if doesFileExist imagePath  do theBmp =openBitMap  imagePath
+			
+			theBmp=theDefultBmp
 			)
 			try cbks[i].images=#(theBmp, undefined, 1,1,1,1,1 ) catch (print "-->>>> setImages error! in copyPaste.ckb"+i as string )
 		)
 	)
+	
 
-	checkbutton ckb42 "home" pos:[136,384] width:128 height:24
-	button btn35 "↑" pos:[0,184] width:48 height:20
-	button btn36 "↑" pos:[0,316] width:48 height:20
-	button btn37 "↓" pos:[0,204] width:48 height:20
-	button btn50 "←" pos:[0,68] width:16 height:24
-	button btn51 "→" pos:[32,68] width:16 height:24
-	button btn60 "↑" pos:[0,48] width:48 height:20
-	button btn61 "●" pos:[16,68] width:16 height:24
+-->>clearup copyPaste sort
+	function getStringNumber str=
+	(
+		local num=0
+		local tempStr=""
+		for i=1 to str.count do 
+		(
+			if str[i]>="0" and str[i]<="9" do tempStr+=str[i]
+			)
+		--if tempStr="" do 
+		num=tempStr as Integer
+		return num
+		)
+	
+		
+	function reName CID TID=
+	(
+		imagePathC= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+CID as string + ".jpg")
+		maxPathC = fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+CID as string +	".max" )
+		imagePathT= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+TID as string + ".jpg")
+		maxPathT = fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+TID as string +	".max" )
+		renameFile  imagePathC  imagePathT
+		renameFile  maxPathC  maxPathT
+		)
+		
+		
+		
+	function clearup=
+	(
+		local IDs=#()
+		local IDsEct=#()
+		local filePath=(copyPastePath + "\\visualFengx\\copyPasteTemp\\"  +"copyTemp*.max" )
+		files = getFiles filePath
+		
+		for f in files do 
+		(
+			local ID= getStringNumber (getFilenameFile f)
+			append IDs ID
+			)
+		sort IDs
+		
+		for i=1 to IDs[IDs.count] do 
+		(
+			if (findItem IDs i)==0 do append IDsEct i
+			)
+		sort IDsEct
+		--print IDsEct.count 
+		for i=1 to IDsEct.count do 
+		(
+			
+			tempIDsEct=#()
+			for i=1 to IDs[IDs.count] do 
+			(
+				if (findItem IDs i)==0 do append tempIDsEct i
+				)
+			sort tempIDsEct
+			print tempIDsEct.count
+			if tempIDsEct.count!=0 do
+			(
+			reName IDs[IDs.count]  tempIDsEct[1]
+			deleteitem IDs  IDs.count
+			append IDs tempIDsEct[1]
+			sort IDs 
+			)
+		)
+	)
+-->>clearup copyPaste sort	
+	
+		
+		
+	function deleteObject ID=
+	(		
+		imagePath= fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/" +"copyTemp"+ID as string + ".jpg")
+		maxPath = fengx.beWindowsPath  (copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+ID as string +	".max" )
+		deleteFile  imagePath
+		deleteFile  maxPath 
+		
+		
+		)
+		
+	function CPD ID=
+	(
+		if CPD_Type==1 do fengx.copyNodes ID
+		if CPD_Type==2 do fengx.pasteNodes ID
+		if CPD_Type==3 do deleteObject ID
+		updateImage()
+		)
+	
+	
+
 	on copyPaste open do
 	(
 	updateImage()
@@ -2405,255 +2528,137 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	    )
 	on ckb01 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 1 
-	  updateImage()
-	)
-	else  fengx.pasteNodes 1
+		CPD 1
 	)
 	on ckb02 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 2 
-	  updateImage()
-	)
-	else  fengx.pasteNodes 2
+		CPD 2
 	)
 	on ckb03 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 3 
-	  updateImage()
-	)
-	else  fengx.pasteNodes 3
+		CPD 3
 	)
 	on ckb04 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 4
-	  updateImage()
-	)
-	else  fengx.pasteNodes 4
+		CPD 4
 	)
 	on ckb05 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 5
-	  updateImage()
-	)
-	else  fengx.pasteNodes 5
+		CPD 5
 	)
 	on ckb06 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 6
-	  updateImage()
-	)
-	else  fengx.pasteNodes 6
+		CPD 6
 	)
 	on ckb07 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 7
-	  updateImage()
-	)
-	else  fengx.pasteNodes 7
+		CPD 7
 	)
 	on ckb08 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 8
-	  updateImage()
-	)
-	else  fengx.pasteNodes 8
+		CPD 8
 	)
 	on ckb11 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 11 
-	  updateImage()
-	)
-	else  fengx.pasteNodes 11
+		CPD 11
 	)
 	on ckb12 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 12
-	  updateImage()
-	)
-	else  fengx.pasteNodes 12
-	
+		CPD 12
 	)
 	on ckb13 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 13
-	  updateImage()
-	)
-	else  fengx.pasteNodes 13
+		CPD 13
 	)
 	on ckb14 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 14
-	  updateImage()
-	)
-	else  fengx.pasteNodes 14
+		CPD 14
 	)
 	on ckb15 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 15
-	  updateImage()
-	)
-	else  fengx.pasteNodes 15
+		CPD 15
 	)
 	on ckb16 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 16
-	  updateImage()
-	)
-	else  fengx.pasteNodes 16
-	
+		CPD 16
 	)
 	on ckb17 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 17
-	  updateImage()
-	)
-	else  fengx.pasteNodes 17
+		CPD 17
 	)
 	on ckb21 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 21 
-	  updateImage()
-	)
-	else  fengx.pasteNodes 21
+		CPD 21
 	)
 	on ckb22 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 22
-	  updateImage()
-	)
-	else  fengx.pasteNodes 22
+		CPD 22
 	)
 	on ckb23 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 23
-	  updateImage()
-	)
-	else  fengx.pasteNodes 23
+		CPD 23
 	)
 	on ckb24 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 24
-	  updateImage()
-	)
-	else  fengx.pasteNodes 24
+		CPD 24
 	)
 	on ckb25 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 25
-	  updateImage()
-	)
-	else  fengx.pasteNodes 25
+		CPD 25
 	)
 	on ckb26 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 26
-	  updateImage()
-	)
-	else  fengx.pasteNodes 26
+		CPD 26
 	)
 	on ckb27 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 27
-	  updateImage()
-	)
-	else  fengx.pasteNodes 27
+		CPD 27
 	)
 	on ckb18 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 18
-	  updateImage()
-	)
-	else  fengx.pasteNodes 18
+		CPD 18
 	)
 	on ckb28 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 28
-	  updateImage()
-	)
-	else  fengx.pasteNodes 28
+		CPD 28
 	)
 	on ckb09 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 9
-	  updateImage()
-	)
-	else  fengx.pasteNodes 9
+		CPD 9
 	)
 	on ckb10 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 10
-	  updateImage()
-	)
-	else  fengx.pasteNodes 10
+		CPD 10
 	)
 	on ckb19 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 19
-	  updateImage()
-	)
-	else  fengx.pasteNodes 19
+		CPD 19
 	)
 	on ckb29 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 29
-	  updateImage()
-	)
-	else  fengx.pasteNodes 29
+		CPD 19
 	)
 	on ckb20 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 20
-	  updateImage()
-	)
-	else  fengx.pasteNodes 20
+		CPD 20
 	)
 	on ckb30 changed state do
 	(
-	if CPOn==true then (
-	  fengx.copyNodes 30
-	  updateImage()
+		CPD 30
 	)
-	else  fengx.pasteNodes 30
-	)
-	on ckbf changed state do
+	on ckb_C changed state do
 	(
-	ckbn.state=false
-	CPOn=true
+	ckb_P.state=false
+	ckb_D.state=false
+	CPD_Type=1
+	updateImage()
 	)
-	on ckbn changed state do
+	on ckb_P changed state do
 	(
-	ckbf.state=false
-	CPOn=false
+	ckb_C.state=false
+	ckb_D.state=false
+	CPD_Type=2
+	updateImage()
 	)
 	on btn29 pressed do
 	(
@@ -2678,10 +2683,6 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	(
 	if copyPaste.height<336 then copyPaste.height+=112 else copyPaste.height=112
 	)
-	on ckb42 changed state do
-	(
-		
-		)
 	on btn35 pressed do
 	(
 	copyPaste.height=112
@@ -2717,7 +2718,43 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	copyPaste.width=846
 	)
 	)
+	on ckb_D changed state do
+	(
+	ckb_P.state=false
+	ckb_C.state=false
+	CPD_Type=3
+	updateImage()
+	)
+	on btn31 pressed do
+	(
+	clearup()
+	updateImage()
+	)
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 rollout clipboard "clipboard" width:160 height:116
 (
 	checkbutton ckb01 "ckb01" pos:[0,0] width:160 height:112 enabled:true
