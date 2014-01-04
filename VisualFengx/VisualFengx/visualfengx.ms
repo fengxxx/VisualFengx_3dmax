@@ -2366,8 +2366,8 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	checkbutton ckb30 "ckb01" pos:[1488,224] width:160 height:112 enabled:true
 	checkbutton ckb_C "复制" pos:[0,0] width:48 height:20
 	checkbutton ckb_P "黏贴" pos:[0,20] width:48 height:20 checked:true
-	button btn29 "@" pos:[0,132] width:48 height:20
-	button btn84 "清除" pos:[0,108] width:48 height:24
+	button btn29 "打开" pos:[0,128] width:48 height:20
+	button btn84 "清除所有" pos:[0,108] width:48 height:20
 	button btn34 "↓" pos:[0,92] width:48 height:16
 	button btn35 "↑" pos:[24,204] width:24 height:20
 	button btn36 "↑" pos:[0,316] width:48 height:20
@@ -2377,7 +2377,8 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	button btn60 "↑" pos:[0,60] width:48 height:16
 	button btn61 "●" pos:[16,76] width:16 height:16
 	checkbutton ckb_D "删除" pos:[0,40] width:48 height:20 checked:false
-	button btn31 "整理" pos:[0,152] width:48 height:20
+	button btn31 "整理" pos:[0,148] width:48 height:20
+	button btn12 "黏贴板" pos:[0,168] width:48 height:20
 	
 	
 	function updateImage=
@@ -2752,6 +2753,10 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 	(
 	clearup()
 	updateImage()
+	)
+	on btn12 pressed do
+	(
+	createdialog clipboard 160 112 pos: copyPastePos
 	)
 )
 
@@ -3174,6 +3179,7 @@ function  copyNodes  NO =
 	saveNodes $  targetPath
 	bc=color 64 67 65 60 
 	theBmp = (bitmap 160 112 color:bc)
+	--theBmpT = (bitmap 160 112 color:bc)
 	macros.run "Tools" "Isolate_Selection"
 	max zoomext sel all
 	try theBmp = render outputsize:[160,112] vfb:off catch messageBox("渲染缩略图失败")
@@ -3181,9 +3187,36 @@ function  copyNodes  NO =
 	--macros.run "Tools" "Isolate_Selection"
 	max views undo
 	max views undo
-	thebmp.filename=fengx.beWindowsPath (copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTemp"+NO as string +	".jpg")
+	theBmp.filename=fengx.beWindowsPath (copyPastePath+ "\\visualFengx\\copyPasteTemp\\" +"copyTemp"+NO as string + ".jpg") -- (copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTempT.png")
 	--print thebmp.filename
+	save theBmp
+	/*
+	-->> only for fun 
+	local theDefultBmp = (BitMap 160 112 color:bc) 
+	local DefultImagePath= (getDir #Scripts+ "\\visualFengx\\copyPasteDefult.png")
+	if doesFileExist DefultImagePath ==true  do theDefultBmp  = openBitMap  DefultImagePath 
+	--close theBmpT 
+	
+	theBmpx = openBitMap  (copyPastePath+ "\\visualFengx\\copyPasteTemp\\" +"copyTempT.png") 
+	theBmp=theBmpx
+	theBmp.filename =(copyPastePath+ "\\visualFengx\\copyPasteTemp\\" +"copyTemp"+NO as string +	".png")
+	for x=1 to theDefultBmp.width  do
+	(
+		for y=1 to   theDefultBmp.height do
+		(
+		colorA=getPixels theDefultBmp [x,y]  1
+		colorB=getPixels theBmp [x,y]  1
+		a=225
+		try a=colorB[1].a catch ()
+		if x==80 do print a
+		if a>=224 do setPixels theBmp   [x,y]   colorA
+		
+		)
+	)
+	-->> only for fun 
+	--copyPaste.ckb01.images=#(theBmp, undefined, 1,1,1,1,1 )
 	save theBmp 
+	*/
 	)
 	),
 	

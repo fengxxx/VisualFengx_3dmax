@@ -471,20 +471,15 @@ buttontext:"groupClose"
 macroScript copyObject category:"visualFengx" tooltip:"copyObject" buttontext:"copyObject"
 (
 --if clipboard.open==true then destroyDialog clipboard else(
---createdialog clipboard 160 112 pos: copyPastePos 
+createdialog clipboard 160 112 pos: copyPastePos 
 --)
 
-if copyPaste.open==false do 
-(
-if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
-createdialog copyPaste 206 112   pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
-)
 if $!=undefined do
 	( 
 	--if clipboard.open==true then destroyDialog clipboard else(
 	--createdialog clipboard 160 112 pos: copyPastePos  -- style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 	--)
-	fengx.copyNodes 1 
+	fengx.copyNodes 0 
 	updateClipboardImages()
 	)
 )
@@ -492,10 +487,10 @@ if $!=undefined do
 
 macroScript pasteObject category:"visualFengx" tooltip:"pasteObject" buttontext:"pasteObject"
 (
-  fengx.pasteNodes 1
+  fengx.pasteNodes 0
   -- destroyDialog clipboard
   
-  try destroyDialog  copyPaste catch()
+  try destroyDialog  clipboard catch()
 )
 
 macroScript smartRotationL
