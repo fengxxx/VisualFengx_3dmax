@@ -992,6 +992,9 @@ rollout poly "poly " width:863 height:653
  
  
  
+ 
+ 
+ 
 	
 
 	button btn159 "Edit UV" pos:[0,396] width:56 height:24
@@ -1012,10 +1015,10 @@ rollout poly "poly " width:863 height:653
 	button btn354 "编辑多边形" pos:[0,256] width:128 height:20 enabled:false
 	button btn356 "编辑UV" pos:[0,376] width:128 height:20 enabled:false
 	button btn225 "" pos:[56,396] width:72 height:24 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,420] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,420] width:96 height:24
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,444] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,444] width:96 height:24
 	
-	button btn211 "重来" pos:[96,420] width:32 height:24
+	button btn211 "重来" pos:[96,420] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
 	button btn490 "右旋" pos:[64,348] width:64 height:24
  
@@ -1046,6 +1049,8 @@ rollout poly "poly " width:863 height:653
 	button btn580 "置顶" pos:[73,106] width:56 height:24
 	button btn581 "Pivot" pos:[1,88] width:129 height:18 enabled:false
 	button btn582 "" pos:[25,201] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,420] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,420] width:48 height:24 checked:true
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1309,11 +1314,14 @@ rollout poly "poly " width:863 height:653
 	on ckb133 changed state do
 	(
 	tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +".out"
+	setMode=" -plugin,Poly,Edit,  "
+	if ckbnew.state==true then setMode= " -plugin,Poly,New,  " else if ckbedit.state==true do setMode= " -plugin,Poly,Edit,  "
+	
 	if state==true then 
 	   (
 	    if $!=undefined then
 	    (
-	    fengx.sendToUVlayout() 
+	    fengx.sendToUVlayout(setMode) 
 	    ckb133.text="从 Uvlayout 获取"    
 	    )else (
 	       if (queryBox "没选择物体!")==true then poly.ckb133.state=false else poly.ckb133.state=false
@@ -1589,6 +1597,14 @@ rollout poly "poly " width:863 height:653
 						)
 					)
 			)
+	)
+	on ckbnew changed state do
+	(
+	if state==true then ckbedit.state=false else ckbedit.state=true
+	)
+	on ckbedit changed state do
+	(
+	if state==true then ckbnew.state=false else ckbnew.state=true
 	)
 )
 
@@ -4170,7 +4186,7 @@ function getFromUvlayout =
 	
 ),
 
-function sendToUVlayout =
+function sendToUVlayout setMode =
 (
 	if uvlayoutPath!=undeifend and doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
 	(
@@ -4181,7 +4197,9 @@ function sendToUVlayout =
 		deleteFile tempCopyPath
 		--uvLayoutMeshMode ="Poly"
 		--uvLayoutUVMode = "Edit"
-		shelllaunch  uvlayoutPath (" -plugin,Poly,Edit,  "  + uvSendPath  )
+		
+		if setMode==undefined and setMode=="" do setMode " -plugin,Poly,Edit,  "
+		shelllaunch  uvlayoutPath (setMode  + uvSendPath  )
 	)else (
 		if (queryBox "设置uvlayout 的路径 选择claunch-uvlayout.exe   一般在 文件夹headus UVLayout v2 Professional 里面")==true then 
 		(
