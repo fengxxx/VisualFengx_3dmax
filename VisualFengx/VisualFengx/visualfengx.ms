@@ -10,7 +10,7 @@ global  newVersions=0
 global  updateMsg=""
 
 
-
+global smartRotateLW="W"
 ------------------------------------------------
 ------------------ for snap to surface ---------
 global PGround=undefined --snaped ground  <GeometryClass>
@@ -997,7 +997,7 @@ rollout poly "poly " width:863 height:653
  
 	
 
-	button btn159 "Edit UV" pos:[0,396] width:56 height:24
+	button btn159 "Edit UV" pos:[0,420] width:56 height:24
 	checkbutton BS "#" pos:[0,276] width:16 height:48
 	button btn97 "排序" pos:[72,56] width:56 height:24
 	checkbutton sx "x" pos:[0,56] width:24 height:24 enabled:true checked:true
@@ -1013,19 +1013,19 @@ rollout poly "poly " width:863 height:653
 	
 
 	button btn354 "编辑多边形" pos:[0,256] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,376] width:128 height:20 enabled:false
-	button btn225 "" pos:[56,396] width:72 height:24 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,444] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,444] width:96 height:24
+	button btn356 "编辑UV" pos:[0,400] width:128 height:20 enabled:false
+	button btn225 "" pos:[56,420] width:72 height:24 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,468] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,468] width:96 height:24
 	
-	button btn211 "重来" pos:[96,420] width:32 height:48
+	button btn211 "重来" pos:[96,444] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,348] width:64 height:24
+	button btn490 "右旋" pos:[64,372] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,348] width:64 height:24
+	button btn491 "左旋" pos:[0,372] width:64 height:24
 	
 	button btn492 "智能旋转" pos:[0,328] width:128 height:20 enabled:false
 	button btn563 "置底" pos:[73,154] width:56 height:24
@@ -1049,8 +1049,10 @@ rollout poly "poly " width:863 height:653
 	button btn580 "置顶" pos:[73,106] width:56 height:24
 	button btn581 "Pivot" pos:[1,88] width:129 height:18 enabled:false
 	button btn582 "" pos:[25,201] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,420] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,420] width:48 height:24 checked:true
+	checkbutton ckbnew "New" pos:[0,444] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,444] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[64,348] width:64 height:24 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,348] width:64 height:24 enabled:true checked:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1606,9 +1608,27 @@ rollout poly "poly " width:863 height:653
 	(
 	if state==true then ckbnew.state=false else ckbnew.state=true
 	)
+	on ckb_world changed state do
+	(
+	if state ==true then
+	( ckb_local.state=false 
+	  smartRotateLW="W"
+	)else (
+	ckb_local.state=true
+	smartRotateLW="L"
+	)
+	)
+	on ckb_local changed state do
+	(
+	if state ==true then
+	( ckb_world.state=false 
+	  smartRotateLW="L"
+	)else (
+		ckb_world.state=true
+		smartRotateLW="W"
+		)
+	)
 )
-
-
 
 
 
@@ -3881,10 +3901,13 @@ function smartColneD message intRay obj faceNumber shift ctrl alt =
 		
 		#mousePoint:
 		(
-		 	if (obj != undefined) and (intRay != undefined) do
+		 	if ($!=undefined and obj != undefined) and (intRay != undefined) do
 			(
-				$.pos=(intRay.pos)
-				$.dir=intRay.dir
+				for s in $ do 
+				(
+					try s.pos=(intRay.pos) catch()
+					try s.dir=intRay.dir	catch()
+				)
 			)
 			#continue
 		)
@@ -3907,8 +3930,11 @@ function smartColneP message intRay obj faceNumber shift ctrl alt =
 		(
 		 	if (obj != undefined) and (intRay != undefined) do
 			(
-				$.pos=(intRay.pos)
-				--$.dir=intRay.dir
+				for s in $ do 
+				(
+					try s.pos=(intRay.pos) catch()
+					--try s.dir=intRay.dir	catch()
+				)
 			)
 			#continue
 		)
@@ -4519,7 +4545,21 @@ function smartRotate n=
 	if $!=undefined do
 	(
 	direction=fengx.geTrotateDir (fengx.getViewDir())
-	rotate $ (angleaxis n direction)
+	print smartRotateLW
+	if smartRotateLW=="W" then
+	(
+		
+		print "world"
+		rotate $ (angleaxis n direction)
+	)else 
+	(
+		if smartRotateLW=="L" do 
+		(
+			for s in $ do  rotate s (angleaxis n direction)
+			print "local"
+		)
+	)
+	--rotate $ (angleaxis n direction)
 	)
 ),
 

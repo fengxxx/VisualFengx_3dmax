@@ -242,7 +242,18 @@ tooltip:"createStandMen"
 buttontext:"createStandMen"
 (
 	undo on(
-	fengx.Stdmen()	
+	--fengx.Stdmen()	
+	tempCopyPath =getDir #scripts +"\\visualFengx\\standardMen_2m.obj"
+	tpos=[0,0,0]
+	if $!=undefined do
+	( 
+		tpos=$.pos
+		tpos.z=$.max.z
+	)
+	importFile tempCopyPath  #noPrompt 
+	$.pos=tpos
+	$.name="stardardMen_2m_01"
+	max zoomext sel all
 	)
 )
 --------------------create something--------------------
@@ -499,12 +510,11 @@ category:"visualFengx"
 tooltip:"smartRotationL"
 buttontext:"smartRotationL"
 (
-on isEnabled return (selection.count == 1)
-on execute do
-	(
-	if keyboard.shiftpressed then fengx.smartRotate 30
-	else fengx.smartRotate 90
-	)
+--on isEnabled return (selection.count == 1)
+--on execute do
+	--(
+	if keyboard.shiftpressed then fengx.smartRotate 30 else fengx.smartRotate 90
+	--)
 )
 
 macroScript smartRotationR
@@ -513,12 +523,11 @@ category:"visualFengx"
 tooltip:"smartRotationR"
 buttontext:"smartRotationR"
 (
-on isEnabled return (selection.count == 1)
-on execute do
-	(
-	if keyboard.shiftpressed then fengx.smartRotate -30
-	else fengx.smartRotate -90
-	)
+--on isEnabled return (selection.count == 1)
+--on execute do
+	--(
+	if keyboard.shiftpressed then fengx.smartRotate -30 else fengx.smartRotate -90
+	--)
 )
 
 
