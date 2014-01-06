@@ -18,7 +18,7 @@ global PGround=undefined --snaped ground  <GeometryClass>
 
 ------------------------------------------------
 ------------------- only for fun ---------------
-global theVoice = CreateOLEObject "SAPI.SpVoice"
+--global theVoice = CreateOLEObject "SAPI.SpVoice"
 ------------------------------------------------
 
 ------------------------------------------------
@@ -2441,7 +2441,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 		for i=posRect1.y to (posRect1.w+posRect1.y) do
 		(
 			colorA=getPixels theDefultBmp [posRect1.x,i]  posRect1.w
-			for i=1 to colorA.count do colorA[i]*=0.46
+			for i=1 to colorA.count do colorA[i]*=0.51
 			setPixels  theDefultUpBmp   [posRect1.x,i]  colorA
 			)
 		
@@ -2471,7 +2471,7 @@ rollout copyPaste "物件复制管理" width:1850 height:420
 			for i=posRect1.y to (posRect1.w+posRect1.y) do
 			(
 			colorA=getPixels  theBmp [posRect1.x,i]  posRect1.w
-			for i=1 to colorA.count do colorA[i]*=0.5
+			for i=1 to colorA.count do colorA[i]*=0.7
 			setPixels  theUpBmp  [posRect1.x,i]  colorA
 			)
 			theBmp=theUpBmp 
@@ -2914,6 +2914,14 @@ struct fengx
 function llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
+	
+	
+-------------------------------------------->> for edit script
+-------------------------------------------->> for edit script 
+-------------------------------------------->> for edit script 
+	
+---->>send script To Github directory
+	
 function sendToGithub GitHubPath=
 (
 	local oPath=getDir #scripts +"\\visualfengx\\" 
@@ -2935,6 +2943,7 @@ function sendToGithub GitHubPath=
 	),
 	
 	
+---->> uninstall VisualFengx	
 function uninstall=
 (
 	if (queryBox "确定卸载！")==true do
@@ -2958,6 +2967,8 @@ function uninstall=
 	)
 ),
 
+	
+---->>check  VisualFengx Update
 function checkUpdate=
 (
 updateA=false
@@ -3015,7 +3026,7 @@ if (doesFileExist updateFilePath )==true then
 return updateA
 ),
 
-
+---->> update VisualFengx
 function update=
 (
 local web = dotNetObject "System.Net.WebClient"
@@ -3039,7 +3050,12 @@ if tempon==true do
 	--)
 )
 ),
-	
+
+
+--------------------------------------->> only test function
+--------------------------------------->> only test function
+--------------------------------------->> only test function
+---->> Bubble sort  
 function BubbleSort a=
 (    
     temp = 0
@@ -3084,7 +3100,14 @@ function bubbleSortArry b=
     return b
     ),
 
--->>save select to max 	
+
+
+--------------------------------------->> only test function
+--------------------------------------->> only test function
+--------------------------------------->> only test function
+
+	
+---->>save select to max 	
 function saveToMax nodes=
 (
     if nodes !=undefined do
@@ -3105,6 +3128,12 @@ function saveToMax nodes=
 
 ),
 
+
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+
+---->>split maxs file to standerd type file
 function splitMaxs =
 (
 exportPath="d:/"
@@ -3142,6 +3171,7 @@ if maxsPath!=undefined do
 ),
 
 
+---->>save to standType  file 
 function saveToStandType nodes exportPath=
 (		
 if nodes!=undefined do 
@@ -3201,10 +3231,73 @@ if nodes!=undefined do
 		)
 	)else print "not choese save path...  will not be saved... "
 )
-
-
 ),
 
+
+---->>smart save select to Visual File 
+function exportSelectToVisual=
+(
+	name=maxfilename
+	try $.count catch name=$.name 
+	try name=(fengx.selectGroupDummy $)[1].name catch print "no group" 
+
+	if $!=undefined do 
+	(
+		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
+		)
+	tempTargetPath=tempTargetPath+name
+	print (tempTargetPath+".visual")
+	targetPath=getSaveFileName  caption:"save select"  types:"*.visual"  filename:tempTargetPath
+	if targetPath!=""and targetPath!=undefined do 
+    (
+	  	targetPath=tempTargetPath+".visual" 
+		theClasses = VisualExporter
+		exportFile (targetPath) selectedOnly:true  using:theClasses	
+    )
+	visualPath=fengx.beWindowsPath TargetPath
+),
+
+function getNamePath n=
+(
+	path="E:/mf_pangu/tw2/res/scene/common/"
+	tw1=""
+	tw2=""
+	count=0
+	for i=1 to n.count do(
+		if n[i]=="_" do  count+=1
+		if count>=1 and count<2 do 	tw1+=n[i]
+		if count>=2 and count<3 do  tw2+=n[i]
+	)
+	
+	tw1=fengx.getLetter(tw1)
+	tw2=fengx.getLetter(tw2)
+	if tw1[1]=="j" and tw1.count>3 then(
+		path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
+	)else(
+		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
+	)
+	b=getDirectories(path+"*")
+	
+	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/common/"
+	
+	--print path
+	return path
+),
+
+function getLetter n=
+(
+	name=""
+	for i=1 to n.count do(
+		if n[i]>="A" and n[i]<="z" and n[i]!="_" do name+=n[i]  
+	)
+	return name
+),
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+
+
+---->>copy nodes
 function  copyNodes  NO =
 (
 	local targetPath = copyPastePath + "/visualFengx/copyPasteTemp/"  +"copyTemp"+NO as string +	".max" 
@@ -3286,7 +3379,8 @@ function  copyNodes  NO =
 	)
 	),
 	
-	
+
+---->>paste nodes 
 function  pasteNodes NO=
 (
 	local targetPath = fengx.beWindowsPath(copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTemp"+NO as string +	".max" )
@@ -3314,64 +3408,9 @@ function  pasteNodes NO=
 		 	)
 		 )
 	),
-	
-function exportSelectToVisual=
-(
-	name=maxfilename
-	try $.count catch name=$.name 
-	try name=(fengx.selectGroupDummy $)[1].name catch print "no group" 
 
-	if $!=undefined do 
-	(
-		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
-		)
-	tempTargetPath=tempTargetPath+name
-	print (tempTargetPath+".visual")
-	targetPath=getSaveFileName  caption:"save select"  types:"*.visual"  filename:tempTargetPath
-	if targetPath!=""and targetPath!=undefined do 
-    (
-	  	targetPath=tempTargetPath+".visual" 
-		theClasses = VisualExporter
-		exportFile (targetPath) selectedOnly:true  using:theClasses	
-    )
-	visualPath=fengx.beWindowsPath TargetPath
-),
-
-function getNamePath n=
-(
-	path="E:/mf_pangu/tw2/res/scene/common/"
-	tw1=""
-	tw2=""
-	count=0
-	for i=1 to n.count do(
-		if n[i]=="_" do  count+=1
-		if count>=1 and count<2 do 	tw1+=n[i]
-		if count>=2 and count<3 do  tw2+=n[i]
-	)
 	
-	tw1=fengx.getLetter(tw1)
-	tw2=fengx.getLetter(tw2)
-	if tw1[1]=="j" and tw1.count>3 then(
-		path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
-	)else(
-		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
-	)
-	b=getDirectories(path+"*")
-	
-	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/common/"
-	
-	--print path
-	return path
-),
-
-function getLetter n=
-(
-	name=""
-	for i=1 to n.count do(
-		if n[i]>="A" and n[i]<="z" and n[i]!="_" do name+=n[i]  
-	)
-	return name
-),
+---->>smart  save select to OBJ file 
 function exportSelectToOBJ=
 (
 	name=maxfilename
@@ -3388,16 +3427,8 @@ function exportSelectToOBJ=
     		objPath=fengx.beWindowsPath (targetPath+".obj")
 	)
 ),
-function randomColor=
-(
-    a=undefined
-    r=(random 0 225)
-    g=(random 0 225)
-    b=(random 0 225)
-    a=color   r g b 0
-    return a
-),
 
+---->> change path "/" to "\\"
 function beWindowsPath thePath=
 (
 	a=true
@@ -3411,6 +3442,8 @@ function beWindowsPath thePath=
 	)
 	return windowsPath
 ),
+
+---->> change path "\\" to "/"
 function beStringPath thePath=
 (
 	a=true
@@ -3425,7 +3458,7 @@ function beStringPath thePath=
 	return windowsPath
 ),
 
-
+---->>restart max 
 function restart =
 (
     if checkForSave() then (
@@ -3434,6 +3467,7 @@ function restart =
     )
 ),
     
+
 function fixAmbientColor n=
 (
 	undo on(
@@ -3454,6 +3488,238 @@ function fixAmbientColor n=
 
 function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 -------------------------matelrial tool----------------------
+
+---->> delete <nodes>'s  unnecessary materials 
+ function clearObjectMultiMaterial nodes=
+(
+	if nodes!=undefined do
+	(
+		for n in nodes do
+		(
+			if classOf n == Editable_Poly do 
+			(
+			if classOf n.material == MultiMaterial do
+			(
+				if n.material.count !=1 then
+				(
+					local deleteIds=#() ---->>unnecessary materials IDs
+					for i=1 to n.material.count do 
+					(
+						subobjectLevel = 0	
+						clearSelection()
+						select n
+						subobjectLevel = 4
+						MID=n.material.materialIDList[i]
+						n.selectByMaterial MID
+						faces=n.getSelection #Face
+						if (faces as array).count== 0 do append deleteIds MID 
+					)
+						if deleteIds.count!=0 and deleteIds!=undefined do 
+						(							
+							---->>build a new MultiMaterial
+							newMM=MultiMaterial()
+							if (n.material.count-deleteIds.count)==0  then newMM.materialList.count == 1 else
+							( 
+								newID=1
+								newMM.materialList.count = n.material.count-deleteIds.count
+								for i=1 to n.material.materialIDList.count do 
+								(
+									if findItem deleteIds n.material.materialIDList[i]  ==0 do
+									(					
+										newMM[newID]=n.material[i]
+										newMM.materialList[newID]=n.material.materialList[i]
+										newID+=1
+										)
+								)
+								---->>replace with a new material
+								subobjectLevel = 0
+								n.material=newMM
+								if n.material.count==1 do 
+								(
+									local newMate=StandardMaterial()
+									newMate=n.material[1]
+									n.material=newMate
+								)	
+							)
+						)
+				)else
+				(
+					---->>just a material only
+					local newMate=standardMaterial()
+					newMate=n.material[1]
+					n.material=newMate
+				)
+				)
+			)
+		)
+	)
+),
+
+---->>change multiMaterial to  StandardMaterial
+function toStandardMate mate=
+(	
+	mateStandard=#()
+	local tempOn=true
+	try mate.count catch tempOn=false
+	if tempOn==true then 
+	(
+		--try(
+		for s in mate do(
+			if classof(s)==Standardmaterial do append mateStandard s
+			--if classof(s)==Multimaterial do 
+			--(
+			--	for sm in s do 
+			--	(
+			--		if classof(sm)==Standardmaterial do append mateStandard sm
+			--	)
+			--)
+			)
+		--) catch print "no material!"
+	)else append mateStandard mate
+	
+
+	return mateStandard
+),
+
+
+---->>Get maps that is Really in the use of from <nodes>
+function getTrueMapPath nodes=
+(
+	
+mapsPath=#()
+missMap=usedMaps()
+missMapName=#()
+
+
+for p in missMap do append missMapName (getFileNameFile p)
+
+for m in nodes do 
+(
+	local materials=#()
+	mOn=true
+	try m.material catch mOn=false
+	if mOn==true do
+	( 
+		if classOf m.material ==StandardMaterial then append materials m.material else
+		(
+			if classOf m.material ==MultiMaterial do materials=m.material
+		 )
+		mapsPath+=fengx.getMatesTrueMapsPath materials
+		)
+)	
+return mapsPath
+),
+
+
+---->>Get maps that is Really in the use of from <materials>  
+function getMatesTrueMapsPath mates =
+(
+	local mapsPath=#()
+	local missMapName=#()
+
+	missMap=usedMaps()
+	for p in missMap do append missMapName (getFileNameFile p)
+	
+	-->>>   forbid anything was not standarMaterial 
+	local standerdMates=#()
+	for m in mates do if classOf m == standardMaterial do append standerdMates m
+	mates=standerdMates
+	
+	for s in mates do
+	( 
+		dOn=true
+		try s.diffuseMap.fileName catch dOn=false
+		if dOn==true do
+		(
+			if (doesFileExist s.diffuseMap.fileName) ==true then
+				(
+				mapsPath+=(fengx.dToDNS s.diffuseMap.fileName)
+				)else(
+				mapName= getFilenameFile s.diffuseMap.fileName
+				mapType= getFilenameType  s.diffuseMap.fileName
+				index = finditem missMapName mapName
+				if index ==0 then
+					(
+					 print ( "<map>=======  "+mapName + mapType+"  ====== was not found....")  
+					 print ("      =======  in a wrong path >  " + s.diffuseMap.fileName)
+					 )else  (
+					mapsPath+=(fengx.dToDNS  missMap[index])
+					)
+				)
+			)
+	)
+	
+	return mapsPath
+	),
+	
+
+---->>replace map path with really in use map path 	
+function fixMissMap=
+(
+mapsPath=#()
+missMap=usedMaps()
+missMapName=#()
+
+for s in pathArry do append missMapName (getFileNameFile s)
+
+for s in $.material do  (
+	mapName= getFilenameFile s.diffuseMap.fileName
+	
+	local index = finditem missMapName mapName
+	if index ==0 then () else  s.diffuseMap = Bitmaptexture fileName: missMap[index]
+	)
+
+),
+	
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+---->>from diffuse map path get others map path 
+function dToDNS DPath=
+(
+	mapPath=getFilenamePath     DPath
+	mapName = getFilenameFile   DPath
+	mapType =getFilenameType    DPath	
+	
+	mapsPathArry=#()
+	append	mapsPathArry DPath
+	namePart= filterString mapName "_"
+	if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
+	temp=""
+	local NName=""
+	local SName=""
+	--Normal map
+	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="n"
+	for a in namePart do 
+	(
+		temp =a+"_"
+		NName+=temp
+		)
+	--substring NName 1 (NName.count-1)
+	--xxx
+	strN=""
+	for i=1 to (NName.count-1) do  strN+=NName[i]
+	NName=strN
+		
+	--Specluar map
+	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="s"
+	for a in namePart do
+	(
+		temp =a+"_"
+		SName+=temp
+	)
+	--xxx
+	strS=""
+	for i=1 to (SName.count-1) do  strS+=SName[i]
+	SName =strS
+	--substring SName 1 (NName.count-1)
+	append	mapsPathArry (mapPath+NName+mapType)
+	append	mapsPathArry (mapPath+SName+mapType)
+	return mapsPathArry
+	),
+	
+
+--->>  替换成 资源文件夹的 贴图 路径  
 function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
@@ -3461,16 +3727,16 @@ function mapChangeToResource mapPath=
 	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\sjcs\\","jz\\jztj\\sjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
 	if mapPath!=undefined and mapPath !="" do
 	(
-	mapName=filenameFromPath mapPath
-	for d in dirs do 
-	(
-		tempDir=Rdir+d+mapName
-		if  doesFileExist tempDir do mapRPath=tempDir
-	)
+		mapName=filenameFromPath mapPath
+		for d in dirs do 
+		(
+			tempDir=Rdir+d+mapName
+			if  doesFileExist tempDir do mapRPath=tempDir
+		)
 	)
  	return mapRPath
  ),
-
+ 
 function  findMapResource nodes=
 (
 	if nodes!=defined do
@@ -3491,86 +3757,7 @@ function  findMapResource nodes=
 
 ),
 
- function clearObjectMultiMaterial nodes=
-(
-	if nodes!=undefined do
-	(
-	for n in nodes do
-	(
-	if classOf n == Editable_Poly do 
-	(
-	if classOf n.material == MultiMaterial do
-	(
-		if n.material.count !=1 then
-		(
-		local deleteIds=#()
-		for i=1 to n.material.count do 
-		(
-			subobjectLevel = 0	
-			clearSelection()
-			select n
-			subobjectLevel = 4
-			MID=n.material.materialIDList[i]
-			n.selectByMaterial MID
-			faces=n.getSelection #Face
-			if (faces as array).count== 0 do append deleteIds MID 
-		)
-		
-		if deleteIds.count!=0 and deleteIds!=undefined do 
-		(
-			print "多余材质ID"
-			print deleteIds as string
-			--build a new MultiMaterial
-			newMM=MultiMaterial()
-			if (n.material.count-deleteIds.count)==0  then newMM.materialList.count == 1 else
-			( 
-				newID=1
-				newMM.materialList.count = n.material.count-deleteIds.count
-				for i=1 to n.material.materialIDList.count do 
-				(
-					if findItem deleteIds n.material.materialIDList[i]  ==0 do
-					(					
-						newMM[newID]=n.material[i]
-						newMM.materialList[newID]=n.material.materialList[i]
-						newID+=1
-						)
-				)
-				subobjectLevel = 0
-				n.material=newMM
-				if n.material.count==1 do 
-				(
-					local newMate=StandardMaterial()
-					newMate=n.material[1]
-					n.material=newMate
-				)	
-			)
-		)
-	)else
-	(
-		local newMate=standardMaterial()
-		newMate=n.material[1]
-		n.material=newMate
-	)
-	)
-	)
-	)
-	)
-),
- 
-
-function openTexFile m=
-(
-	try	 dir2=m.DiffuseMap.bitmap.filename catch print "根本就没贴图 怎么打的开！"-- messageBox(" 根本就没贴图 怎么打的开！") title:"擦擦擦擦擦擦！！！"
-	if dir2!=""and dir2!=undefined do 
-	(
-	if (getfiles dir2).count != 0 do(
-	dir2="/select,"+dir2
-	try  ShellLaunch "explorer.exe" dir2  catch print "硬是没打开！"--messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！！"
-	)
-	)
-),
-
----材质命名
+---->> <only for netease> change <select>'s name to diffuse name 
 function  TexNameToMateName=
 (    
     undo on(
@@ -3609,19 +3796,34 @@ function  TexNameToMateName=
 
 function namedMate mate s=
 ( 
-	undo on (
 	str=""
 	if classOf(mate)==Standardmaterial do
-            (
-              try (
-				 mate.name=getFilenameFile mate.DiffuseMap.bitmap.filename 
-				 print  ("      "+ mate.name+"       ") 
-				) catch  print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
-		    )
-		)
+	(
+	  try (
+		 mate.name=getFilenameFile mate.DiffuseMap.bitmap.filename 
+		 print  ("      "+ mate.name+"       ") 
+		) catch  print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
+	)
 ),
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
+------------------------------------------------>> <only for netease> 
 
 
+---->> <useless function>
+---->> <useless function>
+---->> <useless function>
+function openTexFile m=
+(
+	try	 dir2=m.DiffuseMap.bitmap.filename catch print "根本就没贴图 怎么打的开！"-- messageBox(" 根本就没贴图 怎么打的开！") title:"擦擦擦擦擦擦！！！"
+	if dir2!=""and dir2!=undefined do 
+	(
+	if (getfiles dir2).count != 0 do(
+	dir2="/select,"+dir2
+	try  ShellLaunch "explorer.exe" dir2  catch print "硬是没打开！"--messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！！"
+	)
+	)
+),
 
 
 -------------------------matelrial tool----------------------
@@ -3651,6 +3853,52 @@ undo "Align U" on
 
 )
 ),
+function sendToUVlayout setMode =
+(
+	if uvlayoutPath!=undeifend and doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
+	(
+		makedir (getFilenamePath uvSendPath )
+		
+		try exportFile uvSendPath   #noPrompt  selectedOnly:true catch print "fath to export file "
+		tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +"01.obj"
+		deleteFile tempCopyPath
+		--uvLayoutMeshMode ="Poly"
+		--uvLayoutUVMode = "Edit"
+		
+		if setMode==undefined and setMode=="" do setMode " -plugin,Poly,Edit,  "
+		shelllaunch  uvlayoutPath (setMode  + uvSendPath  )
+	)else (
+		if (queryBox "设置uvlayout 的路径 选择claunch-uvlayout.exe   一般在 文件夹headus UVLayout v2 Professional 里面")==true then 
+		(
+			tempPath=getOpenFileName    caption:"claunch-uvlayout.exe " filename: "C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout.exe"
+
+
+			if uvlayoutPath  !=undefined do 
+			(
+				uvlayoutPath = tempPath as string
+				setIniSetting  profilePath "uvlayout" "path"  uvlayoutPath 
+			)
+			poly.ckb133.state=false
+			poly.ckb133.text="send to uvlayout"
+			)else
+			(
+				 poly.ckb133.text="send to Uvlayout"
+				 poly.ckb133.state=false
+			)	
+	)
+
+),     
+function getFromUvlayout =
+(
+	
+	tempPath=getFilenamePath uvSendPath  + getFilenameFile uvSendPath   +".out"
+	tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +"01.obj"
+	deleteFile tempCopyPath
+	copyfile tempPath  tempCopyPath
+	importFile tempCopyPath  #noPrompt 
+	
+),
+
 
 function alignV=
 (
@@ -3913,31 +4161,7 @@ function selectGroupDummy select=
     --theDummy=GroupDummy[1]
 	return GroupDummy
 ),
--- reject != StandardMaterial
-function toStandardMate mate=
-(	
-	mateStandard=#()
-	local tempOn=true
-	try mate.count catch tempOn=false
-	if tempOn==true then 
-	(
-		--try(
-		for s in mate do(
-			if classof(s)==Standardmaterial do append mateStandard s
-			--if classof(s)==Multimaterial do 
-			--(
-			--	for sm in s do 
-			--	(
-			--		if classof(sm)==Standardmaterial do append mateStandard sm
-			--	)
-			--)
-			)
-		--) catch print "no material!"
-	)else append mateStandard mate
-	
-
-	return mateStandard
-),-------------------------edit model---------------------------
+-------------------------edit model---------------------------
 
 
 
@@ -4127,7 +4351,17 @@ function stdMen=(
     a=Box lengthsegs:1 widthsegs:1 heightsegs:1 length:8 width:8 height:20 isSelected:on   pos:bpos
     a.material=Standardmaterial ()
     )
-),    
+),  
+function randomColor=
+(
+    a=undefined
+    r=(random 0 225)
+    g=(random 0 225)
+    b=(random 0 225)
+    a=color   r g b 0
+    return a
+),
+
 function createBoxGizmo=
 (    
     lColor = fengx.randomColor()
@@ -4251,53 +4485,7 @@ function maxminf n=
     append mm maxf
     append mm minf
     return mm
-),      
-function getFromUvlayout =
-(
-	
-	tempPath=getFilenamePath uvSendPath  + getFilenameFile uvSendPath   +".out"
-	tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +"01.obj"
-	deleteFile tempCopyPath
-	copyfile tempPath  tempCopyPath
-	importFile tempCopyPath  #noPrompt 
-	
-),
-
-function sendToUVlayout setMode =
-(
-	if uvlayoutPath!=undeifend and doesFileExist uvlayoutPath ==true and getFilenameFile uvlayoutPath == "claunch-uvlayout"  then
-	(
-		makedir (getFilenamePath uvSendPath )
-		
-		try exportFile uvSendPath   #noPrompt  selectedOnly:true catch print "fath to export file "
-		tempCopyPath=getFilenamePath uvSendPath    +  getFilenameFile uvSendPath   +"01.obj"
-		deleteFile tempCopyPath
-		--uvLayoutMeshMode ="Poly"
-		--uvLayoutUVMode = "Edit"
-		
-		if setMode==undefined and setMode=="" do setMode " -plugin,Poly,Edit,  "
-		shelllaunch  uvlayoutPath (setMode  + uvSendPath  )
-	)else (
-		if (queryBox "设置uvlayout 的路径 选择claunch-uvlayout.exe   一般在 文件夹headus UVLayout v2 Professional 里面")==true then 
-		(
-			tempPath=getOpenFileName    caption:"claunch-uvlayout.exe " filename: "C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout.exe"
-
-
-			if uvlayoutPath  !=undefined do 
-			(
-				uvlayoutPath = tempPath as string
-				setIniSetting  profilePath "uvlayout" "path"  uvlayoutPath 
-			)
-			poly.ckb133.state=false
-			poly.ckb133.text="send to uvlayout"
-			)else
-			(
-				 poly.ckb133.text="send to Uvlayout"
-				 poly.ckb133.state=false
-			)	
-	)
-
-),
+), 
 --显示物体名字
 function showname=
 (    
@@ -4659,142 +4847,6 @@ if maxsPath!=undefined do
 -------------------- function --------------------------------------------------------------------------------------------------------
 
 
-function getTrueMapPath nodes=
-(
-	
-mapsPath=#()
-missMap=usedMaps()
-missMapName=#()
-
-
-for p in missMap do append missMapName (getFileNameFile p)
-
-for m in nodes do 
-(
-	local materials=#()
-	mOn=true
-	try m.material catch mOn=false
-	if mOn==true do
-	( 
-		if classOf m.material ==StandardMaterial then append materials m.material else
-		(
-			if classOf m.material ==MultiMaterial do materials=m.material
-		 )
-		mapsPath+=fengx.getMatesTrueMapsPath materials
-		)
-)	
-return mapsPath
-),
-
-
-function getMatesTrueMapsPath mates =
-(
-	local mapsPath=#()
-	local missMapName=#()
-
-	missMap=usedMaps()
-	for p in missMap do append missMapName (getFileNameFile p)
-	
-	-->>>   forbid anything was not standarMaterial 
-	local standerdMates=#()
-	for m in mates do if classOf m == standardMaterial do append standerdMates m
-	mates=standerdMates
-	
-	for s in mates do
-	( 
-		dOn=true
-		try s.diffuseMap.fileName catch dOn=false
-		if dOn==true do
-		(
-			if (doesFileExist s.diffuseMap.fileName) ==true then
-				(
-				mapsPath+=(fengx.dToDNS s.diffuseMap.fileName)
-				)else(
-				mapName= getFilenameFile s.diffuseMap.fileName
-				mapType= getFilenameType  s.diffuseMap.fileName
-				index = finditem missMapName mapName
-				if index ==0 then
-					(
-					 print ( "<map>=======  "+mapName + mapType+"  ====== was not found....")  
-					 print ("      =======  in a wrong path >  " + s.diffuseMap.fileName)
-					 )else  (
-					mapsPath+=(fengx.dToDNS  missMap[index])
-					)
-				)
-			)
-	)
-	
-	return mapsPath
-	),
-	
-	
-	
-function dToDNS DPath=
-(
-	mapPath=getFilenamePath     DPath
-	mapName = getFilenameFile   DPath
-	mapType =getFilenameType    DPath	
-	
-	
-	mapsPathArry=#()
-	append	mapsPathArry DPath
-	
-	namePart= filterString mapName "_"
-
-	if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
-
-	temp=""
-	local NName=""
-	local SName=""
-	--Normal map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="n"
-	for a in namePart do 
-	(
-		temp =a+"_"
-		NName+=temp
-		)
-	--substring NName 1 (NName.count-1)
-	--xxx
-	strN=""
-	for i=1 to (NName.count-1) do  strN+=NName[i]
-	NName=strN
-		
-	--Specluar map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="s"
-	for a in namePart do
-	(
-		temp =a+"_"
-		SName+=temp
-	)
-	--xxx
-	strS=""
-	for i=1 to (SName.count-1) do  strS+=SName[i]
-	SName =strS
-	--substring SName 1 (NName.count-1)
-	
-     append	mapsPathArry (mapPath+NName+mapType)
-	append	mapsPathArry (mapPath+SName+mapType)
-	return mapsPathArry
-	),
-	
-
-	
-function fixMissMap=
-(
-mapsPath=#()
-missMap=usedMaps()
-missMapName=#()
-
-for s in pathArry do append missMapName (getFileNameFile s)
-
-for s in $.material do  (
-	mapName= getFilenameFile s.diffuseMap.fileName
-	
-	local index = finditem missMapName mapName
-	if index ==0 then () else  s.diffuseMap = Bitmaptexture fileName: missMap[index]
-	)
-
-),
 function llllllllllllllllllllllllllllllllllllllllllllllllfileFn=(),
 -------------------------create model-------------------------
 
