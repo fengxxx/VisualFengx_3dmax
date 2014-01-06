@@ -3212,7 +3212,37 @@ function  copyNodes  NO =
 	targetPath = fengx.beWindowsPath targetPath 
 	if $ != undefined and NO != undefined do 
 	(
+	-->> tempname
+	for s in $ do(
+		 try s.name+=".Fcopy" catch() 
+		 if s.material!=undefined do 
+		 (
+		 	for m in fengx.toStandardMate s.material do m.name+=".Fcopy"
+			if classof s.material == Multimaterial do s.material.name+=".Fcopy"
+			)
+		)	
 	saveNodes $  targetPath
+	-->>change name back
+	for s in $ do
+				(
+				 try (
+				 	if (getFilenameType  s.name==".Fcopy") do s.name=(getFilenameFile  s.name )
+					)catch() -->> tempname
+				 if s.material!=undefined do 
+				 (
+				 	for m in fengx.toStandardMate s.material do 
+						(
+						if (getFilenameType  m.name==".Fcopy") do m.name=(getFilenameFile  m.name)
+						)
+					)
+				if classof s.material == Multimaterial do 
+				(
+				if (getFilenameType  s.material.name==".Fcopy") do s.material.name=(getFilenameFile  s.material.name)
+				)
+				)	
+
+	
+	for s in $ do try s.name=(getFilenameFile  s.name) catch()
 	bc=color 64 67 65 60 
 	theBmp = (bitmap 160 112 color:bc)
 	--theBmpT = (bitmap 160 112 color:bc)
@@ -3261,7 +3291,28 @@ function  pasteNodes NO=
 (
 	local targetPath = fengx.beWindowsPath(copyPastePath+ "/visualFengx/copyPasteTemp/" +"copyTemp"+NO as string +	".max" )
 	targetPath = fengx.beWindowsPath targetPath 
-	if NO != undefined do  mergemaxfile  targetPath  #select  
+	if NO != undefined do (
+		 if (mergemaxfile  targetPath  #select)==true do 
+		 (
+			for s in $ do
+				(
+				 try (
+				 	if (getFilenameType  s.name==".Fcopy") do s.name=(getFilenameFile  s.name )
+					)catch() -->> tempname
+				 if s.material!=undefined do 
+				 (
+				 	for m in fengx.toStandardMate s.material do 
+						(
+						if (getFilenameType  m.name==".Fcopy") do m.name=(getFilenameFile  m.name)
+						)
+					)
+					if classof s.material == Multimaterial do 
+						(
+						if (getFilenameType  s.material.name==".Fcopy") do s.material.name=(getFilenameFile  s.material.name)
+						)
+				)	
+		 	)
+		 )
 	),
 	
 function exportSelectToVisual=
