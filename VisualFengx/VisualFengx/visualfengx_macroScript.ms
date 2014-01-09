@@ -593,7 +593,7 @@ undo on(
                 $.modifiers[#unwrap_uvw].unwrap.setCurrentMap 2
 			  $.modifiers[#unwrap_uvw].unwrap.DisplayMap on
 			  $.modifiers[#unwrap_uvw].unwrap.fitselected ()
-			  subobjectLevel = 3
+			  try subobjectLevel = 3 catch()
 			  
                 )
 			)
