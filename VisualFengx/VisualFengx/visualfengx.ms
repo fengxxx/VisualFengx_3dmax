@@ -25,6 +25,9 @@ global PGround=undefined --snaped ground  <GeometryClass>
 ------------------ register export path --------
 --<String>
 global visualPath=""
+global visualMateReset= execute (getinisetting  profilePath "file" "visualMateReset") 
+if visualMateReset==undefined do setinisetting  profilePath "file" "visualMateReset" "false"
+
 global objPath=""
 global maxPath=""
 global saveMapPath=""
@@ -1647,21 +1650,21 @@ rollout poly "poly " width:863 height:653
 rollout file "文件" width:128 height:448
 (
 	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true
-	button btn2 ".obj" pos:[0,72] width:64 height:24 enabled:true
-	button btn3 ".max" pos:[0,48] width:64 height:24 enabled:true
+	button btn2 ".obj" pos:[0,96] width:64 height:24 enabled:true
+	button btn3 ".max" pos:[0,72] width:64 height:24 enabled:true
 	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true
-	button btn19 "显示文件" pos:[64,72] width:64 height:24 enabled:true
-	button btn20 "显示文件" pos:[64,48] width:64 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,156] width:128 height:24 enabled:true
-	button btn345 "Restart" pos:[0,216] width:64 height:64 enabled:true
-	button btn346 "Eixt" pos:[64,216] width:64 height:64 enabled:true
+	button btn19 "显示文件" pos:[64,96] width:64 height:24 enabled:true
+	button btn20 "显示文件" pos:[64,72] width:64 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,180] width:128 height:24 enabled:true
+	button btn345 "Restart" pos:[0,240] width:64 height:64 enabled:true
+	button btn346 "Eixt" pos:[64,240] width:64 height:64 enabled:true
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
 	button btn239 "导出（所选）" pos:[0,0] width:128 height:24 enabled:false
 	
-	button btn240 "系统" pos:[0,136] width:128 height:20 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,96] width:128 height:28
+	button btn240 "系统" pos:[0,160] width:128 height:20 enabled:false
+	button btn216 "存为AB备份格式" pos:[0,120] width:128 height:28
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -1678,8 +1681,13 @@ rollout file "文件" width:128 height:448
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,180] width:128 height:24 enabled:true
-
+	button btn47 "显示 备份文件" pos:[0,204] width:128 height:24 enabled:true
+	checkbutton ckb3 "自动材质贴图" pos:[0,48] width:128 height:24
+	on file open do
+	(
+	ckb3.state=visualMateReset
+	
+	)
 	on file close do
 	(
 	if  canSetWindows==true do 
@@ -1877,11 +1885,12 @@ rollout file "文件" width:128 height:448
 	(
 	ShellLaunch "explorer.exe" (getdir #autoback)
 	)
+	on ckb3 changed state do
+	(
+	visualmateReset=state
+	setinisetting  profilePath "file" "visualMateReset" (state as string)
+	)
 )
-
-
-
-
 
 
 
@@ -3252,9 +3261,16 @@ function exportSelectToVisual=
     (
 	  	targetPath=tempTargetPath+".visual" 
 		theClasses = VisualExporter
-		exportFile (targetPath) selectedOnly:true  using:theClasses	
+		if (exportFile (targetPath) selectedOnly:true  using:theClasses)==true do
+		(			
+ 			if visualMateReset==true do 
+			(
+			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
+			)
+		)
     )
 	visualPath=fengx.beWindowsPath TargetPath
+	
 ),
 
 function getNamePath n=
