@@ -25,8 +25,6 @@ global PGround=undefined --snaped ground  <GeometryClass>
 ------------------ register export path --------
 --<String>
 global visualPath=""
-global visualMateReset= execute (getinisetting  profilePath "file" "visualMateReset") 
-if visualMateReset==undefined do setinisetting  profilePath "file" "visualMateReset" "false"
 
 global objPath=""
 global maxPath=""
@@ -51,6 +49,9 @@ if (classOf alertUpdate)==OkClass do
 	setIniSetting  profilePath "upDate" "alertupDate" "true"
 )
 
+--export to Visual reset material 
+global visualMateReset= execute (getinisetting  profilePath "file" "visualMateReset") 
+if visualMateReset==undefined do setinisetting  profilePath "file" "visualMateReset" "false"
 
 
 -----------------rollout pos and size -----------

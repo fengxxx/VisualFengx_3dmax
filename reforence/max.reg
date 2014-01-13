@@ -1,0 +1,19 @@
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\.max]
+@="3dsmax"
+
+[HKEY_CLASSES_ROOT\.max\max]
+
+[HKEY_CLASSES_ROOT\.max\max\ShellNew]
+
+[HKEY_CLASSES_ROOT\.max\OpenWithList]
+
+[HKEY_CLASSES_ROOT\.max\OpenWithList\3dsmax.exe]
+
+[HKEY_CLASSES_ROOT\.max\ShellEx]
+
+[HKEY_CLASSES_ROOT\.max\ShellEx\{BB2E617C-0920-11d1-9A0B-00C04FC2D6C1}]
+@="{9DBD2C50-62AD-11d0-B806-00C04FD706EC}"
+
+[HKEY_CLASSES_ROOT\.max\ShellNew-]
+"NullFile"="" 
