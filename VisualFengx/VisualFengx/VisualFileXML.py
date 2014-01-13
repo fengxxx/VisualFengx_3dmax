@@ -39,8 +39,9 @@ def getDNS(Dpath):
                     newName+=s
                     #print newName
                 else:
-                    newName+=(s+"_")
-                    #print newName
+                    if s!="a":
+                        newName+=(s+"_")
+                        #print newName
             i+=1
         Npath=tempPath+"/"+newName+tempType
         paths.append(Npath)
@@ -65,8 +66,9 @@ def getDNS(Dpath):
                     newName+=s
                     #print newName
                 else:
-                    newName+=(s+"_")
-                    #print newName
+                    if s!="a":
+                        newName+=(s+"_")
+                        #print newName
             i+=1
         Spath=tempPath+"/"+newName+tempType
         paths.append(Spath)
