@@ -205,7 +205,7 @@ if (classOf bgColor)==OkClass do
 
 -------------------- uvlayout path -------------
 ------------------------------------------------
-global uvSendPath=sysInfo.tempdir + "\visualfengx\uvlayoutTemp\UVsendTemp.obj"
+global uvSendPath= sysInfo.tempdir + "\visualfengx\uvlayoutTemp\UVsendTemp.obj"  --getDir #scripts+"\visualFengx\UVsendTemp.obj" -- 
 global uvlayoutPath=(getinisetting  profilePath "uvlayout" "path")
 -->initialize<
 if (classOf uvlayoutPath)==OkClass  or getFilenameFile uvlayoutPath != "claunch-uvlayout" do 

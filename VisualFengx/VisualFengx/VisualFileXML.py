@@ -3,7 +3,7 @@ from  xml.etree.ElementTree import*
 import sys
 import string
 import os
-test="E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\01.visual"
+test="E:/mf_pangu/tw2/res/scene/common/jz/jzsj/sjyw/bghm_jzsj_yw0010_010.visual"
 
 def getDNS(Dpath):
     paths=[]
@@ -104,16 +104,18 @@ def setMaterials(VPath,outVPath):
                 m.find("collisionFlags").text
             except:
                 SubElement(m,"collisionFlags").text=" 0 "
-   
+            
             try:
                 m.find("materialKind").text
             except:
                 SubElement(m,"materialKind").text=" 0 "
     
             i=0
+            
+            DPath=""
             if len(m.findall("property"))<3:
                 mapTypes=["	diffuseTexMap","	normalTexMap","	specularTexMap"]
-                DPath=""
+     
                 for mmap in m.findall("property"):
                     i+=1
                     try:
@@ -124,7 +126,6 @@ def setMaterials(VPath,outVPath):
                         print "xx"
                         DPath=mmap.find("Texture").text
                         mmap.text=mapTypes[0]
-
                  #m.remove(mmap)
                 if DPath!="":
                     maps=getDNS(DPath)
@@ -137,10 +138,17 @@ def setMaterials(VPath,outVPath):
                             texN.text=texP
                             item.append(texN)
                             m.append(item)
-                        i+=1               
+                        i+=1
 
-          
-
+            if DPath!="":
+                name=os.path.splitext(os.path.split(Dpath)[1])[0]
+                nameParts=string.split(name,"_")   
+                if len(nameParts)>3:
+                    if mameParts[len(nameParts)-2]=="a":
+                        try:
+                            m.find("	doubleSided").text
+                        except:
+                            SubElement(m,"Int").text="	1	"
     outV = ElementTree()
     outV._setroot(indent(v))
     outV.write(outVPath,"utf-8")
@@ -165,4 +173,4 @@ else:
     replaceVisual(sys.argv[1])
 
 #raw_input()
-
+#replaceVisual(test)
