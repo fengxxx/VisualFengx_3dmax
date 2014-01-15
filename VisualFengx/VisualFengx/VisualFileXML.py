@@ -141,10 +141,11 @@ def setMaterials(VPath,outVPath):
                         i+=1
 
             if DPath!="":
-                name=os.path.splitext(os.path.split(Dpath)[1])[0]
-                nameParts=string.split(name,"_")   
+                name=os.path.splitext(os.path.split(DPath)[1])[0]
+                nameParts=string.split(name,"_")
+                
                 if len(nameParts)>3:
-                    if mameParts[len(nameParts)-2]=="a":
+                    if nameParts[len(nameParts)-2]=="a":
                         try:
                             m.find("	doubleSided").text
                         except:

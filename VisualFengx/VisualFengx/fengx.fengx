@@ -1,21 +1,23 @@
+[upDate]
+alertupDate=true
 [rolloutSetting]
-copyPasteSize=[846,112]
-copyPastePos=[0,0]
-mainSize=[0,0]
-mainPos=[0,0]
-polySize=[0,0]
-polyPos=[0,0]
-windowState=0
-windowNegativeState=1
-fileSize=[127,203]
-filePosx=[0,0]
+mainPos=[950,131]
+mainSize=[142,691]
 snapPos=[0,0]
 snapSize=[127,425]
-matePos=[1136,202]
-mateSize=[128,216]
+polyPos=[2050,139]
+polySize=[320,494]
+matePos=[0,0]
+mateSize=[128,323]
+filePosx=[0,0]
+fileSize=[0,0]
+copyPastePos=[2373,231]
+copyPasteSize=[846,112]
 windowActiveState=[1,1,1,1]
+windowNegativeState=3
+windowState=0
 bgColor=(color 47 15 41)
 [uvlayout]
 path=C:\Program Files (x86)\headus UVLayout v2 Professional\claunch-uvlayout.exe
-[upDate]
-alertupDate=false
+[file]
+visualMateReset=true
