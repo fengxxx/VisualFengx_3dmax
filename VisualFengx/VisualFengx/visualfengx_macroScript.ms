@@ -253,7 +253,8 @@ buttontext:"createStandMen"
 	importFile tempCopyPath  #noPrompt 
 	$.pos=tpos
 	$.name="stardardMen_2m_01"
-	max zoomext sel all
+	--max zoomext sel all
+	max views undo
 	)
 )
 --------------------create something--------------------

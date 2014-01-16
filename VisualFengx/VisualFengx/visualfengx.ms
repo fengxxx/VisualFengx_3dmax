@@ -725,16 +725,16 @@ rollout mainwindow "visualFengx" width:544 height:720
 
 
 
-rollout mate "材质" width:128 height:244
+rollout mate "材质" width:128 height:468
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,136] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,216] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,187] width:128 height:29 enabled:true
-	button btn10 "自动标准名字" pos:[0,40] width:128 height:24 enabled:true
+	button btn7 "贴图另存为" pos:[0,140] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,220] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,191] width:128 height:29 enabled:true
+	button btn10 "整理材质名" pos:[0,40] width:128 height:24 enabled:true
 	button btn11 "@" pos:[232,96] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,136] width:24 height:24 enabled:true
+	button btn15 "@" pos:[104,140] width:24 height:24 enabled:true
 	button btn463 "Select Mate" pos:[128,96] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,120] width:24 height:24
 	
@@ -747,7 +747,7 @@ rollout mate "材质" width:128 height:244
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
 	button bmap "贴图" pos:[0,96] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,168] width:128 height:19 enabled:false
+	button btn275 "Directx" pos:[0,172] width:128 height:19 enabled:false
 	button btn21 "去除多余子材质" pos:[0,64] width:128 height:24
 	button btn20 "自动替换资源贴图" pos:[0,112] width:128 height:24 enabled:true
 	on mate open do
@@ -979,84 +979,75 @@ rollout mate "材质" width:128 height:244
 )
 
 
-
 rollout poly "poly " width:863 height:653
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
 
-	button btn501 "Cylinder" pos:[128,0] width:64 height:24
-	button btn511 "Sphere" pos:[128,24] width:64 height:24
-	button btn521 "Plane" pos:[256,0] width:64 height:24
+	button btn501 "Cylinder" pos:[0,44] width:64 height:24
+	button btn511 "Sphere" pos:[128,44] width:64 height:24
+	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
-	button btn591 "Big Group" pos:[192,0] width:64 height:24 enabled:false
-	button btn7 "Big +" pos:[16,276] width:48 height:24
-	button btn13 "Small -" pos:[16,300] width:48 height:24
-	button btn151 "重置模型" pos:[64,276] width:64 height:48 
- 
- 
- 
- 
- 
- 
+	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:false
+	button btn7 "Big +" pos:[12,304] width:48 height:24
+	button btn13 "Small -" pos:[12,328] width:48 height:24
+	button btn151 "重置模型" pos:[60,304] width:64 height:48 
+
+	button btn159 "Edit UV" pos:[-4,448] width:128 height:24
+	checkbutton BS "#" pos:[-4,304] width:16 height:48
+	button btn97 "排序" pos:[72,80] width:56 height:24
+	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
+	checkbutton sy "y" pos:[24,80] width:24 height:24
+	checkbutton sz "z" pos:[48,80] width:24 height:24
+	button btn51 "Show Infor" pos:[192,20] width:64 height:24 enabled:false
+	checkbutton c1 "1" pos:[128,80] width:24 height:24 enabled:true checked:true
+	checkbutton c2 "2" pos:[152,80] width:16 height:24
+	checkbutton c3 "3" pos:[168,80] width:16 height:24
+	checkbutton c4 "4" pos:[184,80] width:16 height:24 enabled:true checked:false
+	checkbutton c5 "5" pos:[200,80] width:16 height:24
+	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn159 "Edit UV" pos:[0,420] width:56 height:24
-	checkbutton BS "#" pos:[0,276] width:16 height:48
-	button btn97 "排序" pos:[72,56] width:56 height:24
-	checkbutton sx "x" pos:[0,56] width:24 height:24 enabled:true checked:true
-	checkbutton sy "y" pos:[24,56] width:24 height:24
-	checkbutton sz "z" pos:[48,56] width:24 height:24
-	button btn51 "Show Infor" pos:[192,24] width:64 height:24 enabled:false
-	checkbutton c1 "1" pos:[128,56] width:24 height:24 enabled:true checked:true
-	checkbutton c2 "2" pos:[152,56] width:16 height:24
-	checkbutton c3 "3" pos:[168,56] width:16 height:24
-	checkbutton c4 "4" pos:[184,56] width:16 height:24 enabled:true checked:false
-	checkbutton c5 "5" pos:[200,56] width:16 height:24
-	checkbutton c6 "6" pos:[216,56] width:16 height:24
+	button btn354 "编辑多边形" pos:[-4,284] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[-4,428] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[-4,496] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[124,496] width:96 height:24
 	
-
-	button btn354 "编辑多边形" pos:[0,256] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,400] width:128 height:20 enabled:false
-	button btn225 "" pos:[56,420] width:72 height:24 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,468] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,468] width:96 height:24
-	
-	button btn211 "重来" pos:[96,444] width:32 height:48
+	button btn211 "重来" pos:[92,472] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,372] width:64 height:24
+	button btn490 "右旋" pos:[60,400] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,372] width:64 height:24
+	button btn491 "左旋" pos:[-4,400] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,328] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[73,154] width:56 height:24
-	button btn564 "归中" pos:[73,130] width:56 height:24
-	button btn565 "Pos" pos:[1,201] width:24 height:24
+	button btn492 "智能旋转" pos:[-4,356] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[69,182] width:56 height:24
+	button btn564 "归中" pos:[69,158] width:56 height:24
+	button btn565 "Pos" pos:[-3,229] width:24 height:24
 	
-	button btn566 "+" pos:[49,106] width:24 height:24
-	button btn567 "-" pos:[1,106] width:24 height:24
-	button btn568 "+" pos:[49,130] width:24 height:24
-	button btn569 "-" pos:[1,130] width:24 height:24
-	button btn570 "+" pos:[49,154] width:24 height:24
-	button btn571 "-" pos:[1,154] width:24 height:24
-	button btn572 "X" pos:[25,106] width:24 height:24
-	button btn573 "Y" pos:[25,130] width:24 height:24
-	button btn574 "Z" pos:[25,154] width:24 height:24
-	button btn575 "Pivot" pos:[1,225] width:32 height:24
-	button btn576 "Rotate" pos:[37,201] width:40 height:24
-	button btn577 "Scale" pos:[33,225] width:44 height:24
-	button btn578 "所有" pos:[77,201] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,182] width:129 height:19 enabled:false
-	button btn580 "置顶" pos:[73,106] width:56 height:24
-	button btn581 "Pivot" pos:[1,88] width:129 height:18 enabled:false
-	button btn582 "" pos:[25,201] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,444] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,444] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[64,348] width:64 height:24 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,348] width:64 height:24 enabled:true checked:false
+	button btn566 "+" pos:[45,134] width:24 height:24
+	button btn567 "-" pos:[-3,134] width:24 height:24
+	button btn568 "+" pos:[45,158] width:24 height:24
+	button btn569 "-" pos:[-3,158] width:24 height:24
+	button btn570 "+" pos:[45,182] width:24 height:24
+	button btn571 "-" pos:[-3,182] width:24 height:24
+	button btn572 "X" pos:[21,134] width:24 height:24
+	button btn573 "Y" pos:[21,158] width:24 height:24
+	button btn574 "Z" pos:[21,182] width:24 height:24
+	button btn575 "Pivot" pos:[-3,253] width:32 height:24
+	button btn576 "Rotate" pos:[33,229] width:40 height:24
+	button btn577 "Scale" pos:[29,253] width:44 height:24
+	button btn578 "所有" pos:[73,229] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[-4,210] width:129 height:19 enabled:false
+	button btn580 "置顶" pos:[69,134] width:56 height:24
+	button btn581 "Pivot" pos:[-3,116] width:129 height:18 enabled:false
+	button btn582 "" pos:[21,229] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[-4,472] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[44,472] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[60,376] width:64 height:24 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[-4,376] width:64 height:24 enabled:true checked:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1086,7 +1077,8 @@ rollout poly "poly " width:863 height:653
 		)
 	on btn531 pressed do
 	(
-		fengx.stdMen()
+	macros.run "visualFengx" "createStandMen"
+		--fengx.stdMen()
 		)
 	on btn591 pressed do
 	(
@@ -1646,26 +1638,24 @@ rollout poly "poly " width:863 height:653
 
 
 
-
-
-rollout file "文件" width:128 height:448
+rollout file "文件" width:128 height:324
 (
-	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true
+	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true
 	button btn2 ".obj" pos:[0,96] width:64 height:24 enabled:true
 	button btn3 ".max" pos:[0,72] width:64 height:24 enabled:true
 	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true
 	button btn19 "显示文件" pos:[64,96] width:64 height:24 enabled:true
 	button btn20 "显示文件" pos:[64,72] width:64 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,180] width:128 height:24 enabled:true
-	button btn345 "Restart" pos:[0,240] width:64 height:64 enabled:true
-	button btn346 "Eixt" pos:[64,240] width:64 height:64 enabled:true
+	button btn330 "显示 此文件" pos:[0,204] width:128 height:24 enabled:true
+	button btn345 "Restart" pos:[0,260] width:64 height:64 enabled:true
+	button btn346 "Eixt" pos:[64,260] width:64 height:64 enabled:true
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
-	button btn239 "导出（所选）" pos:[0,0] width:128 height:24 enabled:false
+	button btn239 "导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
-	button btn240 "系统" pos:[0,160] width:128 height:20 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,120] width:128 height:28
+	button btn240 "系统" pos:[0,184] width:128 height:20 enabled:false
+	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:48
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -1682,8 +1672,8 @@ rollout file "文件" width:128 height:448
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,204] width:128 height:24 enabled:true
-	checkbutton ckb3 "自动材质贴图" pos:[0,48] width:128 height:24
+	button btn47 "显示 备份文件" pos:[0,228] width:128 height:24 enabled:true
+	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24
 	on file open do
 	(
 	ckb3.state=visualMateReset
@@ -1892,7 +1882,6 @@ rollout file "文件" width:128 height:448
 	setinisetting  profilePath "file" "visualMateReset" (state as string)
 	)
 )
-
 
 
 
@@ -3183,47 +3172,58 @@ if maxsPath!=undefined do
 
 ---->>save to standType  file 
 function saveToStandType nodes exportPath=
-(		
-if nodes!=undefined do 
 (
-	
-	--exportPath =getSavePath  caption:"get to"
-	if exportPath !=undefined then 
+if nodes!=undefined and  exportPath!=undefined then
+(
+--exportPath =getSavePath  caption:"get to"
+	local names=#()
+	for s in nodes do append names s.name
+	for n in names do 
 	(
-		for s in nodes do (
-			print ("start  " +s.name+"  save.....")
-			
-			local sPos=s.pos
-			try s.pos=[0,0,0] catch ()
-			nodePath=fengx.beWindowsPath (exportPath+"/"+s.name+"/max")
-			makeDir nodePath
-			maxPath=fengx.beStringPath (nodePath +"/"+s.name+".max")
+		local namePart= filterString n "_"
+		if namePart.count>2 and namePart[namePart.count]!="coll" do
+		(
 			local saveOn=true
-			try saveNodes s maxPath catch  saveOn=false 
-			if saveOn==true then 
+			local nodePath=exportPath+"\\"+n+"\\max"
+			makeDir nodePath
+			local maxPath=nodePath +"\\"+n+".max"
+			local s=getNodeByName n exact:true ignoreCase:true  all:false
+			local coll=getNodeByName (n+"_coll") exact:true ignoreCase:true  all:false
+			local sPos=s.pos
+			local nodeA=#(s)
+			local collPos=[0,0,0]
+			if coll!=undeifend do
 			(
-				s.pos=sPos
+				append nodeA coll
+				collPos=coll.pos
+				collPos=coll.pos
+				coll.pos=[0,0,0]
+			) 
+			try saveNodes nodeA maxPath catch  saveOn=false 
+			if coll!=undeifend do coll.pos=collPos
+			s.pos=sPos
+			if saveOn==true then
+			(
 				print ("  -- > max was saved success.....")
-				print ("start  " +s.name+" maps  save.....")
+				print ("copying " + n +" maps .....")
 				-->> save a thumbnail
-				--select s
+				select s
 				macros.run "Tools" "Isolate_Selection"
 				max zoomext sel all
-				
 				bc=color 64 67 65 60 
 				theBmp = (bitmap 160 112 color:bc)
 			     try theBmp = render outputsize:[1024,768] vfb:off catch messageBox("渲染缩略图失败")
-				thebmp.filename=fengx.beWindowsPath (exportPath + "/" + s.name + "/" + s.name +".jpg")
+				thebmp.filename=exportPath + "\\" + n + "\\" + n +".jpg"
 				save theBmp 
+				--max select all
 				max views undo
 				max unhide all
-
-				
+				--s.primaryVisibility=off
 				for map in  (fengx.getTrueMapPath s) do
 					(
 					tName =getFilenameFile map
 					tType= getFilenameType map
-					tempMapPath=fengx.beStringPath  (nodePath +"/" + tName +tType)
+					tempMapPath=nodePath +"\\" + tName +tType
 					local copySOn=true
 					if doesFileExist map ==true then(
 						try copyfile map tempMapPath catch (
@@ -3236,13 +3236,13 @@ if nodes!=undefined do
 							)
 					if copySOn==true do print ("  ------  "+map +"     > map was copyed success.....")
 					)
-				print ("-----  " +s.name+" maps be saved.....")
-			)else print (s.name+"   was not be saved.....")
-		)
-	)else print "not choese save path...  will not be saved... "
-)
-),
+				--print ("-----  " +n+" maps be saved.....")
+			)else print ( n+"   was not be saved.....")
 
+		)
+	)
+)else print "not choese save path...  will not be saved... "
+),
 
 ---->>smart save select to Visual File 
 function exportSelectToVisual=
@@ -3559,6 +3559,7 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 								)	
 							)
 						)
+					try meditMaterials[medit.GetActiveMtlSlot()]=n.material catch()
 				)else
 				(
 					---->>just a material only
@@ -3566,6 +3567,7 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 					newMate=n.material[1]
 					n.material=newMate
 				)
+				subobjectLevel = 0
 				)
 			)
 		)
@@ -3701,10 +3703,14 @@ function dToDNS DPath=
 	mapsPathArry=#()
 	append	mapsPathArry DPath
 	namePart= filterString mapName "_"
+	if namePart.count>2 then
+	(
 	if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
 	temp=""
 	local NName=""
 	local SName=""
+	local EName=""
+	local MName=""
 	--Normal map
 	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="n"
 	for a in namePart do 
@@ -3726,13 +3732,40 @@ function dToDNS DPath=
 		SName+=temp
 	)
 	--xxx
+	--Self-Illumination map
+	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="e"
+	for a in namePart do
+	(
+		temp =a+"_"
+		EName+=temp
+	)
+	--xxx
+	--mask map
+	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="m"
+	for a in namePart do
+	(
+		temp =a+"_"
+		MName+=temp
+	)
+	--xxx	
+
 	strS=""
 	for i=1 to (SName.count-1) do  strS+=SName[i]
 	SName =strS
+	
+	
 	--substring SName 1 (NName.count-1)
 	append	mapsPathArry (mapPath+NName+mapType)
 	append	mapsPathArry (mapPath+SName+mapType)
+	append	mapsPathArry (mapPath+EName+mapType)
+	append	mapsPathArry (mapPath+MName+mapType)
 	return mapsPathArry
+	)else(
+	append	mapsPathArry ""
+	append	mapsPathArry ""
+	append	mapsPathArry ""	
+	append	mapsPathArry ""
+	)
 	),
 	
 
@@ -3740,7 +3773,7 @@ function dToDNS DPath=
 function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
-	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\\common\\"
+	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
 	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\sjcs\\","jz\\jztj\\sjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
 	if mapPath!=undefined and mapPath !="" do
 	(
@@ -3761,17 +3794,35 @@ function  findMapResource nodes=
 	 mates=fengx.toStandardMate nodes.material
 	 for m in mates do 
 	 (
-	  -->>diffuse
-	mapOn=true
-	try m.diffusemap.filename catch mapOn=false
-	if mapOn==true do
-	(
-	newPath=fengx.mapChangeToResource m.diffusemap.filename 
-	 m.diffusemap =  Bitmaptexture fileName: newPath
-	 )
-	)
-	)
+		-->>diffuse
+		mapOn=true
+		try m.diffusemap.filename catch mapOn=false
+		if mapOn==true do
+		(
+			newPath=fengx.mapChangeToResource m.diffusemap.filename 
+			if doesFileExist newPath do
+				m.diffusemap =  Bitmaptexture fileName: newPath
+				local maps=fengx.dToDNS  newPath
+				--print maps
+				--for p in maps do if doesFileExist p do print (p+"___true")
 
+				namePart= filterString  newPath "_"
+				if namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
+					m.opacityMap = Bitmaptexture fileName:newPath 
+					m.opacityMap.monoOutput = 1
+				)		
+				 if doesFileExist  maps[1] do
+				 ( 
+				 	m.bumpMap = Normal_Bump ()
+					m.bumpMap.normal_map=Bitmaptexture fileName:maps[2]
+					m.bumpMapAmount = 100
+					)
+				 if doesFileExist  maps[3] do m.specularLevelMap = Bitmaptexture fileName:maps[3]
+				 if doesFileExist  maps[4] do m.selfillumMap = Bitmaptexture fileName:maps[4]
+				 )
+				 ）
+		)
+	)
 ),
 
 ---->> <only for netease> change <select>'s name to diffuse name 
@@ -3806,6 +3857,7 @@ function  TexNameToMateName=
 					)
 				 print("物件("+sm.name+")")
 				)
+			try meditMaterials[medit.GetActiveMtlSlot()]=sm.material catch()
             )
         )
     )
@@ -3960,7 +4012,6 @@ function showInfor=(
 	text01.text=(s.name)+"\n"+"  三角面 " +s.mesh.numFaces as string+" 个"
 	)
 	)
-
 )
 ),
 
