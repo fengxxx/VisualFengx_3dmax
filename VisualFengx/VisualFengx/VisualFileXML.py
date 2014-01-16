@@ -128,6 +128,7 @@ def setMaterials(VPath,outVPath):
                         mmap.text=mapTypes[0]
                  #m.remove(mmap)
                 if DPath!="":
+                    #print str(DPath)
                     maps=getDNS(DPath)
                     i=0
                     for texP in  maps:
@@ -139,7 +140,6 @@ def setMaterials(VPath,outVPath):
                             item.append(texN)
                             m.append(item)
                         i+=1
-
             if DPath!="":
                 name=os.path.splitext(os.path.split(DPath)[1])[0]
                 nameParts=string.split(name,"_")
@@ -148,8 +148,16 @@ def setMaterials(VPath,outVPath):
                     if nameParts[len(nameParts)-2]=="a":
                         try:
                             m.find("	doubleSided").text
+                            m.find("	doubleSided").find("Int").text
                         except:
-                            SubElement(m,"Int").text="	1	"
+                            item= Element("property")
+                            item.text=("	doubleSided")
+                            itemA=Element("Int")
+                            itemA.text=("	1	")
+                            item.append(itemA)
+                            m.append(item)
+                        else:
+                            m.find("	doubleSided").find("Int").text="    1	"
     outV = ElementTree()
     outV._setroot(indent(v))
     outV.write(outVPath,"utf-8")
@@ -171,7 +179,10 @@ else:
     #f=sys.argv[1]
     #print f
     #raw_input()
-    replaceVisual(sys.argv[1])
 
-#raw_input()
+	replaceVisual(sys.argv[1])
+
+		
+
 #replaceVisual(test)
+#raw_input()
