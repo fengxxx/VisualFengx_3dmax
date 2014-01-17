@@ -39,8 +39,12 @@ global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <st
 global languageId=execute (getinisetting  profilePath "Set" "language") -- Types of language <string>
 -->initialize<
 languageId=(getinisetting  profilePath "Set" "language")as string
-if languageId==undefined do setinisetting  profilePath "Set" "language" "English"
-
+if classOf languageId==OkClass do
+(
+	languageId="English"
+	setinisetting  profilePath "Set" "language" "English"
+	
+)
 	
 global  alertUpdate= execute (getinisetting  profilePath "upDate" "alertupDate") 
 if (classOf alertUpdate)==OkClass do 
@@ -51,8 +55,11 @@ if (classOf alertUpdate)==OkClass do
 
 --export to Visual reset material 
 global visualMateReset= execute (getinisetting  profilePath "file" "visualMateReset") 
-if visualMateReset==undefined do setinisetting  profilePath "file" "visualMateReset" "false"
-
+if (classOf visualMateReset)==OkClass do 
+(
+	visualMateReset=false
+	setinisetting  profilePath "file" "visualMateReset" "false"
+)
 
 -----------------rollout pos and size -----------
 -----------------main window --------------------
@@ -1696,7 +1703,7 @@ rollout file "文件" width:128 height:448
 	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24
 	on file open do
 	(
-	ckb3.state=visualMateReset
+		ckb3.state=visualMateReset
 	
 	)
 	on file close do
