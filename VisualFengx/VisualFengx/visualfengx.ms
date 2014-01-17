@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.5
+global  VisualFengxVersions =1.51
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -67,8 +67,8 @@ if (classOf mainPos)==OkClass do
 )
 if (classOf mainSize)==OkClass do 
 (
-	mainSize=[140,693] 
-	setIniSetting  profilePath "rolloutSetting" "mainSize"  "[140,693]"
+	mainSize=[140,688] 
+	setIniSetting  profilePath "rolloutSetting" "mainSize"  "[140,688]"
 )
 
 
@@ -254,11 +254,14 @@ global canSetWindows=true
 global app="notepad++.exe"
 -------------------- rollout ---------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------
-rollout mainwindow "visualFengx" width:544 height:720
+mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
+
+
+rollout mainwindow mainWindowName width:544 height:720
 (
-   
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
-    --bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
+    
+	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,40] width:142 height:616 
  
@@ -312,7 +315,6 @@ rollout mainwindow "visualFengx" width:544 height:720
 	button btn210 "run" pos:[143,144] width:128 height:32
 		
 	HyperLink hy_help "帮助" pos:[90,3] width:28 height:16 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
-
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -416,12 +418,23 @@ rollout mainwindow "visualFengx" width:544 height:720
 	
 
 
+	button btn65 "已经是最新版" pos:[0,656] width:144 height:32 enabled:false
 	on mainwindow open do
 	(
 	   
 		if windowState==1 then ckX.state=true else  ckX.state=false
 		windowslogic()
-		
+		if  newVersions > VisualFengxVersions  then
+		(
+			print "xiande xxx"
+			mainWindow.btn65.text="最新版-- " +(newVersions as string)
+			mainWindow.btn65.enabled=true
+		)else 
+		（
+			print "jiade xxx"
+			--mainWindow.btn65.text="已经是最新版" 
+			--btn65.enabled=false
+		）
 	)
 	on mainwindow close do
 	(
@@ -712,12 +725,19 @@ rollout mainwindow "visualFengx" width:544 height:720
 	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
 	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
+	on btn65 pressed do
+	(
+	tempV=VisualFengxVersions 
+	VisualFengxVersions =1.0
+	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
+	( 
+	        createdialog checkUpDateWindow --fengx.update()
+		   checkUpDateWindow.lb01.text= updateMsg
+		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
+	
+	VisualFengxVersions =tempV
+	)
 )
-
-
-
-
-
 
 
 
@@ -1638,7 +1658,7 @@ rollout poly "poly " width:863 height:653
 
 
 
-rollout file "文件" width:128 height:324
+rollout file "文件" width:128 height:448
 (
 	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true
 	button btn2 ".obj" pos:[0,96] width:64 height:24 enabled:true
@@ -1760,12 +1780,15 @@ rollout file "文件" width:128 height:324
 		)
 	on btn216 pressed do
 	(
-	saveToPath =  getSavePath    caption:"save to"
-	if saveToPath !=undefined and $!=undefined  do 
-	 (
-	   fengx.saveToStandType  $  saveToPath 
-	   ShellLaunch "explorer.exe"   saveToPath 
-	)
+	if $!=undefined then(
+		saveToPath =  getSavePath    caption:"save to"
+		if saveToPath!=undefined and saveToPath!="" then
+		(
+			fengx.saveToStandType $ saveToPath
+			shelllaunch "explorer.exe" saveToPath
+ 		)else print "导出路径错误！ -->>导出取消"
+	)else messageBox "请选择要导出的物体！-->>导出取消"
+	
 	)
 	on btn264 pressed do
 		fengx.splitMaxs()
@@ -1882,7 +1905,6 @@ rollout file "文件" width:128 height:324
 	setinisetting  profilePath "file" "visualMateReset" (state as string)
 	)
 )
-
 
 
 
@@ -3857,7 +3879,7 @@ function  TexNameToMateName=
 					)
 				 print("物件("+sm.name+")")
 				)
-			try meditMaterials[medit.GetActiveMtlSlot()]=sm.material catch()
+			try meditMaterials[medit.GetActiveMtlSlot()]= sm.material catch()--sceneMaterials[sm.material.name] 
             )
         )
     )

@@ -6,11 +6,7 @@ fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 
 -->> 开机更新
---if fengx.checkUpdate()==true do 
---(
-	--fengx.badFn()
-	
---)
+fengx.checkUpdate()
 function startCheck=
 (
 	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
