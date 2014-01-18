@@ -1,0 +1,1 @@
+filein("$userScripts\\MaxScriptProjectManager\\src\\Install.ms");

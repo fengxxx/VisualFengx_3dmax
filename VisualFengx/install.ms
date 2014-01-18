@@ -39,7 +39,29 @@ function beStringPath thePath=
 	return windowsPath
 )
 
+
 function find_MZP_path=
+(	
+	local url = sysInfo.tempdir as string
+	local folders = getDirectories (url+"mzptmp*")
+	local matchDates = #()
+	local MZP_path=""
+	for f in folders do 
+	(
+		namePart= filterString f "\\"
+		ID=-1
+		try ID= (substring namePart[namePart.count]  7  -1) as Integer 	catch()
+		if classof (ID)==Integer  do append  matchDates ID
+	
+	)
+	CID= amax matchDates
+	MZP_path=sysInfo.tempdir+"mzptmp"+(CID as string) +"\\"
+	return MZP_path
+	)	
+	
+
+/*
+function find_MZP_path1=
 (	
 	local url = sysInfo.tempdir as string
 	local folders = getDirectories (url+"mzptmp*")
@@ -68,7 +90,7 @@ function find_MZP_path=
 	return MZP_path
 	)	
 	
-
+*/
 function install=
 (
 	--print  VisualFengxVersions as string

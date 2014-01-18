@@ -1,0 +1,300 @@
+@ 0.0.txt
+@ (comment above this line)
+@ 2166.txt
+@ (comment above this line)
+@ bluePrints/
+@ (comment above this line)
+@ bluePrints/about.ms
+@ (comment above this line)
+@ bluePrints/assetAdd.ms
+@ (comment above this line)
+@ bluePrints/assetAdd2.ms
+@ (comment above this line)
+@ bluePrints/assetData/
+@ (comment above this line)
+@ bluePrints/assetData.ms
+@ (comment above this line)
+@ bluePrints/assetData/clipboardAssets.max
+@ (comment above this line)
+@ bluePrints/assetData/hotspot_text.ini
+@ (comment above this line)
+@ bluePrints/assetEditor.ms
+@ (comment above this line)
+@ bluePrints/assetGroups.ms
+@ (comment above this line)
+@ bluePrints/assetLibrary.ms
+@ (comment above this line)
+@ bluePrints/assetManager.ms
+@ (comment above this line)
+@ bluePrints/assetMover.ms
+@ (comment above this line)
+@ bluePrints/assetProblemSolver.ms
+@ (comment above this line)
+@ bluePrints/assetProperties.ms
+@ (comment above this line)
+@ bluePrints/assetProperties2.ms
+@ (comment above this line)
+@ bluePrints/assetTexture.ms
+@ (comment above this line)
+@ bluePrints/autoLevelExport.ms
+@ (comment above this line)
+@ bluePrints/bluePrints.ini
+@ (comment above this line)
+@ bluePrints/blueprints.ms
+@ (comment above this line)
+@ bluePrints/bluePrintsSystem.ms
+@ (comment above this line)
+@ bluePrints/bluPrints.ini
+@ (comment above this line)
+@ bluePrints/boxMethodSystem.ms
+@ (comment above this line)
+@ bluePrints/chinaSelector.ms
+@ (comment above this line)
+@ bluePrints/export/
+@ (comment above this line)
+@ bluePrints/export/blockOut.max
+@ (comment above this line)
+@ bluePrints/export/blockOut.xml
+@ (comment above this line)
+@ bluePrints/export/ddd_diffuse.png
+@ (comment above this line)
+@ bluePrints/export/level1.fbx
+@ (comment above this line)
+@ bluePrints/export/level1.xml
+@ (comment above this line)
+@ bluePrints/feedback.ms
+@ (comment above this line)
+@ bluePrints/fileSaver.ms
+@ (comment above this line)
+@ bluePrints/floorCreator.ms
+@ (comment above this line)
+@ bluePrints/folderSaver.ms
+@ (comment above this line)
+@ bluePrints/gridMaker.ms
+@ (comment above this line)
+@ bluePrints/gwDrawer.ms
+@ (comment above this line)
+@ bluePrints/helpSystem.ms
+@ (comment above this line)
+@ bluePrints/icons/
+@ (comment above this line)
+@ bluePrints/icons/BluePrints_16a.bmp
+@ (comment above this line)
+@ bluePrints/icons/BluePrints_16i.bmp
+@ (comment above this line)
+@ bluePrints/icons/BluePrints_24a.bmp
+@ (comment above this line)
+@ bluePrints/icons/BluePrints_24i.bmp
+@ (comment above this line)
+@ bluePrints/icons/BluePrints_icons.psd
+@ (comment above this line)
+@ bluePrints/icons/Thumbs.db
+@ (comment above this line)
+@ bluePrints/images/
+@ (comment above this line)
+@ bluePrints/images/arrows.png
+@ (comment above this line)
+@ bluePrints/images/AssetThumbnail.png
+@ (comment above this line)
+@ bluePrints/images/center.png
+@ (comment above this line)
+@ bluePrints/images/down.png
+@ (comment above this line)
+@ bluePrints/images/editObject_edit.png
+@ (comment above this line)
+@ bluePrints/images/editObject_edit_disabled.png
+@ (comment above this line)
+@ bluePrints/images/editObject_spreadMaterial.png
+@ (comment above this line)
+@ bluePrints/images/editObject_spreadMaterial_disabled.png
+@ (comment above this line)
+@ bluePrints/images/editor.png
+@ (comment above this line)
+@ bluePrints/images/floor_bake_small.png
+@ (comment above this line)
+@ bluePrints/images/floor_material.png
+@ (comment above this line)
+@ bluePrints/images/floor_material_small.png
+@ (comment above this line)
+@ bluePrints/images/floor_walk.png
+@ (comment above this line)
+@ bluePrints/images/floor_walk_small.png
+@ (comment above this line)
+@ bluePrints/images/grid.png
+@ (comment above this line)
+@ bluePrints/images/iconAsset.png
+@ (comment above this line)
+@ bluePrints/images/iconPackage.png
+@ (comment above this line)
+@ bluePrints/images/installImage.png
+@ (comment above this line)
+@ bluePrints/images/left.png
+@ (comment above this line)
+@ bluePrints/images/Library.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetData.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetData_active.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetEditor.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetEditor_active.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetGroups.png
+@ (comment above this line)
+@ bluePrints/images/logoAssetGroups_active.png
+@ (comment above this line)
+@ bluePrints/images/logoAtlasMap.png
+@ (comment above this line)
+@ bluePrints/images/logoAtlasMap_active.png
+@ (comment above this line)
+@ bluePrints/images/logoChina.png
+@ (comment above this line)
+@ bluePrints/images/logoChina_active.png
+@ (comment above this line)
+@ bluePrints/images/logoFloorGen.png
+@ (comment above this line)
+@ bluePrints/images/logoFloorGen_active.png
+@ (comment above this line)
+@ bluePrints/images/logoJuliusStyles.png
+@ (comment above this line)
+@ bluePrints/images/logoJuliusStyles_active.png
+@ (comment above this line)
+@ bluePrints/images/logoLibrary.png
+@ (comment above this line)
+@ bluePrints/images/logoLibrary_active.png
+@ (comment above this line)
+@ bluePrints/images/logomain.png
+@ (comment above this line)
+@ bluePrints/images/logoModelPack.png
+@ (comment above this line)
+@ bluePrints/images/logoModelPack_active.png
+@ (comment above this line)
+@ bluePrints/images/logoMover.png
+@ (comment above this line)
+@ bluePrints/images/logoMover_active.png
+@ (comment above this line)
+@ bluePrints/images/logoSettings.png
+@ (comment above this line)
+@ bluePrints/images/logoUnity.png
+@ (comment above this line)
+@ bluePrints/images/logoUnity_active.png
+@ (comment above this line)
+@ bluePrints/images/mover.png
+@ (comment above this line)
+@ bluePrints/images/move_clone.png
+@ (comment above this line)
+@ bluePrints/images/move_delete.png
+@ (comment above this line)
+@ bluePrints/images/move_getTile.png
+@ (comment above this line)
+@ bluePrints/images/move_gridOff.png
+@ (comment above this line)
+@ bluePrints/images/move_levelDown.png
+@ (comment above this line)
+@ bluePrints/images/move_levelUp.png
+@ (comment above this line)
+@ bluePrints/images/move_Library.png
+@ (comment above this line)
+@ bluePrints/images/move_ModelPack.png
+@ (comment above this line)
+@ bluePrints/images/move_preciseMove.png
+@ (comment above this line)
+@ bluePrints/images/move_rotate.png
+@ (comment above this line)
+@ bluePrints/images/move_Rotate2.png
+@ (comment above this line)
+@ bluePrints/images/move_rotLocal.png
+@ (comment above this line)
+@ bluePrints/images/move_select.png
+@ (comment above this line)
+@ bluePrints/images/right.png
+@ (comment above this line)
+@ bluePrints/images/Thumbs.db
+@ (comment above this line)
+@ bluePrints/images/toolBuildFloor.png
+@ (comment above this line)
+@ bluePrints/images/toolFloorBakeReady.png
+@ (comment above this line)
+@ bluePrints/images/up.png
+@ (comment above this line)
+@ bluePrints/install.ms
+@ (comment above this line)
+@ bluePrints/js_gameplay.ms
+@ (comment above this line)
+@ bluePrints/js_xmlHotspots.ms
+@ (comment above this line)
+@ bluePrints/levelExporter.ini
+@ (comment above this line)
+@ bluePrints/levelExporter.ms
+@ (comment above this line)
+@ bluePrints/levelSeparator.ms
+@ (comment above this line)
+@ bluePrints/lightBake.ms
+@ (comment above this line)
+@ bluePrints/macroscriptTest.ms
+@ (comment above this line)
+@ bluePrints/mainMenu.ms
+@ (comment above this line)
+@ bluePrints/modelPackSystem.ms
+@ (comment above this line)
+@ bluePrints/MSPM_ProjectManager.ms
+@ (comment above this line)
+@ bluePrints/objects/
+@ (comment above this line)
+@ bluePrints/old/
+@ (comment above this line)
+@ bluePrints/old/blueprints.ms
+@ (comment above this line)
+@ bluePrints/packageLoader.ms
+@ (comment above this line)
+@ bluePrints/packageMaker.ms
+@ (comment above this line)
+@ bluePrints/packageSaver.ms
+@ (comment above this line)
+@ bluePrints/preferences.ms
+@ (comment above this line)
+@ bluePrints/research/
+@ (comment above this line)
+@ bluePrints/research/anglebetweenobjects.ms
+@ (comment above this line)
+@ bluePrints/research/boxmethodFix.ms
+@ (comment above this line)
+@ bluePrints/research/gwDrawing.ms
+@ (comment above this line)
+@ bluePrints/system/
+@ (comment above this line)
+@ bluePrints/system/BluePrints_GridItem.max
+@ (comment above this line)
+@ bluePrints/temp_objectReader.ms
+@ (comment above this line)
+@ bluePrints/tile.ms
+@ (comment above this line)
+@ bluePrints/tool_floorCreator.ms
+@ (comment above this line)
+@ bluePrints/tool_gridMaker.ms
+@ (comment above this line)
+@ bluePrints/tool_objectMover.ms
+@ (comment above this line)
+@ bluePrints/tool_objectPlacer.ms
+@ (comment above this line)
+@ bluePrints/tool_ObjectPreciseMover.ms
+@ (comment above this line)
+@ bluePrints/UIMessageLabel.ms
+@ (comment above this line)
+@ bluePrints/UISaver.ms
+@ (comment above this line)
+@ bluePrints/windowSaver.ms
+@ (comment above this line)
+@ bluePrints/xmlHotspots.ms
+@ (comment above this line)
+@ mzp.run
+@ (comment above this line)
+@ mzpInstall.ms
+@ (comment above this line)
+@ ProjectImage.bmp
+@ (comment above this line)
+@ templateDesign.psd
+@ (comment above this line)
+@ (zip file comment below this line)
+-MaxScriptManager compatible
