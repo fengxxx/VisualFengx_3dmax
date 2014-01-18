@@ -631,7 +631,7 @@ rollout mainwindow mainWindowName width:544 height:720
 	--if  newVersions > VisualFengxVersions then--fengx.checkUpdate()==true and
 	--( 
 	        createdialog checkUpDateWindow --fengx.update()
-		   checkUpDateWindow.lb01.text= updateMsg
+		   if updateMsg!="" do checkUpDateWindow.lb01.text= updateMsg
 		--)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	--VisualFengxVersions =tempV
@@ -745,7 +745,6 @@ rollout mainwindow mainWindowName width:544 height:720
 	--VisualFengxVersions =tempV
 	)
 )
-
 
 rollout mate "材质" width:128 height:468
 (
@@ -2888,7 +2887,7 @@ U_updateBmp = (BitMap 233 112 color:U_bc)
 U_imagePath= (getDir #Scripts+ "\\visualFengx\\update_bg.jpg")
 if doesFileExist U_imagePath do U_updateBmp=openBitMap  U_imagePath
 	
-rollout checkUpDateWindow "Update" width:232 height:392
+rollout checkUpDateWindow "Update" width:232 height:396
 (
 	button btn54 "x" pos:[-1,-1] width:233 height:112 images:#(U_updateBmp, undefined, 1, 1, 1, 1, 1)
 	label lb01 "" pos:[1,112] width:231 height:208
@@ -2898,6 +2897,11 @@ rollout checkUpDateWindow "Update" width:232 height:392
 
 
 	
+	on checkUpDateWindow open  do
+	(
+	if updateMsg==""do lb01.text="没有更新包!"
+	
+	)
 	on btn55 pressed do
 	(
 	fengx.upDate()
@@ -2912,8 +2916,7 @@ rollout checkUpDateWindow "Update" width:232 height:392
 	setIniSetting  profilePath "upDate" "alertupDate" "false"
 	try destroyDialog checkUpDateWindow catch ()
 	)
-)
-	
+)	
 
 
 
@@ -3037,6 +3040,7 @@ if (doesFileExist updateFilePath )==true then
 	--)--else messageBox "检查更新失败！"
 	if updateA==true do 
 	(
+		local web = dotNetObject "System.Net.WebClient"
 		local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
 		local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
 		--tempon=true
@@ -3049,33 +3053,19 @@ return updateA
 ---->> update VisualFengx
 function update=
 (
-/*
-local web = dotNetObject "System.Net.WebClient"
-local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
-local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-tempon=true
-try web.DownloadFile installFileUrl  installFilePath catch
-(
-tempon=false 
- messageBox "VisualFengx 下载更新失败"
-)
-if tempon==true do 
-(	
-	tempstr ="VisualFengx "+ (newVersions as string ) +" 下载完成！ 是否开始更新" 
-	--if (queryBox tempstr)==true do
-	--(
-		print  "更新下载完成！"
-		try destroyDialog checkUpDateWindow catch ()
-		fileIn installFilePath
-		try deleteFile installFilePath catch ()
-	--)
-)
-*/
-installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-try fileIn installFilePath catch messageBox "更新文件不存在！"
+	installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+	if (doesFileExist installFilePath)==true then (try fileIn installFilePath catch ()) else(
+		if (queryBox "更新文件不存在！是否下载")==true do(
+			local web = dotNetObject "System.Net.WebClient"
+			local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
+			local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+			print installFileUrl
+			print installFilePath
+			try  web.DownloadFile installFileUrl  installFilePath catch print "下载失败！"
+			try fileIn installFilePath catch messageBox "下载失败！下次重开在试试吧！"	
+			)
+			)
 ),
-
-
 --------------------------------------->> only test function
 --------------------------------------->> only test function
 --------------------------------------->> only test function

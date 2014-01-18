@@ -1,6 +1,4 @@
 name "Test"
-version 1.12
-
 run "install.ms"
 drop "install.ms"
 
