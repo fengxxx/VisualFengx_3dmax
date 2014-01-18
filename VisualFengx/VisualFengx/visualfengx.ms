@@ -270,7 +270,7 @@ rollout mainwindow mainWindowName width:544 height:720
     
 	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,40] width:138 height:616 
+	subRollout sub "fengx" pos:[0,40] width:139 height:624 
  
 	checkbutton ckP "Poly" pos:[0,20] width:33 height:20
 	checkbutton ckM "材质" pos:[33,20] width:33 height:20
@@ -291,7 +291,7 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 	button btn697 "send to GitHub" pos:[179,184] width:87 height:24
 	button btn698 "get from GitHub" pos:[187,312] width:80 height:24
-	button btn699 "home" pos:[142,184] width:40 height:48
+	button btn699 "home" pos:[139,184] width:40 height:48
 	button btn700 "company" pos:[139,288] width:48 height:48
 	button btn801 "install.ms" pos:[139,232] width:104 height:24
 	button btn802 "@" pos:[243,232] width:24 height:24
@@ -425,7 +425,7 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 
 
-	button btn65 "已经是最新版" pos:[0,656] width:140 height:32 enabled:false
+	button btn65 "已经是最新版" pos:[-1,662] width:140 height:32 enabled:false
 	on mainwindow open do
 	(
 	   
@@ -544,7 +544,7 @@ rollout mainwindow mainWindowName width:544 height:720
 	if ckX.state==false then 
 	(
 	mainWindow.height=691 
-	if mainWindow.width<=142 then mainWindow.width=270 else mainWindow.width=142 
+	if mainWindow.width<=136 then mainWindow.width=266 else mainWindow.width=136 
 	)else 
 	(
 	
@@ -745,6 +745,19 @@ rollout mainwindow mainWindowName width:544 height:720
 	--VisualFengxVersions =tempV
 	)
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 rollout mate "材质" width:128 height:468
 (
@@ -1010,12 +1023,11 @@ rollout poly "poly " width:863 height:653
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:false
-	button btn7 "Big +" pos:[15,304] width:48 height:24
-	button btn13 "Small -" pos:[15,328] width:48 height:24
-	button btn151 "重置模型" pos:[63,304] width:64 height:48 
-
-	button btn159 "Edit UV" pos:[-2,448] width:128 height:24
-	checkbutton BS "#" pos:[-1,304] width:16 height:48
+	button btn7 "Big +" pos:[16,304] width:48 height:24
+	button btn13 "Small -" pos:[16,328] width:48 height:24
+	button btn151 "重置模型" pos:[64,304] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,460] width:128 height:24
+	checkbutton BS "#" pos:[0,304] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:24
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
@@ -1030,33 +1042,33 @@ rollout poly "poly " width:863 height:653
 	
 
 	button btn354 "编辑多边形" pos:[0,284] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[-2,428] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[-2,496] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[126,496] width:96 height:24
+	button btn356 "编辑UV" pos:[0,440] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,508] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,508] width:96 height:24
 	
-	button btn211 "重来" pos:[94,472] width:32 height:48
+	button btn211 "重来" pos:[96,484] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[62,400] width:64 height:24
+	button btn490 "右旋" pos:[64,412] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[-2,400] width:64 height:24
+	button btn491 "左旋" pos:[0,412] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[-2,356] width:128 height:20 enabled:false
+	button btn492 "智能旋转" pos:[0,356] width:128 height:20 enabled:false
 	button btn563 "置底" pos:[72,182] width:56 height:24
 	button btn564 "归中" pos:[72,158] width:56 height:24
 	button btn565 "Pos" pos:[0,229] width:24 height:24
 	
-	button btn566 "+" pos:[45,134] width:24 height:24
-	button btn567 "-" pos:[-3,134] width:24 height:24
-	button btn568 "+" pos:[45,158] width:24 height:24
-	button btn569 "-" pos:[-3,158] width:24 height:24
-	button btn570 "+" pos:[45,182] width:24 height:24
-	button btn571 "-" pos:[-3,182] width:24 height:24
-	button btn572 "X" pos:[21,134] width:24 height:24
-	button btn573 "Y" pos:[21,158] width:24 height:24
-	button btn574 "Z" pos:[21,182] width:24 height:24
+	button btn566 "+" pos:[48,134] width:24 height:24
+	button btn567 "-" pos:[0,134] width:24 height:24
+	button btn568 "+" pos:[48,158] width:24 height:24
+	button btn569 "-" pos:[0,158] width:24 height:24
+	button btn570 "+" pos:[48,182] width:24 height:24
+	button btn571 "-" pos:[0,182] width:24 height:24
+	button btn572 "X" pos:[24,134] width:24 height:24
+	button btn573 "Y" pos:[24,158] width:24 height:24
+	button btn574 "Z" pos:[24,182] width:24 height:24
 	button btn575 "Pivot" pos:[0,253] width:32 height:24
 	button btn576 "Rotate" pos:[36,229] width:40 height:24
 	button btn577 "Scale" pos:[32,253] width:44 height:24
@@ -1065,10 +1077,15 @@ rollout poly "poly " width:863 height:653
 	button btn580 "置顶" pos:[72,134] width:56 height:24
 	button btn581 "Pivot" pos:[0,116] width:128 height:18 enabled:false
 	button btn582 "" pos:[24,229] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[-2,472] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[46,472] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[62,376] width:64 height:24 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[-2,376] width:64 height:24 enabled:true checked:false
+	checkbutton ckbnew "New" pos:[0,484] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,484] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,376] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,376] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,376] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,392] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,392] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,392] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,392] width:28 height:20 enabled:true checked:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1383,14 +1400,14 @@ rollout poly "poly " width:863 height:653
 	on btn490 pressed do
 	(
 	
-		if keyboard.shiftpressed then fengx.smartRotate 30
-		else fengx.smartRotate 90
+	
+	 fengx.smartRotate spn1.value
 		)
 	on btn491 pressed do
 	(
 	
-		if keyboard.shiftpressed then fengx.smartRotate -30
-		else fengx.smartRotate -90
+	
+	 fengx.smartRotate -spn1.value
 		)
 	on btn492 pressed do
 	(
@@ -1645,9 +1662,23 @@ rollout poly "poly " width:863 height:653
 		smartRotateLW="W"
 		)
 	)
+	on ckb64 pressed do
+	(
+	spn1.value=30
+	)
+	on ckb65 pressed do
+	(
+	spn1.value=45
+	)
+	on ckb66 pressed do
+	(
+	spn1.value=90
+	)
+	on ckb67 pressed do
+	(
+	spn1.value=15
+	)
 )
-
-
 
 
 
