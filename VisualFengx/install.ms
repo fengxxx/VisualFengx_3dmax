@@ -127,35 +127,43 @@ function setupStart=
 		setup_progress_update 1 "-->>> 开始....."
 		install()
 	)else(
-	if Versions >VisualFengxVersions ==true do 	
-	(
-		tempM="当前版本 " +VisualFengxVersions as string +"  更新到" + Versions as string
-		if (queryBox tempM)==true do
+		
+		if Versions >VisualFengxVersions ==true then	
 		(
-			setup_progress_update 1 "-->>> 开始....."
-			install()
-		)
-	)
+			tempM="当前版本 " +VisualFengxVersions as string +"  更新到" + Versions as string
+			if (queryBox tempM)==true do
+			(
+				setup_progress_update 1 "-->>> 开始....."
+				install()
+			)
+		)else (
+		
+			if Versions <VisualFengxVersions==true then
+			(
+				tempM="当前版本 " +VisualFengxVersions as string  +"更高！ 确定要退回到" + Versions as string
+				if (queryBox tempM)==true do
+				(
+					setup_progress_update 1 "-->>> 开始....."
+					install()
+				)
+				
+			)else (
+				if Versions ==VisualFengxVersions do 
+				(
+				tempM="和当前版本 " +VisualFengxVersions as string  +"一致  确定覆盖安装！"
+				if (queryBox tempM)==true do
+				(
+				 setup_progress_update 1 "-->>> 开始....."
+				 install()
+				)
+				)
+				)
+			
+			)
 	
-	if Versions <VisualFengxVersions==true do 
-	(
-		tempM="当前版本 " +VisualFengxVersions as string  +"更高！ 确定要退回到" + Versions as string
-		if (queryBox tempM)==true do
-		(
-			setup_progress_update 1 "-->>> 开始....."
-			install()
 		)
-	)
-	if Versions ==VisualFengxVersions do 
-	(
-	tempM="和当前版本 " +VisualFengxVersions as string  +"一致  确定覆盖安装！"
-	if (queryBox tempM)==true do
-	(
-	 setup_progress_update 1 "-->>> 开始....."
-	 install()
-	)
-	)
-)
+		
+
 )
 
 bc=color 64 67 65 60 
