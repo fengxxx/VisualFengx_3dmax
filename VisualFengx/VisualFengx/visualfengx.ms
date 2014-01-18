@@ -264,13 +264,14 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:544 height:720
+rollout mainwindow "visualFengx_1.51" width:544 height:720
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     
 	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,40] width:139 height:624 
+	subRollout sub "fengx" pos:[0,36] width:139 height:608 
+ 
  
 	checkbutton ckP "Poly" pos:[0,20] width:33 height:20
 	checkbutton ckM "材质" pos:[33,20] width:33 height:20
@@ -285,24 +286,24 @@ rollout mainwindow mainWindowName width:544 height:720
 	button btn744 "background" pos:[267,24] width:64 height:24
 	button btn142 "userMacros" pos:[267,48] width:104 height:24
 	button btn143 "@" pos:[371,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[187,288] width:80 height:24
-	button btn145 "get from GitHub" pos:[179,208] width:87 height:24
-	button btn32 "卸载！" pos:[139,392] width:127 height:104
+	button btn29 "send to GitHub" pos:[186,288] width:80 height:24
+	button btn145 "get from GitHub" pos:[178,208] width:87 height:24
+	button btn32 "卸载！" pos:[138,392] width:127 height:104
 	
-	button btn697 "send to GitHub" pos:[179,184] width:87 height:24
-	button btn698 "get from GitHub" pos:[187,312] width:80 height:24
-	button btn699 "home" pos:[139,184] width:40 height:48
-	button btn700 "company" pos:[139,288] width:48 height:48
-	button btn801 "install.ms" pos:[139,232] width:104 height:24
-	button btn802 "@" pos:[243,232] width:24 height:24
-	button btn803 "install.ms" pos:[139,336] width:104 height:24
-	button btn804 "@" pos:[243,336] width:24 height:24
-	button btn53 "检查更新！" pos:[139,496] width:127 height:64
-	button btn26 "强制更新！" pos:[139,560] width:128 height:32
-	button btn531 "update" pos:[139,256] width:104 height:24
-	button btn55 "update" pos:[139,360] width:104 height:24
-	button btn56 "@" pos:[243,360] width:24 height:24
-	button btn57 "@" pos:[243,256] width:24 height:24
+	button btn697 "send to GitHub" pos:[178,184] width:87 height:24
+	button btn698 "get from GitHub" pos:[186,312] width:80 height:24
+	button btn699 "home" pos:[138,184] width:40 height:48
+	button btn700 "company" pos:[138,288] width:48 height:48
+	button btn801 "install.ms" pos:[138,232] width:104 height:24
+	button btn802 "@" pos:[242,232] width:24 height:24
+	button btn803 "install.ms" pos:[138,336] width:104 height:24
+	button btn804 "@" pos:[242,336] width:24 height:24
+	button btn53 "检查更新！" pos:[138,496] width:126 height:32
+	button btn26 "强制更新！" pos:[138,528] width:128 height:32
+	button btn531 "update" pos:[138,256] width:104 height:24
+	button btn55 "update" pos:[138,360] width:104 height:24
+	button btn56 "@" pos:[242,360] width:24 height:24
+	button btn57 "@" pos:[242,256] width:24 height:24
 	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
 	
 	button btn196 "visualfengx.ms" pos:[138,48] width:80 height:24
@@ -425,7 +426,9 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 
 
-	button btn65 "已经是最新版" pos:[-1,662] width:140 height:32 enabled:false
+	button btn65 "已经是最新版" pos:[-1,668] width:141 height:26 enabled:false
+	button btn66 "Restart" pos:[0,644] width:68 height:24 enabled:true
+	button btn67 "Eixt" pos:[68,644] width:72 height:24 enabled:true
 	on mainwindow open do
 	(
 	   
@@ -743,6 +746,20 @@ rollout mainwindow mainWindowName width:544 height:720
 	--	)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
 	--VisualFengxVersions =tempV
+	)
+	on btn66 pressed do
+	(
+	    if checkForSave() then (
+	        shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
+	        quitmax #noPrompt
+	)
+	)
+	on btn67 pressed do
+	(
+	    if checkForSave() then (
+	        --shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
+	        quitmax #noPrompt
+	)
 	)
 )
 
