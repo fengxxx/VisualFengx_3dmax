@@ -1,6 +1,1 @@
-name "Test"
 run "install.ms"
-drop "install.ms"
-
-clear temp on MAX exit
-clear temp on reset
