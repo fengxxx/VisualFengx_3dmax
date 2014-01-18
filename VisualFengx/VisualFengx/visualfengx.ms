@@ -3019,8 +3019,8 @@ if (doesFileExist updateFilePath )==true then
 		while not eof updateFile do
 		(
 		lineStr = readLine updateFile
-				--print lineStr 
-				--print (lineStr as string)
+		--print lineStr 
+		--print (lineStr as string)
 		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false)) else
 		(
 			tempMsg+=(lineStr  as string + "\n")
@@ -3040,11 +3040,8 @@ if (doesFileExist updateFilePath )==true then
 		local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
 		local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
 		--tempon=true
-		try web.DownloadFile installFileUrl  installFilePath catch
-		(
-		--tempon=false 
-		 --messageBox "VisualFengx 下载更新失败"
-		)
+		if (doesFileExist installFilePath)==false do try web.DownloadFile installFileUrl  installFilePath catch()--print "下载失败！"
+
 	)
 return updateA
 ),
@@ -3074,8 +3071,8 @@ if tempon==true do
 	--)
 )
 */
-local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-fileIn installFilePath
+installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+try fileIn installFilePath catch messageBox "更新文件不存在！"
 ),
 
 
