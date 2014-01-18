@@ -71,7 +71,7 @@ function find_MZP_path=
 
 function install=
 (
-	print  VisualFengxVersions as string
+	--print  VisualFengxVersions as string
 	local _LocalPath=find_MZP_path()
 	--ShellLaunch "explorer.exe" (beWindowsPath  _LocalPath)
 	local targetPath=getDir #scripts +"/VisualFengx/"

@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.151
+global  VisualFengxVersions =1.51
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -626,15 +626,15 @@ rollout mainwindow mainWindowName width:544 height:720
 	)
 	on btn26 pressed do
 	(
-	tempV=VisualFengxVersions 
-	VisualFengxVersions =1.0
-	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
-	( 
+	--tempV=VisualFengxVersions 
+	--VisualFengxVersions =1.0
+	--if  newVersions > VisualFengxVersions then--fengx.checkUpdate()==true and
+	--( 
 	        createdialog checkUpDateWindow --fengx.update()
 		   checkUpDateWindow.lb01.text= updateMsg
-		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
+		--)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
-	VisualFengxVersions =tempV
+	--VisualFengxVersions =tempV
 	)
 	on btn531 pressed do
 	(
@@ -729,8 +729,8 @@ rollout mainwindow mainWindowName width:544 height:720
 	on btn210 pressed do
 	(
 	--fileIn (getDir #startupScripts +"\\fengx_start.ms")
-	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
-	fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
+	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
+	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
 	on btn65 pressed do
 	(
