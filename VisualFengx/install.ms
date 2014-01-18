@@ -1,6 +1,6 @@
 --VisualFengx 1.5 install MZP
 
-Versions=1.5
+Versions=1.51
 installTool
 setupStart
 setup_progress_update
@@ -165,13 +165,13 @@ try theBmp =openBitMap  tempPath catch print "cant find install_bg_map!"
 
 
 
-rollout installTool "VisualFengx_1.4" width:232 height:239
+rollout installTool R_name width:232 height:239
 (
-	button btn76 "安装" pos:[0,134] width:112 height:80
-	button btn77 "卸载" pos:[112,134] width:120 height:80
+	button btn76 "安装" pos:[0,134] width:192 height:80
+	button btn77 "卸载" pos:[192,134] width:40 height:80
 	progressBar pb_bar "ProgressBar" pos:[-1,111] width:234 height:22 color:[0,100,60]
 	label lb01 "-->>> 开始....." pos:[0,215] width:232 height:19
-	button btn293 "x" pos:[-1,-1] width:233 height:112 images:#(theBmp, undefined, 1, 1, 1, 1, 1)
+	button btn293 "x" pos:[-1,-1] width:233 height:112 images:#(tempPath, undefined, 1, 1, 1, 1, 1)
 	on btn76 pressed do
 	(
 	installTool.height=230
@@ -184,7 +184,11 @@ rollout installTool "VisualFengx_1.4" width:232 height:239
 )
 
 
-
-
+if VisualFengxVersions!=undefined then
+(
+	setupStart()
+)else
+(
 createdialog installTool  style:#(#style_border,#style_titlebar,#style_toolwindow, #style_sysmenu)
+)
 --installTool.bt01.images=#(theBmp, undefined, 1, 1, 1, 1, 1)

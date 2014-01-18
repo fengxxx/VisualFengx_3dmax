@@ -74,8 +74,8 @@ if (classOf mainPos)==OkClass do
 )
 if (classOf mainSize)==OkClass do 
 (
-	mainSize=[140,688] 
-	setIniSetting  profilePath "rolloutSetting" "mainSize"  "[140,688]"
+	mainSize=[138,686]
+	setIniSetting  profilePath "rolloutSetting" "mainSize"  "[138,686]"
 )
 
 
@@ -270,58 +270,58 @@ rollout mainwindow mainWindowName width:544 height:720
     
 	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,40] width:142 height:616 
+	subRollout sub "fengx" pos:[0,40] width:138 height:616 
  
-	checkbutton ckP "Poly" pos:[0,20] width:32 height:20
-	checkbutton ckM "材质" pos:[32,20] width:32 height:20
-	checkbutton ckF "文件" pos:[64,20] width:40 height:20
-	checkbutton ckS "吸附" pos:[104,20] width:39 height:20
-	checkbutton ckX "↓↑" pos:[115,0] width:28 height:20
-	checkbutton ckb127 "English" pos:[272,0] width:64 height:24 enabled:true checked:false
-	checkbutton ckb128 "中文" pos:[336,0] width:64 height:24 enabled:true checked:true
-	colorPicker cp6 "" pos:[336,24] width:63 height:24 enabled:false color:(color 42 8 36)
-	button btn337 "设置" pos:[52,0] width:36 height:20
+	checkbutton ckP "Poly" pos:[0,20] width:33 height:20
+	checkbutton ckM "材质" pos:[33,20] width:33 height:20
+	checkbutton ckF "文件" pos:[66,20] width:36 height:20
+	checkbutton ckS "吸附" pos:[102,20] width:36 height:20
+	checkbutton ckX "↓↑" pos:[113,0] width:25 height:20
+	checkbutton ckb127 "English" pos:[267,0] width:64 height:24 enabled:true checked:false
+	checkbutton ckb128 "中文" pos:[331,0] width:64 height:24 enabled:true checked:true
+	colorPicker cp6 "" pos:[331,24] width:63 height:24 enabled:false color:(color 42 8 36)
+	button btn337 "设置" pos:[52,0] width:32 height:20
 	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:20
-	button btn744 "background" pos:[272,24] width:64 height:24
-	button btn142 "userMacros" pos:[272,48] width:104 height:24
-	button btn143 "@" pos:[376,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[192,288] width:80 height:24
-	button btn145 "get from GitHub" pos:[184,208] width:87 height:24
-	button btn32 "卸载！" pos:[144,392] width:127 height:104
+	button btn744 "background" pos:[267,24] width:64 height:24
+	button btn142 "userMacros" pos:[267,48] width:104 height:24
+	button btn143 "@" pos:[371,48] width:24 height:24
+	button btn29 "send to GitHub" pos:[187,288] width:80 height:24
+	button btn145 "get from GitHub" pos:[179,208] width:87 height:24
+	button btn32 "卸载！" pos:[139,392] width:127 height:104
 	
-	button btn697 "send to GitHub" pos:[184,184] width:87 height:24
-	button btn698 "get from GitHub" pos:[192,312] width:80 height:24
-	button btn699 "home" pos:[144,184] width:40 height:48
-	button btn700 "company" pos:[144,288] width:48 height:48
-	button btn801 "install.ms" pos:[144,232] width:104 height:24
-	button btn802 "@" pos:[248,232] width:24 height:24
-	button btn803 "install.ms" pos:[144,336] width:104 height:24
-	button btn804 "@" pos:[248,336] width:24 height:24
-	button btn53 "检查更新！" pos:[144,496] width:127 height:64
-	button btn26 "强制更新！" pos:[144,560] width:128 height:32
-	button btn531 "update" pos:[144,256] width:104 height:24
-	button btn55 "update" pos:[144,360] width:104 height:24
-	button btn56 "@" pos:[248,360] width:24 height:24
-	button btn57 "@" pos:[248,256] width:24 height:24
+	button btn697 "send to GitHub" pos:[179,184] width:87 height:24
+	button btn698 "get from GitHub" pos:[187,312] width:80 height:24
+	button btn699 "home" pos:[142,184] width:40 height:48
+	button btn700 "company" pos:[139,288] width:48 height:48
+	button btn801 "install.ms" pos:[139,232] width:104 height:24
+	button btn802 "@" pos:[243,232] width:24 height:24
+	button btn803 "install.ms" pos:[139,336] width:104 height:24
+	button btn804 "@" pos:[243,336] width:24 height:24
+	button btn53 "检查更新！" pos:[139,496] width:127 height:64
+	button btn26 "强制更新！" pos:[139,560] width:128 height:32
+	button btn531 "update" pos:[139,256] width:104 height:24
+	button btn55 "update" pos:[139,360] width:104 height:24
+	button btn56 "@" pos:[243,360] width:24 height:24
+	button btn57 "@" pos:[243,256] width:24 height:24
 	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
 	
-	button btn196 "visualfengx.ms" pos:[143,48] width:80 height:24
-	button btn197 "macroScript" pos:[143,72] width:80 height:24
-	button btn198 "@" pos:[247,48] width:24 height:24
-	button btn199 "@" pos:[247,72] width:24 height:24
-	button btn200 "fengx.fengx" pos:[143,120] width:80 height:24
-	button btn201 "@" pos:[247,120] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[143,96] width:80 height:24
-	button btn203 "@" pos:[247,96] width:24 height:24
-	button btn204 "○" pos:[223,48] width:24 height:24
-	button btn205 "○" pos:[223,72] width:24 height:24
-	button btn206 "○" pos:[223,96] width:24 height:24
-	button btn207 "notepad++" pos:[143,0] width:128 height:24
-	button btn208 "sublime_text" pos:[143,24] width:128 height:24
-	button btn209 "○" pos:[223,120] width:24 height:24
-	button btn210 "run" pos:[143,144] width:128 height:32
+	button btn196 "visualfengx.ms" pos:[138,48] width:80 height:24
+	button btn197 "macroScript" pos:[138,72] width:80 height:24
+	button btn198 "@" pos:[242,48] width:24 height:24
+	button btn199 "@" pos:[242,72] width:24 height:24
+	button btn200 "fengx.fengx" pos:[138,120] width:80 height:24
+	button btn201 "@" pos:[242,120] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[138,96] width:80 height:24
+	button btn203 "@" pos:[242,96] width:24 height:24
+	button btn204 "○" pos:[218,48] width:24 height:24
+	button btn205 "○" pos:[218,72] width:24 height:24
+	button btn206 "○" pos:[218,96] width:24 height:24
+	button btn207 "notepad++" pos:[138,0] width:128 height:24
+	button btn208 "sublime_text" pos:[138,24] width:128 height:24
+	button btn209 "○" pos:[218,120] width:24 height:24
+	button btn210 "run" pos:[138,144] width:128 height:32
 		
-	HyperLink hy_help "帮助" pos:[90,3] width:28 height:16 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+	HyperLink hy_help "帮助" pos:[85,3] width:28 height:16 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -425,7 +425,7 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 
 
-	button btn65 "已经是最新版" pos:[0,656] width:144 height:32 enabled:false
+	button btn65 "已经是最新版" pos:[0,656] width:140 height:32 enabled:false
 	on mainwindow open do
 	(
 	   
@@ -433,15 +433,15 @@ rollout mainwindow mainWindowName width:544 height:720
 		windowslogic()
 		if  newVersions > VisualFengxVersions  then
 		(
-			print "xiande xxx"
+			--print "xiande xxx"
 			mainWindow.btn65.text="最新版-- " +(newVersions as string)
 			mainWindow.btn65.enabled=true
-		)else 
-		（
-			print "jiade xxx"
+		)else ()
+		--（
+			--print "jiade xxx"
 			--mainWindow.btn65.text="已经是最新版" 
 			--btn65.enabled=false
-		）
+		--）
 	)
 	on mainwindow close do
 	(
@@ -734,22 +734,17 @@ rollout mainwindow mainWindowName width:544 height:720
 	)
 	on btn65 pressed do
 	(
-	tempV=VisualFengxVersions 
-	VisualFengxVersions =1.0
-	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
-	( 
+	--tempV=VisualFengxVersions 
+	--VisualFengxVersions =1.0
+	--if  newVersions > VisualFengxVersions then --fengx.checkUpdate()==true and
+	--( 
 	        createdialog checkUpDateWindow --fengx.update()
 		   checkUpDateWindow.lb01.text= updateMsg
-		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
+	--	)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	
-	VisualFengxVersions =tempV
+	--VisualFengxVersions =tempV
 	)
 )
-
-
-
-
-
 
 
 rollout mate "材质" width:128 height:468
@@ -1016,12 +1011,12 @@ rollout poly "poly " width:863 height:653
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:false
-	button btn7 "Big +" pos:[12,304] width:48 height:24
-	button btn13 "Small -" pos:[12,328] width:48 height:24
-	button btn151 "重置模型" pos:[60,304] width:64 height:48 
+	button btn7 "Big +" pos:[15,304] width:48 height:24
+	button btn13 "Small -" pos:[15,328] width:48 height:24
+	button btn151 "重置模型" pos:[63,304] width:64 height:48 
 
-	button btn159 "Edit UV" pos:[-4,448] width:128 height:24
-	checkbutton BS "#" pos:[-4,304] width:16 height:48
+	button btn159 "Edit UV" pos:[-2,448] width:128 height:24
+	checkbutton BS "#" pos:[-1,304] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:24
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
@@ -1035,24 +1030,24 @@ rollout poly "poly " width:863 height:653
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[-4,284] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[-4,428] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[-4,496] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[124,496] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,284] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[-2,428] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[-2,496] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[126,496] width:96 height:24
 	
-	button btn211 "重来" pos:[92,472] width:32 height:48
+	button btn211 "重来" pos:[94,472] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[60,400] width:64 height:24
+	button btn490 "右旋" pos:[62,400] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[-4,400] width:64 height:24
+	button btn491 "左旋" pos:[-2,400] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[-4,356] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[69,182] width:56 height:24
-	button btn564 "归中" pos:[69,158] width:56 height:24
-	button btn565 "Pos" pos:[-3,229] width:24 height:24
+	button btn492 "智能旋转" pos:[-2,356] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[72,182] width:56 height:24
+	button btn564 "归中" pos:[72,158] width:56 height:24
+	button btn565 "Pos" pos:[0,229] width:24 height:24
 	
 	button btn566 "+" pos:[45,134] width:24 height:24
 	button btn567 "-" pos:[-3,134] width:24 height:24
@@ -1063,18 +1058,18 @@ rollout poly "poly " width:863 height:653
 	button btn572 "X" pos:[21,134] width:24 height:24
 	button btn573 "Y" pos:[21,158] width:24 height:24
 	button btn574 "Z" pos:[21,182] width:24 height:24
-	button btn575 "Pivot" pos:[-3,253] width:32 height:24
-	button btn576 "Rotate" pos:[33,229] width:40 height:24
-	button btn577 "Scale" pos:[29,253] width:44 height:24
-	button btn578 "所有" pos:[73,229] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[-4,210] width:129 height:19 enabled:false
-	button btn580 "置顶" pos:[69,134] width:56 height:24
-	button btn581 "Pivot" pos:[-3,116] width:129 height:18 enabled:false
-	button btn582 "" pos:[21,229] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[-4,472] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[44,472] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[60,376] width:64 height:24 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[-4,376] width:64 height:24 enabled:true checked:false
+	button btn575 "Pivot" pos:[0,253] width:32 height:24
+	button btn576 "Rotate" pos:[36,229] width:40 height:24
+	button btn577 "Scale" pos:[32,253] width:44 height:24
+	button btn578 "所有" pos:[76,229] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,210] width:128 height:19 enabled:false
+	button btn580 "置顶" pos:[72,134] width:56 height:24
+	button btn581 "Pivot" pos:[0,116] width:128 height:18 enabled:false
+	button btn582 "" pos:[24,229] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[-2,472] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[46,472] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[62,376] width:64 height:24 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[-2,376] width:64 height:24 enabled:true checked:false
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1652,7 +1647,6 @@ rollout poly "poly " width:863 height:653
 		)
 	)
 )
-
 
 
 
@@ -2999,17 +2993,18 @@ function uninstall=
 ---->>check  VisualFengx Update
 function checkUpdate=
 (
-updateA=false
+local updateA=false
 local web = dotNetObject "System.Net.WebClient"
 local updateFileUrl = "https://raw.github.com/fengxxx/VisualFengx_3dmax/Netease/update"
 local updateFilePath = getDir #downloads +"\\update"
+deleteFile  updateFilePath
 local tempon=true
-
 try web.DownloadFile updateFileUrl  updateFilePath catch
 (
-tempon=false 
- messageBox "检测更新失败!"
+	tempon=false 
+	messageBox "检测更新失败!"
 )
+
 if (doesFileExist updateFilePath )==true then 
 (
 	
@@ -3018,7 +3013,6 @@ if (doesFileExist updateFilePath )==true then
 	 messageBox "update fath! -->> open  update file fath!"
 	 tempon=fasle
 	)
-	
 	if tempon==true do(
 		i=1
 		tempMsg=""
@@ -3027,36 +3021,38 @@ if (doesFileExist updateFilePath )==true then
 		lineStr = readLine updateFile
 				--print lineStr 
 				--print (lineStr as string)
-			
-		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false))else
-			(
-
-				tempMsg+=(lineStr  as string + "\n")
-				)
+		if i==1 then( if lineStr !=undefind and lineStr !="" and (lineStr as float) !=undefined do try  newVersions = (lineStr as float) catch (tempon=false)) else
+		(
+			tempMsg+=(lineStr  as string + "\n")
+		)
 		i+=1
 		)
-		upDateMsg=tempMsg as string
-				
-				
-				
-		if 	newVersions > VisualFengxVersions then
-		( 
-			updateA=true 
-			)else 
-		(
-			print "该版本已经为最新！无需更新!"
-		)
+		upDateMsg=tempMsg as string	
+		--print upDateMsg	
+		if 	newVersions > VisualFengxVersions do updateA=true --else print "该版本已经为最新！无需更新!"
 		try close updateFile catch()
 		try deleteFile updateFilePath catch ()
 	)	
-
-)else print ("cant find update file! in " +updateFilePath )
+	)else print ("cant find update file! in " +updateFilePath )
+	--)--else messageBox "检查更新失败！"
+	if updateA==true do 
+	(
+		local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
+		local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+		--tempon=true
+		try web.DownloadFile installFileUrl  installFilePath catch
+		(
+		--tempon=false 
+		 --messageBox "VisualFengx 下载更新失败"
+		)
+	)
 return updateA
 ),
 
 ---->> update VisualFengx
 function update=
 (
+/*
 local web = dotNetObject "System.Net.WebClient"
 local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
 local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
@@ -3077,6 +3073,9 @@ if tempon==true do
 		try deleteFile installFilePath catch ()
 	--)
 )
+*/
+local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+fileIn installFilePath
 ),
 
 
