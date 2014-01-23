@@ -60,7 +60,12 @@ if (classOf visualMateReset)==OkClass do
 	visualMateReset=false
 	setinisetting  profilePath "file" "visualMateReset" "false"
 )
-
+global visualPosReset= execute (getinisetting  profilePath "file" "visualPosReset") 
+if (classOf visualPosReset)==OkClass do 
+(
+	visualPosReset=true
+	setinisetting  profilePath "file" "visualPosReset" "true"
+)
 -----------------rollout pos and size -----------
 -----------------main window --------------------
 global mainPos= execute (getinisetting  profilePath "rolloutSetting" "mainPos") --position <point2>
@@ -264,7 +269,7 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.51" width:544 height:720
+rollout mainwindow mainWindowName width:544 height:720
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     
@@ -280,7 +285,7 @@ rollout mainwindow "visualFengx_1.51" width:544 height:720
 	checkbutton ckX "↓↑" pos:[113,0] width:25 height:20
 	checkbutton ckb127 "English" pos:[267,0] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[331,0] width:64 height:24 enabled:true checked:true
-	colorPicker cp6 "" pos:[331,24] width:63 height:24 enabled:false color:(color 42 8 36)
+	colorPicker cp6 "" pos:[330,24] width:64 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[52,0] width:32 height:20
 	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:20
 	button btn744 "background" pos:[267,24] width:64 height:24
@@ -298,8 +303,8 @@ rollout mainwindow "visualFengx_1.51" width:544 height:720
 	button btn802 "@" pos:[242,232] width:24 height:24
 	button btn803 "install.ms" pos:[138,336] width:104 height:24
 	button btn804 "@" pos:[242,336] width:24 height:24
-	button btn53 "检查更新！" pos:[138,496] width:126 height:32
-	button btn26 "强制更新！" pos:[138,528] width:128 height:32
+	button btn53 "检查更新！" pos:[138,496] width:127 height:32
+	button btn26 "强制更新！" pos:[138,528] width:127 height:32
 	button btn531 "update" pos:[138,256] width:104 height:24
 	button btn55 "update" pos:[138,360] width:104 height:24
 	button btn56 "@" pos:[242,360] width:24 height:24
@@ -775,32 +780,33 @@ rollout mainwindow "visualFengx_1.51" width:544 height:720
 
 
 
-
-rollout mate "材质" width:128 height:468
+rollout mate "材质" width:291 height:519
 (
-	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,140] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,220] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,191] width:128 height:29 enabled:true
-	button btn10 "整理材质名" pos:[0,40] width:128 height:24 enabled:true
-	button btn11 "@" pos:[232,96] width:24 height:24 enabled:true
-	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,140] width:24 height:24 enabled:true
-	button btn463 "Select Mate" pos:[128,96] width:104 height:24 enabled:false
-	button btn106 "@" pos:[232,120] width:24 height:24
+	button btn1 "清除材质" pos:[188,16] width:68 height:24 enabled:true
+	button btn7 "贴图另存为" pos:[0,192] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,280] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,251] width:128 height:29 enabled:true
+	button btn10 "整理 材质名" pos:[0,16] width:128 height:24 enabled:true
+	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
+	button btn12 "整理材质" pos:[128,16] width:60 height:24 enabled:true
+	button btn15 "@" pos:[104,192] width:24 height:24 enabled:true
+	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
+	button btn106 "@" pos:[232,208] width:24 height:24
 	
 	
-	button btn107 "Select Object" pos:[128,120] width:104 height:24 enabled:false
+	button btn107 "Select Object" pos:[128,208] width:104 height:24 enabled:false
 	button btn119 "Objet" pos:[128,40] width:64 height:24 enabled:false
 	button btn120 "Mate" pos:[192,40] width:64 height:24 enabled:false
-	button btn14 "Import Map" pos:[128,160] width:128 height:24
-	button btn56 "Import Mate Map" pos:[128,184] width:128 height:24
+	button btn14 "Import Map" pos:[128,232] width:128 height:24
+	button btn56 "Import Mate Map" pos:[128,256] width:128 height:24
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
-	button bmap "贴图" pos:[0,96] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,172] width:128 height:19 enabled:false
-	button btn21 "去除多余子材质" pos:[0,64] width:128 height:24
-	button btn20 "自动替换资源贴图" pos:[0,112] width:128 height:24 enabled:true
+	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
+	button btn275 "Directx" pos:[0,232] width:128 height:19 enabled:false
+	button btn21 "去除 多余子材质" pos:[0,64] width:128 height:24
+	button btn20 "找回贴图" pos:[0,88] width:128 height:24 enabled:true
+	button btn210 "整理材质" pos:[0,112] width:128 height:64
+	button btn52 "去除 重复子材质" pos:[0,40] width:128 height:24
 	on mate open do
 	(
 		
@@ -1027,7 +1033,46 @@ rollout mate "材质" width:128 height:468
 	for s in $ do  fengx.findMapResource s
 	)
 	)
+	on btn210 pressed do
+	(
+	undo on(
+	if $ !=undefined do 
+	(
+	fengx.deleteSameMate $
+	fengx.clearObjectMultiMaterial $
+	fengx.TexNameToMateName()
+	for s in $ do  fengx.findMapResource s
+	)
+	)
+	)
+	on btn52 pressed do
+	(
+	undo on(
+	if $ !=undefined do 
+	(
+	fengx.deleteSameMate $
+	)
+	)
+	)
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 rollout poly "poly " width:863 height:653
@@ -1039,7 +1084,7 @@ rollout poly "poly " width:863 height:653
 	button btn511 "Sphere" pos:[128,44] width:64 height:24
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
-	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:false
+	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
 	button btn7 "Big +" pos:[16,304] width:48 height:24
 	button btn13 "Small -" pos:[16,328] width:48 height:24
 	button btn151 "重置模型" pos:[64,304] width:64 height:48 
@@ -1049,7 +1094,7 @@ rollout poly "poly " width:863 height:653
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
 	checkbutton sz "z" pos:[48,80] width:24 height:24
-	button btn51 "Show Infor" pos:[192,20] width:64 height:24 enabled:false
+	button btn51 "Show Infor" pos:[192,20] width:64 height:24 enabled:true
 	checkbutton c1 "1" pos:[128,80] width:24 height:24 enabled:true checked:true
 	checkbutton c2 "2" pos:[152,80] width:16 height:24
 	checkbutton c3 "3" pos:[168,80] width:16 height:24
@@ -1705,10 +1750,9 @@ rollout poly "poly " width:863 height:653
 
 
 
-
 rollout file "文件" width:128 height:448
 (
-	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true
+	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true
 	button btn2 ".obj" pos:[0,96] width:64 height:24 enabled:true
 	button btn3 ".max" pos:[0,72] width:64 height:24 enabled:true
 	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true
@@ -1742,10 +1786,11 @@ rollout file "文件" width:128 height:448
 	button btn32 "clear" pos:[656,240] width:48 height:32
 	button btn47 "显示 备份文件" pos:[0,228] width:128 height:24 enabled:true
 	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24
+	checkbutton ckb311 "位置归零" pos:[0,48] width:64 height:24
 	on file open do
 	(
 		ckb3.state=visualMateReset
-	
+		ckb311.state=visualPosReset
 	)
 	on file close do
 	(
@@ -1834,7 +1879,7 @@ rollout file "文件" width:128 height:448
 		(
 			fengx.saveToStandType $ saveToPath
 			shelllaunch "explorer.exe" saveToPath
- 		)else print "导出路径错误！ -->>导出取消"
+		)else print "导出路径错误！ -->>导出取消"
 	)else messageBox "请选择要导出的物体！-->>导出取消"
 	
 	)
@@ -1952,9 +1997,12 @@ rollout file "文件" width:128 height:448
 	visualmateReset=state
 	setinisetting  profilePath "file" "visualMateReset" (state as string)
 	)
+	on ckb311 changed state do
+	(
+	visualPosReset=state
+	setinisetting  profilePath "file" "visualPosReset" (state as string)
+	)
 )
-
-
 
 
 
@@ -1980,39 +2028,17 @@ rollout snap "吸附" width:362 height:562
 	checkbutton ptz "z" pos:[96,40] width:16 height:16 checked:false
 	checkbutton localpos "@" pos:[0,20] width:16 height:20
 	checkbutton localPivot "@" pos:[112,20] width:16 height:20
-	button btn14 "置底" pos:[200,66] width:56 height:24
-	button btn17 "归中" pos:[200,42] width:56 height:24
-	button btn18 "Pos" pos:[128,113] width:24 height:24
-	button bpxa "+" pos:[176,18] width:24 height:24
-	button bpxr "-" pos:[128,18] width:24 height:24
-	button btn152 "+" pos:[176,42] width:24 height:24
-	button btn153 "-" pos:[128,42] width:24 height:24
-	button btn154 "+" pos:[176,66] width:24 height:24
-	button btn155 "-" pos:[128,66] width:24 height:24
-	button btn156 "X" pos:[152,18] width:24 height:24
-	button btn157 "Y" pos:[152,42] width:24 height:24
-	button btn158 "Z" pos:[152,66] width:24 height:24
-	button btn224 "Pivot" pos:[128,137] width:32 height:24
 	checkbutton ckb19 "Name" pos:[0,96] width:48 height:20
 	checkbutton ckb20 "Material" pos:[80,96] width:48 height:20
-	button btn115 "右旋" pos:[192,188] width:64 height:24 
-	button btn116 "左旋" pos:[128,188] width:64 height:24
 	pickbutton btn99 "设置吸附目标对象" pos:[0,163] width:128 height:24
 	button btn119 "吸附（带方向）" pos:[0,187] width:128 height:27 enabled:true
 	button btn174 "吸附（仅位置）" pos:[0,214] width:128 height:28 enabled:true
-	button btn78 "Rotate" pos:[164,113] width:40 height:24
-	button btn79 "Scale" pos:[160,137] width:44 height:24
-	button btn122 "所有" pos:[204,113] width:52 height:48
-	button btn123 "重置（所选）属性" pos:[128,94] width:128 height:19 enabled:false
-	button btn63 "置顶" pos:[200,18] width:56 height:24
 	button btn53 "吸取属性" pos:[0,0] width:128 height:20 enabled:false
-	button btn54 "Pivot" pos:[128,0] width:128 height:18 enabled:false
 	button btn126 "吸附表面" pos:[0,144] width:128 height:19 enabled:false
-	button btn127 "智能旋转" pos:[128,168] width:128 height:20 enabled:false
-	button btn257 "" pos:[152,113] width:12 height:24 enabled:false
 	button btn259 "" pos:[48,56] width:32 height:60 enabled:false
 	button btn294 "" pos:[0,40] width:16 height:16 enabled:false
 	button btn295 "" pos:[112,40] width:16 height:16 enabled:false
+	
 	
 	on snap close do
 	(
@@ -2026,7 +2052,6 @@ rollout snap "吸附" width:362 height:562
 	    setinisetting  profilePath "rolloutSetting" "snapPos" (snappos as string )
 	    )
 	)
-	
 	on chooseit picked obj do
 	( 
 	 if obj != undefined and $!= undefined do
@@ -2140,140 +2165,6 @@ rollout snap "吸附" width:362 height:562
 	(
 		
 		)
-	on btn14 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do 
-				if classOf(s)==Dummy then
-				(
-					CenterPivot s
-					s.pivot.z=s.min.z
-					)else
-					(
-						CenterPivot s
-						print s
-						s.pivot.z = s.min.z
-						)
-					)
-			)
-	)
-	on btn17 pressed do
-	(	
-		undo on(
-		if $!=undefined do 
-		(
-			for s in fengx.selectGroupDummy($) do 
-			CenterPivot s
-			)
-		)
-	)
-	on btn18 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.pos=[0,0,0]
-				)
-		)
-	)
-	on bpxa pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=s.max.x
-			)
-		)
-	)
-	on bpxr pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=s.min.x 
-			)
-		)
-	)
-	on btn152 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=s.max.y
-			)
-		)
-	)
-	on btn153 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=s.min.y
-			)
-		)
-	)
-	on btn154 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=s.max.z
-			)
-		)
-	)
-	on btn155 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=s.min.z
-			)
-		)
-	)
-	on btn156 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.x=(s.max.x+s.min.x)/2
-			)
-		)
-	)
-	on btn157 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.y=(s.max.y+s.min.y)/2
-			)
-		)
-	)
-	on btn158 pressed do
-	(
-		undo on(
-		if $!=undefined do
-		(
-			for s in fengx.selectGroupDummy($) do s.pivot.z=(s.max.z+s.min.z)/2
-			)
-		)
-	)
-	on btn224 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.pivot=[0,0,0]
-				)
-		)
-	)
 	on ckb19 changed state do
 	(
 	
@@ -2281,18 +2172,6 @@ rollout snap "吸附" width:362 height:562
 	on ckb20 changed state do
 	(
 	
-		)
-	on btn115 pressed do
-	(
-	
-		if keyboard.shiftpressed then fengx.smartRotate 30
-		else fengx.smartRotate 90
-		)
-	on btn116 pressed do
-	(
-	
-		if keyboard.shiftpressed then fengx.smartRotate -30
-		else fengx.smartRotate -90
 		)
 	on btn99 picked obj do
 	( 
@@ -2311,86 +2190,6 @@ rollout snap "吸附" width:362 height:562
 	(
 	if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:fengx.smartColneP()
 	)
-	on btn78 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
-				)
-		)
-	)
-	on btn79 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.scale=[1,1,1]
-				)
-		)
-	)
-	on btn122 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do( 
-	                if classOf(s)==Dummy then
-				    (
-					CenterPivot s
-					s.pivot.z=s.min.z
-					)else
-					(
-						CenterPivot s
-						print s
-						s.pivot.z = s.min.z
-						)
-				  s.pos=[0,0,0]
-	                s.rotation=(quat 0 0 0 0)
-	                s.scale=[1,1,1]
-	                s.pivot=[0,0,0]
-	        )
-		)
-	)
-	)
-	on btn123 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
-				)
-		)
-	)
-	on btn63 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do 
-				if classOf(s)==Dummy then
-				(
-					CenterPivot s
-					s.pivot.z=s.min.z
-					)else
-					(
-						CenterPivot s
-						print s
-						s.pivot.z = s.max.z
-						)
-					)
-			)
-	)
 	on btn53 pressed do
 	(
 	btn53.images =  #(titeBarMap, undefined, 1,1,1,1,1 )
@@ -2407,19 +2206,7 @@ rollout snap "吸附" width:362 height:562
 				)
 		)
 	)
-	on btn127 pressed do
-	(
-		undo on(
-		if $==undefined then
-		(
-			)else
-			(
-				for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
-				)
-		)
-	)
 )
-
 
 
 
@@ -3310,10 +3097,12 @@ if nodes!=undefined and  exportPath!=undefined then
 ---->>smart save select to Visual File 
 function exportSelectToVisual=
 (
-	name=maxfilename
+	local name=maxfilename
+	local pos=[0,0,0]
+	try pos=$.pos catch()
 	try $.count catch name=$.name 
 	try name=(fengx.selectGroupDummy $)[1].name catch print "no group" 
-
+	
 	if $!=undefined do 
 	(
 		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
@@ -3325,6 +3114,7 @@ function exportSelectToVisual=
     (
 	  	targetPath=tempTargetPath+".visual" 
 		theClasses = VisualExporter
+		if visualPosReset==true do try $.pos=[0,0,0] catch()
 		if (exportFile (targetPath) selectedOnly:true  using:theClasses)==true do
 		(			
  			if visualMateReset==true do 
@@ -3332,6 +3122,7 @@ function exportSelectToVisual=
 			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
 			)
 		)
+		try $.pos=pos catch()
     )
 	visualPath=fengx.beWindowsPath TargetPath
 	
@@ -3634,6 +3425,26 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 				)
 			)
 		)
+	)
+),
+
+function deleteSameMate nodes=
+(
+for n in nodes do
+(
+	if classOf n.material==MultiMaterial do
+	for i=1 to n.material.count do
+	(
+		for ii=(i+1) to n.material.count do 
+		(
+			if n.material[i].name==n.material[ii].name do 
+			(
+				n.selectByMaterial ii 
+				$.EditablePoly.setMaterialIndex i 1
+			)
+		) 
+	)
+	try meditMaterials[medit.GetActiveMtlSlot()]=n.material catch()	 
 	)
 ),
 
@@ -4915,18 +4726,18 @@ function smartRotate n=
 	if $!=undefined do
 	(
 	direction=fengx.geTrotateDir (fengx.getViewDir())
-	print smartRotateLW
+	--print smartRotateLW
 	if smartRotateLW=="W" then
 	(
 		
-		print "world"
+		--print "world"
 		rotate $ (angleaxis n direction)
 	)else 
 	(
 		if smartRotateLW=="L" do 
 		(
 			for s in $ do  rotate s (angleaxis n direction)
-			print "local"
+			--print "local"
 		)
 	)
 	--rotate $ (angleaxis n direction)
