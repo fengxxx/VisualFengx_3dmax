@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.51
+global  VisualFengxVersions =1.52
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -782,14 +782,14 @@ rollout mainwindow mainWindowName width:544 height:720
 
 rollout mate "材质" width:291 height:519
 (
-	button btn1 "清除材质" pos:[188,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,192] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,280] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,251] width:128 height:29 enabled:true
-	button btn10 "整理 材质名" pos:[0,16] width:128 height:24 enabled:true
+	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
+	button btn7 "贴图另存为" pos:[0,216] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,304] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,275] width:128 height:29 enabled:true
+	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
-	button btn12 "整理材质" pos:[128,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,192] width:24 height:24 enabled:true
+	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
+	button btn15 "@" pos:[104,216] width:24 height:24 enabled:true
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -802,11 +802,11 @@ rollout mate "材质" width:291 height:519
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,232] width:128 height:19 enabled:false
-	button btn21 "去除 多余子材质" pos:[0,64] width:128 height:24
-	button btn20 "找回贴图" pos:[0,88] width:128 height:24 enabled:true
-	button btn210 "整理材质" pos:[0,112] width:128 height:64
-	button btn52 "去除 重复子材质" pos:[0,40] width:128 height:24
+	button btn275 "Directx" pos:[0,256] width:128 height:19 enabled:false
+	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24
+	button btn20 "找回贴图" pos:[0,112] width:128 height:24 enabled:true
+	button btn210 "整理材质" pos:[0,136] width:128 height:64
+	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24
 	on mate open do
 	(
 		
@@ -1055,7 +1055,6 @@ rollout mate "材质" width:291 height:519
 	)
 	)
 )
-
 
 
 
@@ -3648,7 +3647,7 @@ function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
 	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
-	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\sjcs\\","jz\\jztj\\sjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
+	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\","jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
 	if mapPath!=undefined and mapPath !="" do
 	(
 		mapName=filenameFromPath mapPath
@@ -3743,7 +3742,7 @@ function namedMate mate s=
 	if classOf(mate)==Standardmaterial do
 	(
 	  try (
-		 mate.name=getFilenameFile mate.DiffuseMap.bitmap.filename 
+		 mate.name=getFilenameFile mate.DiffuseMap.filename 
 		 print  ("      "+ mate.name+"       ") 
 		) catch  print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
 	)
@@ -4507,6 +4506,7 @@ function saveMateMapTo mates targetPath=
 
 function updataLanguage=
 (
+/*
 	if languageId=="English" do
 		( 
 		poly.btn481.text= "盒子" 
@@ -4686,6 +4686,8 @@ function updataLanguage=
 		snap.btn158.text= "Z" 			
 		snap.btn224.text= "Pivot" 
 	)
+
+*/
 ),
 function getViewDir =
 (
