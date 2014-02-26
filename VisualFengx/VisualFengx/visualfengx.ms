@@ -3106,12 +3106,17 @@ function exportSelectToVisual=
 	(
 		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
 		)
-	tempTargetPath=tempTargetPath+name
-	print (tempTargetPath+".visual")
+	tempTargetPath=tempTargetPath+name+".visual"
 	targetPath=getSaveFileName  caption:"save select"  types:"*.visual"  filename:tempTargetPath
 	if targetPath!=""and targetPath!=undefined do 
     (
-	  	targetPath=tempTargetPath+".visual" 
+		if (getFilenameType targetPath)!=".visual" do 
+		(
+			targetPath=getFilenamePath targetPath +".visual" 
+			
+		)
+		print targetPath
+	  	--targetPath=tempTargetPath+".visual" 
 		theClasses = VisualExporter
 		if visualPosReset==true do try $.pos=[0,0,0] catch()
 		if (exportFile (targetPath) selectedOnly:true  using:theClasses)==true do
@@ -3148,9 +3153,8 @@ function getNamePath n=
 	)
 	b=getDirectories(path+"*")
 	
-	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/common/"
+	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/"
 	
-	--print path
 	return path
 ),
 
@@ -3643,18 +3647,62 @@ function dToDNS DPath=
 	
 
 --->>  替换成 资源文件夹的 贴图 路径  
+
+function getPathFromMapName n=
+(
+	local namePart=filterString n "_"
+	-- dsc_jztj_cs0020_3d_wb.tga
+	--dsc_jztj_cs0020_3d_a_wb.tga
+	local path="E:/mf_pangu/tw2/res/scene/common/"
+	local tw1=""
+	local tw2=""
+	local count=0
+	for i=1 to n.count do(
+		if n[i]=="_" do  count+=1
+		if count>=1 and count<2 do 	tw1+=n[i]
+		if count>=2 and count<3 do  tw2+=n[i]
+	)
+	
+	tw1=fengx.getLetter(tw1)
+	tw2=fengx.getLetter(tw2)
+	
+	if tw1[1]=="j" and tw1.count>3 then(
+		path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
+	)else(
+		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
+	)
+	b=getDirectories(path+"*")
+	
+	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/"
+	path=fengx.beStringPath path
+	return path
+
+
+),
 function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
 	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
 	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\","jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
-	if mapPath!=undefined and mapPath !="" do
-	(
-		mapName=filenameFromPath mapPath
-		for d in dirs do 
+	
+	
+	mapRPath= fengx.getNamePath (getFilenameFile mapRPath) + filenameFromPath mapRPath
+	--print ("change"+mapRPath)
+	if doesFileExist mapRPath ==false do 
+	(	
+		
+		if mapPath!=undefined and mapPath !="" do
 		(
-			tempDir=Rdir+d+mapName
-			if  doesFileExist tempDir do mapRPath=tempDir
+			mapName=filenameFromPath mapPath
+			for d in dirs do 
+			(
+				tempDir=Rdir+d+mapName
+				if  doesFileExist tempDir do
+				(
+					 mapRPath=tempDir
+					 print  （mapPath+"贴图所在的地址可能有误"）
+					)
+			)
 		)
 	)
  	return mapRPath
