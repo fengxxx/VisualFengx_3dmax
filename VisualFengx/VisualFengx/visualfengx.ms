@@ -66,6 +66,16 @@ if (classOf visualPosReset)==OkClass do
 	visualPosReset=true
 	setinisetting  profilePath "file" "visualPosReset" "true"
 )
+
+global getBackMapType= execute (getinisetting  profilePath "mate" "getBackMapType") --position <point5>
+-->initialize<
+if (classOf getBackMapType)==OkClass do 
+(
+	getBackMapType=#(1,0,0,0,1)
+	setIniSetting  profilePath "mate" "getBackMapType"  "(1,0,0,0,1)"
+)
+
+
 -----------------rollout pos and size -----------
 -----------------main window --------------------
 global mainPos= execute (getinisetting  profilePath "rolloutSetting" "mainPos") --position <point2>
@@ -780,16 +790,16 @@ rollout mainwindow mainWindowName width:544 height:720
 
 
 
-rollout mate "材质" width:291 height:519
+rollout mate "材质" width:352 height:552
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,216] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,304] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,275] width:128 height:29 enabled:true
+	button btn7 "贴图另存为" pos:[0,296] width:104 height:24 enabled:true
+	button btn8 "关闭所有高显" pos:[0,384] width:128 height:24 enabled:true
+	button btn9 "打开（所择）高显示" pos:[0,355] width:128 height:29 enabled:true
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,216] width:24 height:24 enabled:true
+	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -802,17 +812,35 @@ rollout mate "材质" width:291 height:519
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,256] width:128 height:19 enabled:false
+	button btn275 "Directx" pos:[0,336] width:128 height:19 enabled:false
 	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24
-	button btn20 "找回贴图" pos:[0,112] width:128 height:24 enabled:true
-	button btn210 "整理材质" pos:[0,136] width:128 height:64
+	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:""
+	button btn210 "整理材质" pos:[0,204] width:128 height:64 toolTip:"名字命好 贴图贴好 材质整理好"
 	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24
+	checkbutton ckb_D "D" pos:[0,144] width:28 height:28
+	checkbutton ckb_N "N" pos:[28,144] width:25 height:28
+	checkbutton ckb_S "S" pos:[53,144] width:25 height:28
+	checkbutton ckb_A "A" pos:[78,144] width:25 height:28
+	checkbutton ckb_E "E" pos:[103,144] width:25 height:28
+	button btn68 "清除D以外的贴图" pos:[0,172] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	on mate open do
 	(
+	function intToBool i=
+	(
+	   b=False
+	   if i==1 do b=true
+	   return b
+	)
 		
-		)
+	ckb_D.state= intToBool (getBackMapType[1]	)
+	ckb_N.state= intToBool (getBackMapType[2]	)
+	ckb_S.state= intToBool (getBackMapType[3]	)
+	ckb_E.state= intToBool (getBackMapType[4]	)
+	ckb_A.state= intToBool (getBackMapType[5]	)
+	)
 	on mate close do
 	(
+	       setIniSetting  profilePath "mate" "getBackMapType"   (getBackMapType as string)
 	if  canSetWindows==true do 
 	(
 	    mainWindow.ckM.state=false
@@ -821,6 +849,8 @@ rollout mate "材质" width:291 height:519
 	
 	    matepos=GetDialogPos mate
 	    setinisetting  profilePath "rolloutSetting" "matePos" (matepos as string )
+	  
+	
 	)
 	)
 	on btn1 pressed do
@@ -1054,10 +1084,49 @@ rollout mate "材质" width:291 height:519
 	)
 	)
 	)
+	on ckb_D changed state do
+	(
+	if state==true then  getBackMapType[1]=1 else getBackMapType[1]=0
+	)
+	on ckb_N changed state do
+	(
+	if state==true then  getBackMapType[2]=1 else getBackMapType[2]=0
+	)
+	on ckb_S changed state do
+	(
+	if state==true then  getBackMapType[3]=1 else getBackMapType[3]=0
+	)
+	on ckb_A changed state do
+	(
+	if state==true then  getBackMapType[4]=1 else getBackMapType[4]=0
+	)
+	on ckb_E changed state do
+	(
+	if state==true then  getBackMapType[5]=1 else getBackMapType[5]=0
+	)
+	on btn68 pressed do
+	(
+	undo on(
+
+	
+	if $!=undefined do
+	(
+	mates=fengx.toStandardMate $.material
+	
+	for m in mates do 
+	(
+		m.bumpMap=undefined
+		--m.diffusemap
+		m.opacityMap =undefined
+		m.selfillumMap=undefined
+		m.specularLevelMap=undefined
+	
+	)
+	)
+	)
+	
+	)
 )
-
-
-
 
 
 
@@ -3722,24 +3791,24 @@ function  findMapResource nodes=
 		(
 			newPath=fengx.mapChangeToResource m.diffusemap.filename 
 			if doesFileExist newPath do
-				m.diffusemap =  Bitmaptexture fileName: newPath
 				local maps=fengx.dToDNS  newPath
-				--print maps
-				--for p in maps do if doesFileExist p do print (p+"___true")
-
+				if getBackMapType[1]==1 do (
+					m.diffusemap =  Bitmaptexture fileName: newPath
+					)
+				
 				namePart= filterString  newPath "_"
-				if namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
+				if getBackMapType[4]==1 and namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
 					m.opacityMap = Bitmaptexture fileName:newPath 
 					m.opacityMap.monoOutput = 1
 				)		
-				 if doesFileExist  maps[1] do
+				 if doesFileExist  maps[1] and getBackMapType[2]==1 do
 				 ( 
 				 	m.bumpMap = Normal_Bump ()
 					m.bumpMap.normal_map=Bitmaptexture fileName:maps[2]
 					m.bumpMapAmount = 100
 					)
-				 if doesFileExist  maps[3] do m.specularLevelMap = Bitmaptexture fileName:maps[3]
-				 if doesFileExist  maps[4] do m.selfillumMap = Bitmaptexture fileName:maps[4]
+				 if doesFileExist  maps[3] and getBackMapType[3]==1 do m.specularLevelMap = Bitmaptexture fileName:maps[3]
+				 if doesFileExist  maps[4] and getBackMapType[5]==1 do m.selfillumMap = Bitmaptexture fileName:maps[4]
 				 )
 				 ）
 		)
