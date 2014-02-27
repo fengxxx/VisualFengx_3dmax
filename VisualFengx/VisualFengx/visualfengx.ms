@@ -279,7 +279,7 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:544 height:720
+rollout mainwindow "visualFengx_1.52" width:544 height:720
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     
@@ -441,8 +441,8 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 
 
-	button btn65 "已经是最新版" pos:[-1,668] width:141 height:26 enabled:false
-	button btn66 "Restart" pos:[0,644] width:68 height:24 enabled:true
+	button btn65 "已经是最新版" pos:[-1,668] width:141 height:26 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,644] width:68 height:24 enabled:true toolTip:""
 	button btn67 "Eixt" pos:[68,644] width:72 height:24 enabled:true
 	on mainwindow open do
 	(
@@ -789,17 +789,16 @@ rollout mainwindow mainWindowName width:544 height:720
 
 
 
-
 rollout mate "材质" width:352 height:552
 (
-	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true
-	button btn7 "贴图另存为" pos:[0,296] width:104 height:24 enabled:true
-	button btn8 "关闭所有高显" pos:[0,384] width:128 height:24 enabled:true
-	button btn9 "打开（所择）高显示" pos:[0,355] width:128 height:29 enabled:true
-	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true
+	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
+	button btn7 "贴图另存为" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn8 "关闭所有高显" pos:[0,384] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
+	button btn9 "打开（所择）高显示" pos:[0,355] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
+	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
-	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true
-	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true
+	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
+	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -813,15 +812,15 @@ rollout mate "材质" width:352 height:552
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
 	button btn275 "Directx" pos:[0,336] width:128 height:19 enabled:false
-	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24
-	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:""
+	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 toolTip:"将复合材质多余的材质删除（只改选择的物体）"
+	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	button btn210 "整理材质" pos:[0,204] width:128 height:64 toolTip:"名字命好 贴图贴好 材质整理好"
-	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24
-	checkbutton ckb_D "D" pos:[0,144] width:28 height:28
-	checkbutton ckb_N "N" pos:[28,144] width:25 height:28
-	checkbutton ckb_S "S" pos:[53,144] width:25 height:28
-	checkbutton ckb_A "A" pos:[78,144] width:25 height:28
-	checkbutton ckb_E "E" pos:[103,144] width:25 height:28
+	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 toolTip:"将复合材质里面同样diffuse的材质合并（只改选择的物体）"
+	checkbutton ckb_D "D" pos:[0,144] width:28 height:28 toolTip:"Diffuse"
+	checkbutton ckb_N "N" pos:[28,144] width:25 height:28 toolTip:"Normal map"
+	checkbutton ckb_S "S" pos:[53,144] width:25 height:28 toolTip:"Specular map"
+	checkbutton ckb_A "A" pos:[78,144] width:25 height:28 toolTip:"透明贴图"
+	checkbutton ckb_E "E" pos:[103,144] width:25 height:28 toolTip:"自发光贴图"
 	button btn68 "清除D以外的贴图" pos:[0,172] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	on mate open do
 	(
@@ -1107,7 +1106,7 @@ rollout mate "材质" width:352 height:552
 	on btn68 pressed do
 	(
 	undo on(
-
+	
 	
 	if $!=undefined do
 	(
@@ -1127,7 +1126,6 @@ rollout mate "材质" width:352 height:552
 	
 	)
 )
-
 
 
 
@@ -1820,10 +1818,10 @@ rollout poly "poly " width:863 height:653
 
 rollout file "文件" width:128 height:448
 (
-	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true
+	button btn1 ".visual" pos:[0,24] width:64 height:24 enabled:true toolTip:"快速导出到SVN目录"
 	button btn2 ".obj" pos:[0,96] width:64 height:24 enabled:true
 	button btn3 ".max" pos:[0,72] width:64 height:24 enabled:true
-	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true
+	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true toolTip:"打开刚刚导出的文件位置"
 	button btn19 "显示文件" pos:[64,96] width:64 height:24 enabled:true
 	button btn20 "显示文件" pos:[64,72] width:64 height:24 enabled:true
 	button btn330 "显示 此文件" pos:[0,204] width:128 height:24 enabled:true
@@ -1835,7 +1833,7 @@ rollout file "文件" width:128 height:448
 	button btn239 "导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
 	button btn240 "系统" pos:[0,184] width:128 height:20 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:48
+	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:48 toolTip:""
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -1853,8 +1851,8 @@ rollout file "文件" width:128 height:448
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
 	button btn47 "显示 备份文件" pos:[0,228] width:128 height:24 enabled:true
-	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24
-	checkbutton ckb311 "位置归零" pos:[0,48] width:64 height:24
+	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
+	checkbutton ckb311 "位置归零" pos:[0,48] width:64 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	on file open do
 	(
 		ckb3.state=visualMateReset
@@ -2071,7 +2069,6 @@ rollout file "文件" width:128 height:448
 	setinisetting  profilePath "file" "visualPosReset" (state as string)
 	)
 )
-
 
 
 rollout snap "吸附" width:362 height:562
