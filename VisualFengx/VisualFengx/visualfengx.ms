@@ -67,12 +67,12 @@ if (classOf visualPosReset)==OkClass do
 	setinisetting  profilePath "file" "visualPosReset" "true"
 )
 
-global getBackMapType= execute (getinisetting  profilePath "mate" "getBackMapType") --position <point5>
+global backMapType= execute (getinisetting  profilePath "mate" "backMapType") --position <point5>
 -->initialize<
-if (classOf getBackMapType)==OkClass do 
+if (classOf backMapType)==OkClass do 
 (
-	getBackMapType=#(1,0,0,0,1)
-	setIniSetting  profilePath "mate" "getBackMapType"  "(1,0,0,0,1)"
+	backMapType=#(1,0,0,0,1)
+	setIniSetting  profilePath "mate" "backMapType"  (backMapType as string)
 )
 
 
@@ -831,15 +831,15 @@ rollout mate "²ÄÖÊ" width:352 height:552
 	   return b
 	)
 		
-	ckb_D.state= intToBool (getBackMapType[1]	)
-	ckb_N.state= intToBool (getBackMapType[2]	)
-	ckb_S.state= intToBool (getBackMapType[3]	)
-	ckb_E.state= intToBool (getBackMapType[4]	)
-	ckb_A.state= intToBool (getBackMapType[5]	)
+	ckb_D.state= intToBool (backMapType[1]	)
+	ckb_N.state= intToBool (backMapType[2]	)
+	ckb_S.state= intToBool (backMapType[3]	)
+	ckb_E.state= intToBool (backMapType[4]	)
+	ckb_A.state= intToBool (backMapType[5]	)
 	)
 	on mate close do
 	(
-	       setIniSetting  profilePath "mate" "getBackMapType"   (getBackMapType as string)
+	       setIniSetting  profilePath "mate" "backMapType"   (backMapType as string)
 	if  canSetWindows==true do 
 	(
 	    mainWindow.ckM.state=false
@@ -1085,23 +1085,23 @@ rollout mate "²ÄÖÊ" width:352 height:552
 	)
 	on ckb_D changed state do
 	(
-	if state==true then  getBackMapType[1]=1 else getBackMapType[1]=0
+	if state==true then  backMapType[1]=1 else backMapType[1]=0
 	)
 	on ckb_N changed state do
 	(
-	if state==true then  getBackMapType[2]=1 else getBackMapType[2]=0
+	if state==true then  backMapType[2]=1 else backMapType[2]=0
 	)
 	on ckb_S changed state do
 	(
-	if state==true then  getBackMapType[3]=1 else getBackMapType[3]=0
+	if state==true then  backMapType[3]=1 else backMapType[3]=0
 	)
 	on ckb_A changed state do
 	(
-	if state==true then  getBackMapType[4]=1 else getBackMapType[4]=0
+	if state==true then  backMapType[4]=1 else backMapType[4]=0
 	)
 	on ckb_E changed state do
 	(
-	if state==true then  getBackMapType[5]=1 else getBackMapType[5]=0
+	if state==true then  backMapType[5]=1 else backMapType[5]=0
 	)
 	on btn68 pressed do
 	(
@@ -3789,23 +3789,21 @@ function  findMapResource nodes=
 			newPath=fengx.mapChangeToResource m.diffusemap.filename 
 			if doesFileExist newPath do
 				local maps=fengx.dToDNS  newPath
-				if getBackMapType[1]==1 do (
-					m.diffusemap =  Bitmaptexture fileName: newPath
-					)
-				
+				if backMapType[1]==1 do m.diffusemap =  Bitmaptexture fileName: newPath
 				namePart= filterString  newPath "_"
-				if getBackMapType[4]==1 and namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
+				if backMapType[4]==1 and namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
 					m.opacityMap = Bitmaptexture fileName:newPath 
 					m.opacityMap.monoOutput = 1
 				)		
-				 if doesFileExist  maps[1] and getBackMapType[2]==1 do
+
+				 if  backMapType[2]==1 and doesFileExist  maps[2]  do
 				 ( 
 				 	m.bumpMap = Normal_Bump ()
 					m.bumpMap.normal_map=Bitmaptexture fileName:maps[2]
 					m.bumpMapAmount = 100
 					)
-				 if doesFileExist  maps[3] and getBackMapType[3]==1 do m.specularLevelMap = Bitmaptexture fileName:maps[3]
-				 if doesFileExist  maps[4] and getBackMapType[5]==1 do m.selfillumMap = Bitmaptexture fileName:maps[4]
+				 if backMapType[3]==1 and doesFileExist  maps[3] do m.specularLevelMap = Bitmaptexture fileName:maps[3]
+				 if backMapType[5]==1 and doesFileExist  maps[4] do m.selfillumMap = Bitmaptexture fileName:maps[4]
 				 )
 				 £©
 		)
