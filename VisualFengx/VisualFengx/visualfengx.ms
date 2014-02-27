@@ -279,7 +279,7 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.52" width:544 height:720
+rollout mainwindow mainWindowName width:544 height:720
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     
@@ -1106,24 +1106,24 @@ rollout mate "²ÄÖÊ" width:352 height:552
 	on btn68 pressed do
 	(
 	undo on(
-	
-	
-	if $!=undefined do
-	(
-	mates=fengx.toStandardMate $.material
-	
-	for m in mates do 
-	(
-		m.bumpMap=undefined
-		--m.diffusemap
-		m.opacityMap =undefined
-		m.selfillumMap=undefined
-		m.specularLevelMap=undefined
-	
+		if $!=undefined do
+		(
+			for o in $ do 
+			(
+				mates=fengx.toStandardMate o.material
+				
+				for m in mates do 
+				(
+					m.bumpMap=undefined
+					--m.diffusemap
+					m.opacityMap =undefined
+					m.selfillumMap=undefined
+					m.specularLevelMap=undefined
+				
+				)
+			)
+		)
 	)
-	)
-	)
-	
 	)
 )
 
