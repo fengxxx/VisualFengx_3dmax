@@ -3151,9 +3151,9 @@ function getNamePath n=
 	)else(
 		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
 	)
-	b=getDirectories(path+"*")
-	
-	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/"
+	b=getFiles(path+"*")
+	-- and tw1[1]!="l"
+	if b.count==0 do path="E:/mf_pangu/tw2/res/scene/"
 	
 	return path
 ),
@@ -3671,9 +3671,9 @@ function getPathFromMapName n=
 	)else(
 		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
 	)
-	b=getDirectories(path+"*")
+	b=getFiles(path+"*")
 	
-	if b.count==0 and tw1[1]!="l"do path="E:/mf_pangu/tw2/res/scene/"
+	if b.count==0 do path="E:/mf_pangu/tw2/res/scene/"
 	path=fengx.beStringPath path
 	return path
 
