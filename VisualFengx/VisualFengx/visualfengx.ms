@@ -3443,7 +3443,8 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 				if n.material.count !=1 then
 				(
 					local deleteIds=#() ---->>unnecessary materials IDs
-					for i=1 to n.material.count do 
+					local mID=#()
+					for i=1 to n.material.materialIDList.count do 
 					(
 						subobjectLevel = 0	
 						clearSelection()
@@ -3460,14 +3461,17 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 							newMM=MultiMaterial()
 							if (n.material.count-deleteIds.count)==0  then newMM.materialList.count == 1 else
 							( 
+							
+								
 								newID=1
 								newMM.materialList.count = n.material.count-deleteIds.count
 								for i=1 to n.material.materialIDList.count do 
 								(
+									--print (findItem deleteIds n.material.materialIDList[i])
 									if findItem deleteIds n.material.materialIDList[i]  ==0 do
-									(					
+									(			
 										newMM[newID]=n.material[i]
-										newMM.materialList[newID]=n.material.materialList[i]
+										newMM.materialIDList[newID]=n.material.materialIDList[i]
 										newID+=1
 										)
 								)

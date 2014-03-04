@@ -185,4 +185,4 @@ else:
 		
 
 #replaceVisual(test)
-#raw_input()
+raw_input()
