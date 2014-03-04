@@ -3609,8 +3609,8 @@ function getMatesTrueMapsPath mates =
 					)
 				)
 			)
-	)
 	
+	)
 	return mapsPath
 	),
 	
@@ -3648,67 +3648,75 @@ function dToDNS DPath=
 	namePart= filterString mapName "_"
 	if namePart.count>2 then
 	(
-	if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
-	temp=""
-	local NName=""
-	local SName=""
-	local EName=""
-	local MName=""
-	--Normal map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="n"
-	for a in namePart do 
-	(
-		temp =a+"_"
-		NName+=temp
+		if namePart[(namePart.count-1)]=="a" do deleteItem namePart  (namePart.count-1) --alpha
+		temp=""
+		local NName=""
+		local SName=""
+		local EName=""
+		local MName=""
+		--Normal map
+		namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="n"
+		for a in namePart do 
+		(
+			temp =a+"_"
+			NName+=temp
+			)
+		--xxx
+		strN=""
+		for i=1 to (NName.count-1) do  strN+=NName[i]
+		NName=strN
+			
+		--Specluar map
+		namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="s"
+		for a in namePart do
+		(
+			temp =a+"_"
+			SName+=temp
 		)
-	--substring NName 1 (NName.count-1)
-	--xxx
-	strN=""
-	for i=1 to (NName.count-1) do  strN+=NName[i]
-	NName=strN
+			
+		strS=""
+		for i=1 to (SName.count-1) do  strS+=SName[i]
+		SName =strS
+	
+		--xxx
+		--Self-Illumination map
+		namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="e"
+		for a in namePart do
+		(
+			temp =a+"_"
+			EName+=temp
+		)
 		
-	--Specluar map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="s"
-	for a in namePart do
-	(
-		temp =a+"_"
-		SName+=temp
-	)
-	--xxx
-	--Self-Illumination map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="e"
-	for a in namePart do
-	(
-		temp =a+"_"
-		EName+=temp
-	)
-	--xxx
-	--mask map
-	namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="m"
-	for a in namePart do
-	(
-		temp =a+"_"
-		MName+=temp
-	)
-	--xxx	
+		strE=""
+		for i=1 to (EName.count-1) do  strE+=EName[i]
+		EName=strE
+		--xxx
+		--mask map
+		namePart[(namePart.count-1)][namePart[(namePart.count-1)].count]="m"
+		for a in namePart do
+		(
+			temp =a+"_"
+			MName+=temp
+		)
+		strM=""
+		for i=1 to (MName.count-1) do  strM+=MName[i]
+		MName=strM
+		--xxx	
 
-	strS=""
-	for i=1 to (SName.count-1) do  strS+=SName[i]
-	SName =strS
-	
-	
-	--substring SName 1 (NName.count-1)
-	append	mapsPathArry (mapPath+NName+mapType)
-	append	mapsPathArry (mapPath+SName+mapType)
-	append	mapsPathArry (mapPath+EName+mapType)
-	append	mapsPathArry (mapPath+MName+mapType)
-	return mapsPathArry
+		
+		--substring SName 1 (NName.count-1)
+		append	mapsPathArry (mapPath+NName+mapType)
+		append	mapsPathArry (mapPath+SName+mapType)
+		append	mapsPathArry (mapPath+EName+mapType)
+		append	mapsPathArry (mapPath+MName+mapType)
+		
 	)else(
-	append	mapsPathArry ""
-	append	mapsPathArry ""
-	append	mapsPathArry ""	
-	append	mapsPathArry ""
+		append	mapsPathArry ""
+		append	mapsPathArry ""
+		append	mapsPathArry ""	
+		append	mapsPathArry ""
 	)
+	return mapsPathArry
 	),
 	
 
@@ -3766,7 +3774,7 @@ function mapChangeToResource mapPath=
 				if  doesFileExist tempDir do
 				(
 					 mapRPath=tempDir
-					 print  （mapPath+"贴图所在的地址可能有误"）
+					 print  (mapPath+"贴图所在的地址可能有误")
 					)
 			)
 		)
@@ -3787,23 +3795,24 @@ function  findMapResource nodes=
 		if mapOn==true do
 		(
 			newPath=fengx.mapChangeToResource m.diffusemap.filename 
+			allMaps=fengx.dToDNS  newPath
 			if doesFileExist newPath do
-				local maps=fengx.dToDNS  newPath
+				
 				if backMapType[1]==1 do m.diffusemap =  Bitmaptexture fileName: newPath
 				namePart= filterString  newPath "_"
 				if backMapType[4]==1 and namePart.count>2 and  namePart[(namePart.count-1)]=="a" do (
 					m.opacityMap = Bitmaptexture fileName:newPath 
 					m.opacityMap.monoOutput = 1
 				)		
-
-				 if  backMapType[2]==1 and doesFileExist  maps[2]  do
-				 ( 
+				if  backMapType[2]==1 and doesFileExist  allMaps[2]  do
+				( 
 				 	m.bumpMap = Normal_Bump ()
-					m.bumpMap.normal_map=Bitmaptexture fileName:maps[2]
+					m.bumpMap.normal_map=Bitmaptexture fileName:allMaps[2]
 					m.bumpMapAmount = 100
 					)
-				 if backMapType[3]==1 and doesFileExist  maps[3] do m.specularLevelMap = Bitmaptexture fileName:maps[3]
-				 if backMapType[5]==1 and doesFileExist  maps[4] do m.selfillumMap = Bitmaptexture fileName:maps[4]
+				if backMapType[3]==1 and doesFileExist  allMaps[3] do m.specularLevelMap = Bitmaptexture fileName:allMaps[3]
+				 
+				if backMapType[5]==1 and doesFileExist  allMaps[4] do m.selfillumMap = Bitmaptexture fileName:allMaps[4]
 				 )
 				 ）
 		)
