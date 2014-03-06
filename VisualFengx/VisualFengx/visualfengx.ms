@@ -24,17 +24,25 @@ global PGround=undefined --snaped ground  <GeometryClass>
 ------------------------------------------------
 ------------------ register export path --------
 --<String>
-global visualPath=""
+--global visualPath=""
 
 global objPath=""
 global maxPath=""
 global saveMapPath=""
 ------------------------------------------------
-
 ------------------------------------------------
 -------------------- profiling -----------------
 global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempdir --settings flie path <string>
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
+
+
+global visualPath=(getinisetting  profilePath "visualPath" "path") 
+if classOf visualPath==OkClass do
+(
+	visualPath="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
+	setinisetting  profilePath "visualPath" "path"  visualPath
+	
+)
 
 global languageId=execute (getinisetting  profilePath "Set" "language") -- Types of language <string>
 -->initialize<
@@ -789,12 +797,12 @@ rollout mainwindow mainWindowName width:544 height:720
 
 
 
-rollout mate "材质" width:352 height:552
+rollout mate "材质" width:128 height:408
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
 	button btn7 "贴图另存为" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn8 "关闭所有高显" pos:[0,384] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
-	button btn9 "打开（所择）高显示" pos:[0,355] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
+	button btn8 "关闭所有高显" pos:[0,352] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
+	button btn9 "打开（所择）高显示" pos:[0,376] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
@@ -1126,7 +1134,6 @@ rollout mate "材质" width:352 height:552
 	)
 	)
 )
-
 
 
 
@@ -1824,7 +1831,7 @@ rollout file "文件" width:128 height:448
 	button btn17 "显示文件" pos:[64,24] width:64 height:24 enabled:true toolTip:"打开刚刚导出的文件位置"
 	button btn19 "显示文件" pos:[64,96] width:64 height:24 enabled:true
 	button btn20 "显示文件" pos:[64,72] width:64 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,204] width:128 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,204] width:128 height:24 enabled:true toolTip:"打开当前文件的文件夹"
 	button btn345 "Restart" pos:[0,260] width:64 height:64 enabled:true
 	button btn346 "Eixt" pos:[64,260] width:64 height:64 enabled:true
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
@@ -1833,7 +1840,7 @@ rollout file "文件" width:128 height:448
 	button btn239 "导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
 	button btn240 "系统" pos:[0,184] width:128 height:20 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:48 toolTip:""
+	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -1850,7 +1857,7 @@ rollout file "文件" width:128 height:448
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,228] width:128 height:24 enabled:true
+	button btn47 "显示 备份文件" pos:[0,228] width:128 height:24 enabled:true toolTip:"打开自动备份的文件夹"
 	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
 	checkbutton ckb311 "位置归零" pos:[0,48] width:64 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	on file open do
@@ -1860,6 +1867,8 @@ rollout file "文件" width:128 height:448
 	)
 	on file close do
 	(
+	
+	
 	if  canSetWindows==true do 
 	(
 	    fileSize=GetDialogSize file  
@@ -2069,16 +2078,14 @@ rollout file "文件" width:128 height:448
 	setinisetting  profilePath "file" "visualPosReset" (state as string)
 	)
 )
-
-
 rollout snap "吸附" width:362 height:562
 (
 	--fn box_filt obj = classof obj == Box 
 	pickbutton chooseit "拾取物体" pos:[0,116] width:128 height:20 --filter:Editable_Poly
-	checkbutton p "Pos" pos:[16,20] width:48 height:20 checked:true
-	checkbutton px "x" pos:[16,40] width:16 height:16 checked:true
-	checkbutton py "y" pos:[32,40] width:16 height:16 checked:true
-	checkbutton pz "z" pos:[48,40] width:16 height:16 checked:true
+	checkbutton p "Pos" pos:[16,20] width:48 height:20 checked:false
+	checkbutton px "x" pos:[16,40] width:16 height:16 checked:false
+	checkbutton py "y" pos:[32,40] width:16 height:16 enabled:true checked:false
+	checkbutton pz "z" pos:[48,40] width:16 height:16 checked:false
 	checkbutton r "Rotate" pos:[0,56] width:48 height:24
 	checkbutton rx "x" pos:[0,80] width:16 height:16
 	checkbutton ry "y" pos:[16,80] width:16 height:16
@@ -2272,7 +2279,6 @@ rollout snap "吸附" width:362 height:562
 		)
 	)
 )
-
 
 
 
@@ -3186,7 +3192,10 @@ function exportSelectToVisual=
 		theClasses = VisualExporter
 		if visualPosReset==true do try $.pos=[0,0,0] catch()
 		if (exportFile (targetPath) selectedOnly:true  using:theClasses)==true do
-		(			
+		(		
+			
+			visualPath=fengx.beWindowsPath TargetPath
+			setinisetting  profilePath "visualPath" "path" visualPath
  			if visualMateReset==true do 
 			(
 			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
@@ -3194,7 +3203,7 @@ function exportSelectToVisual=
 		)
 		try $.pos=pos catch()
     )
-	visualPath=fengx.beWindowsPath TargetPath
+
 	
 ),
 
@@ -3455,36 +3464,22 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 						faces=n.getSelection #Face
 						if (faces as array).count== 0 do append deleteIds MID 
 					)
-						if deleteIds.count!=0 and deleteIds!=undefined do 
-						(							
-							---->>build a new MultiMaterial
-							newMM=MultiMaterial()
-							if (n.material.count-deleteIds.count)==0  then newMM.materialList.count == 1 else
-							( 
-							
-								
-								newID=1
-								newMM.materialList.count = n.material.count-deleteIds.count
-								for i=1 to n.material.materialIDList.count do 
-								(
-									--print (findItem deleteIds n.material.materialIDList[i])
-									if findItem deleteIds n.material.materialIDList[i]  ==0 do
-									(			
-										newMM[newID]=n.material[i]
-										newMM.materialIDList[newID]=n.material.materialIDList[i]
-										newID+=1
-										)
-								)
-								---->>replace with a new material
-								subobjectLevel = 0
-								n.material=newMM
-								if n.material.count==1 do 
-								(
-									local newMate=StandardMaterial()
-									newMate=n.material[1]
-									n.material=newMate
-								)	
+					if deleteIds.count!=0 and deleteIds!=undefined do 
+					(							
+						print deleteIDs
+						for i=1 to n.material.materialIDList.count do (
+							print (findItem deleteIds n.material.materialIDList[i])
+							if findItem deleteIds n.material.materialIDList[i]  !=0  do(
+								 n.material[i]=undefined
 							)
+						)	
+						subobjectLevel = 0
+						if n.material.count==1 do 
+						(
+							local newMate=StandardMaterial()
+							newMate=n.material[1]
+							n.material=newMate
+						)	
 						)
 					try meditMaterials[medit.GetActiveMtlSlot()]=n.material catch()
 				)else
@@ -3760,7 +3755,7 @@ function getPathFromMapName n=
 function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
-	local Rdir="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
+	local Rdir=":\\mf_pangu\\tw2\\res\\scene\\common\\"
 	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\","jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
 	
 	

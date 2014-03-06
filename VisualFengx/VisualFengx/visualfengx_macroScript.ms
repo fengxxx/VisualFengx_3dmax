@@ -431,6 +431,61 @@ buttontext:"resetPos"
 			)
 	)
 )
+
+macroScript resetRotate
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"resetRotate"
+buttontext:"resetRotate"
+(
+	undo on(
+	if $==undefined then
+	(
+		)else
+		(
+			for s in fengx.selectGroupDummy($) do s.rotation=(quat 0 0 0 0)
+			)
+	)
+)
+
+macroScript resetScale
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"resetScale"
+buttontext:"resetScale"
+(
+	undo on(
+	if $==undefined then
+	(
+		)else
+		(
+			for s in fengx.selectGroupDummy($) do s.scale=[1,1,1]
+
+			)
+	)
+)
+
+macroScript resetTransform
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"resetTransform"
+buttontext:"resetTransform"
+(
+	undo on(
+	if $==undefined then
+	(
+		)else
+		(
+			for s in fengx.selectGroupDummy($) do(
+			 s.pos=[0,0,0]
+			 s.rotation=(quat 0 0 0 0)
+			 s.scale=[1,1,1]
+			 )
+			)
+	)
+)
+
+
 macroScript speedScaleBig
 category:"visualFengx"
 --icon:#("MAXScript",1)
