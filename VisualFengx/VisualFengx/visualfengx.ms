@@ -287,13 +287,13 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:544 height:720
+rollout mainwindow "visualFengx_1.52" width:544 height:720
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
     
 	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,36] width:139 height:608 
+	subRollout sub "fengx" pos:[0,36] width:139 height:580 
  
  
 	checkbutton ckP "Poly" pos:[0,20] width:33 height:20
@@ -449,9 +449,11 @@ rollout mainwindow mainWindowName width:544 height:720
 	
 
 
-	button btn65 "已经是最新版" pos:[-1,668] width:141 height:26 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,644] width:68 height:24 enabled:true toolTip:""
-	button btn67 "Eixt" pos:[68,644] width:72 height:24 enabled:true
+	button btn65 "已经是最新版" pos:[0,648] width:140 height:24 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,672] width:72 height:24 enabled:true toolTip:""
+	button btn67 "Eixt" pos:[72,672] width:68 height:24 enabled:true
+	button btn40 "复制" pos:[0,616] width:72 height:32 enabled:true toolTip:""
+	button btn41 "黏贴" pos:[72,616] width:68 height:32 enabled:true toolTip:""
 	on mainwindow open do
 	(
 	   
@@ -784,6 +786,15 @@ rollout mainwindow mainWindowName width:544 height:720
 	        quitmax #noPrompt
 	)
 	)
+	on btn40 pressed do
+	(
+	macros.run "visualFengx" "copyObject"
+	
+	)
+	on btn41 pressed do
+	(
+	macros.run "visualFengx" "PasteObject"
+	)
 )
 
 
@@ -796,11 +807,10 @@ rollout mainwindow mainWindowName width:544 height:720
 
 
 
-
-rollout mate "材质" width:128 height:408
+rollout mate "材质" width:128 height:409
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
-	button btn7 "贴图另存为" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn7 "提取物体贴图" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
 	button btn8 "关闭所有高显" pos:[0,352] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
 	button btn9 "打开（所择）高显示" pos:[0,376] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
@@ -820,10 +830,10 @@ rollout mate "材质" width:128 height:408
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
 	button btn275 "Directx" pos:[0,336] width:128 height:19 enabled:false
-	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 toolTip:"将复合材质多余的材质删除（只改选择的物体）"
+	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 toolTip:"<此功能在菜单 utilities//Clean MultiMaterial 有>将复合材质多余的材质去除（只改选择的物体）"
 	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	button btn210 "整理材质" pos:[0,204] width:128 height:64 toolTip:"名字命好 贴图贴好 材质整理好"
-	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 toolTip:"将复合材质里面同样diffuse的材质合并（只改选择的物体）"
+	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	checkbutton ckb_D "D" pos:[0,144] width:28 height:28 toolTip:"Diffuse"
 	checkbutton ckb_N "N" pos:[28,144] width:25 height:28 toolTip:"Normal map"
 	checkbutton ckb_S "S" pos:[53,144] width:25 height:28 toolTip:"Specular map"
@@ -1116,20 +1126,29 @@ rollout mate "材质" width:128 height:408
 	undo on(
 		if $!=undefined do
 		(
+			log=""
 			for o in $ do 
 			(
-				mates=fengx.toStandardMate o.material
-				
-				for m in mates do 
+				if classOf(o)==Editable_Poly then
 				(
-					m.bumpMap=undefined
-					--m.diffusemap
-					m.opacityMap =undefined
-					m.selfillumMap=undefined
-					m.specularLevelMap=undefined
-				
-				)
+					mates=fengx.toStandardMate o.material
+					for m in mates do 
+					(
+						if m!=undefined do 
+						(
+							print (classOf(m))
+							m.bumpMap=undefined
+							--m.diffusemap
+							m.opacityMap =undefined
+							m.selfillumMap=undefined
+							m.specularLevelMap=undefined
+			                   m.reflectionMap=undefined
+							m.specularMap=undefined
+						)
+					)
+				)else  try log+="\n"+o.name catch()
 			)
+			if log !="" do messageBox ("请将这些物体\n " + log + "\n\n转换成 Editable_Poly ！ 其余的已经处理")	
 		)
 	)
 	)
@@ -1145,10 +1164,7 @@ rollout mate "材质" width:128 height:408
 
 
 
-
-
-
-rollout poly "poly " width:863 height:653
+rollout poly "poly " width:863 height:656
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
@@ -1158,11 +1174,11 @@ rollout poly "poly " width:863 height:653
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,304] width:48 height:24
-	button btn13 "Small -" pos:[16,328] width:48 height:24
-	button btn151 "重置模型" pos:[64,304] width:64 height:48 
-	button btn159 "Edit UV" pos:[0,460] width:128 height:24
-	checkbutton BS "#" pos:[0,304] width:16 height:48
+	button btn7 "Big +" pos:[16,424] width:48 height:24
+	button btn13 "Small -" pos:[16,448] width:48 height:24
+	button btn151 "重置模型" pos:[64,424] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,580] width:128 height:24
+	checkbutton BS "#" pos:[0,424] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:24
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
@@ -1176,51 +1192,58 @@ rollout poly "poly " width:863 height:653
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,284] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,440] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,508] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,508] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,404] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,560] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,628] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,628] width:96 height:24
 	
-	button btn211 "重来" pos:[96,484] width:32 height:48
+	button btn211 "重来" pos:[96,604] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,412] width:64 height:24
+	button btn490 "右旋" pos:[64,532] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,412] width:64 height:24
+	button btn491 "左旋" pos:[0,532] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,356] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[72,182] width:56 height:24
-	button btn564 "归中" pos:[72,158] width:56 height:24
-	button btn565 "Pos" pos:[0,229] width:24 height:24
+	button btn492 "智能旋转" pos:[0,476] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[72,302] width:56 height:24
+	button btn564 "归中" pos:[72,278] width:56 height:24
+	button btn565 "Pos" pos:[0,349] width:24 height:24
 	
-	button btn566 "+" pos:[48,134] width:24 height:24
-	button btn567 "-" pos:[0,134] width:24 height:24
-	button btn568 "+" pos:[48,158] width:24 height:24
-	button btn569 "-" pos:[0,158] width:24 height:24
-	button btn570 "+" pos:[48,182] width:24 height:24
-	button btn571 "-" pos:[0,182] width:24 height:24
-	button btn572 "X" pos:[24,134] width:24 height:24
-	button btn573 "Y" pos:[24,158] width:24 height:24
-	button btn574 "Z" pos:[24,182] width:24 height:24
-	button btn575 "Pivot" pos:[0,253] width:32 height:24
-	button btn576 "Rotate" pos:[36,229] width:40 height:24
-	button btn577 "Scale" pos:[32,253] width:44 height:24
-	button btn578 "所有" pos:[76,229] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,210] width:128 height:19 enabled:false
-	button btn580 "置顶" pos:[72,134] width:56 height:24
-	button btn581 "Pivot" pos:[0,116] width:128 height:18 enabled:false
-	button btn582 "" pos:[24,229] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,484] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,484] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[36,376] width:34 height:16 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,376] width:36 height:16 enabled:true checked:false
-	spinner spn1 "" pos:[68,376] width:60 height:16 range:[0,360,90]
-	button ckb64 "30" pos:[28,392] width:28 height:20 enabled:true checked:false
-	button ckb65 "45" pos:[56,392] width:36 height:20 enabled:true checked:false
-	button ckb66 "90" pos:[92,392] width:36 height:20 enabled:true checked:false
-	button ckb67 "15" pos:[0,392] width:28 height:20 enabled:true checked:false
+	button btn566 "+" pos:[48,254] width:24 height:24
+	button btn567 "-" pos:[0,254] width:24 height:24
+	button btn568 "+" pos:[48,278] width:24 height:24
+	button btn569 "-" pos:[0,278] width:24 height:24
+	button btn570 "+" pos:[48,302] width:24 height:24
+	button btn571 "-" pos:[0,302] width:24 height:24
+	button btn572 "X" pos:[24,254] width:24 height:24
+	button btn573 "Y" pos:[24,278] width:24 height:24
+	button btn574 "Z" pos:[24,302] width:24 height:24
+	button btn575 "Pivot" pos:[0,373] width:32 height:24
+	button btn576 "Rotate" pos:[36,349] width:40 height:24
+	button btn577 "Scale" pos:[32,373] width:44 height:24
+	button btn578 "所有" pos:[76,349] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,330] width:128 height:19 enabled:false
+	button btn580 "置顶" pos:[72,254] width:56 height:24
+	button btn581 "Pivot" pos:[0,236] width:128 height:18 enabled:false
+	button btn582 "" pos:[24,349] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,604] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,604] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,496] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,496] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,496] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,512] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,512] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,512] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,512] width:28 height:20 enabled:true checked:false
+	button btn45 "左" pos:[0,172] width:28 height:24
+	button btn46 "右" pos:[56,172] width:28 height:24
+	spinner spn2 "数量" pos:[64,112] width:60 height:16 range:[0,360,90]
+	button btn47 "复制" pos:[84,148] width:44 height:72
+	button btn48 "上" pos:[28,148] width:28 height:24
+	button btn49 "下" pos:[28,196] width:28 height:24
+	spinner spn3 "间隔单位" pos:[24,132] width:100 height:16 range:[0,360,90]
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1813,9 +1836,54 @@ rollout poly "poly " width:863 height:653
 	(
 	spn1.value=15
 	)
+	on btn45 pressed do
+	(
+		if $!=undfined do
+		(
+			a = copy $
+	         for s in a do 
+	          (
+	            s.pos.y+=($.max.y-$.min.y)
+	
+	           )
+	 
+			)
+	)
+	on btn46 pressed do
+	(
+		if $!=undfined do
+		(
+			a = copy $
+	         for s in a do 
+	          (
+	            s.pos.x+=($.max.x-$.min.x)
+	
+	           )
+	 
+			)
+	)
+	on btn47 pressed do
+	(
+		fengx.createBox()
+	)
+	on btn48 pressed do
+	(
+		fengx.createBox()
+	)
+	on btn49 pressed do
+	(
+		if $!=undfined do
+		(
+			a = copy $
+	         for s in a do 
+	          (
+	            s.pos.z+=($.max.z-$.min.z)
+	
+	           )
+	 
+			)
+	)
 )
-
-
 
 
 
@@ -3102,7 +3170,7 @@ if nodes!=undefined and  exportPath!=undefined then
 	for n in names do 
 	(
 		local namePart= filterString n "_"
-		if namePart.count>2 and namePart[namePart.count]!="coll" do
+		if namePart.count>-1 do--if namePart.count>2 and namePart[namePart.count]!="coll" do
 		(
 			local saveOn=true
 			local nodePath=exportPath+"\\"+n+"\\max"
@@ -3213,22 +3281,31 @@ function getNamePath n=
 	tw1=""
 	tw2=""
 	count=0
+	numOn=True
 	for i=1 to n.count do(
 		if n[i]=="_" do  count+=1
+		if n[i]<"z"and n[i]>"a" do numOn=False
 		if count>=1 and count<2 do 	tw1+=n[i]
 		if count>=2 and count<3 do  tw2+=n[i]
 	)
 	
-	tw1=fengx.getLetter(tw1)
-	tw2=fengx.getLetter(tw2)
-	if tw1[1]=="j" and tw1.count>3 then(
-		path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
-	)else(
-		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
-	)
-	b=getFiles(path+"*")
-	-- and tw1[1]!="l"
-	if b.count==0 do path="E:/mf_pangu/tw2/res/scene/"
+	if count!=0 then
+	(
+		tw1=fengx.getLetter(tw1)
+		tw2=fengx.getLetter(tw2)
+		if tw1[1]=="j" and tw1.count>3 then(
+			path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
+		)else(
+			if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
+		)
+		b=getFiles(path+"*")
+		-- and tw1[1]!="l"
+		)else
+		(
+			if numOn==True then  path="E:/mf_pangu/tw2/res/char/"+n+"/" else path="E:/mf_pangu/tw2/res/scene/"
+			
+		)
+
 	
 	return path
 ),
@@ -3522,7 +3599,7 @@ function toStandardMate mate=
 	mateStandard=#()
 	local tempOn=true
 	try mate.count catch tempOn=false
-	if tempOn==true then 
+	if tempOn==true and mate!=undefined then 
 	(
 		--try(
 		for s in mate do(
@@ -3730,23 +3807,30 @@ function getPathFromMapName n=
 	local tw1=""
 	local tw2=""
 	local count=0
+	charOn=True
 	for i=1 to n.count do(
 		if n[i]=="_" do  count+=1
+		if n[i]<"z" and n[i]>"a" do charOn=false
 		if count>=1 and count<2 do 	tw1+=n[i]
 		if count>=2 and count<3 do  tw2+=n[i]
 	)
 	
-	tw1=fengx.getLetter(tw1)
-	tw2=fengx.getLetter(tw2)
 	
-	if tw1[1]=="j" and tw1.count>3 then(
-		path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
-	)else(
-		if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
-	)
-	b=getFiles(path+"*")
-	
-	if b.count==0 do path="E:/mf_pangu/tw2/res/scene/"
+	if count!=0 then
+	(
+		tw1=fengx.getLetter(tw1)
+		tw2=fengx.getLetter(tw2)
+		
+		if tw1[1]=="j" and tw1.count>3 then(
+			path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
+		)else(
+			if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
+		)
+		b=getFiles(path+"*")
+		)else (
+			if charOn==True then path="E:/mf_pangu/tw2/res/char/"+n+"/texture/" else   path="E:/mf_pangu/tw2/res/scene/"
+		
+		)
 	path=fengx.beStringPath path
 	return path
 
@@ -4821,6 +4905,7 @@ local viewPt = coordSysTM.row4
 --print viewDir
 return viewDir --ray viewPt viewDir
 ),
+
 function geTrotateDir n=
 (
 	rotatedir=[0,0,0]

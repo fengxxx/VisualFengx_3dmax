@@ -268,6 +268,27 @@ buttontext:"editModel"
 )
 --------------------edit model--------------------------
 --------------------edit model--------------------------
+
+macroScript smartMoveL
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveL"
+buttontext:"smartMoveL"
+(
+undo on(
+	if $!=undefined do 
+	(
+		maxP=$.max
+		minP=$.min
+		print maxP
+		print minP
+		for s in $ do 
+			s.pos.x+=maxP.x-minP.x	
+	)
+)
+)
+
+
 macroScript autosmooth 
 category:"visualFengx"
 --icon:#("MAXScript",1)
