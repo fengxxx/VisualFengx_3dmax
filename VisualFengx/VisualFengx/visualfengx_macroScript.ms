@@ -298,29 +298,6 @@ buttontext:"autosmooth "
 	try $.EditablePoly.autosmooth () catch print "autosmooth fath!"
 )
 
-macroScript smartCloneD
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"smartCloneD"
-buttontext:"smartCloneD"
-(
-	if $ !=undefined do 
-	(
-		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
-	)
-)
-
-macroScript smartCloneP
-category:"visualFengx"
---icon:#("MAXScript",1)
-tooltip:"smartCloneP"
-buttontext:"smartCloneP"
-(
-	if $ !=undefined do 
-	(
-		if PGround !=undefined do mousetrack on:PGround prompt:"Tracking" trackCallback:smartColne
-	)
-)
 
 macroScript convertToPoly
 category:"visualFengx"
@@ -581,17 +558,24 @@ macroScript pasteObject category:"visualFengx" tooltip:"pasteObject" buttontext:
   try destroyDialog  clipboard catch()
 )
 
+-----------------------------------smart things
+---------------smart Rotate
 macroScript smartRotationL
 category:"visualFengx"
 --icon:#("MAXScript",1)
 tooltip:"smartRotationL"
 buttontext:"smartRotationL"
 (
---on isEnabled return (selection.count == 1)
---on execute do
-	--(
-	if keyboard.shiftpressed then fengx.smartRotate 30 else fengx.smartRotate 90
-	--)
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		if keyboard.shiftpressed then n=-30 else n=-90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Forward"))[1]]=(fengx.getViewDir("Forward"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
 )
 
 macroScript smartRotationR
@@ -600,13 +584,214 @@ category:"visualFengx"
 tooltip:"smartRotationR"
 buttontext:"smartRotationR"
 (
---on isEnabled return (selection.count == 1)
---on execute do
-	--(
-	if keyboard.shiftpressed then fengx.smartRotate -30 else fengx.smartRotate -90
-	--)
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		if keyboard.shiftpressed then n=30 else  n=90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Forward"))[1]]=(fengx.getViewDir("Forward"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
 )
 
+macroScript smartRotationU
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartRotationU"
+buttontext:"smartRotationU"
+(
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		if keyboard.shiftpressed then n=30 else  n=90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Left"))[1]]=(fengx.getViewDir("Left"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
+
+)
+macroScript smartRotationD
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartRotationD"
+buttontext:"smartRotationD"
+(
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		
+		if keyboard.shiftpressed then n=-30 else n=-90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Left"))[1]]=(fengx.getViewDir("Left"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
+)
+
+macroScript smartRotationF
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartRotationF"
+buttontext:"smartRotationF"
+(
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		if keyboard.shiftpressed then n=-30 else  n=-90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Up"))[1]]=(fengx.getViewDir("Up"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
+)
+
+macroScript smartRotationB
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartRotationB"
+buttontext:"smartRotationB"
+(
+undo on (
+	if $!=undefined do
+	(
+		local n=90
+		if keyboard.shiftpressed then n=30 else  n=90
+		local direction=[0,0,0]
+		direction[(fengx.getViewDir("Up"))[1]]=(fengx.getViewDir("Up"))[2]
+		rotate $ (angleaxis n direction)
+	)
+)	
+)
+---------------smart Rotate
+
+---------------smart move
+macroScript smartMoveL
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveL"
+buttontext:"smartMoveL"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("Left")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+macroScript smartMoveR
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveR"
+buttontext:"smartMoveR"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("Left")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+
+
+macroScript smartMoveU
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveU"
+buttontext:"smartMoveU"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("f")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+macroScript smartMoveD
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveD"
+buttontext:"smartMoveD"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("f")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+
+----------------smart clone
+
+macroScript smartCloneL
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartCloneL"
+buttontext:"smartCloneL"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("Left")
+		for o in $ do 
+		(
+			s = copy o
+			if dir[1]==1 do s.pos.x+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+macroScript smartCloneR
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartCloneR"
+buttontext:"smartCloneR"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("Left")
+		for o in $ do 
+		(
+			s = copy o
+			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
 
 --------------------edit UV--------------------------
 macroScript llllllllllllllllllllllllllllllllllllleditUV

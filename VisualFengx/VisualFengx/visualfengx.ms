@@ -4893,47 +4893,62 @@ function updataLanguage=
 
 */
 ),
-function getViewDir =
+function getRowDir n=
 (
--- The affine TM transforms from world coords to view coords -- so we need the inverse of this matrix
-local coordSysTM = Inverse(getViewTM())
--- The Z axis of this matrix is the view direction.
-local viewDir = -coordSysTM.row3
--- get the view position from this matrix
-local viewPt = coordSysTM.row4
---print viewPt 
---print viewDir
-return viewDir --ray viewPt viewDir
-),
-
-function geTrotateDir n=
-(
-	rotatedir=[0,0,0]
-	x=abs(n.x)
-	y=abs(n.y)
-	z=abs(n.z)
-	count=0
-	allV=#(x,y,z)
-	maxV=0
-	
-	for i=1 to 3 do
+	if classOf(n)==Point3 do 
 	(
-	if  allV[i] > maxV do
-	(
-		maxV=allV[i] 
-		count=i
-		)
+		local dir=[1,1]
+		local count=0
+		local allV=#(abs(n.x),abs(n.y),abs(n.z))
+		local maxV=0
+		for i=1 to 3 do
+		(
+		if  allV[i] > maxV do
+		(
+			maxV=allV[i] 
+			count=i
+			)
+		)	
+		dir[1]=count
+		if n[count]<0 then dir[2]=-1 else dir[2]=1
+		return dir
 	)
 	
-	if n[count]<0 then rotateDir[count]=-1 else rotateDir[count]=1
-	return rotateDir
 ),
+function getViewDir dir=
+(
+	local rDir=#(1,1)
+	if dir!=undefined and dir!=""then
+	(
+		local vieM=Inverse(getViewTM())
+		
+		local leftStr=#("L","l","left","Left","LEFT")
+		local RightStr=#("R","r","right","Right","RIGHT")
+		local UpStr=#("U","u","up","Up","UP")
+		local DownStr=#("D","d","down","Down","DOWN")
+		local ForwardStr=#("F","f","forward","Forward","FORWARD")
+		local BackStr=#("B","b","back","Back","BACK")
+		
+		if findItem LeftStr dir !=0 or findItem RightStr dir !=0  do rDir=fengx.getRowDir vieM.row1
+		--if findItem RightStr dir  do()
+		if findItem UpStr dir !=0 or findItem DownStr dir !=0  do rDir=fengx.getRowDir vieM.row2
+		--if findItem DownStr dir  do()
+		if findItem ForwardStr dir !=0  or findItem backStr dir !=0 do rDir=fengx.getRowDir vieM.row3
+		--if findItem backStr dir  do()
+
+	)else print "调用的方向 字符 写错了"
+	return rDir 
+	
+),
+
 function smartRotate n=
 (
 	if $!=undefined do
 	(
-	direction=fengx.geTrotateDir (fengx.getViewDir())
+	direction=[0,0,0]
+	direction[(fengx.getViewDir("Forward"))[1]]=(fengx.getViewDir("Forward"))[2]
 	--print smartRotateLW
+		
 	if smartRotateLW=="W" then
 	(
 		
