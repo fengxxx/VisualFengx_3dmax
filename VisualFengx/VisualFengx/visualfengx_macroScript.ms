@@ -316,13 +316,16 @@ category:"visualFengx"
 tooltip:"cloneObject"
 buttontext:"cloneObject"
 (
-	if $!=undfined do
+if $!=undefined do 
+(
+	local a=#()
+	for s in $ do 
 	(
-	 	
-		a = copy $
-		--select a 
-		--try a.count catch (select a )
-		)
+		o=copy s
+		o.name=s.name
+		append a o
+	)
+)
 )
 macroScript instanceOBJ
 category:"visualFengx"
@@ -685,7 +688,7 @@ undo on (
 		(
 			if dir[1]==1 do s.pos.x+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			if dir[1]==2 do s.pos.y+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
-			if dir[1]==2 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			)
 	)
 )	
@@ -704,7 +707,7 @@ undo on (
 		(
 			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
-			if dir[1]==2 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			)
 	)
 )	
@@ -720,12 +723,12 @@ buttontext:"smartMoveU"
 undo on (
 	if $!=undefined do
 	(
-		dir=fengx.getViewDir("f")
+		dir=fengx.getViewDir("u")
 		for s in $ do 
 		(
 			if dir[1]==1 do s.pos.x+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			if dir[1]==2 do s.pos.y+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
-			if dir[1]==2 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z+=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			)
 	)
 )	
@@ -739,12 +742,52 @@ buttontext:"smartMoveD"
 undo on (
 	if $!=undefined do
 	(
+		dir=fengx.getViewDir("u")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+
+macroScript smartMoveB
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveB"
+buttontext:"smartMoveB"
+(
+undo on (
+	if $!=undefined do
+	(
 		dir=fengx.getViewDir("f")
 		for s in $ do 
 		(
 			if dir[1]==1 do s.pos.x-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			if dir[1]==2 do s.pos.y-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
-			if dir[1]==2 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z-=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			)
+	)
+)	
+)
+
+macroScript smartMoveF
+category:"visualFengx"
+--icon:#("MAXScript",1)
+tooltip:"smartMoveF"
+buttontext:"smartMoveF"
+(
+undo on (
+	if $!=undefined do
+	(
+		dir=fengx.getViewDir("f")
+		for s in $ do 
+		(
+			if dir[1]==1 do s.pos.x=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==2 do s.pos.y=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
+			if dir[1]==3 do s.pos.z=((s.max[dir[1]]-s.min[dir[1]])*dir[2])
 			)
 	)
 )	

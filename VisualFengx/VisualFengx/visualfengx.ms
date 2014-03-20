@@ -1164,7 +1164,7 @@ rollout mate "材质" width:128 height:409
 
 
 
-rollout poly "poly " width:863 height:656
+rollout poly "poly " width:864 height:688
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
@@ -1174,11 +1174,11 @@ rollout poly "poly " width:863 height:656
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,424] width:48 height:24
-	button btn13 "Small -" pos:[16,448] width:48 height:24
-	button btn151 "重置模型" pos:[64,424] width:64 height:48 
-	button btn159 "Edit UV" pos:[0,580] width:128 height:24
-	checkbutton BS "#" pos:[0,424] width:16 height:48
+	button btn7 "Big +" pos:[16,404] width:48 height:24
+	button btn13 "Small -" pos:[16,428] width:48 height:24
+	button btn151 "重置模型" pos:[64,404] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,560] width:128 height:24
+	checkbutton BS "#" pos:[0,404] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:24
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
@@ -1192,58 +1192,58 @@ rollout poly "poly " width:863 height:656
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,404] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,560] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,628] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,628] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,384] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,540] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,608] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,608] width:96 height:24
 	
-	button btn211 "重来" pos:[96,604] width:32 height:48
+	button btn211 "重来" pos:[96,584] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,532] width:64 height:24
+	button btn490 "右旋" pos:[64,512] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,532] width:64 height:24
+	button btn491 "左旋" pos:[0,512] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,476] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[72,302] width:56 height:24
-	button btn564 "归中" pos:[72,278] width:56 height:24
-	button btn565 "Pos" pos:[0,349] width:24 height:24
+	button btn492 "智能旋转" pos:[0,456] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[72,282] width:56 height:24
+	button btn564 "归中" pos:[72,258] width:56 height:24
+	button btn565 "Pos" pos:[0,329] width:24 height:24
 	
-	button btn566 "+" pos:[48,254] width:24 height:24
-	button btn567 "-" pos:[0,254] width:24 height:24
-	button btn568 "+" pos:[48,278] width:24 height:24
-	button btn569 "-" pos:[0,278] width:24 height:24
-	button btn570 "+" pos:[48,302] width:24 height:24
-	button btn571 "-" pos:[0,302] width:24 height:24
-	button btn572 "X" pos:[24,254] width:24 height:24
-	button btn573 "Y" pos:[24,278] width:24 height:24
-	button btn574 "Z" pos:[24,302] width:24 height:24
-	button btn575 "Pivot" pos:[0,373] width:32 height:24
-	button btn576 "Rotate" pos:[36,349] width:40 height:24
-	button btn577 "Scale" pos:[32,373] width:44 height:24
-	button btn578 "所有" pos:[76,349] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,330] width:128 height:19 enabled:false
-	button btn580 "置顶" pos:[72,254] width:56 height:24
-	button btn581 "Pivot" pos:[0,236] width:128 height:18 enabled:false
-	button btn582 "" pos:[24,349] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,604] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,604] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[36,496] width:34 height:16 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,496] width:36 height:16 enabled:true checked:false
-	spinner spn1 "" pos:[68,496] width:60 height:16 range:[0,360,90]
-	button ckb64 "30" pos:[28,512] width:28 height:20 enabled:true checked:false
-	button ckb65 "45" pos:[56,512] width:36 height:20 enabled:true checked:false
-	button ckb66 "90" pos:[92,512] width:36 height:20 enabled:true checked:false
-	button ckb67 "15" pos:[0,512] width:28 height:20 enabled:true checked:false
-	button btn45 "左" pos:[0,172] width:28 height:24
-	button btn46 "右" pos:[56,172] width:28 height:24
-	spinner spn2 "数量" pos:[64,112] width:60 height:16 range:[0,360,90]
-	button btn47 "复制" pos:[84,148] width:44 height:72
-	button btn48 "上" pos:[28,148] width:28 height:24
-	button btn49 "下" pos:[28,196] width:28 height:24
-	spinner spn3 "间隔单位" pos:[24,132] width:100 height:16 range:[0,360,90]
+	button btn566 "+" pos:[48,234] width:24 height:24
+	button btn567 "-" pos:[0,234] width:24 height:24
+	button btn568 "+" pos:[48,258] width:24 height:24
+	button btn569 "-" pos:[0,258] width:24 height:24
+	button btn570 "+" pos:[48,282] width:24 height:24
+	button btn571 "-" pos:[0,282] width:24 height:24
+	button btn572 "X" pos:[24,234] width:24 height:24
+	button btn573 "Y" pos:[24,258] width:24 height:24
+	button btn574 "Z" pos:[24,282] width:24 height:24
+	button btn575 "Pivot" pos:[0,353] width:32 height:24
+	button btn576 "Rotate" pos:[36,329] width:40 height:24
+	button btn577 "Scale" pos:[32,353] width:44 height:24
+	button btn578 "所有" pos:[76,329] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,310] width:128 height:19 enabled:false
+	button btn580 "置顶" pos:[72,234] width:56 height:24
+	button btn581 "Pivot" pos:[0,216] width:128 height:18 enabled:false
+	button btn582 "" pos:[24,329] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,584] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,584] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,476] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,476] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,476] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,492] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,492] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,492] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,492] width:28 height:20 enabled:true checked:false
+	button btn45 "左" pos:[0,136] width:24 height:48
+	button btn46 "右" pos:[64,136] width:24 height:48
+	button btn47 "复制" pos:[88,112] width:40 height:96
+	button btn48 "上" pos:[0,112] width:88 height:24
+	button btn49 "下" pos:[0,184] width:88 height:24
+	button btn250 "后" pos:[24,136] width:40 height:24
+	button btn251 "前" pos:[24,160] width:40 height:24
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1456,6 +1456,17 @@ rollout poly "poly " width:863 height:656
 	on btn51 pressed do
 	(
 	fengx.showInfor()
+	)(
+		if $!=undfined do
+		(
+			a = copy $
+	         for s in a do 
+	          (
+	            s.pos.z+=($.max.z-$.min.z)
+	
+	           )
+	 
+			)
 	)
 	on c1 changed state do
 	(
@@ -1838,54 +1849,42 @@ rollout poly "poly " width:863 height:656
 	)
 	on btn45 pressed do
 	(
-		if $!=undfined do
-		(
-			a = copy $
-	         for s in a do 
-	          (
-	            s.pos.y+=($.max.y-$.min.y)
-	
-	           )
-	 
-			)
+	macros.run "visualFengx" "smartMoveR"
 	)
 	on btn46 pressed do
 	(
-		if $!=undfined do
-		(
-			a = copy $
-	         for s in a do 
-	          (
-	            s.pos.x+=($.max.x-$.min.x)
-	
-	           )
-	 
-			)
+	macros.run "visualFengx" "smartMoveL"
 	)
 	on btn47 pressed do
 	(
-		fengx.createBox()
+		if $!=undefined do 
+		(
+			local a=#()
+			for s in $ do 
+			(
+				o=copy s
+				o.name=s.name
+				append a o
+			)
+		)
 	)
 	on btn48 pressed do
 	(
-		fengx.createBox()
+	macros.run "visualFengx" "smartMoveU"
 	)
 	on btn49 pressed do
 	(
-		if $!=undfined do
-		(
-			a = copy $
-	         for s in a do 
-	          (
-	            s.pos.z+=($.max.z-$.min.z)
-	
-	           )
-	 
-			)
+	macros.run "visualFengx" "smartMoveD"
+	)
+	on btn250 pressed  do
+	(
+	macros.run "visualFengx" "smartMoveB"
+	)
+	on btn251 pressed  do
+	(
+	macros.run "visualFengx" "smartMoveF"
 	)
 )
-
-
 
 
 
