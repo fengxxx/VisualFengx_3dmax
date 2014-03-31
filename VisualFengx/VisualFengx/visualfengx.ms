@@ -454,6 +454,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:720
 	button btn67 "Eixt" pos:[72,672] width:68 height:24 enabled:true
 	button btn40 "¸´ÖÆ" pos:[0,616] width:72 height:32 enabled:true toolTip:""
 	button btn41 "ð¤Ìù" pos:[72,616] width:68 height:32 enabled:true toolTip:""
+	button btn42 "setMaterials LOG.fengx" pos:[267,72] width:125 height:24
 	on mainwindow open do
 	(
 	   
@@ -795,8 +796,13 @@ rollout mainwindow "visualFengx_1.52" width:544 height:720
 	(
 	macros.run "visualFengx" "PasteObject"
 	)
+	on btn42 pressed do
+	(
+		dir1=getdir #Scripts + "\visualfengx\setMaterials LOG.fengx"
+	
+		edit dir1
+	)
 )
-
 
 
 
