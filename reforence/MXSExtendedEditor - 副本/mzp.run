@@ -1,6 +1,0 @@
-name "MXS Extended Editor Install"
-version 0.1
-
-copy *.* to $scripts\MXSExtendedEditor\
-
-drop $scripts\MXSExtendedEditor\MXSExtendedEditor.ms

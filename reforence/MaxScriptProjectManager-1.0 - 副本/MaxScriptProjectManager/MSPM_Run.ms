@@ -1,1 +1,0 @@
-filein("$userScripts\\MaxScriptProjectManager\\src\\MaxScriptProjectManager.ms");
