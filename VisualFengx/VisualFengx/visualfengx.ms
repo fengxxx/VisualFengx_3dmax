@@ -267,6 +267,7 @@ openIconPath= (getDir #Scripts + "/visualFengx/icon/folder_open_icon&16.png")
 open32IconPath= (getDir #Scripts + "/visualFengx/icon/folder_open_icon&32.png")
 modelEditorPath= ( getDir #scripts + "/visualfengx/icon/modelEditor.png" )
 abBackupPath= getDir #scripts + "/visualfengx/icon/AB.png" 
+copyPasteMPath= getDir #scripts + "/visualfengx/icon/2x2_grid_icon&32.png" 
 
 
 
@@ -281,6 +282,12 @@ if doesFileExist openIconPath then openBmp =openBitMap  openIconPath else openBm
 if doesFileExist open32IconPath then open32Bmp =openBitMap  open32IconPath else open32Bmp =theDefultBmp
 if doesFileExist modelEditorPath then modelEditorBmp  =openBitMap  modelEditorPath else modelEditorBmp = theDefultBmp
 if doesFileExist abBackupPath then ABBmp =openBitMap  abBackupPath else ABBmp = theDefultBmp
+if doesFileExist copyPasteMPath then copyPasteMBmp =openBitMap  copyPasteMPath else copyPasteMBmp = theDefultBmp
+
+
+
+copyPasteBGPath= (getDir #Scripts+ "\\visualFengx\\copyPasteBG.png")
+if doesFileExist copyPasteBGPath do copyPasteBGBmp  = Bitmaptexture fileName:copyPasteBGPath 
 
 -------------------- map ==---------------------
 ------------------------------------------------
@@ -336,7 +343,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:736
 	checkbutton ckb128 "中文" pos:[331,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[330,24] width:64 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[52,0] width:32 height:20
-	checkbutton ckb230 "复制管理" pos:[0,0] width:52 height:20
+	checkbutton ckb230 "复制管理" pos:[96,600] width:40 height:48
 	button btn744 "background" pos:[267,24] width:64 height:24
 	button btn142 "userMacros" pos:[267,48] width:104 height:24
 	button btn143 "@" pos:[371,48] width:24 height:24
@@ -480,11 +487,11 @@ rollout mainwindow "visualFengx_1.52" width:544 height:736
 	
 
 
-	button btn65 "已经是最新版" pos:[40,648] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,648] width:40 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[88,648] width:48 height:32 enabled:true toolTip:"退出max"
-	button btn40 "复制" pos:[0,600] width:72 height:48 enabled:true toolTip:"复制选择的模型"
-	button btn41 "黏贴" pos:[72,600] width:64 height:48 enabled:true toolTip:"黏贴选择的模型"
+	button btn65 "已经是最新版" pos:[48,648] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,648] width:48 height:32 enabled:true toolTip:"重开max"
+	button btn67 "Eixt" pos:[96,648] width:40 height:32 enabled:true toolTip:"退出max"
+	button btn40 "复制" pos:[0,600] width:48 height:48 enabled:true toolTip:"复制选择的模型"
+	button btn41 "黏贴" pos:[48,600] width:48 height:48 enabled:true toolTip:"黏贴选择的模型"
 	button btn42 "setMaterials LOG.fengx" pos:[267,72] width:125 height:24
 	button btn43 "send to SVN" pos:[186,312] width:80 height:24
 	
@@ -520,7 +527,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:736
 		try btn802.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn57.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn143.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-	
+		try ckb230.images=#(copyPasteMBmp , undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
 		
 	)
@@ -862,9 +869,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:736
 	fengx.sendToGitHub  worlkGitHubPath
 	)
 	)
-)
-
-rollout mate "材质" width:128 height:409
+)rollout mate "材质" width:128 height:409
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
 	button btn7 "提取物体贴图" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
@@ -873,7 +878,7 @@ rollout mate "材质" width:128 height:409
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
-	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true images:#(openBmp, undefined, 1,1,1,1,1 ) toolTip:"打开提取贴图的地址"	
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -1210,8 +1215,6 @@ rollout mate "材质" width:128 height:409
 	)
 	)
 )
-
-
 
 
 
@@ -2203,11 +2206,11 @@ rollout file "文件" width:128 height:448
 	on btn72 pressed do
 	(
 		modelPath=getFilenamePath visualPath +getFilenameFile  visualPath +".model"
-		if (getfiles modelPath).count != 0 do(
+		if (getfiles modelPath).count != 0 then(
 		     filePath="-o" +(fengx.beWindowsPath modelPath)
 		     print filePath
 			try  ShellLaunch "E:\\mf_pangu\\bigworld\\tools\\modeleditor\\modeleditor.exe" filePath   catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！"
-		)
+		)else messageBox "这个路径下没有文件 打不开！"
 		)
 	on btn146 pressed do
 	(
@@ -2242,7 +2245,6 @@ rollout file "文件" width:128 height:448
 		try  ShellLaunch "explorer.exe" abPath   catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！"
 		)
 )
-
 
 
 
@@ -3486,7 +3488,12 @@ function  copyNodes  NO =
 	--theBmpT = (bitmap 160 112 color:bc)
 	macros.run "Tools" "Isolate_Selection"
 	max zoomext sel all
+	fEnvironmentMap =environmentMap 
+	uon=useEnvironmentMap
+	environmentMap =copyPasteBGBmp
 	try theBmp = render outputsize:[160,112] vfb:off catch messageBox("渲染缩略图失败")
+	environmentMap =fEnvironmentMap 
+	useEnvironmentMap=uon
 	max unhide all
 	--macros.run "Tools" "Isolate_Selection"
 	max views undo
