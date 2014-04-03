@@ -118,6 +118,19 @@ function install=
 
 	)
 	
+	
+	if (makeDir (beWindowsPath (targetPath+"/icon")))==true do 
+	(
+		for f in  iconFiles do 
+		(
+			local fileName= filenameFromPath f	
+			local newPath=beWindowsPath ((targetPath+"/icon/")+fileName)
+			try deleteFile  newPath catch ()
+			try copyFile  f  newPath catch  print (f +" copy fath!")
+			setup_progress_update 80 "-->> 拷贝icon文件"
+		
+		)
+	)
 	for f in startFiles do
 	(
 		local fileName= filenameFromPath f	
@@ -125,23 +138,12 @@ function install=
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print (f +" copy fath!")
 		setup_progress_update 60 "-->> 拷贝startScript文件"
+		filein (beWindowsPath  ((getDir #startupScripts) +"/fengx_start.ms") )
 	)
-	
-	if (makeDir beWindowsPath ((getDir #startupScripts) +"/VisualFengx/VisualFengx/icon/"))==true do 
-	(
-		for f in iconFile do 
-		(
-			local fileName= filenameFromPath f	
-			local newPath=beWindowsPath ((getDir #startupScripts) + "/"+fileName)
-			try deleteFile  newPath catch ()
-			try copyFile  f  newPath catch  print (f +" copy fath!")
-			setup_progress_update 80 "-->> 拷贝startScript文件"
-		
-		)
-	)
+
 	--try fileIn (getDir #startupScripts +"\\fengx_start.ms") catch (print "cant find fengx_start.ms!")
 	setup_progress_update 100  "-->> 安装完成"
-	if (queryBox "安装完成 最好重启Max！")==true do 
+	if (queryBox "安装完成 最好重启Max！ 不重启也可以用")==true do 
 	(
 		if checkForSave() then (
 		shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
