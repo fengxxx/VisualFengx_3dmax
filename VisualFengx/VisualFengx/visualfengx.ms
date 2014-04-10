@@ -292,7 +292,8 @@ if doesFileExist matePath then mateBmp =openBitMap  matePath else mateBmp= theDe
 
 copyPasteBGPath= (getDir #Scripts+ "\\visualFengx\\copyPasteBG.png")
 if doesFileExist copyPasteBGPath do copyPasteBGBmp  = Bitmaptexture fileName:copyPasteBGPath 
-
+backUpBGPath= (getDir #Scripts+ "\\visualFengx\\backUpBG.png")   
+if doesFileExist backUpBGPath do backUpBGBmp  = Bitmaptexture fileName:backUpBGPath
 -------------------- map ==---------------------
 ------------------------------------------------
 
@@ -338,11 +339,11 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	subRollout sub "fengx" pos:[0,40] width:139 height:569 
  
  
-	checkbutton ckP "Poly" pos:[0,0] width:33 height:40 toolTip:"材质面板"
+	checkbutton ckP "Poly" pos:[0,0] width:33 height:40 toolTip:"poly面板"
 	checkbutton ckM "材质" pos:[33,0] width:33 height:40 toolTip:"材质面板"
 	checkbutton ckF "文件" pos:[66,0] width:36 height:40 toolTip:"文件面板"
-	checkbutton ckS "吸附" pos:[102,20] width:36 height:20
-	checkbutton ckX "↓↑" pos:[102,0] width:36 height:20
+	checkbutton ckS "吸附" pos:[102,20] width:36 height:20 toolTip:"吸附"
+	checkbutton ckX "↓↑" pos:[102,0] width:36 height:20 toolTip:"面板打散 收拢"
 	checkbutton ckb127 "English" pos:[274,0] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[338,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[337,24] width:64 height:24 enabled:false color:(color 42 8 36)
@@ -351,24 +352,24 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn744 "background" pos:[274,24] width:64 height:24
 	button btn142 "userMacros" pos:[274,48] width:104 height:24
 	button btn143 "@" pos:[378,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[193,288] width:80 height:24
-	button btn145 "get from GitHub" pos:[185,208] width:87 height:24
-	button btn32 "卸载！" pos:[145,416] width:127 height:104
+	button btn29 "send to GitHub" pos:[192,312] width:80 height:24
+	button btn145 "get from GitHub" pos:[184,232] width:87 height:24
+	button btn32 "卸载！" pos:[144,440] width:127 height:104
 	
-	button btn697 "send to GitHub" pos:[185,184] width:87 height:24
-	button btn698 "get from GitHub" pos:[193,336] width:80 height:24
-	button btn699 "home" pos:[145,184] width:40 height:48
-	button btn700 "company" pos:[145,288] width:48 height:72
-	button btn801 "install.ms" pos:[145,232] width:104 height:24
-	button btn802 "@" pos:[249,232] width:24 height:24
-	button btn803 "install.ms" pos:[145,360] width:104 height:24
-	button btn804 "@" pos:[249,360] width:24 height:24
-	button btn53 "检查更新！" pos:[145,520] width:127 height:32
-	button btn26 "强制更新！" pos:[145,552] width:127 height:32
-	button btn531 "update" pos:[145,256] width:104 height:24
-	button btn55 "update" pos:[145,384] width:104 height:24
-	button btn56 "@" pos:[249,384] width:24 height:24
-	button btn57 "@" pos:[249,256] width:24 height:24
+	button btn697 "send to GitHub" pos:[184,208] width:87 height:24
+	button btn698 "get from GitHub" pos:[192,360] width:80 height:24
+	button btn699 "home" pos:[144,208] width:40 height:48
+	button btn700 "company" pos:[144,312] width:48 height:72
+	button btn801 "install.ms" pos:[144,256] width:104 height:24
+	button btn802 "@" pos:[248,256] width:24 height:24
+	button btn803 "install.ms" pos:[144,384] width:104 height:24
+	button btn804 "@" pos:[248,384] width:24 height:24
+	button btn53 "检查更新！" pos:[144,544] width:127 height:32
+	button btn26 "强制更新！" pos:[144,576] width:127 height:32
+	button btn531 "update" pos:[144,280] width:104 height:24
+	button btn55 "update" pos:[144,408] width:104 height:24
+	button btn56 "@" pos:[248,408] width:24 height:24
+	button btn57 "@" pos:[248,280] width:24 height:24
 	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
 	
 	button btn196 "visualfengx.ms" pos:[145,48] width:80 height:24
@@ -385,7 +386,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn207 "notepad++" pos:[145,0] width:128 height:24
 	button btn208 "sublime_text" pos:[145,24] width:128 height:24
 	button btn209 "○" pos:[225,120] width:24 height:24
-	button btn210 "run" pos:[145,144] width:128 height:32
+	button btn210 "run" pos:[144,168] width:128 height:32
 		
 	HyperLink hy_help "帮助" pos:[48,712] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
@@ -496,8 +497,8 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn67 "Eixt" pos:[96,660] width:42 height:32 enabled:true toolTip:"退出max"
 	button btn40 "复制" pos:[0,612] width:48 height:48 enabled:true toolTip:"复制选择的模型"
 	button btn41 "黏贴" pos:[48,612] width:48 height:48 enabled:true toolTip:"黏贴选择的模型"
-	button btn42 "setMaterials LOG.fengx" pos:[274,72] width:125 height:24
-	button btn43 "send to SVN" pos:[193,312] width:80 height:24
+	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
+	button btn43 "send to SVN" pos:[192,336] width:80 height:24
 	
 	on mainwindow open do
 	(
@@ -825,7 +826,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	)
 	on btn210 pressed do
 	(
-	--fileIn (getDir #startupScripts +"\\fengx_start.ms")
+	fileIn (getDir #startupScripts +"\\fengx_start.ms")
 	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
 	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
@@ -891,8 +892,6 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 
 
 
-
-
 rollout mate "材质" width:128 height:409
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
@@ -902,7 +901,7 @@ rollout mate "材质" width:128 height:409
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
-	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true  toolTip:"打开提取贴图的地址"	
+	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -918,7 +917,7 @@ rollout mate "材质" width:128 height:409
 	button btn275 "Directx" pos:[0,333] width:128 height:19 enabled:false
 	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 enabled:false toolTip:"<此功能在菜单 utilities//Clean MultiMaterial 有>将复合材质多余的材质去除（只改选择的物体）"
 	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
-	button btn210 "整理材质" pos:[0,204] width:128 height:56 enabled:false toolTip:"名字命好 贴图贴好 材质整理好"
+	button btn210 "整理材质" pos:[0,204] width:128 height:56 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
 	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 enabled:false toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	checkbutton ckb_D "D" pos:[0,144] width:28 height:28 toolTip:"Diffuse"
 	checkbutton ckb_N "N" pos:[28,144] width:25 height:28 toolTip:"Normal map"
@@ -1172,8 +1171,8 @@ rollout mate "材质" width:128 height:409
 	undo on(
 	if $ !=undefined do 
 	(
-	fengx.deleteSameMate $
-	fengx.clearObjectMultiMaterial $
+	--fengx.deleteSameMate $
+	--fengx.clearObjectMultiMaterial $
 	fengx.TexNameToMateName()
 	for s in $ do  fengx.findMapResource s
 	)
@@ -1240,7 +1239,6 @@ rollout mate "材质" width:128 height:409
 	)
 	)
 )
-
 
 
 
@@ -3368,7 +3366,15 @@ if nodes!=undefined and  exportPath!=undefined then
 				max zoomext sel all
 				bc=color 64 67 65 60 
 				theBmp = (bitmap 160 112 color:bc)
-			     try theBmp = render outputsize:[1024,768] vfb:off catch messageBox("渲染缩略图失败")
+				
+				fEnvironmentMap =environmentMap 
+				uon=useEnvironmentMap
+				environmentMap =backUpBGBmp  
+				try theBmp = render outputsize:[1024,768] vfb:off catch messageBox("渲染缩略图失败")
+				environmentMap =fEnvironmentMap 
+				useEnvironmentMap=uon
+				
+			     --try theBmp = render outputsize:[1024,768] vfb:off catch messageBox("渲染缩略图失败")
 				thebmp.filename=exportPath + "\\" + n + "\\" + n +".jpg"
 				save theBmp 
 				--max select all
