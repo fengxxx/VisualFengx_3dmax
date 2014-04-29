@@ -1,4 +1,4 @@
-------------------------------------------------
+	------------------------------------------------
 ------------------------------------------------
 --visualFengx-----------------------------------
 --by fengx--------------------------------------
@@ -1256,12 +1256,12 @@ rollout poly "poly " width:864 height:688
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,428] width:48 height:24
-	button btn13 "Small -" pos:[16,452] width:48 height:24
-	button btn151 "重置模型" pos:[64,428] width:64 height:48 
-	button btn159 "Edit UV" pos:[0,584] width:128 height:24
-	checkbutton BS "#" pos:[0,428] width:16 height:48
-	button btn97 "排序" pos:[72,80] width:56 height:24
+	button btn7 "Big +" pos:[16,446] width:48 height:24
+	button btn13 "Small -" pos:[16,470] width:48 height:24
+	button btn151 "重置模型" pos:[64,446] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,602] width:128 height:24
+	checkbutton BS "#" pos:[0,446] width:16 height:48
+	button btn97 "排序" pos:[72,80] width:56 height:48
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24
 	checkbutton sz "z" pos:[48,80] width:24 height:24
@@ -1274,59 +1274,60 @@ rollout poly "poly " width:864 height:688
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,408] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,564] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,632] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,426] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,582] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,650] width:96 height:24
 	button btn335 "Set Uvlayout Path" pos:[128,632] width:96 height:24
 	
-	button btn211 "重来" pos:[96,608] width:32 height:48
+	button btn211 "重来" pos:[96,626] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,536] width:64 height:24
+	button btn490 "右旋" pos:[64,554] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,536] width:64 height:24
+	button btn491 "左旋" pos:[0,554] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,480] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[72,306] width:56 height:24
-	button btn564 "归中" pos:[72,282] width:56 height:24
-	button btn565 "Pos" pos:[0,353] width:24 height:24
+	button btn492 "智能旋转" pos:[0,498] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[72,324] width:56 height:24
+	button btn564 "归中" pos:[72,300] width:56 height:24
+	button btn565 "Pos" pos:[0,371] width:24 height:24
 	
-	button btn566 "+" pos:[48,258] width:24 height:24
-	button btn567 "-" pos:[0,258] width:24 height:24
-	button btn568 "+" pos:[48,282] width:24 height:24
-	button btn569 "-" pos:[0,282] width:24 height:24
-	button btn570 "+" pos:[48,306] width:24 height:24
-	button btn571 "-" pos:[0,306] width:24 height:24
-	button btn572 "X" pos:[24,258] width:24 height:24
-	button btn573 "Y" pos:[24,282] width:24 height:24
-	button btn574 "Z" pos:[24,306] width:24 height:24
-	button btn575 "Pivot" pos:[0,377] width:32 height:24
-	button btn576 "Rotate" pos:[36,353] width:40 height:24
-	button btn577 "Scale" pos:[32,377] width:44 height:24
-	button btn578 "所有" pos:[76,353] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,334] width:128 height:19 enabled:false
-	button btn580 "置顶" pos:[72,258] width:56 height:24
-	button btn581 "Pivot" pos:[0,240] width:128 height:18 enabled:false
-	button btn582 "" pos:[24,353] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,608] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,608] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[36,500] width:34 height:16 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,500] width:36 height:16 enabled:true checked:false
-	spinner spn1 "" pos:[68,500] width:60 height:16 range:[0,360,90]
-	button ckb64 "30" pos:[28,516] width:28 height:20 enabled:true checked:false
-	button ckb65 "45" pos:[56,516] width:36 height:20 enabled:true checked:false
-	button ckb66 "90" pos:[92,516] width:36 height:20 enabled:true checked:false
-	button ckb67 "15" pos:[0,516] width:28 height:20 enabled:true checked:false
-	button btn45 "左" pos:[0,160] width:24 height:48
-	button btn46 "右" pos:[64,160] width:24 height:48
-	button btn47 "复制" pos:[88,136] width:40 height:96
-	button btn48 "上" pos:[0,136] width:88 height:24
-	button btn49 "下" pos:[0,208] width:88 height:24
-	button btn250 "后" pos:[24,160] width:40 height:24
-	button btn251 "前" pos:[24,184] width:40 height:24
-	button btn149 "移动模型" pos:[0,118] width:128 height:18 enabled:false
+	button btn566 "+" pos:[48,276] width:24 height:24
+	button btn567 "-" pos:[0,276] width:24 height:24
+	button btn568 "+" pos:[48,300] width:24 height:24
+	button btn569 "-" pos:[0,300] width:24 height:24
+	button btn570 "+" pos:[48,324] width:24 height:24
+	button btn571 "-" pos:[0,324] width:24 height:24
+	button btn572 "X" pos:[24,276] width:24 height:24
+	button btn573 "Y" pos:[24,300] width:24 height:24
+	button btn574 "Z" pos:[24,324] width:24 height:24
+	button btn575 "Pivot" pos:[0,395] width:32 height:24
+	button btn576 "Rotate" pos:[36,371] width:40 height:24
+	button btn577 "Scale" pos:[32,395] width:44 height:24
+	button btn578 "所有" pos:[76,371] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,352] width:128 height:19 enabled:false
+	button btn580 "置顶" pos:[72,276] width:56 height:24
+	button btn581 "Pivot" pos:[0,258] width:128 height:18 enabled:false
+	button btn582 "" pos:[24,371] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,626] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,626] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,518] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,518] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,518] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,534] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,534] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,534] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,534] width:28 height:20 enabled:true checked:false
+	button btn45 "左" pos:[0,178] width:24 height:48
+	button btn46 "右" pos:[64,178] width:24 height:48
+	button btn47 "复制" pos:[88,154] width:40 height:96
+	button btn48 "上" pos:[0,154] width:88 height:24
+	button btn49 "下" pos:[0,226] width:88 height:24
+	button btn250 "后" pos:[24,178] width:40 height:24
+	button btn251 "前" pos:[24,202] width:40 height:24
+	button btn149 "移动模型" pos:[0,136] width:128 height:18 enabled:false
+	button btn53 "标准排列" pos:[0,104] width:72 height:24
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -1967,20 +1968,27 @@ rollout poly "poly " width:864 height:688
 	(
 	macros.run "visualFengx" "smartMoveF"
 	)
+	on btn53 pressed do
+	(
+	undo on(
+	if $!=undefined  do 
+	(
+	 fengx.matrixObject $
+	)
+	
+	)
+	)
 )
 
-
-
-
-rollout file "文件" width:128 height:448
+rollout file "文件" width:720 height:488
 (
 	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true toolTip:"快速导出到SVN目录"
-	button btn2 ".obj" pos:[0,344] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
-	button btn3 ".max" pos:[0,320] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
+	button btn2 ".obj" pos:[0,456] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
+	button btn3 ".max" pos:[0,432] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
 	button btn17 "显示文件" pos:[64,72] width:64 height:48 enabled:true toolTip:"打开刚刚导出的文件位置"
-	button btn19 "显示文件" pos:[104,344] width:24 height:24 enabled:true
-	button btn20 "显示文件" pos:[104,320] width:24 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,248] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
+	button btn19 "显示文件" pos:[104,456] width:24 height:24 enabled:true
+	button btn20 "显示文件" pos:[104,432] width:24 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,376] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
@@ -2003,16 +2011,21 @@ rollout file "文件" width:128 height:448
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,272] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn47 "显示 备份文件" pos:[0,400] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
 	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
 	checkbutton ckb311 "位置归零" pos:[64,24] width:64 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	button btn72 "ModelEditor" pos:[0,72] width:64 height:48 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
 	button btn146 "存为AB备份格式" pos:[0,152] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
-	button btn258 "显示 备份文件" pos:[104,272] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	button btn259 "显示 此文件" pos:[104,248] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
+	button btn258 "显示 备份文件" pos:[104,400] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn259 "显示 此文件" pos:[104,376] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
 	button btn333 "打开刚刚备份的文件夹" pos:[64,152] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
-	button btn404 "提取物体贴图" pos:[0,208] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn405 "@" pos:[104,208] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn404 "提取物体贴图" pos:[0,344] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn405 "@" pos:[104,344] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn33 "智能打开模型" pos:[0,208] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
+	button btn34 "智能打开模型" pos:[0,232] width:64 height:48 toolTip:"智能打开模型"
+	button btn35 "智能打开模型" pos:[64,232] width:64 height:48 toolTip:"智能打开模型所在的文件夹"
+	button btn106 "智能导入primitives" pos:[0,280] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn143 "智能导入地形" pos:[0,304] width:128 height:24 enabled:false toolTip:"智能打开模型"
 	on file open do
 	(
 		ckb3.state=visualMateReset
@@ -2020,12 +2033,14 @@ rollout file "文件" width:128 height:448
 	
 		try btn72.images=#(modelEditorBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn17.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn35.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn19.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn20.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn258.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn259.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn333.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn146.images=#(ABBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn34.images=#(modelEditorBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
 		try btn405.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
 	)
 	on file close do
@@ -2292,12 +2307,35 @@ rollout file "文件" width:128 height:448
 		try  ShellLaunch "explorer.exe" filePath catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！"
 	)
 	)
+	on btn33 pressed do
+		(
+	
+	)
+	on btn34 pressed do
+	(
+	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	   tempStr=DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\openByModelEditor.py") tempStr
+	)
+	on btn35 pressed do
+	(
+	 DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	 tempStr=DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\openInExplorer.py") tempStr
+	)
+	on btn106 pressed do
+	(
+	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	   tempStr=DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py") tempStr
+	)
+	on btn143 pressed do
+	(
+	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	   tempStr=DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py") tempStr
+	)
 )
-
-
-
-
-
 
 
 
@@ -4302,6 +4340,33 @@ undo on(
 	)
 )
 )
+),
+
+function matrixObject n=
+(
+b=#()
+for s in n do 
+(	
+	v=(s.max.x-s.min.x)
+	y=(s.max.y-s.min.y)
+	
+	append b v
+	append b y
+)
+
+t=sqrt b.count
+x=int t
+y=x+1
+maxV=amax b
+
+for ix=1 to x do 
+	(
+		for iy=1 to y do
+		(
+			print "xx"
+			try n[((ix-1)*x+iy)].pos=[(ix-1)*maxV,(iy-1)*maxV,0] catch print " x "
+		)
+	)
 ),
 
 function matrixSort =
