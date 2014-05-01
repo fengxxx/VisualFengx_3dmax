@@ -245,16 +245,42 @@ buttontext:"createStandMen"
 	--fengx.Stdmen()	
 	tempCopyPath =getDir #scripts +"\\visualFengx\\standardMen_2m.obj"
 	tpos=[0,0,0]
-	if $!=undefined do
-	( 
-		tpos=$.pos
-		tpos.z=$.max.z
-	)
-	importFile tempCopyPath  #noPrompt 
-	$.pos=tpos
-	$.name="stardardMen_2m_01"
-	--max zoomext sel all
-	max views undo
+	undo on(
+	    bpos=[0,0,0]
+	    sx=10.0
+	    sy=10.0
+	    sz=10.0
+	    if $ !=undefined then
+	    (    
+	        --sx=($.max.x-$.min.x)
+	        --sy=($.max.y-$.min.y)
+	        --sz=($.max.z-$.min.z)
+	        --sx=(sx+sy)/4
+	        --bx=($.max.x-$.min.x)/2+$.min.x
+	        --bpy=$.max.y+sy  
+		   ax=($.max.x+$.min.x)/2
+		   ay=($.max.y+$.min.y)/2
+	        bpos=[ax,ay,$.max.z]
+	        --Cylinder smooth:on heightsegs:1 capsegs:1 sides:16 height:sz radius: sx mapcoords:on pos:bpos isSelected:on
+	        	importFile tempCopyPath  #noPrompt 
+			$.pos=bpos
+			$.name="stardardMen_2m_01"
+			$.material=Standardmaterial ()   
+			max views undo 
+	        )else
+	        (
+	        	importFile tempCopyPath  #noPrompt 
+			$.pos=[0,0,0]
+			$.name="stardardMen_2m_01"
+			$.material=Standardmaterial () 
+			max views undo 	           
+
+	        )    
+	    )
+
+	
+
+
 	)
 )
 --------------------create something--------------------

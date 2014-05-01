@@ -4344,27 +4344,30 @@ undo on(
 
 function matrixObject n=
 (
-b=#()
+ax=#()
+ay=#()
 for s in n do 
 (	
-	v=(s.max.x-s.min.x)
-	y=(s.max.y-s.min.y)
+	vx=(s.max.x-s.min.x)
+	vy=(s.max.y-s.min.y)
 	
-	append b v
-	append b y
+	append ax vx
+	append ay vy
 )
 
-t=sqrt b.count
+t=sqrt n.count
 x=int t
-y=x+1
-maxV=amax b
-
-for ix=1 to x do 
+y=int n.count/x
+x+=1
+--y+=1
+maxX=(amax ax)*1.08
+maxY=(amax ay)*1.08
+nom=0
+for ix=1 to (x+1) do 
 	(
-		for iy=1 to y do
+		for iy=1 to (y+1) do
 		(
-			print "xx"
-			try n[((ix-1)*x+iy)].pos=[(ix-1)*maxV,(iy-1)*maxV,0] catch print " x "
+			try n[((ix-1)*x+iy)].pos=[(ix-1)*maxX,(iy-1)*maxY,0] catch print " x "
 		)
 	)
 ),
