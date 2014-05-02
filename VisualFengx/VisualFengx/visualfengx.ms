@@ -195,8 +195,8 @@ if (classOf windowActiveState)==OkClass do
 )
 if (classOf windowNegativeState)==OkClass do 
 (
-	windowNegativeState=1 
-	setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  "1"
+	windowNegativeState=3 
+	setIniSetting  profilePath "rolloutSetting" "windowNegativeState"  "3"
 )
 if (classOf windowState)==OkClass do 
 (
@@ -892,16 +892,16 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 
 
 
-rollout mate "材质" width:128 height:409
+rollout mate "材质" width:541 height:615
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
-	button btn7 "提取物体贴图" pos:[0,296] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn8 "关闭所有高显" pos:[0,352] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
-	button btn9 "打开（所择）高显示" pos:[0,376] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
+	button btn7 "提取物体贴图" pos:[0,272] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn8 "关闭所有高显" pos:[0,328] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
+	button btn9 "打开（所择）高显示" pos:[0,352] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
-	button btn15 "@" pos:[104,296] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	button btn15 "@" pos:[104,272] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -914,17 +914,17 @@ rollout mate "材质" width:128 height:409
 	button btn273 "材质" pos:[0,0] width:128 height:16 enabled:false
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
-	button btn275 "Directx" pos:[0,333] width:128 height:19 enabled:false
-	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 enabled:true toolTip:"<此功能在菜单 utilities//Clean MultiMaterial 有>将复合材质多余的材质去除（只改选择的物体）"
-	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
-	button btn210 "整理材质" pos:[0,204] width:128 height:56 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
-	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
-	checkbutton ckb_D "D" pos:[0,144] width:28 height:28 toolTip:"Diffuse"
-	checkbutton ckb_N "N" pos:[28,144] width:25 height:28 toolTip:"Normal map"
-	checkbutton ckb_S "S" pos:[53,144] width:25 height:28 toolTip:"Specular map"
-	checkbutton ckb_A "A" pos:[78,144] width:25 height:28 toolTip:"透明贴图"
-	checkbutton ckb_E "E" pos:[103,144] width:25 height:28 toolTip:"自发光贴图"
-	button btn68 "清除D以外的贴图" pos:[0,172] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
+	button btn275 "Directx" pos:[0,309] width:128 height:19 enabled:false
+	button btn21 "去除 多余子材质" pos:[0,64] width:128 height:24 enabled:true toolTip:"去除没有使用到的子材质 重新排序材质ID <此功能在菜单 utilities//Clean MultiMaterial 有 但是貌似很多情况先不管用 还卡>（只改选择的物体）"
+	button btn20 "找回贴图" pos:[0,88] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
+	button btn210 "整理材质" pos:[0,180] width:128 height:56 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
+	button btn52 "去除 重复子材质" pos:[128,64] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
+	checkbutton ckb_D "D" pos:[0,120] width:28 height:28 toolTip:"Diffuse"
+	checkbutton ckb_N "N" pos:[28,120] width:25 height:28 toolTip:"Normal map"
+	checkbutton ckb_S "S" pos:[53,120] width:25 height:28 toolTip:"Specular map"
+	checkbutton ckb_A "A" pos:[78,120] width:25 height:28 toolTip:"透明贴图"
+	checkbutton ckb_E "E" pos:[103,120] width:25 height:28 toolTip:"自发光贴图"
+	button btn68 "清除D以外的贴图" pos:[0,148] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	on mate open do
 	(
 		function intToBool i=
@@ -1172,7 +1172,7 @@ rollout mate "材质" width:128 height:409
 	if $ !=undefined do 
 	(
 	--fengx.deleteSameMate $
-	--fengx.clearObjectMultiMaterial $
+	fengx.clearObjectMultiMaterial $
 	fengx.TexNameToMateName()
 	for s in $ do  fengx.findMapResource s
 	)
@@ -1239,7 +1239,6 @@ rollout mate "材质" width:128 height:409
 	)
 	)
 )
-
 
 
 
@@ -2021,8 +2020,8 @@ rollout file "文件" width:720 height:488
 	button btn404 "提取物体贴图" pos:[0,344] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
 	button btn405 "@" pos:[104,344] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
 	button btn33 "智能打开模型" pos:[0,208] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
-	button btn34 "智能打开模型" pos:[0,232] width:64 height:48 toolTip:"智能打开模型"
-	button btn35 "智能打开模型" pos:[64,232] width:64 height:48 toolTip:"智能打开模型所在的文件夹"
+	button btn34 "智能打开模型" pos:[0,232] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
+	button btn35 "智能打开模型" pos:[64,232] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
 	button btn106 "智能导入primitives" pos:[0,280] width:128 height:24 enabled:false toolTip:"智能打开模型"
 	button btn143 "智能导入地形" pos:[0,304] width:128 height:24 enabled:false toolTip:"智能打开模型"
 	on file open do
@@ -2335,7 +2334,6 @@ rollout file "文件" width:720 height:488
 	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py") tempStr
 	)
 )
-
 
 
 
