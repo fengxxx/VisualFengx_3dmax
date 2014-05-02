@@ -915,10 +915,10 @@ rollout mate "材质" width:128 height:409
 		
 	button bmap "贴图" pos:[128,168] width:128 height:16 enabled:false
 	button btn275 "Directx" pos:[0,333] width:128 height:19 enabled:false
-	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 enabled:false toolTip:"<此功能在菜单 utilities//Clean MultiMaterial 有>将复合材质多余的材质去除（只改选择的物体）"
+	button btn21 "去除 多余子材质" pos:[0,88] width:128 height:24 enabled:true toolTip:"<此功能在菜单 utilities//Clean MultiMaterial 有>将复合材质多余的材质去除（只改选择的物体）"
 	button btn20 "找回贴图" pos:[0,112] width:128 height:32 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	button btn210 "整理材质" pos:[0,204] width:128 height:56 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
-	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 enabled:false toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
+	button btn52 "去除 重复子材质" pos:[0,64] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	checkbutton ckb_D "D" pos:[0,144] width:28 height:28 toolTip:"Diffuse"
 	checkbutton ckb_N "N" pos:[28,144] width:25 height:28 toolTip:"Normal map"
 	checkbutton ckb_S "S" pos:[53,144] width:25 height:28 toolTip:"Specular map"
@@ -1239,7 +1239,6 @@ rollout mate "材质" width:128 height:409
 	)
 	)
 )
-
 
 
 
@@ -3736,53 +3735,41 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 (
 	if nodes!=undefined do
 	(
-		for n in nodes do
+		for n in nodes do 
 		(
-			if classOf n == Editable_Poly do 
+			if classOf n==Editable_Poly and classOf n.material==Multimaterial do
 			(
-			if classOf n.material == MultiMaterial do
-			(
-				if n.material.count !=1 then
+				faceA=#()
+				mateA=#()
+				local deleteIds=#() ---->>unnecessary materials IDs
+				local mID=#()
+				for i=1 to n.material.materialIDList.count do 
 				(
-					local deleteIds=#() ---->>unnecessary materials IDs
-					local mID=#()
-					for i=1 to n.material.materialIDList.count do 
-					(
-						subobjectLevel = 0	
-						clearSelection()
-						select n
-						subobjectLevel = 4
-						MID=n.material.materialIDList[i]
-						n.selectByMaterial MID
-						faces=n.getSelection #Face
-						if (faces as array).count== 0 do append deleteIds MID 
+					subobjectLevel = 0	
+					clearSelection()
+					select n
+					subobjectLevel = 4
+					MID=n.material.materialIDList[i]
+					n.selectByMaterial MID
+					faces=n.getSelection #Face
+					--print faces
+					if (faces as array).count!=0 do(
+						append mateA n.material[n.material.materialIDList[i]]
+						
+						append faceA (polyOp.getFaceSelection($))
 					)
-					if deleteIds.count!=0 and deleteIds!=undefined do 
-					(							
-						print deleteIDs
-						for i=1 to n.material.materialIDList.count do (
-							print (findItem deleteIds n.material.materialIDList[i])
-							if findItem deleteIds n.material.materialIDList[i]  !=0  do(
-								 n.material[i]=undefined
-							)
-						)	
-						subobjectLevel = 0
-						if n.material.count==1 do 
-						(
-							local newMate=StandardMaterial()
-							newMate=n.material[1]
-							n.material=newMate
-						)	
-						)
-					try meditMaterials[medit.GetActiveMtlSlot()]=n.material catch()
-				)else
+				)	
+				local newMate=MultiMaterial()
+				newMate.materialList=mateA
+				print newmate
+				meditMaterials[6]=newMate
+				n.material=newMate
+				i=1
+				for s in faceA do 
 				(
-					---->>just a material only
-					local newMate=standardMaterial()
-					newMate=n.material[1]
-					n.material=newMate
-				)
-				subobjectLevel = 0
+					polyOp.setFaceSelection $ s
+					$.EditablePoly.setMaterialIndex  i  1 
+					i+=1
 				)
 			)
 		)
@@ -4333,7 +4320,7 @@ undo on(
 		if importOn==true do(
 			if $!=undefined do(
 				try $.material=yuModel.material catch  print "x"
-				try $.pivot=yuModel.pivot catch print "x"
+				try $.pivot=yuModel.pivot catch "x"
 			)
 			delete(yuModel)
 		)
@@ -4367,7 +4354,7 @@ for ix=1 to (x+1) do
 	(
 		for iy=1 to (y+1) do
 		(
-			try n[((ix-1)*x+iy)].pos=[(ix-1)*maxX,(iy-1)*maxY,0] catch print " x "
+			try n[((ix-1)*x+iy)].pos=[(ix-1)*maxX,(iy-1)*maxY,0] catch ()
 		)
 	)
 ),
