@@ -339,6 +339,8 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	subRollout sub "fengx" pos:[0,40] width:139 height:569 
  
  
+ 
+ 
 	checkbutton ckP "Poly" pos:[0,0] width:33 height:40 toolTip:"poly面板"
 	checkbutton ckM "材质" pos:[33,0] width:33 height:40 toolTip:"材质面板"
 	checkbutton ckF "文件" pos:[66,0] width:36 height:40 toolTip:"文件面板"
@@ -352,24 +354,24 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn744 "background" pos:[274,24] width:64 height:24
 	button btn142 "userMacros" pos:[274,48] width:104 height:24
 	button btn143 "@" pos:[378,48] width:24 height:24
-	button btn29 "send to GitHub" pos:[192,312] width:80 height:24
-	button btn145 "get from GitHub" pos:[184,232] width:87 height:24
-	button btn32 "卸载！" pos:[144,440] width:127 height:104
+	button btn29 "send to GitHub" pos:[192,336] width:80 height:24
+	button btn145 "get from GitHub" pos:[184,256] width:87 height:24
+	button btn32 "卸载！" pos:[144,464] width:127 height:104
 	
 	button btn697 "send to GitHub" pos:[184,208] width:87 height:24
-	button btn698 "get from GitHub" pos:[192,360] width:80 height:24
-	button btn699 "home" pos:[144,208] width:40 height:48
-	button btn700 "company" pos:[144,312] width:48 height:72
-	button btn801 "install.ms" pos:[144,256] width:104 height:24
-	button btn802 "@" pos:[248,256] width:24 height:24
-	button btn803 "install.ms" pos:[144,384] width:104 height:24
-	button btn804 "@" pos:[248,384] width:24 height:24
-	button btn53 "检查更新！" pos:[144,544] width:127 height:32
-	button btn26 "强制更新！" pos:[144,576] width:127 height:32
-	button btn531 "update" pos:[144,280] width:104 height:24
-	button btn55 "update" pos:[144,408] width:104 height:24
-	button btn56 "@" pos:[248,408] width:24 height:24
-	button btn57 "@" pos:[248,280] width:24 height:24
+	button btn698 "get from GitHub" pos:[192,384] width:80 height:24
+	button btn699 "home" pos:[144,208] width:40 height:72
+	button btn700 "company" pos:[144,336] width:48 height:72
+	button btn801 "install.ms" pos:[144,280] width:104 height:24
+	button btn802 "@" pos:[248,280] width:24 height:24
+	button btn803 "install.ms" pos:[144,408] width:104 height:24
+	button btn804 "@" pos:[248,408] width:24 height:24
+	button btn53 "检查更新！" pos:[144,568] width:127 height:32
+	button btn26 "强制更新！" pos:[144,600] width:127 height:32
+	button btn531 "update" pos:[144,304] width:104 height:24
+	button btn55 "update" pos:[144,432] width:104 height:24
+	button btn56 "@" pos:[248,432] width:24 height:24
+	button btn57 "@" pos:[248,304] width:24 height:24
 	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
 	
 	button btn196 "visualfengx.ms" pos:[145,48] width:80 height:24
@@ -498,8 +500,9 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn40 "复制" pos:[0,612] width:48 height:48 enabled:true toolTip:"复制选择的模型"
 	button btn41 "黏贴" pos:[48,612] width:48 height:48 enabled:true toolTip:"黏贴选择的模型"
 	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
-	button btn43 "send to SVN" pos:[192,336] width:80 height:24
+	button btn43 "send to SVN" pos:[192,360] width:80 height:24
 	
+	button btn44 "send to SVN" pos:[184,232] width:88 height:24
 	on mainwindow open do
 	(
 	   
@@ -511,8 +514,8 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 			--print "xiande xxx"
 			mainWindow.btn65.text="最新版-- " +(newVersions as string)
 			mainWindow.btn65.enabled=true
-			try btn65.images=#(updataBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		)else try btn65.images=#(unUpdataBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+			try btn65.images=#(updataBmp, updataBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		)else try btn65.images=#(unUpdataBmp, updataBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		--（
 			--print "jiade xxx"
 			--mainWindow.btn65.text="已经是最新版" 
@@ -520,23 +523,23 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		--）
 	
 	
-		try btn66.images=#(restartBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn40.images=#(copytBmp , undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn41.images=#(pasteBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn66.images=#(restartBmp, restartBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn40.images=#(copytBmp , copytBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn41.images=#(pasteBmp, pasteBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
-		try ckX.images=#(expandBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn67.images=#(exitBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn203.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn201.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn198.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn199.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn802.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn57.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn143.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckb230.images=#(copyPasteMBmp , undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckP.images=#(polyBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckF.images=#(fileBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckM.images=#(mateBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckX.images=#(expandBmp, expandBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn67.images=#(exitBmp, exitBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn203.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn201.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn198.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn199.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn802.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn57.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn143.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckb230.images=#(copyPasteMBmp , copyPasteMBmp , 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckP.images=#(polyBmp, polyBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckF.images=#(fileBmp, fileBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckM.images=#(mateBmp, mateBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
 	
 	
 		
@@ -873,9 +876,17 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	)
 	on btn43 pressed do
 	(
-	if (queryBox "确定要同步到 GitHub!")==true do
+	if (queryBox "确定要同步到 SVN!")==true do
 	(
 	worlkGitHubPath="E:\\SVN\\VisualFengx_3dmax\\VisualFengx\\"
+	fengx.sendToGitHub  worlkGitHubPath
+	)
+	)
+	on btn44 pressed do
+	(
+	if (queryBox "确定要同步到 SVN!")==true do
+	(
+	worlkGitHubPath="K:\\SVN\\VisualFengx_3dmax\\VisualFengx\\VisualFengx\\"
 	fengx.sendToGitHub  worlkGitHubPath
 	)
 	)
@@ -939,7 +950,7 @@ rollout mate "材质" width:541 height:615
 		ckb_S.state= intToBool (backMapType[3]	)
 		ckb_E.state= intToBool (backMapType[4]	)
 		ckb_A.state= intToBool (backMapType[5]	)
-		try btn15.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn15.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
 	)
 	on mate close do
 	(
@@ -2029,17 +2040,17 @@ rollout file "文件" width:720 height:488
 		ckb3.state=visualMateReset
 		ckb311.state=visualPosReset
 	
-		try btn72.images=#(modelEditorBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn17.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn35.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn19.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn20.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn258.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn259.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn333.images=#(open32Bmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn146.images=#(ABBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn34.images=#(modelEditorBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn405.images=#(openBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn72.images=#(modelEditorBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn17.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn35.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn19.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn20.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn258.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn259.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn333.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn146.images=#(ABBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn34.images=#(modelEditorBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn405.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
 	)
 	on file close do
 	(
