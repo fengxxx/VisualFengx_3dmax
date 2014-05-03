@@ -356,7 +356,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn143 "@" pos:[378,48] width:24 height:24
 	button btn29 "send to GitHub" pos:[192,336] width:80 height:24
 	button btn145 "get from GitHub" pos:[184,256] width:87 height:24
-	button btn32 "卸载！" pos:[144,464] width:127 height:104
+	button btn32 "卸载！" pos:[144,464] width:127 height:64
 	
 	button btn697 "send to GitHub" pos:[184,208] width:87 height:24
 	button btn698 "get from GitHub" pos:[192,384] width:80 height:24
@@ -366,8 +366,8 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn802 "@" pos:[248,280] width:24 height:24
 	button btn803 "install.ms" pos:[144,408] width:104 height:24
 	button btn804 "@" pos:[248,408] width:24 height:24
-	button btn53 "检查更新！" pos:[144,568] width:127 height:32
-	button btn26 "强制更新！" pos:[144,600] width:127 height:32
+	button btn53 "检查更新！" pos:[144,528] width:127 height:24
+	button btn26 "强制更新！" pos:[144,552] width:127 height:24
 	button btn531 "update" pos:[144,304] width:104 height:24
 	button btn55 "update" pos:[144,432] width:104 height:24
 	button btn56 "@" pos:[248,432] width:24 height:24
@@ -503,6 +503,8 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn43 "send to SVN" pos:[192,360] width:80 height:24
 	
 	button btn44 "send to SVN" pos:[184,232] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[144,576] width:127 height:32 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "增加MAX环境变量" pos:[144,608] width:127 height:32 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\\mf_pangu\\bigworld\\tools\\exporter_max9\\ "
 	on mainwindow open do
 	(
 	   
@@ -890,10 +892,23 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	fengx.sendToGitHub  worlkGitHubPath
 	)
 	)
+	on btn82 pressed do
+	(
+	shelllaunch (getDir #Scripts +"\\visualFengx\\增加python27 系统变量.bat") ""
+	)
+	on btn173 pressed do
+	(
+	iniFile = (pathConfig.removePathLeaf (getDir #temp)) + "\\plugin.ini"
+	setIniSetting iniFile "Directories" "visualExportPlug" "E:\\mf_pangu\\bigworld\\tools\\exporter_max9\\"
+	if (queryBox "重开MAX生效 是否现在重开MAX")==true do 
+		(
+			if checkForSave() then (
+			shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
+			quitmax #noPrompt
+		)
+		)
+	)
 )
-
-
-
 
 
 
