@@ -8,7 +8,7 @@ global  VisualFengxVersions =1.52
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
-
+global  xxx=""
 
 global smartRotateLW="W"
 ------------------------------------------------
@@ -1265,8 +1265,6 @@ rollout mate "材质" width:541 height:615
 	)
 	)
 )
-
-
 
 
 
@@ -3388,6 +3386,7 @@ if maxsPath!=undefined do
 ---->>save to standType  file 
 function saveToStandType nodes exportPath=
 (
+	local log=localtime+" start...saveToStandType.....\n"
 if nodes!=undefined and  exportPath!=undefined then
 (
 --exportPath =getSavePath  caption:"get to"
@@ -3419,8 +3418,7 @@ if nodes!=undefined and  exportPath!=undefined then
 			s.pos=sPos
 			if saveOn==true then
 			(
-				print ("  -- > max was saved success.....")
-				print ("copying " + n +" maps .....")
+				log +=("\n"+localtime+"  -- > max was saved success.....\n start copying " + n +" maps .....")
 				-->> save a thumbnail
 				select s
 				macros.run "Tools" "Isolate_Selection"
@@ -3450,21 +3448,23 @@ if nodes!=undefined and  exportPath!=undefined then
 					local copySOn=true
 					if doesFileExist map ==true then(
 						try copyfile map tempMapPath catch (
-							 print ("....."+map +" was not be saved.....")
+							 log += ("\n....."+map +" was not be saved.....")
 							 copySOn=false
 							 )
 						 )else(
-							print ("  ------  "+map +"     > map does not exist .....")
+							log += ("\n  ------  "+map +"     > map does not exist .....")
 							copySOn=false
 							)
-					if copySOn==true do print ("  ------  "+map +"     > map was copyed success.....")
+					if copySOn==true do log += ("\n  ------  "+map +"     > map was copyed success.....")
 					)
-				--print ("-----  " +n+" maps be saved.....")
-			)else print ( n+"   was not be saved.....")
+				log+=("\n"+localtime +"  "+ n+" maps be saved.....")
+			)else log+= (localtime+"\n"+ n+"   was not be saved.....")
 
 		)
 	)
-)else print "not choese save path...  will not be saved... "
+)else log+= localtime+"\nnot choese save path...  will not be saved... "
+print log
+
 ),
 
 ---->>smart save select to Visual File 
@@ -3783,6 +3783,7 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 						append faceA (polyOp.getFaceSelection($))
 					)
 				)	
+				subobjectLevel = 0	
 				local newMate=MultiMaterial()
 				newMate.materialList=mateA
 				print newmate
@@ -3792,9 +3793,10 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 				for s in faceA do 
 				(
 					polyOp.setFaceSelection $ s
-					$.EditablePoly.setMaterialIndex  i  1 
+					n.EditablePoly.setMaterialIndex  i  1 
 					i+=1
 				)
+				try meditMaterials[medit.GetActiveMtlSlot()]=n.material catch()
 			)
 		)
 	)
@@ -4169,13 +4171,12 @@ function  TexNameToMateName=
 
 function namedMate mate s=
 ( 
-	str=""
 	if classOf(mate)==Standardmaterial do
 	(
 	  try (
 		 mate.name=getFilenameFile mate.DiffuseMap.filename 
 		 print  ("      "+ mate.name+"       ") 
-		) catch  print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
+		) catch  ()--print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
 	)
 ),
 ------------------------------------------------>> <only for netease> 
@@ -5308,6 +5309,7 @@ if targetPath !=undefined do
 
 function copyMapsTo mapsPath targetPath=
 (
+	local log=localTime+"__start.........."
 	for map in  mapsPath  do
 	(
 	local tempStr=""
@@ -5319,15 +5321,18 @@ function copyMapsTo mapsPath targetPath=
 	local copySOn=true
 	if doesFileExist map ==true then(
 		try copyfile map tempMapPath catch (
-			 print ("....."+map +" was not be saved.....")
+			 log+=localTime+"__\n....."+map +" was not be saved....."
 			 copySOn=false
 			 )
 		 )else(
-			print ("  ------  "+map +"     > map does not exist .....")
+			log+=localTime+"__\n  ------  "+map +"     > map does not exist ....."
 			copySOn=false
 			)
-	if copySOn==true do print ("  ------  "+map +"     > map was copyed success.....")
+	if copySOn==true do log+=localTime+"__\n  ------  "+map +"     > map was copyed success....."
 	)
+	--return log
+	--print localtime
+	print log
 
 
 ),

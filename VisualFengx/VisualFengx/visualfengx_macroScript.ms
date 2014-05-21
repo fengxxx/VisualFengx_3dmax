@@ -49,7 +49,7 @@ macroScript saveSelect category:"visualFengx" tooltip:"saveSelect" buttontext:"s
 )
 
 
-macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:"visualfengx" icon:#("VisualFengx",1)
+macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:"visualfengx" --icon:#("GameToolsV3",1)
 (
 	if mainwindow.open==true then (
 		rollouts=#(poly,mate,file,snap)
