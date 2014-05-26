@@ -103,6 +103,7 @@ function install=
 	local files=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/*"))
 	local iconFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/icon/*"))
 	local startFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/Startup/*"))
+	local uiFiles=getFiles (beWindowsPath (_LocalPath + "/VisualFengx/Icons/*" ))
 	
 	prct=10
 	for f in files do
@@ -131,16 +132,28 @@ function install=
 		
 		)
 	)
+	
+	for f in uiFiles do
+	(
+		local fileName=filenameFromPath f	
+		local newPath=((getdir #ui)+"/Icons/"+filename)
+		try deleteFile  newPath catch ()
+		try copyFile  f  newPath catch  print (f +" copy fath!")
+		setup_progress_update 85 "-->> 拷贝 UI 文件"
+	)
+	
+	
 	for f in startFiles do
 	(
 		local fileName= filenameFromPath f	
 		local newPath=beWindowsPath ((getDir #startupScripts) + "/"+fileName)
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print (f +" copy fath!")
-		setup_progress_update 60 "-->> 拷贝startScript文件"
+		setup_progress_update 90 "-->> 拷贝startScript文件"
 		filein (beWindowsPath  ((getDir #startupScripts) +"/fengx_start.ms") )
 	)
-
+	
+	
 	--try fileIn (getDir #startupScripts +"\\fengx_start.ms") catch (print "cant find fengx_start.ms!")
 	setup_progress_update 100  "-->> 安装完成"
 	if (queryBox "安装完成 最好重启Max！ 不重启也可以用")==true do 

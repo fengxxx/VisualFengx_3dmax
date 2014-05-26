@@ -36,6 +36,7 @@ global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempd
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
 
 global abPath=""
+global modelPath=" "
 global visualPath=(getinisetting  profilePath "visualPath" "path") 
 if classOf visualPath==OkClass do
 (
@@ -2002,21 +2003,21 @@ rollout poly "poly " width:864 height:688
 	)
 )
 
-rollout file "文件" width:720 height:488
+rollout file "文件" width:720 height:592
 (
 	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true toolTip:"快速导出到SVN目录"
-	button btn2 ".obj" pos:[0,456] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
-	button btn3 ".max" pos:[0,432] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
+	button btn2 ".obj" pos:[0,520] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
+	button btn3 ".max" pos:[0,496] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
 	button btn17 "显示文件" pos:[64,72] width:64 height:48 enabled:true toolTip:"打开刚刚导出的文件位置"
-	button btn19 "显示文件" pos:[104,456] width:24 height:24 enabled:true
-	button btn20 "显示文件" pos:[104,432] width:24 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,376] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
+	button btn19 "显示文件" pos:[104,520] width:24 height:24 enabled:true
+	button btn20 "显示文件" pos:[104,496] width:24 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,440] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
 	button btn239 "快速导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
-	button btn216 "存为AB备份格式" pos:[0,128] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn216 "存为AB备份格式" pos:[0,192] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -2033,21 +2034,23 @@ rollout file "文件" width:720 height:488
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,400] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn47 "显示 备份文件" pos:[0,464] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
 	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
 	checkbutton ckb311 "位置归零" pos:[64,24] width:64 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	button btn72 "ModelEditor" pos:[0,72] width:64 height:48 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
-	button btn146 "存为AB备份格式" pos:[0,152] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
-	button btn258 "显示 备份文件" pos:[104,400] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	button btn259 "显示 此文件" pos:[104,376] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
-	button btn333 "打开刚刚备份的文件夹" pos:[64,152] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
-	button btn404 "提取物体贴图" pos:[0,344] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn405 "@" pos:[104,344] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
-	button btn33 "智能打开模型" pos:[0,208] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
-	button btn34 "智能打开模型" pos:[0,232] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
-	button btn35 "智能打开模型" pos:[64,232] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
-	button btn106 "智能导入primitives" pos:[0,280] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn143 "智能导入地形" pos:[0,304] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn146 "存为AB备份格式" pos:[0,216] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn258 "显示 备份文件" pos:[104,464] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn259 "显示 此文件" pos:[104,440] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
+	button btn333 "打开刚刚备份的文件夹" pos:[64,216] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
+	button btn404 "提取物体贴图" pos:[0,408] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn405 "@" pos:[104,408] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn33 "智能打开模型" pos:[0,272] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
+	button btn34 "智能打开模型" pos:[0,296] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
+	button btn35 "智能打开模型" pos:[64,296] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
+	button btn106 "智能导入primitives" pos:[0,344] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn143 "智能导入地形" pos:[0,368] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn75 "拷贝模型地址到黏贴板" pos:[0,120] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
+	button btn114 "名字转换成地址" pos:[0,152] width:128 height:32 toolTip:"把名字转换成model地址 现在只支持 物件 建筑 植物.."
 	on file open do
 	(
 		ckb3.state=visualMateReset
@@ -2357,12 +2360,22 @@ rollout file "文件" width:720 height:488
 	   tempStr=DotNetClipboard.GetText()
 	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py") tempStr
 	)
+	on btn75 pressed do
+	(
+	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	  if modelPath!="" or modelPath!=" " or modelPath!=undefined  do DotNetClipboard.SetText modelPath
+	)
+	on btn114 pressed do
+	(
+	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+	  if (fengx.getNamePath(DotNetClipboard.GetText()))=="E:/mf_pangu/tw2/res/scene/common/" then messageBox "转换失败!" else
+	 (
+	  mPath= fengx.getNamePath(DotNetClipboard.GetText())+DotNetClipboard.GetText()+".model"
+	  mPath=replace mPath 1 20 ""
+	  DotNetClipboard.SetText  mPath
+	  )
+	)
 )
-
-
-
-
-
 
 
 
@@ -3480,7 +3493,10 @@ function exportSelectToVisual=
 	(
 		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
 		)
+	modelPath=tempTargetPath+name+".model"
+	modelPath=replace modelPath 1 20 ""
 	tempTargetPath=tempTargetPath+name+".visual"
+	print tempTargetPath
 	targetPath=getSaveFileName  caption:"save select"  types:"*.visual"  filename:tempTargetPath
 	if targetPath!=""and targetPath!=undefined do 
     (
@@ -3489,7 +3505,6 @@ function exportSelectToVisual=
 			targetPath=getFilenamePath targetPath +".visual" 
 			
 		)
-		print targetPath
 	  	--targetPath=tempTargetPath+".visual" 
 		theClasses = VisualExporter
 		if visualPosReset==true do try $.pos=[0,0,0] catch()
@@ -3498,7 +3513,8 @@ function exportSelectToVisual=
 			
 			visualPath=fengx.beWindowsPath TargetPath
 			setinisetting  profilePath "visualPath" "path" visualPath
- 			if visualMateReset==true do 
+ 			print (fengx.beStringPath(modelPath))
+			if visualMateReset==true do 
 			(
 			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
 			)
@@ -3511,6 +3527,7 @@ function exportSelectToVisual=
 
 function getNamePath n=
 (
+	n=getFilenameFile n
 	path="E:/mf_pangu/tw2/res/scene/common/"
 	tw1=""
 	tw2=""
@@ -3784,11 +3801,13 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 					)
 				)	
 				subobjectLevel = 0	
+				if mateA.count==1 then newMate=mateA[1] else
+				(
 				local newMate=MultiMaterial()
 				newMate.materialList=mateA
-				print newmate
-				meditMaterials[6]=newMate
+				)
 				n.material=newMate
+				
 				i=1
 				for s in faceA do 
 				(
@@ -4962,195 +4981,9 @@ function saveMateMapTo mates targetPath=
 			)
 			
 	
-	),
-	
-	
-
-function updataLanguage=
-(
-/*
-	if languageId=="English" do
-		( 
-		poly.btn481.text= "盒子" 
-		poly.btn501.text= "圆柱"
-		poly.btn511.text= "球" 
-		poly.btn521.text= "平面" 
-		poly.btn531.text= "比例人" 
-		poly.btn591.text= "大组" 
-		poly.btn7.text= "扩大 +" 
-		poly.btn13.text= "缩小 -" 
-		poly.btn151.text= "重置多边形"
-	
-		poly.btn102.text= "枢轴归底"
-		poly.btn103.text= "枢轴归中"
-		poly.btn104.text="坐标归零"
-	
-		poly.btn114.text= "枢轴归零"
-		poly.btn159.text= "编辑UV"
-	
-		poly.btn97.text= "排序" 
-
-		poly.btn51.text= "模型信息"			
-	
-		
-		--mate window
-		mate.btn1.text ="清除"		
-		mate.btn7.text="贴图另存为"		
-		mate.btn8.text="关闭" 				
-		mate.btn9.text="打开" 				
-		mate.btn10.text ="自动命名"	
-		mate.btn11.text ="@" 				
-		mate.btn12.text ="整理" 		
-		mate.btn15.text ="@" 						
-		mate.btn463.text= "所选材质" 	
-		mate.btn106.text= "@"				
-		mate.btn107.text= "所选物体"	
-		mate.btn119.text= "物体"			
-		mate.btn120.text= "材质" 	
-		
-		--file window
-		file.btn1.text= ".visual" 		
-		file.btn2.text= ".obj" 			
-		file.btn3.text= ".max" 			
-		file.btn17.text= "@"				
-		file.btn19.text= "@"				
-		file.btn20.text= "@"				
-		file.btn330.text= "@"			
-		file.btn345.text= "重启Max" 		
-		file.btn346.text= "退出Max" 		
-		file.btn10.text= "@" 				
-		file.btn11.text= "本文件" 		
-		file.btn12.text= "本脚本" 	
-	
-		--snap
-		snap.chooseit.text= "拾取" 			
-		snap.p.text= "位置" 			
-		snap.px.text= "x" 				
-		snap.py.text= "y" 				
-		snap.pz.text= "z" 				
-		snap.r .text="旋转" 			
-		snap.rx.text= "x" 				
-		snap.ry.text= "y" 				
-		snap.rz.text= "z" 				
-		snap.s .text="缩放" 			
-		snap.sx.text= "x" 				
-		snap.sy.text= "y" 				
-		snap.sz.text= "z" 				
-		snap.pt.text= "枢轴" 			
-		snap.ptx.text= "x" 			
-		snap.pty.text= "y" 			
-		snap.ptz.text= "z" 			
-		snap.localPos.text= "@" 		
-		snap.localPivot.text= "@" 		
-	
-		snap.btn14.text= "枢轴归底" 	
-		snap.btn17.text= "枢轴归中" 
-		snap.btn18.text= "位置归零" 	
-		snap.bpxa.text= "+" 			
-		snap.bpxr.text= "-" 			
-		snap.btn152.text= "+" 			
-		snap.btn153.text= "-" 			
-		snap.btn154.text= "+" 			
-		snap.btn155.text= "-" 			
-		snap.btn156.text= "X" 			
-		snap.btn157.text= "Y" 			
-		snap.btn158.text= "Z" 			
-		snap.btn224.text= "枢轴归零" 
-
-	)
-	if languageId=="中文" do
-	(
-		-- poly rollout	
-		poly.btn481.text= "Box" 
-		poly.btn501.text= "Cylinder"
-		poly.btn511.text= "Sphere" 
-		poly.btn521.text= "Plane" 
-		poly.btn531.text= "Standard" 
-		poly.btn591.text= "Big Group" 
-		poly.btn7.text= "Big +" 
-		poly.btn13.text= "Small -" 
-		poly.btn151.text= "Reset Poly"
-	
-		poly.btn102.text= "Pivot"
-		poly.btn103.text= "Pivot"
-		poly.btn104.text="Pos"
-	
-		poly.btn114.text= "Pivot"
-		poly.btn159.text= "Edit UV"
-
-		poly.btn97.text= "Sort" 
-	
-		poly.btn51.text= "Show Infor"
-		
-		--mate window
-		mate.btn1.text= "Clear Away"		
-		mate.btn7.text="Save Map To"		
-		mate.btn8.text="Off" 				
-		mate.btn9.text="On" 				
-		mate.btn10.text= "Auto Naming"	
-		mate.btn11.text = "@" 				
-		mate.btn12.text ="Clear Up" 		
-		mate.btn15.text= "@" 					
-		mate.btn463.text= "Select Mate" 	
-		mate.btn106.text= "@"				
-		mate.btn107.text= "Select Object"	
-		mate.btn119.text= "Objet"			
-		mate.btn120.text= "Mate" 			
-		
-		--file window
-		file.btn1.text= ".visual" 		
-		file.btn2.text= ".obj" 			
-		file.btn3.text= ".max" 			
-		
-		file.btn17.text= "@"				
-		file.btn19.text= "@"				
-		file.btn20.text= "@"				
-		file.btn330.text= "@"			
-		file.btn345.text= "Restart" 		
-		file.btn346.text= "Eixt" 		
-		file.btn10.text= "@" 				
-		file.btn11.text= "Max File" 		
-		file.btn12.text= "Script" 		
-		
-		
-		--snap
-		snap.chooseit.text= "Pick" 			
-		snap.p.text= "Pos" 			
-		snap.px.text= "x" 				
-		snap.py.text= "y" 				
-		snap.pz.text= "z" 				
-		snap.r .text="Rotate" 			
-		snap.rx.text= "x" 				
-		snap.ry.text= "y" 				
-		snap.rz.text= "z" 				
-		snap.s .text="Scale" 			
-		snap.sx.text= "x" 				
-		snap.sy.text= "y" 				
-		snap.sz.text= "z" 				
-		snap.pt.text= "Pivot" 			
-		snap.ptx.text= "x" 			
-		snap.pty.text= "y" 			
-		snap.ptz.text= "z" 			
-		snap.localPos.text= "@" 		
-		snap.localPivot.text= "@" 		
-		
-		snap.btn14.text= "Bot" 	
-		snap.btn17.text= "Center" 
-		snap.btn18.text= "Pos" 	
-		snap.bpxa.text= "+" 			
-		snap.bpxr.text= "-" 			
-		snap.btn152.text= "+" 			
-		snap.btn153.text= "-" 			
-		snap.btn154.text= "+" 			
-		snap.btn155.text= "-" 			
-		snap.btn156.text= "X" 			
-		snap.btn157.text= "Y" 			
-		snap.btn158.text= "Z" 			
-		snap.btn224.text= "Pivot" 
-	)
-
-*/
 ),
+	
+
 function getRowDir n=
 (
 	if classOf(n)==Point3 do 

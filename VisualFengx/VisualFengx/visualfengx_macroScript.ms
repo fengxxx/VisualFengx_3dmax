@@ -49,7 +49,7 @@ macroScript saveSelect category:"visualFengx" tooltip:"saveSelect" buttontext:"s
 )
 
 
-macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:"visualfengx" --icon:#("GameToolsV3",1)
+macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:"visualfengx" icon:#("VFX",1)
 (
 	if mainwindow.open==true then (
 		rollouts=#(poly,mate,file,snap)
@@ -61,7 +61,6 @@ macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:
 	)else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
 		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
-		fengx.updataLanguage()
 		mainwindow.windowsLogicStart()
 	)
 )
@@ -72,7 +71,6 @@ macroScript copyPasteWindow category:"visualFengx" tooltip:"copyPasteWindow" but
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
 	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
-	--fengx.updataLanguage()
 	)
 	
 )
@@ -93,7 +91,6 @@ buttontext:"fileWindow"
 	if file.open==true then destroyDialog file else(
 	if fileSize.x*fileSize.y==0 do fileSize=[127, 203]
 	createdialog file fileSize.x fileSize.y pos: filePosx   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
-	fengx.updataLanguage()
 	)
 	--theVoice.Speak "ºÇºÇºÇºÇ"
 )
@@ -107,7 +104,6 @@ buttontext:"ployWindow"
 	if poly.open==true then destroyDialog poly else(
 	if polySize.x*polySize.y==0 do polySize=[127 , 480]
 	createdialog poly polySize.x polySize.y pos: polyPos  style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
-	fengx.updataLanguage()
 	)
 )
 
@@ -120,7 +116,6 @@ buttontext:"mateWindow"
 	if mate.open==true then destroyDialog mate else(
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
 	createdialog mate mateSize.x mateSize.y pos:matePos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
-	fengx.updataLanguage()
 	--theVoice.Speak "ºÇºÇ ½ñÌìÌìÆø²»´í°¡£¡"
 	)
 )
@@ -136,7 +131,6 @@ buttontext:"snapWindow"
 	if snap.open==true then destroyDialog snap else(
 	if snapSize.x*snapSize.y==0 do snapSize=[127, 425]
 	createDialog snap snapSize.x snapSize.y pos:snapPos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
-	fengx.updataLanguage()
 	)
 )
 )
