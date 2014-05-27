@@ -257,39 +257,55 @@ global titeBarMap  =bitmap 300 100  fileName:(getdir #Scripts + "\visualfengx\ti
 
 
 theDefultBmp = (BitMap 160 112 color:(color 64 67 65 60)) 
-copyIconPath= (getDir #Scripts + "/visualFengx/icon/clipboard_copy_icon&32.png")
-pasteIconPath= (getDir #Scripts + "/visualFengx/icon/clipboard_past_icon&32.png")
-updataIconPath= (getDir #Scripts + "/visualFengx/icon/refresh_icon&24.png")
-unUpdataIconPath= (getDir #Scripts + "/visualFengx/icon/unUpdata_icon&24.png")
-expandIconPath= (getDir #Scripts + "/visualFengx/icon/top_right_expand_icon&16.png")
-restartIconPath= (getDir #Scripts + "/visualFengx/icon/reload_icon&24.png")
-exitIconPath= (getDir #Scripts + "/visualFengx/icon/on-off_icon&24.png")
-openIconPath= (getDir #Scripts + "/visualFengx/icon/folder_open_icon&16.png")
-open32IconPath= (getDir #Scripts + "/visualFengx/icon/folder_open_icon&32.png")
-modelEditorPath= ( getDir #scripts + "/visualfengx/icon/modelEditor.png" )
-abBackupPath= getDir #scripts + "/visualfengx/icon/AB.png" 
-copyPasteMPath= getDir #scripts + "/visualfengx/icon/2x2_grid_icon&32.png" 
-polyPath= getDir #scripts + "/visualfengx/icon/poly_icon&24.png" 
-filePath= getDir #scripts + "/visualfengx/icon/file_icon&24.png" 
-matePath= getDir #scripts + "/visualfengx/icon/mate_icon&24.png"
+MainBGPath=getDir #scripts +"/visualfengx/MainBG.bmp"
+MainIcon32Path=getDir #scripts +"/visualfengx/VisualFengx_32i.bmp"
+MainIcon32Patha=getDir #scripts +"/visualfengx/VisualFengx_32a.bmp"
+
+MainIcon24Path=getDir #scripts +"/visualfengx/VisualFengx_24i.bmp"
+MainIcon24Patha=getDir #scripts +"/visualfengx/VisualFengx_24a.bmp"
+
+MainIcon16Path=getDir #scripts +"/visualfengx/VisualFengx_16i.bmp"
+MainIcon16Patha=getDir #scripts +"/visualfengx/VisualFengx_16a.bmp"
+	
+if doesFileExist MainIcon32Path then MainIcon32b=openBitMap  MainIcon32Path else MainIconb=theDefultBmp
+if doesFileExist MainIcon32Patha then MainIcon32ab=openBitMap  MainIcon32Patha else MainIconab=theDefultBmp
+if doesFileExist MainIcon24Path then MainIcon24b=openBitMap  MainIcon24Path else MainIconb=theDefultBmp
+if doesFileExist MainIcon24Patha then MainIcon24ab=openBitMap  MainIcon24Patha else MainIconab=theDefultBmp	
+if doesFileExist MainIcon16Path then MainIcon16b=openBitMap  MainIcon16Path else MainIconb=theDefultBmp
+if doesFileExist MainIcon16Patha then MainIcon16ab=openBitMap  MainIcon16Patha else MainIconab=theDefultBmp
+	
+if doesFileExist MainBGPath then MainBG=openBitMap  MainBGPath else restartBmp =theDefultBmp
+	
+function iconBitmapToArray b=
+(
+	a=#()
+	if classof(b)==BitMap do 
+	(
+		for i=1 to b.width/b.height do
+		(
+			tbmp=(BitMap  b.height  b.height  color:(color 64 67 65 60)) 
+			for x=1 to 32 do
+			(
+				
+				colorA=getPixels b [(i-1)*b.height,x]  b.height
+				setPixels    tbmp [0,x]  colorA
+				)
+			append a tbmp
+			)
+		)
+	return a
+)
+
+mainIcon32A=iconBitmapToArray mainIcon32b
+mainIcon24A=iconBitmapToArray mainIcon24b
+mainIcon16A=iconBitmapToArray mainIcon16b
+
+mainIcon32Aa=iconBitmapToArray mainIcon32ab
+mainIcon24Aa=iconBitmapToArray mainIcon24ab
+mainIcon16Aa=iconBitmapToArray mainIcon16ab
 
 
 
-if doesFileExist restartIconPath then restartBmp =openBitMap  restartIconPath else restartBmp =theDefultBmp
-if doesFileExist copyIconPath then copytBmp =openBitMap  copyIconPath else copytBmp =theDefultBmp
-if doesFileExist pasteIconPath then pasteBmp =openBitMap  pasteIconPath else pasteBmp =theDefultBmp
-if doesFileExist updataIconPath then updataBmp =openBitMap  updataIconPath else updataBmp =theDefultBmp
-if doesFileExist unupdataIconPath then unUpdataBmp =openBitMap  unupdataIconPath  else unUpdataBmp =theDefultBmp
-if doesFileExist expandIconPath then expandBmp =openBitMap  expandIconPath else expandBmp =theDefultBmp
-if doesFileExist exitIconPath then exitBmp =openBitMap  exitIconPath else exitBmp=theDefultBmp
-if doesFileExist openIconPath then openBmp =openBitMap  openIconPath else openBmp =theDefultBmp
-if doesFileExist open32IconPath then open32Bmp =openBitMap  open32IconPath else open32Bmp =theDefultBmp
-if doesFileExist modelEditorPath then modelEditorBmp  =openBitMap  modelEditorPath else modelEditorBmp = theDefultBmp
-if doesFileExist abBackupPath then ABBmp =openBitMap  abBackupPath else ABBmp = theDefultBmp
-if doesFileExist copyPasteMPath then copyPasteMBmp =openBitMap  copyPasteMPath else copyPasteMBmp = theDefultBmp
-if doesFileExist polyPath then polyBmp =openBitMap  polyPath else polyBmp= theDefultBmp
-if doesFileExist filePath then fileBmp =openBitMap  filePath else fileBmp= theDefultBmp
-if doesFileExist matePath then mateBmp =openBitMap  matePath else mateBmp= theDefultBmp
 
 copyPasteBGPath= (getDir #Scripts+ "\\visualFengx\\copyPasteBG.png")
 if doesFileExist copyPasteBGPath do copyPasteBGBmp  = Bitmaptexture fileName:copyPasteBGPath 
@@ -337,21 +353,27 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
     
 	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
     --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
-	subRollout sub "fengx" pos:[0,40] width:139 height:569 
+	subRollout sub "fengx" pos:[0,32] width:139 height:569 
  
  
  
  
-	checkbutton ckP "Poly" pos:[0,0] width:33 height:40 toolTip:"poly面板"
-	checkbutton ckM "材质" pos:[33,0] width:33 height:40 toolTip:"材质面板"
-	checkbutton ckF "文件" pos:[66,0] width:36 height:40 toolTip:"文件面板"
-	checkbutton ckS "吸附" pos:[102,20] width:36 height:20 toolTip:"吸附"
-	checkbutton ckX "↓↑" pos:[102,0] width:36 height:20 toolTip:"面板打散 收拢"
+ 
+ 
+ 
+ 
+ 
+ 
+	checkbutton ckP "Poly" pos:[0,0] width:32 height:32 toolTip:"poly面板： poly 相关处理...."
+	checkbutton ckM "材质" pos:[32,0] width:32 height:32 toolTip:"材质面板： 材质处理相关....."
+	checkbutton ckF "文件" pos:[64,0] width:32 height:32 toolTip:"文件面板:  文件导出 相关等等。。。。。"
+	checkbutton ckS "吸附" pos:[96,16] width:40 height:16 toolTip:"吸附"
+	checkbutton ckX "↓↑" pos:[96,0] width:40 height:16 toolTip:"面板打散 收拢"
 	checkbutton ckb127 "English" pos:[274,0] width:64 height:24 enabled:true checked:false
 	checkbutton ckb128 "中文" pos:[338,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[337,24] width:64 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[0,712] width:48 height:27
-	checkbutton ckb230 "复制管理" pos:[96,612] width:42 height:48 toolTip:"打开复制管理器"
+	checkbutton ckb230 "复制管理" pos:[64,600] width:32 height:32 toolTip:"打开复制管理器"
 	button btn744 "background" pos:[274,24] width:64 height:24
 	button btn142 "userMacros" pos:[274,48] width:104 height:24
 	button btn143 "@" pos:[378,48] width:24 height:24
@@ -391,6 +413,18 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn209 "○" pos:[225,120] width:24 height:24
 	button btn210 "run" pos:[144,168] width:128 height:32
 		
+	button btn65 "已经是最新版" pos:[48,632] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,632] width:48 height:32 enabled:true toolTip:"重开max"
+	button btn67 "Eixt" pos:[96,632] width:42 height:32 enabled:true toolTip:"退出max"
+	button btn40 "复制" pos:[0,600] width:32 height:32 enabled:true toolTip:"复制选择的模型"
+	button btn41 "黏贴" pos:[32,600] width:32 height:32 enabled:true toolTip:"黏贴选择的模型"
+	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
+	button btn43 "send to SVN" pos:[192,360] width:80 height:24
+	
+	button btn44 "send to SVN" pos:[184,232] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[144,576] width:127 height:32 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "增加MAX环境变量" pos:[144,608] width:127 height:32 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
+	button btn47 "增加MAX环境变量" pos:[330,163] width:76 height:171 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "	
 	HyperLink hy_help "帮助" pos:[48,712] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
 	(
@@ -492,20 +526,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		saveWindowState()
 		windowslogic()
 	)
-	
 
-
-	button btn65 "已经是最新版" pos:[48,660] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,660] width:48 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[96,660] width:42 height:32 enabled:true toolTip:"退出max"
-	button btn40 "复制" pos:[0,612] width:48 height:48 enabled:true toolTip:"复制选择的模型"
-	button btn41 "黏贴" pos:[48,612] width:48 height:48 enabled:true toolTip:"黏贴选择的模型"
-	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
-	button btn43 "send to SVN" pos:[192,360] width:80 height:24
-	
-	button btn44 "send to SVN" pos:[184,232] width:88 height:24
-	button btn82 "增加Python27环境变量" pos:[144,576] width:127 height:32 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
-	button btn173 "增加MAX环境变量" pos:[144,608] width:127 height:32 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\\mf_pangu\\bigworld\\tools\\exporter_max9\\ "
 	on mainwindow open do
 	(
 	   
@@ -517,32 +538,32 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 			--print "xiande xxx"
 			mainWindow.btn65.text="最新版-- " +(newVersions as string)
 			mainWindow.btn65.enabled=true
-			try btn65.images=#(updataBmp, updataBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		)else try btn65.images=#(unUpdataBmp, updataBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+			try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		)else try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		--（
 			--print "jiade xxx"
 			--mainWindow.btn65.text="已经是最新版" 
 			--btn65.enabled=false
 		--）
 	
-	
-		try btn66.images=#(restartBmp, restartBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn40.images=#(copytBmp , copytBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn41.images=#(pasteBmp, pasteBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+
+		try btn66.images=#(mainIcon24A[14], mainIcon24Aa[14], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9] 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
-		try ckX.images=#(expandBmp, expandBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn67.images=#(exitBmp, exitBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn203.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn201.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn198.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn199.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn802.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn57.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn143.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckb230.images=#(copyPasteMBmp , copyPasteMBmp , 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckP.images=#(polyBmp, polyBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckF.images=#(fileBmp, fileBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckM.images=#(mateBmp, mateBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckX.images=#(mainIcon16A[13], mainIcon16Aa[13], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn203.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn201.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn198.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn199.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn802.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn57.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn143.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckb230.images=#(mainIcon32A[8], mainIcon32Aa[8], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckP.images=#(mainIcon32A[2], mainIcon32Aa[2], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckF.images=#(mainIcon32A[3], mainIcon32Aa[3], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckM.images=#(mainIcon32A[1], mainIcon32Aa[1], 1,1,1,1,1 ) catch (print "xxxxxxx")
 	
 	
 		
@@ -909,6 +930,10 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		)
 		)
 	)
+	on btn47 pressed do
+		(
+	
+	)
 )
 
 
@@ -966,7 +991,7 @@ rollout mate "材质" width:541 height:615
 		ckb_S.state= intToBool (backMapType[3]	)
 		ckb_E.state= intToBool (backMapType[4]	)
 		ckb_A.state= intToBool (backMapType[5]	)
-		try btn15.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn15.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
 	)
 	on mate close do
 	(
@@ -2055,19 +2080,20 @@ rollout file "文件" width:720 height:592
 	(
 		ckb3.state=visualMateReset
 		ckb311.state=visualPosReset
-	
-		try btn72.images=#(modelEditorBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn17.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn35.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn19.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn20.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn258.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn259.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn333.images=#(open32Bmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn146.images=#(ABBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn34.images=#(modelEditorBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn405.images=#(openBmp, openBmp, 1,1,1,1,1 ) catch (print "xxxxxxx") 
-	)
+
+		try btn72.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn17.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn35.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn19.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn20.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn258.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn259.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn333.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn146.images=#(mainIcon32A[7], mainIcon32Aa[7], 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn34.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn405.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		
+		)
 	on file close do
 	(
 	
@@ -2296,7 +2322,8 @@ rollout file "文件" width:720 height:592
 	    try  ShellLaunch "explorer.exe" filePath   catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！！"
 	)else(
 		--theVoice.Speak "还没存 呢 大哥！" 
-		 messageBox ("还没存呢！")
+		 messageBox ("还没存呢  ！    ")
+	     
 		） 
 		)
 	)
@@ -3150,6 +3177,26 @@ struct fengx
 function llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
+	
+function iconBitmapToArray b=
+(
+	a=#()
+	if classof(b)==BitMap do 
+	(
+		for i=1 to b.width/b.height do
+		(
+			tbmp=(BitMap  b.height  b.height  color:(color 64 67 65 60)) 
+			for x=1 to 32 do
+			(
+				
+				colorA=getPixels b [i,x]  b.height
+				setPixels    tbmp [0,x]  colorA
+				)
+			append a tbmp
+			)
+		)
+	return a
+	),
 	
 	
 -------------------------------------------->> for edit script

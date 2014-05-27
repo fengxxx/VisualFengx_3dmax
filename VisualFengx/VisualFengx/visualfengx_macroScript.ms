@@ -60,7 +60,8 @@ macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:
 		destroyDialog mainwindow
 	)else(
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
-		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
+		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  bgcolor:bgColor style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
+		--SetDialogBitmap mainWindow mainIconAa[1]--MainBG
 		mainwindow.windowsLogicStart()
 	)
 )
@@ -70,7 +71,7 @@ macroScript copyPasteWindow category:"visualFengx" tooltip:"copyPasteWindow" but
 (
 	if copyPaste.open==true then destroyDialog copyPaste else(
 	if copyPasteSize.x*copyPasteSize.y==0 do copyPasteSize=[1312, 121]
-	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+	createdialog copyPaste copyPasteSize.x copyPasteSize.y pos: copyPastePos bgcolor:bgColor  style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 	)
 	
 )
@@ -78,7 +79,7 @@ macroScript copyPasteWindow category:"visualFengx" tooltip:"copyPasteWindow" but
 macroScript clipboardWindow category:"visualFengx" tooltip:"clipboard" buttontext:"clipboard"
 (
 	if clipboard.open==true then destroyDialog clipboard else(
-	createdialog clipboard 160 112 pos: copyPastePos   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
+	createdialog clipboard 160 112 pos: copyPastePos bgcolor:bgColor  style:#(#style_sunkenedge,#style_minimizebox,#style_resizing,#style_titlebar, #style_border, #style_sysmenu) 
 	)
 	
 )
@@ -90,7 +91,7 @@ buttontext:"fileWindow"
 (
 	if file.open==true then destroyDialog file else(
 	if fileSize.x*fileSize.y==0 do fileSize=[127, 203]
-	createdialog file fileSize.x fileSize.y pos: filePosx   style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
+	createdialog file fileSize.x fileSize.y pos: filePosx  bgcolor:bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)
 	)
 	--theVoice.Speak "ºÇºÇºÇºÇ"
 )
@@ -103,7 +104,7 @@ buttontext:"ployWindow"
 (
 	if poly.open==true then destroyDialog poly else(
 	if polySize.x*polySize.y==0 do polySize=[127 , 480]
-	createdialog poly polySize.x polySize.y pos: polyPos  style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
+	createdialog poly polySize.x polySize.y pos: polyPos  bgcolor:bgColor style:#(#style_sunkenedge,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) --
 	)
 )
 
@@ -115,7 +116,7 @@ buttontext:"mateWindow"
 (
 	if mate.open==true then destroyDialog mate else(
 	if mateSize.x*mateSize.y==0 do mateSize=[128,323]
-	createdialog mate mateSize.x mateSize.y pos:matePos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
+	createdialog mate mateSize.x mateSize.y pos:matePos bgcolor:bgColor  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow)-- bgcolor: bgColor
 	--theVoice.Speak "ºÇºÇ ½ñÌìÌìÆø²»´í°¡£¡"
 	)
 )
@@ -130,7 +131,7 @@ buttontext:"snapWindow"
 	on Execute do(
 	if snap.open==true then destroyDialog snap else(
 	if snapSize.x*snapSize.y==0 do snapSize=[127, 425]
-	createDialog snap snapSize.x snapSize.y pos:snapPos  style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
+	createDialog snap snapSize.x snapSize.y pos:snapPos  bgcolor:bgColor style:#(#style_sunkenedge,#style_maximizebox,#style_minimizebox,#style_resizing, #style_border,#style_titlebar, #style_border, #style_sysmenu,#style_toolwindow) 
 	)
 )
 )
