@@ -101,9 +101,9 @@ function install=
 	setup_progress_update 10 tempstri
 	makeDir (beWindowsPath  targetPath)
 	local files=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/*"))
-	local iconFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/icon/*"))
+	--local iconFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/VisualFengx/icon/*"))
 	local startFiles=getFiles (beWindowsPath ( _LocalPath+"/VisualFengx/Startup/*"))
-	local uiFiles=getFiles (beWindowsPath (_LocalPath + "/VisualFengx/Icons/*" ))
+	local uiFiles=getFiles (beWindowsPath (_LocalPath + "/VisualFengx/VisualFengx/Icons/*" ))
 	
 	prct=10
 	for f in files do
@@ -119,7 +119,7 @@ function install=
 
 	)
 	
-	
+	/*
 	if (makeDir (beWindowsPath (targetPath+"/icon")))==true do 
 	(
 		for f in  iconFiles do 
@@ -132,14 +132,14 @@ function install=
 		
 		)
 	)
-	
+	*/
 	for f in uiFiles do
 	(
 		local fileName=filenameFromPath f	
 		local newPath=((getdir #ui)+"/Icons/"+filename)
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print (f +" copy fath!")
-		setup_progress_update 85 "-->> 拷贝 UI 文件"
+		setup_progress_update 80 "-->> 拷贝 UI 文件"
 	)
 	
 	

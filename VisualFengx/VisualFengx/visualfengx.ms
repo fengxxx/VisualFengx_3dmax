@@ -373,7 +373,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	checkbutton ckb128 "中文" pos:[338,0] width:64 height:24 enabled:true checked:true
 	colorPicker cp6 "" pos:[337,24] width:64 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[0,712] width:48 height:27
-	checkbutton ckb230 "复制管理" pos:[64,600] width:32 height:32 toolTip:"打开复制管理器"
+	checkbutton ckb230 "复制管理" pos:[92,600] width:46 height:40 toolTip:"打开复制管理器"
 	button btn744 "background" pos:[274,24] width:64 height:24
 	button btn142 "userMacros" pos:[274,48] width:104 height:24
 	button btn143 "@" pos:[378,48] width:24 height:24
@@ -413,11 +413,11 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn209 "○" pos:[225,120] width:24 height:24
 	button btn210 "run" pos:[144,168] width:128 height:32
 		
-	button btn65 "已经是最新版" pos:[48,632] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,632] width:48 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[96,632] width:42 height:32 enabled:true toolTip:"退出max"
-	button btn40 "复制" pos:[0,600] width:32 height:32 enabled:true toolTip:"复制选择的模型"
-	button btn41 "黏贴" pos:[32,600] width:32 height:32 enabled:true toolTip:"黏贴选择的模型"
+	button btn65 "已经是最新版" pos:[48,640] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,640] width:48 height:32 enabled:true toolTip:"重开max"
+	button btn67 "Eixt" pos:[96,640] width:42 height:32 enabled:true toolTip:"退出max"
+	button btn40 "复制" pos:[0,600] width:46 height:40 enabled:true toolTip:"复制选择的模型"
+	button btn41 "黏贴" pos:[46,600] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
 	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
 	button btn43 "send to SVN" pos:[192,360] width:80 height:24
 	
@@ -546,13 +546,15 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 			--btn65.enabled=false
 		--）
 	
-
+	
 		try btn66.images=#(mainIcon24A[14], mainIcon24Aa[14], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9] 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
 		try ckX.images=#(mainIcon16A[13], mainIcon16Aa[13], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		--try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn67.images=#(mainIcon24A[1], mainIcon24Aa[1], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		
 		try btn203.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn201.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn198.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
@@ -563,7 +565,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		try ckb230.images=#(mainIcon32A[8], mainIcon32Aa[8], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try ckP.images=#(mainIcon32A[2], mainIcon32Aa[2], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try ckF.images=#(mainIcon32A[3], mainIcon32Aa[3], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckM.images=#(mainIcon32A[1], mainIcon32Aa[1], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckM.images=#(mainIcon32A[4], mainIcon32Aa[4], 1,1,1,1,1 ) catch (print "xxxxxxx")
 	
 	
 		
@@ -935,7 +937,6 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	
 	)
 )
-
 
 
 
@@ -2030,19 +2031,19 @@ rollout poly "poly " width:864 height:688
 
 rollout file "文件" width:720 height:592
 (
-	button btn1 ".visual" pos:[0,24] width:64 height:48 enabled:true toolTip:"快速导出到SVN目录"
-	button btn2 ".obj" pos:[0,520] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
-	button btn3 ".max" pos:[0,496] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
-	button btn17 "显示文件" pos:[64,72] width:64 height:48 enabled:true toolTip:"打开刚刚导出的文件位置"
-	button btn19 "显示文件" pos:[104,520] width:24 height:24 enabled:true
-	button btn20 "显示文件" pos:[104,496] width:24 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,440] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
+	button btn1 ".visual" pos:[0,24] width:48 height:48 enabled:true toolTip:"快速导出到SVN目录"
+	button btn2 ".obj" pos:[0,528] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
+	button btn3 ".max" pos:[0,504] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
+	button btn17 "显示文件" pos:[88,72] width:40 height:40 enabled:true toolTip:"打开刚刚导出的文件位置"
+	button btn19 "显示文件" pos:[104,528] width:24 height:24 enabled:true
+	button btn20 "显示文件" pos:[104,504] width:24 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,448] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
 	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
 	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
 	
 	button btn239 "快速导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
-	button btn216 "存为AB备份格式" pos:[0,192] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn216 "存为AB备份格式" pos:[0,200] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
@@ -2059,28 +2060,29 @@ rollout file "文件" width:720 height:592
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,464] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	checkbutton ckb3 "自动贴图" pos:[64,48] width:64 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
-	checkbutton ckb311 "位置归零" pos:[64,24] width:64 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
-	button btn72 "ModelEditor" pos:[0,72] width:64 height:48 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
-	button btn146 "存为AB备份格式" pos:[0,216] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
-	button btn258 "显示 备份文件" pos:[104,464] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	button btn259 "显示 此文件" pos:[104,440] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
-	button btn333 "打开刚刚备份的文件夹" pos:[64,216] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
-	button btn404 "提取物体贴图" pos:[0,408] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn405 "@" pos:[104,408] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
-	button btn33 "智能打开模型" pos:[0,272] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
-	button btn34 "智能打开模型" pos:[0,296] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
-	button btn35 "智能打开模型" pos:[64,296] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
-	button btn106 "智能导入primitives" pos:[0,344] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn143 "智能导入地形" pos:[0,368] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn75 "拷贝模型地址到黏贴板" pos:[0,120] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
-	button btn114 "名字转换成地址" pos:[0,152] width:128 height:32 toolTip:"把名字转换成model地址 现在只支持 物件 建筑 植物.."
+	button btn47 "显示 备份文件" pos:[0,472] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	checkbutton ckb3 "自动贴图" pos:[48,48] width:80 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
+	checkbutton ckb311 "位置归零" pos:[48,24] width:80 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
+	button btn72 "ModelEditor" pos:[48,72] width:40 height:40 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
+	button btn146 "存为AB备份格式" pos:[0,224] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn258 "显示 备份文件" pos:[104,472] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn259 "显示 此文件" pos:[104,448] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
+	button btn333 "打开刚刚备份的文件夹" pos:[64,224] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
+	button btn404 "提取物体贴图" pos:[0,416] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn405 "@" pos:[104,416] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn33 "智能打开模型" pos:[0,280] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
+	button btn34 "智能打开模型" pos:[0,304] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
+	button btn35 "智能打开模型" pos:[64,304] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
+	button btn106 "智能导入primitives" pos:[0,352] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn143 "智能导入地形" pos:[0,376] width:128 height:24 enabled:false toolTip:"智能打开模型"
+	button btn75 "拷贝模型地址到黏贴板" pos:[0,128] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
+	button btn114 "名字转换成地址" pos:[0,160] width:128 height:32 toolTip:"把名字转换成model地址 现在只支持 物件 建筑 植物.."
+	button btn173 "批量" pos:[0,72] width:48 height:40 enabled:true toolTip:"快速导出到SVN目录"
 	on file open do
 	(
 		ckb3.state=visualMateReset
 		ckb311.state=visualPosReset
-
+	
 		try btn72.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn17.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn35.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
@@ -2402,8 +2404,17 @@ rollout file "文件" width:720 height:592
 	  DotNetClipboard.SetText  mPath
 	  )
 	)
+	on btn173 pressed do
+	(
+	a=#()
+	for s in $ do append a s
+	for s in a do
+	(
+		select s 
+		fengx.exportSelectToVisual()
+	)
+	)
 )
-
 
 
 rollout snap "吸附" width:362 height:562
