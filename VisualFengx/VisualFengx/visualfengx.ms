@@ -1,14 +1,14 @@
-	------------------------------------------------
-------------------------------------------------
---visualFengx-----------------------------------
---by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.52
+--------------visualFengx-----------------------
+----------------------by fengx------------------
+------------------------------------------------
+------------------------------------------------
+global  VisualFengxVersions =1.53
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
-global  xxx=""
+
 
 global smartRotateLW="W"
 ------------------------------------------------
@@ -36,7 +36,15 @@ global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempd
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
 
 global abPath=""
-global modelPath=" "
+
+global modelPath=(getinisetting  profilePath "modelPath" "path") 
+if classOf modelPath==OkClass do
+(
+	modelPath=" "
+	setinisetting  profilePath "modelPath" "path"  modelPath
+	
+)
+
 global visualPath=(getinisetting  profilePath "visualPath" "path") 
 if classOf visualPath==OkClass do
 (
@@ -304,20 +312,14 @@ mainIcon32Aa=iconBitmapToArray mainIcon32ab
 mainIcon24Aa=iconBitmapToArray mainIcon24ab
 mainIcon16Aa=iconBitmapToArray mainIcon16ab
 
-
-
-
 copyPasteBGPath= (getDir #Scripts+ "\\visualFengx\\copyPasteBG.png")
 if doesFileExist copyPasteBGPath do copyPasteBGBmp  = Bitmaptexture fileName:copyPasteBGPath 
 backUpBGPath= (getDir #Scripts+ "\\visualFengx\\backUpBG.png")   
 if doesFileExist backUpBGPath do backUpBGBmp  = Bitmaptexture fileName:backUpBGPath
 -------------------- map ==---------------------
 ------------------------------------------------
-
-
 -------------------- test ----------------------
 ------------------------------------------------
-
 global matrix_x=5
 global matrix_y=1
 global matrix_z=1
@@ -347,36 +349,25 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.52" width:544 height:743
+rollout mainwindow "visualFengx_1.53" width:544 height:743
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
-    
-	--bitmap the_bmp fileName:"2.1.png" -- pos:[-580,-120]
-    --imgtag img_tag "imgtag" bitmap:bm align:#center pos:[1000,-45]
 	subRollout sub "fengx" pos:[0,32] width:139 height:569 
  
  
- 
- 
- 
- 
- 
- 
- 
+
  
 	checkbutton ckP "Poly" pos:[0,0] width:32 height:32 toolTip:"poly面板： poly 相关处理...."
 	checkbutton ckM "材质" pos:[32,0] width:32 height:32 toolTip:"材质面板： 材质处理相关....."
 	checkbutton ckF "文件" pos:[64,0] width:32 height:32 toolTip:"文件面板:  文件导出 相关等等。。。。。"
 	checkbutton ckS "吸附" pos:[96,16] width:40 height:16 toolTip:"吸附"
 	checkbutton ckX "↓↑" pos:[96,0] width:40 height:16 toolTip:"面板打散 收拢"
-	checkbutton ckb127 "English" pos:[274,0] width:64 height:24 enabled:true checked:false
-	checkbutton ckb128 "中文" pos:[338,0] width:64 height:24 enabled:true checked:true
-	colorPicker cp6 "" pos:[337,24] width:64 height:24 enabled:false color:(color 42 8 36)
+	colorPicker cp6 "" pos:[335,0] width:64 height:24 enabled:false color:(color 42 8 36)
 	button btn337 "设置" pos:[0,712] width:48 height:27
 	checkbutton ckb230 "复制管理" pos:[92,600] width:46 height:40 toolTip:"打开复制管理器"
-	button btn744 "background" pos:[274,24] width:64 height:24
-	button btn142 "userMacros" pos:[274,48] width:104 height:24
-	button btn143 "@" pos:[378,48] width:24 height:24
+	button btn744 "background" pos:[272,0] width:64 height:24
+	button btn142 "userMacros" pos:[272,24] width:104 height:24
+	button btn143 "@" pos:[376,24] width:24 height:24
 	button btn29 "send to GitHub" pos:[192,336] width:80 height:24
 	button btn145 "get from GitHub" pos:[184,256] width:87 height:24
 	button btn32 "卸载！" pos:[144,464] width:127 height:64
@@ -395,8 +386,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn55 "update" pos:[144,432] width:104 height:24
 	button btn56 "@" pos:[248,432] width:24 height:24
 	button btn57 "@" pos:[248,304] width:24 height:24
-	--HyperLink h01 "帮助" pos:[24,664] width:80 height:15 address:"http://fengxxx.github.io/blog/"  --color: hoverColor:  visitedColor:
-	
+
 	button btn196 "visualfengx.ms" pos:[145,48] width:80 height:24
 	button btn197 "macroScript" pos:[145,72] width:80 height:24
 	button btn198 "@" pos:[249,48] width:24 height:24
@@ -415,7 +405,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		
 	button btn65 "已经是最新版" pos:[48,640] width:48 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
 	button btn66 "重开max" pos:[0,640] width:48 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[96,640] width:42 height:32 enabled:true toolTip:"退出max"
+	button btn67 "退出max" pos:[96,640] width:42 height:32 enabled:true toolTip:"退出max"
 	button btn40 "复制" pos:[0,600] width:46 height:40 enabled:true toolTip:"复制选择的模型"
 	button btn41 "黏贴" pos:[46,600] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
 	button btn42 "setMaterials LOG.fengx" pos:[145,144] width:128 height:24
@@ -424,7 +414,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	button btn44 "send to SVN" pos:[184,232] width:88 height:24
 	button btn82 "增加Python27环境变量" pos:[144,576] width:127 height:32 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
 	button btn173 "增加MAX环境变量" pos:[144,608] width:127 height:32 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
-	button btn47 "增加MAX环境变量" pos:[330,163] width:76 height:171 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "	
+	
 	HyperLink hy_help "帮助" pos:[48,712] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
 	(
@@ -527,6 +517,7 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		windowslogic()
 	)
 
+	
 	on mainwindow open do
 	(
 	   
@@ -639,27 +630,6 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		)
 	setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
 	windowsLogic()
-	)
-	on ckb127 changed state do
-	(
-		if state==true do
-		( 
-		ckb128.state=false
-		languageId="中文"
-		--fengx.updataLanguage()
-		setinisetting  profilePath  "Set" "language" languageId
-	
-		)
-	)
-	on ckb128 changed state do
-	(
-	if state==true do 
-	(		
-		ckb127.state=false
-		languageId="English"
-		--fengx.updataLanguage()	
-		setinisetting  profilePath "Set" "language" languageId
-		)
 	)
 	on cp6 changed col do
 	(
@@ -856,20 +826,11 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 	on btn210 pressed do
 	(
 	fileIn (getDir #startupScripts +"\\fengx_start.ms")
-	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx.ms")
-	--fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 	)
 	on btn65 pressed do
 	(
-	--tempV=VisualFengxVersions 
-	--VisualFengxVersions =1.0
-	--if  newVersions > VisualFengxVersions then --fengx.checkUpdate()==true and
-	--( 
-	        createdialog checkUpDateWindow --fengx.update()
-		   checkUpDateWindow.lb01.text= updateMsg
-	--	)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
-	
-	--VisualFengxVersions =tempV
+		createdialog checkUpDateWindow --fengx.update()
+		checkUpDateWindow.lb01.text= updateMsg
 	)
 	on btn66 pressed do
 	(
@@ -932,10 +893,6 @@ rollout mainwindow "visualFengx_1.52" width:544 height:743
 		)
 		)
 	)
-	on btn47 pressed do
-		(
-	
-	)
 )
 
 
@@ -955,6 +912,7 @@ rollout mate "材质" width:541 height:615
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
 	button btn15 "@" pos:[104,272] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	
 	button btn463 "Select Mate" pos:[128,184] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,208] width:24 height:24
 	
@@ -977,7 +935,7 @@ rollout mate "材质" width:541 height:615
 	checkbutton ckb_S "S" pos:[53,120] width:25 height:28 toolTip:"Specular map"
 	checkbutton ckb_A "A" pos:[78,120] width:25 height:28 toolTip:"透明贴图"
 	checkbutton ckb_E "E" pos:[103,120] width:25 height:28 toolTip:"自发光贴图"
-	button btn68 "清除D以外的贴图" pos:[0,148] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
+	button btn68 "清除diffuse以外的贴图" pos:[0,148] width:128 height:32 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	on mate open do
 	(
 		function intToBool i=
@@ -986,7 +944,6 @@ rollout mate "材质" width:541 height:615
 		   if i==1 do b=true
 		   return b
 		)
-		
 		ckb_D.state= intToBool (backMapType[1]	)
 		ckb_N.state= intToBool (backMapType[2]	)
 		ckb_S.state= intToBool (backMapType[3]	)
@@ -1005,15 +962,14 @@ rollout mate "材质" width:541 height:615
 	
 	    matepos=GetDialogPos mate
 	    setinisetting  profilePath "rolloutSetting" "matePos" (matepos as string )
-	  
+	)
+	)
 	
-	)
-	)
 	on btn1 pressed do
 	(
 	 undo on(
-		 macros.run "Medit Tools" "clear_medit_slots"
-	)
+			macros.run "Medit Tools" "clear_medit_slots"
+		)
 	)
 	on btn7 pressed do
 	(
@@ -1028,9 +984,10 @@ rollout mate "材质" width:541 height:615
 			(
 				mates=fengx.toStandardMate s.material
 				fengx.saveMateMapTo mates saveToPath
-			    ShellLaunch "explorer.exe"   saveToPath 
+			     
 			)
 		)
+	     ShellLaunch "explorer.exe"   saveToPath
 	)
 	)
 	on btn8 pressed do
@@ -1098,15 +1055,9 @@ rollout mate "材质" width:541 height:615
 			if classof(scenematerials[i])==MultiMaterial  do 
 			(
 				try ls[i]=scenematerials[i] catch print" clearMate 不知道发生了什么问题！"
-	
-			  --if scenematerials[i].name!="Standardmaterial" and  scenematerials[i].DiffuseMap!=undefined do
-			  --(
-			 	--try ls[i]=scenematerials[i] catch print" clearMate 不知道发生了什么问题！"
-	          	--)
+				)
 			)
-	
-		 )
-	   )        
+		)        
 	)
 	on btn15 pressed do
 	(
@@ -1292,7 +1243,6 @@ rollout mate "材质" width:541 height:615
 	)
 	)
 )
-
 
 
 rollout poly "poly " width:864 height:688
@@ -2038,14 +1988,10 @@ rollout file "文件" width:720 height:592
 	button btn19 "显示文件" pos:[104,528] width:24 height:24 enabled:true
 	button btn20 "显示文件" pos:[104,504] width:24 height:24 enabled:true
 	button btn330 "显示 此文件" pos:[0,448] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
-	button btn10 "@" pos:[240,344] width:24 height:24 enabled:true
-	button btn12 "This Script" pos:[136,344] width:104 height:24 enabled:false
-	
 	button btn239 "快速导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	
 	button btn216 "存为AB备份格式" pos:[0,200] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
-	button btn265 "file IO" pos:[136,368] width:128 height:20 enabled:false
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
 	edittext edt1 "import path" pos:[136,0] width:520 height:168
 	button btn23 "输出" pos:[192,240] width:464 height:88
@@ -2075,7 +2021,7 @@ rollout file "文件" width:720 height:592
 	button btn35 "智能打开模型" pos:[64,304] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
 	button btn106 "智能导入primitives" pos:[0,352] width:128 height:24 enabled:false toolTip:"智能打开模型"
 	button btn143 "智能导入地形" pos:[0,376] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn75 "拷贝模型地址到黏贴板" pos:[0,128] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
+	button btn75 "拷贝模型地址" pos:[0,128] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
 	button btn114 "名字转换成地址" pos:[0,160] width:128 height:32 toolTip:"把名字转换成model地址 现在只支持 物件 建筑 植物.."
 	button btn173 "批量" pos:[0,72] width:48 height:40 enabled:true toolTip:"快速导出到SVN目录"
 	on file open do
@@ -2155,10 +2101,6 @@ rollout file "文件" width:720 height:592
 		） 
 		)
 	)
-	on btn10 pressed do
-	(
-	ShellLaunch "explorer.exe" (getdir #Scripts)
-	)
 	on btn216 pressed do
 	(
 	if $!=undefined then(
@@ -2174,10 +2116,6 @@ rollout file "文件" width:720 height:592
 	)
 	on btn264 pressed do
 		fengx.splitMaxs()
-	on btn265 pressed do
-	(
-		
-		)
 	on btn395 pressed do
 	(
 	fengx.importMaxs()
@@ -2210,16 +2148,11 @@ rollout file "文件" width:720 height:592
 	(
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	if edt1.text=="" or edt1.text==undefined then edt1.text+=DotNetClipboard.GetText() else edt1.text+="\n"+DotNetClipboard.GetText()
-	
-	--DotNetClipboard.SetText "Test Clipboard"
-		
 		)
 	on btn80 pressed do
 	(
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	  edt2.text = DotNetClipboard.GetText()
-	--DotNetClipboard.SetText "Test Clipboard"
-		
 		)
 	on btn109 pressed do
 	(
@@ -2346,9 +2279,9 @@ rollout file "文件" width:720 height:592
 			(
 				mates=fengx.toStandardMate s.material
 				fengx.saveMateMapTo mates saveToPath
-			    ShellLaunch "explorer.exe"   saveToPath 
 			)
 		)
+	     ShellLaunch "explorer.exe"   saveToPath 
 	)
 	)
 	on btn405 pressed do
@@ -2406,15 +2339,44 @@ rollout file "文件" width:720 height:592
 	)
 	on btn173 pressed do
 	(
-	a=#()
-	for s in $ do append a s
-	for s in a do
+	if $!=undefined do
 	(
-		select s 
-		fengx.exportSelectToVisual()
+		a=#()
+		for s in $ do append a s
+		for s in a do
+		(
+			select s 
+			fengx.exportSelectToVisual()
+		)
 	)
 	)
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 rollout snap "吸附" width:362 height:562
@@ -2512,7 +2474,6 @@ rollout snap "吸附" width:362 height:562
 			if rz.state==true do s.rotation.z=obj.rotation.z
 		)
 	 )
-	--obj.wirecolor = red
 		chooseit.text = "Pick:[ "+obj.name+" ]"
 	 )
 	 )
@@ -3541,20 +3502,22 @@ print log
 ---->>smart save select to Visual File 
 function exportSelectToVisual=
 (
+	local log=localtime+"   <exportSelectToVisual>\n"
 	local name=maxfilename
 	local pos=[0,0,0]
 	try pos=$.pos catch()
 	try $.count catch name=$.name 
-	try name=(fengx.selectGroupDummy $)[1].name catch print "no group" 
+	try name=(fengx.selectGroupDummy $)[1].name catch log+="\n no group" 
 	
 	if $!=undefined do 
 	(
 		tempTargetPath=fengx.getNamePath(name) --"E:/mf_pangu/tw2/res/scene/common/"+
 		)
-	modelPath=tempTargetPath+name+".model"
-	modelPath=replace modelPath 1 20 ""
+	
+	tmodelPath=tempTargetPath+name+".model"
+	tmodelPath=replace tmodelPath 1 20 ""
+
 	tempTargetPath=tempTargetPath+name+".visual"
-	print tempTargetPath
 	targetPath=getSaveFileName  caption:"save select"  types:"*.visual"  filename:tempTargetPath
 	if targetPath!=""and targetPath!=undefined do 
     (
@@ -3570,8 +3533,11 @@ function exportSelectToVisual=
 		(		
 			
 			visualPath=fengx.beWindowsPath TargetPath
+			modelPath=fengx.beStringPath(tmodelPath)
 			setinisetting  profilePath "visualPath" "path" visualPath
- 			print (fengx.beStringPath(modelPath))
+			setinisetting  profilePath "modelPath" "path" modelPath
+			log+=localtime + "\n export sucess! \n modelPath= "+modelPath +"\n visualpath= "+visualPath
+			
 			if visualMateReset==true do 
 			(
 			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
@@ -3579,7 +3545,8 @@ function exportSelectToVisual=
 		)
 		try $.pos=pos catch()
     )
-
+	
+	print log
 	
 ),
 
@@ -3854,7 +3821,6 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 					--print faces
 					if (faces as array).count!=0 do(
 						append mateA n.material[n.material.materialIDList[i]]
-						
 						append faceA (polyOp.getFaceSelection($))
 					)
 				)	
@@ -3865,7 +3831,6 @@ function llllllllllllllllllllllllllllllllllllllllllllllllmatelrialToolFn=(),
 				newMate.materialList=mateA
 				)
 				n.material=newMate
-				
 				i=1
 				for s in faceA do 
 				(
@@ -3958,9 +3923,10 @@ return mapsPath
 ---->>Get maps that is Really in the use of from <materials>  
 function getMatesTrueMapsPath mates =
 (
+	local LOG=localtime+"  <getMatesTrueMapsPath mates> \n"
 	local mapsPath=#()
 	local missMapName=#()
-
+	
 	missMap=usedMaps()
 	for p in missMap do append missMapName (getFileNameFile p)
 	
@@ -3968,7 +3934,6 @@ function getMatesTrueMapsPath mates =
 	local standerdMates=#()
 	for m in mates do if classOf m == standardMaterial do append standerdMates m
 	mates=standerdMates
-	
 	for s in mates do
 	( 
 		dOn=true
@@ -3984,15 +3949,18 @@ function getMatesTrueMapsPath mates =
 				index = finditem missMapName mapName
 				if index ==0 then
 					(
-					 print ( "<map>=======  "+mapName + mapType+"  ====== was not found....")  
-					 print ("      =======  in a wrong path >  " + s.diffuseMap.fileName)
-					 )else  (
+					 log+= ( localtime+"\n<map>=======  "+mapName + mapType+"  ====== was not found....")  
+					 log+= (localtime+"\n      =======  in a wrong path >  " + s.diffuseMap.fileName)
+					 )else (
 					mapsPath+=(fengx.dToDNS  missMap[index])
 					)
 				)
 			)
+			log+="\n "+localtime
 	
 	)
+	
+	print ("\n"+localtime+"\n"+Log)
 	return mapsPath
 	),
 	
@@ -4083,15 +4051,11 @@ function dToDNS DPath=
 		strM=""
 		for i=1 to (MName.count-1) do  strM+=MName[i]
 		MName=strM
-		--xxx	
-
-		
 		--substring SName 1 (NName.count-1)
-		append	mapsPathArry (mapPath+NName+mapType)
-		append	mapsPathArry (mapPath+SName+mapType)
-		append	mapsPathArry (mapPath+EName+mapType)
-		append	mapsPathArry (mapPath+MName+mapType)
-		
+		if doesFileExist  (mapPath+NName+mapType) do append	mapsPathArry (mapPath+NName+mapType)
+		if doesFileExist  (mapPath+SName+mapType) do append	mapsPathArry (mapPath+SName+mapType)
+		if doesFileExist  (mapPath+EName+mapType) do append	mapsPathArry (mapPath+EName+mapType)
+		if doesFileExist  (mapPath+MName+mapType) do append	mapsPathArry (mapPath+MName+mapType)
 	)else(
 		append	mapsPathArry ""
 		append	mapsPathArry ""
@@ -4248,12 +4212,13 @@ function  TexNameToMateName=
 
 function namedMate mate s=
 ( 
+	local log=localtime + "\n<namedMate mate s>"
 	if classOf(mate)==Standardmaterial do
 	(
 	  try (
 		 mate.name=getFilenameFile mate.DiffuseMap.filename 
-		 print  ("      "+ mate.name+"       ") 
-		) catch  ()--print "  找不到diffuse ！名字自己改吧！"--messagebox   (s+"的Diffuse贴的不是图吧！！！ 这个材质无法命名！")   title:" 擦擦擦擦擦！ "
+		 log+=("      "+ mate.name+"       ") 
+		) catch  (log +="\n 无法命名!")
 	)
 ),
 ------------------------------------------------>> <only for netease> 
@@ -4527,7 +4492,7 @@ function matrixSort =
 
 	),
 
-
+/*
 --物体重新矩阵排列
 function setpos n=
 (
@@ -4626,7 +4591,7 @@ function setpos n=
 
     )
 ),
-
+*/
 --排除掉已经归入组的物体   node 或者 node[]
 function selectGroupDummy select=
 (    
@@ -5007,6 +4972,7 @@ function showObjectNames=
 --<material>--<startardMaterial only>
 function saveMateMapTo mates targetPath=
 (	
+	local LOG=localtime+"  <saveMateMapTo mates targetPath>  \n"
 	-->>>   forbid anything was not standarMaterial 
 	local standerdMates=#()
 	for m in mates do if classOf m == standardMaterial do append standerdMates m
@@ -5015,30 +4981,29 @@ function saveMateMapTo mates targetPath=
 	-->>>   
 	--savePath=getSavePath   caption:"save to"
 	if targetPath !=undefined then (
+		local mapsPath=#()
 		if mates!=undefined then (
 			local mapsPath =#()
 			mapsPath=fengx.getMatesTrueMapsPath mates
-			)else print "material if null....>>> save fath...."
+			)else LOG +=localtime+"\n material if null....>>> save fath...."
 		
-		)else print "path is not choese....>>> save fath...."
+		)else LOG +=localtime+"\n path is not choese....>>> save fath...."
 	
 		
-		for map in  (fengx.getMatesTrueMapsPath mates) do
+		for map in  mapspath do
 		 (
 			local tName = getFilenameFile map 
 			local tType = getFilenameType map
 			 
 			local tempMapPath = targetPath + "/" + tName + tType
-			tempMapPath=fengx.beStringPath tempMapPath
-			local copySOn=true
-			try copyfile map tempMapPath catch (
-				 print ("....."+map +" was not be saved.....")
-				 copySOn=false
-				 )
-			if copySOn==true do print ("  ------  "+map +"     > map was copyed success.....")
+			--tempMapPath=fengx.beStringPath tempMapPath
+			if doesFileExist tempMapPath==false then 
+			(
+				copyfile map tempMapPath 
+				if doesFileExist tempMapPath==true then LOG +=(localtime+"\n  ------  "+map +"     > map was copyed success.....") else LOG +=(localtime+"\n ....."+map +" was not be saved.....")
+			)else LOG +=(localtime+"\n  ------  "+map +"     > map was Exist.....") 
 			)
-			
-	
+	print (localtime+"\n"+Log)
 ),
 	
 
@@ -5211,21 +5176,17 @@ function copyMapsTo mapsPath targetPath=
 	tempMapPath=fengx.beStringPath  (targetPath+"/" + tName +tType)
 	local copySOn=true
 	if doesFileExist map ==true then(
-		try copyfile map tempMapPath catch (
-			 log+=localTime+"__\n....."+map +" was not be saved....."
-			 copySOn=false
-			 )
-		 )else(
-			log+=localTime+"__\n  ------  "+map +"     > map does not exist ....."
-			copySOn=false
-			)
-	if copySOn==true do log+=localTime+"__\n  ------  "+map +"     > map was copyed success....."
+		if doesFileExist tempMapPath==false then
+		(
+			copyfile map tempMapPath 	 
+		 	 )else log+=localTime+"__\n....."+map +"map was exist....."
+		 if doesFileExist map ==true then 
+		 (
+			log+=localTime+"__\n  ------  "+map +"     > map was copyed success....."
+		 	)else log+=localTime+"__\n....."+map +" was not be saved....."
+		 )else log+=localTime+"__\n  ------  "+map +"     > map does not exist ....."
 	)
-	--return log
-	--print localtime
 	print log
-
-
 ),
 function ToVisualPath targetPath=
 (
