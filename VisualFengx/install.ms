@@ -1,6 +1,6 @@
---VisualFengx 1.52 install MZP
+--VisualFengx 1.53 install MZP
 
-Versions=1.52
+Versions=1.53
 installTool
 setupStart
 setup_progress_update
