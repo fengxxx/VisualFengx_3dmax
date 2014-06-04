@@ -275,7 +275,7 @@ if doesFileExist MainIcon16Path then MainIcon16b=openBitMap  MainIcon16Path else
 if doesFileExist MainIcon16Patha then MainIcon16ab=openBitMap  MainIcon16Patha else MainIconab=theDefultBmp
 	
 if doesFileExist MainBGPath then MainBG=openBitMap  MainBGPath else restartBmp =theDefultBmp
-	
+
 function iconBitmapToArray b=
 (
 	a=#()
@@ -287,8 +287,8 @@ function iconBitmapToArray b=
 			for x=1 to 32 do
 			(
 				
-				colorA=getPixels b [(i-1)*b.height,x]  b.height
-				setPixels    tbmp [0,x]  colorA
+				colorA=getPixels b [(i-1)*b.height,(x-1)]  b.height
+				setPixels    tbmp [0,(x-1)]  colorA
 				)
 			append a tbmp
 			)
@@ -347,68 +347,73 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:681 height:743
+rollout mainwindow mainWindowName width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
-	subRollout sub "fengx" pos:[0,32] width:139 height:584 
+	subRollout sub "fengx" pos:[0,35] width:139 height:589 
+ 
+ 
+ 
+ 
+ 
  
  
  
 
-	checkbutton ckP "Poly" pos:[0,0] width:32 height:32 toolTip:"poly面板： poly 相关处理...."
-	checkbutton ckM "材质" pos:[32,0] width:32 height:32 toolTip:"材质面板： 材质处理相关....."
-	checkbutton ckF "文件" pos:[64,0] width:32 height:32 toolTip:"文件面板:  文件导出 相关等等。。。。。"
-	checkbutton ckS "吸附" pos:[96,16] width:40 height:16 toolTip:"吸附"
-	checkbutton ckX "↓↑" pos:[96,0] width:40 height:16 toolTip:"面板打散 收拢"
-	colorPicker cp6 "" pos:[385,0] width:64 height:24 enabled:false color:(color 42 8 36)
-	button btn337 "设置" pos:[96,656] width:40 height:32
-	checkbutton ckb230 "复制管理" pos:[92,616] width:46 height:40 toolTip:"打开复制管理器"
-	button btn744 "background" pos:[322,0] width:64 height:24
-	button btn142 "userMacros" pos:[322,24] width:104 height:24
-	button btn143 "@" pos:[426,24] width:24 height:24
-	button btn29 "send to GitHub" pos:[370,336] width:80 height:24
-	button btn145 "get from GitHub" pos:[362,264] width:87 height:24
-	button btn32 "卸载！" pos:[141,576] width:127 height:64
-	button btn697 "send to GitHub" pos:[362,216] width:87 height:24
-	button btn698 "get from GitHub" pos:[370,384] width:80 height:24
-	button btn699 "home" pos:[322,216] width:40 height:72
-	button btn700 "company" pos:[322,336] width:48 height:72
-	button btn801 "install.ms" pos:[322,288] width:104 height:24
-	button btn802 "@" pos:[426,288] width:24 height:24
-	button btn803 "install.ms" pos:[322,408] width:104 height:24
-	button btn804 "@" pos:[426,408] width:24 height:24
-	button btn53 "检查更新！" pos:[141,640] width:127 height:24
-	button btn26 "强制更新！" pos:[141,664] width:127 height:24
-	button btn531 "update" pos:[322,312] width:104 height:24
-	button btn55 "update" pos:[322,432] width:104 height:24
-	button btn56 "@" pos:[426,432] width:24 height:24
-	button btn57 "@" pos:[426,312] width:24 height:24
-	button btn196 "visualfengx.ms" pos:[322,120] width:80 height:24
-	button btn197 "macroScript" pos:[322,144] width:80 height:24
-	button btn198 "@" pos:[426,120] width:24 height:24
-	button btn199 "@" pos:[426,144] width:24 height:24
-	button btn200 "fengx.fengx" pos:[322,192] width:80 height:24
-	button btn201 "@" pos:[426,192] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[322,168] width:80 height:24
-	button btn203 "@" pos:[426,168] width:24 height:24
-	button btn204 "○" pos:[402,120] width:24 height:24
-	button btn205 "○" pos:[402,144] width:24 height:24
-	button btn206 "○" pos:[402,168] width:24 height:24
-	button btn207 "notepad++" pos:[322,72] width:128 height:24
-	button btn208 "sublime_text" pos:[322,96] width:128 height:24
-	button btn209 "○" pos:[402,192] width:24 height:24
-	button btn65 "已经是最新版" pos:[32,656] width:32 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,656] width:32 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[64,656] width:32 height:32 enabled:true toolTip:"退出max"
-	button btn40 "复制" pos:[0,616] width:46 height:40 enabled:true toolTip:"复制选择的模型"
-	button btn41 "黏贴" pos:[46,616] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
-	button btn42 "setMaterials LOG.fengx" pos:[322,48] width:127 height:24
-	button btn43 "send to SVN" pos:[370,360] width:80 height:24
-	button btn44 "send to SVN" pos:[362,240] width:88 height:24
-	button btn82 "增加Python27环境变量" pos:[141,33] width:125 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
-	button btn173 "增加Vusial导出插件MAX环境变量" pos:[141,57] width:173 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
+	checkbutton ckP "Poly" pos:[1,0] width:36 height:36 toolTip:"poly面板： poly 相关处理...."
+	checkbutton ckM "材质" pos:[37,0] width:36 height:36 toolTip:"材质面板： 材质处理相关....."
+	checkbutton ckF "文件" pos:[73,0] width:36 height:36 toolTip:"文件面板:  文件导出 相关等等。。。。。"
+	checkbutton ckS "吸附" pos:[109,18] width:28 height:18 toolTip:"吸附"
+	checkbutton ckX "↓↑" pos:[109,0] width:28 height:18 toolTip:"面板打散 收拢"
+	colorPicker cp6 "" pos:[383,0] width:64 height:24 enabled:false color:(color 42 8 36)
+	button btn337 "设置" pos:[96,664] width:42 height:32
+	checkbutton ckb230 "复制管理" pos:[92,624] width:46 height:40 toolTip:"打开复制管理器"
+	button btn744 "background" pos:[320,0] width:64 height:24
+	button btn142 "userMacros" pos:[320,24] width:104 height:24
+	button btn143 "@" pos:[424,24] width:24 height:24
+	button btn29 "send to GitHub" pos:[368,336] width:80 height:24
+	button btn145 "get from GitHub" pos:[360,264] width:87 height:24
+	button btn32 "卸载！" pos:[139,487] width:127 height:64
+	button btn697 "send to GitHub" pos:[360,216] width:87 height:24
+	button btn698 "get from GitHub" pos:[368,384] width:80 height:24
+	button btn699 "home" pos:[320,216] width:40 height:72
+	button btn700 "company" pos:[320,336] width:48 height:72
+	button btn801 "install.ms" pos:[320,288] width:104 height:24
+	button btn802 "@" pos:[424,288] width:24 height:24
+	button btn803 "install.ms" pos:[320,408] width:104 height:24
+	button btn804 "@" pos:[424,408] width:24 height:24
+	button btn53 "检查更新！" pos:[139,551] width:127 height:24
+	button btn26 "强制更新！" pos:[139,575] width:127 height:24
+	button btn531 "update" pos:[320,312] width:104 height:24
+	button btn55 "update" pos:[320,432] width:104 height:24
+	button btn56 "@" pos:[424,432] width:24 height:24
+	button btn57 "@" pos:[424,312] width:24 height:24
+	button btn196 "visualfengx.ms" pos:[320,120] width:80 height:24
+	button btn197 "macroScript" pos:[320,144] width:80 height:24
+	button btn198 "@" pos:[424,120] width:24 height:24
+	button btn199 "@" pos:[424,144] width:24 height:24
+	button btn200 "fengx.fengx" pos:[320,192] width:80 height:24
+	button btn201 "@" pos:[424,192] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[320,168] width:80 height:24
+	button btn203 "@" pos:[424,168] width:24 height:24
+	button btn204 "○" pos:[400,120] width:24 height:24
+	button btn205 "○" pos:[400,144] width:24 height:24
+	button btn206 "○" pos:[400,168] width:24 height:24
+	button btn207 "notepad++" pos:[320,72] width:128 height:24
+	button btn208 "sublime_text" pos:[320,96] width:128 height:24
+	button btn209 "○" pos:[400,192] width:24 height:24
+	button btn65 "已经是最新版" pos:[32,664] width:32 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,664] width:32 height:32 enabled:true toolTip:"重开max"
+	button btn67 "Eixt" pos:[64,664] width:32 height:32 enabled:true toolTip:"退出max"
+	button btn40 "复制" pos:[0,624] width:46 height:40 enabled:true toolTip:"复制选择的模型"
+	button btn41 "黏贴" pos:[46,624] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
+	button btn42 "setMaterials LOG.fengx" pos:[320,48] width:127 height:24
+	button btn43 "send to SVN" pos:[368,360] width:80 height:24
+	button btn44 "send to SVN" pos:[360,240] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[139,176] width:125 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "增加Vusial导出插件MAX环境变量" pos:[139,200] width:173 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
 	
-	HyperLink hy_help "帮助" pos:[347,573] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+	HyperLink hy_help "帮助" pos:[48,712] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -510,9 +515,10 @@ rollout mainwindow mainWindowName width:681 height:743
 		windowslogic()
 	)
 
-	button btn47 "修复max文件夹缩略图" pos:[141,89] width:127 height:32
-	button btn48 "注册.Visual等文件" pos:[141,121] width:96 height:32
-	button btn331 "重启资源浏览器(explorer)" pos:[141,153] width:158 height:32
+	button btn47 "修复max文件夹缩略图" pos:[139,232] width:127 height:32
+	button btn48 "注册.Visual等文件" pos:[139,264] width:96 height:32
+	button btn331 "重启资源浏览器(explorer)" pos:[139,296] width:173 height:32
+	button btn49 "Button" pos:[330,556] width:831 height:42
 	on mainwindow open do
 	(
 	   
@@ -538,8 +544,8 @@ rollout mainwindow mainWindowName width:681 height:743
 		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
 		try ckX.images=#(mainIcon16A[13], mainIcon16Aa[13], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		--try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn67.images=#(mainIcon24A[1], mainIcon24Aa[1], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn337.images=#(mainIcon24A[16], mainIcon24Aa[16], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		
 		try btn203.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try btn201.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
@@ -552,8 +558,9 @@ rollout mainwindow mainWindowName width:681 height:743
 		try ckP.images=#(mainIcon32A[2], mainIcon32Aa[2], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try ckF.images=#(mainIcon32A[3], mainIcon32Aa[3], 1,1,1,1,1 ) catch (print "xxxxxxx")
 		try ckM.images=#(mainIcon32A[4], mainIcon32Aa[4], 1,1,1,1,1 ) catch (print "xxxxxxx")
-	
-	
+		
+		try btn49.images=#(MainIcon32b, MainIcon32ab, 1,1,1,1,1 ) catch (print "xxxxxxx")
+		  
 		
 	)
 	on mainwindow close do
@@ -922,8 +929,6 @@ rollout mainwindow mainWindowName width:681 height:743
 
 
 
-
-
 rollout mate "材质" width:541 height:615
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
@@ -934,6 +939,7 @@ rollout mate "材质" width:541 height:615
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
 	button btn15 "@" pos:[104,232] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	
 	
 	
 	
@@ -961,7 +967,7 @@ rollout mate "材质" width:541 height:615
 	checkbutton ckb_A "A" pos:[76,112] width:24 height:24 toolTip:"透明贴图"
 	checkbutton ckb_E "E" pos:[100,112] width:24 height:24 toolTip:"自发光贴图"
 	button btn68 "清除diffuse以外的贴图" pos:[0,184] width:128 height:24 enabled:true toolTip:"清除diffuse以外的其余贴图"
-	button btn61 "从当前目录找回贴图" pos:[0,208] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
+	button btn61 "从当前目录找回贴图" pos:[128,144] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	on mate open do
 	(
 		function intToBool i=
@@ -2419,7 +2425,8 @@ rollout file "文件" width:720 height:592
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	  if (fengx.getNamePath(DotNetClipboard.GetText()))=="E:/mf_pangu/tw2/res/scene/common/" then messageBox "转换失败!" else
 	 (
-	  mPath= fengx.getNamePath(DotNetClipboard.GetText())+DotNetClipboard.GetText()+".model"
+	  n=(getFilenameFile (DotNetClipboard.GetText()))
+	  mPath= (fengx.getNamePath n) +n+".model"
 	  mPath=replace mPath 1 20 ""
 	  DotNetClipboard.SetText  mPath
 	  )
@@ -2438,6 +2445,7 @@ rollout file "文件" width:720 height:592
 	)
 	)
 )
+
 
 
 
@@ -4221,7 +4229,6 @@ function findMapDir n=
 (
 	--dir=n
 	dir=maxFilePath+"\\map\\1\\"+n
-	
 	return dir 
 	),	
  
