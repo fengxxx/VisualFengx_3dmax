@@ -350,70 +350,61 @@ mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 rollout mainwindow mainWindowName width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
-	subRollout sub "fengx" pos:[0,35] width:139 height:589 
+	subRollout sub "fengx" pos:[0,35] width:139 height:586 
  
  
- 
- 
- 
- 
- 
- 
+
 
 	checkbutton ckP "Poly" pos:[1,0] width:36 height:36 toolTip:"poly面板： poly 相关处理...."
 	checkbutton ckM "材质" pos:[37,0] width:36 height:36 toolTip:"材质面板： 材质处理相关....."
 	checkbutton ckF "文件" pos:[73,0] width:36 height:36 toolTip:"文件面板:  文件导出 相关等等。。。。。"
 	checkbutton ckS "吸附" pos:[109,18] width:28 height:18 toolTip:"吸附"
 	checkbutton ckX "↓↑" pos:[109,0] width:28 height:18 toolTip:"面板打散 收拢"
-	colorPicker cp6 "" pos:[383,0] width:64 height:24 enabled:false color:(color 42 8 36)
-	button btn337 "设置" pos:[96,664] width:42 height:32
-	checkbutton ckb230 "复制管理" pos:[92,624] width:46 height:40 toolTip:"打开复制管理器"
-	button btn744 "background" pos:[320,0] width:64 height:24
-	button btn142 "userMacros" pos:[320,24] width:104 height:24
-	button btn143 "@" pos:[424,24] width:24 height:24
-	button btn29 "send to GitHub" pos:[368,336] width:80 height:24
-	button btn145 "get from GitHub" pos:[360,264] width:87 height:24
-	button btn32 "卸载！" pos:[139,487] width:127 height:64
-	button btn697 "send to GitHub" pos:[360,216] width:87 height:24
-	button btn698 "get from GitHub" pos:[368,384] width:80 height:24
-	button btn699 "home" pos:[320,216] width:40 height:72
-	button btn700 "company" pos:[320,336] width:48 height:72
-	button btn801 "install.ms" pos:[320,288] width:104 height:24
-	button btn802 "@" pos:[424,288] width:24 height:24
-	button btn803 "install.ms" pos:[320,408] width:104 height:24
-	button btn804 "@" pos:[424,408] width:24 height:24
-	button btn53 "检查更新！" pos:[139,551] width:127 height:24
-	button btn26 "强制更新！" pos:[139,575] width:127 height:24
-	button btn531 "update" pos:[320,312] width:104 height:24
-	button btn55 "update" pos:[320,432] width:104 height:24
-	button btn56 "@" pos:[424,432] width:24 height:24
-	button btn57 "@" pos:[424,312] width:24 height:24
-	button btn196 "visualfengx.ms" pos:[320,120] width:80 height:24
-	button btn197 "macroScript" pos:[320,144] width:80 height:24
-	button btn198 "@" pos:[424,120] width:24 height:24
-	button btn199 "@" pos:[424,144] width:24 height:24
-	button btn200 "fengx.fengx" pos:[320,192] width:80 height:24
-	button btn201 "@" pos:[424,192] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[320,168] width:80 height:24
-	button btn203 "@" pos:[424,168] width:24 height:24
-	button btn204 "○" pos:[400,120] width:24 height:24
-	button btn205 "○" pos:[400,144] width:24 height:24
-	button btn206 "○" pos:[400,168] width:24 height:24
-	button btn207 "notepad++" pos:[320,72] width:128 height:24
-	button btn208 "sublime_text" pos:[320,96] width:128 height:24
-	button btn209 "○" pos:[400,192] width:24 height:24
-	button btn65 "已经是最新版" pos:[32,664] width:32 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
-	button btn66 "重开max" pos:[0,664] width:32 height:32 enabled:true toolTip:"重开max"
-	button btn67 "Eixt" pos:[64,664] width:32 height:32 enabled:true toolTip:"退出max"
-	button btn40 "复制" pos:[0,624] width:46 height:40 enabled:true toolTip:"复制选择的模型"
-	button btn41 "黏贴" pos:[46,624] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
-	button btn42 "setMaterials LOG.fengx" pos:[320,48] width:127 height:24
-	button btn43 "send to SVN" pos:[368,360] width:80 height:24
-	button btn44 "send to SVN" pos:[360,240] width:88 height:24
-	button btn82 "增加Python27环境变量" pos:[139,176] width:125 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
-	button btn173 "增加Vusial导出插件MAX环境变量" pos:[139,200] width:173 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
+	button btn337 "设置" pos:[96,660] width:42 height:32 toolTip:"设置"
+
+	checkbutton ckb230 "复制管理" pos:[92,620] width:46 height:40 toolTip:"打开复制管理器"
+	button btn142 "userMacros" pos:[316,158] width:104 height:24
+	button btn143 "@" pos:[420,158] width:24 height:24
+	button btn29 "send to GitHub" pos:[364,230] width:80 height:24
+	button btn32 "卸载！" pos:[143,626] width:171 height:66
+	button btn697 "send to GitHub" pos:[356,182] width:88 height:24
+	button btn699 "home" pos:[316,182] width:40 height:48
+	button btn700 "company" pos:[316,230] width:48 height:48
+	button btn53 "检查更新！" pos:[143,538] width:171 height:48
+	button btn26 "强制更新！" pos:[143,586] width:171 height:40
+	button btn196 "visualfengx.ms" pos:[316,62] width:80 height:24
+	button btn197 "macroScript" pos:[316,86] width:80 height:24
+	button btn198 "@" pos:[420,62] width:24 height:24
+	button btn199 "@" pos:[420,86] width:24 height:24
+	button btn200 "fengx.fengx" pos:[316,134] width:80 height:24
+	button btn201 "@" pos:[420,134] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[316,110] width:80 height:24
+	button btn203 "@" pos:[420,110] width:24 height:24
+	button btn204 "○" pos:[396,62] width:24 height:24
+	button btn205 "○" pos:[396,86] width:24 height:24
+	button btn206 "○" pos:[396,110] width:24 height:24
+	button btn207 "notepad++" pos:[316,38] width:64 height:24
+	button btn208 "sublime_text" pos:[380,38] width:64 height:24
+	button btn209 "○" pos:[396,134] width:24 height:24
+	button btn65 "已经是最新版" pos:[32,660] width:32 height:32 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn66 "重开max" pos:[0,660] width:32 height:32 enabled:true toolTip:"重开max"
+	button btn67 "Eixt" pos:[64,660] width:32 height:32 enabled:true toolTip:"退出max"
+	button btn40 "复制" pos:[0,620] width:46 height:40 enabled:true toolTip:"复制选择的模型"
+	button btn41 "黏贴" pos:[46,620] width:46 height:40 enabled:true toolTip:"黏贴选择的模型"
+	button btn43 "send to SVN" pos:[364,254] width:80 height:24
+	button btn44 "send to SVN" pos:[356,206] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[142,36] width:173 height:52 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "增加Vusial导出插件MAX环境变量" pos:[142,88] width:173 height:52 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
 	
-	HyperLink hy_help "帮助" pos:[48,712] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+	button btn47 "修复max文件缩略图" pos:[143,152] width:173 height:68 toolTip:"max文件在文件夹中将会显示缩略图!"
+	button btn48 "注册.Visual等文件" pos:[143,220] width:173 height:79 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
+	button btn331 "重启资源浏览器(explorer)" pos:[143,299] width:173 height:88
+	button btn49 "Button" pos:[316,278] width:821 height:42
+	button btn50 "Button" pos:[316,320] width:474 height:28
+	button btn51 "Button" pos:[316,348] width:363 height:20
+	
+	HyperLink hy_help "帮助" pos:[317,11] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+	button btn255 "编辑脚本时用的一些功能..." pos:[444,38] width:166 height:240
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -515,10 +506,7 @@ rollout mainwindow mainWindowName width:1178 height:796
 		windowslogic()
 	)
 
-	button btn47 "修复max文件夹缩略图" pos:[139,232] width:127 height:32
-	button btn48 "注册.Visual等文件" pos:[139,264] width:96 height:32
-	button btn331 "重启资源浏览器(explorer)" pos:[139,296] width:173 height:32
-	button btn49 "Button" pos:[330,556] width:831 height:42
+	button btn496 "设置" pos:[142,0] width:173 height:36 enabled:false
 	on mainwindow open do
 	(
 	   
@@ -527,11 +515,10 @@ rollout mainwindow mainWindowName width:1178 height:796
 		--windowslogic()
 		if  newVersions > VisualFengxVersions  then
 		(
-			--print "xiande xxx"
 			mainWindow.btn65.text="最新版-- " +(newVersions as string)
 			mainWindow.btn65.enabled=true
-			try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		)else try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "xxxxxxx")
+			try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
+		)else try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
 		--（
 			--print "jiade xxx"
 			--mainWindow.btn65.text="已经是最新版" 
@@ -539,29 +526,27 @@ rollout mainwindow mainWindowName width:1178 height:796
 		--）
 	
 	
-		try btn66.images=#(mainIcon24A[14], mainIcon24Aa[14], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn66.images=#(mainIcon24A[14], mainIcon24Aa[14], 1,1,1,1,1 ) catch (print "btn66.images=#(mainIcon24A[14]")
+		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9], 1,1,1,1,1 ) catch (print "btn40.images=#(mainIcon32A[9]")
+		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "btn41.images=#(mainIcon32A[10]")
 		
-		try ckX.images=#(mainIcon16A[13], mainIcon16Aa[13], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn337.images=#(mainIcon24A[16], mainIcon24Aa[16], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try ckX.images=#(mainIcon16A[13], mainIcon16Aa[13], 1,1,1,1,1 ) catch (print "ckX.images=#(mainIcon16A[13]")
+		try btn67.images=#(mainIcon24A[15], mainIcon24Aa[15], 1,1,1,1,1 ) catch (print "btn67.images=#(mainIcon24A[15]")
+		try btn337.images=#(mainIcon24A[16], mainIcon24Aa[16], 1,1,1,1,1 ) catch (print "btn337.images=#(mainIcon24A[16]")
 		
-		try btn203.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn201.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn198.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn199.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn802.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn57.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn143.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckb230.images=#(mainIcon32A[8], mainIcon32Aa[8], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckP.images=#(mainIcon32A[2], mainIcon32Aa[2], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckF.images=#(mainIcon32A[3], mainIcon32Aa[3], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try ckM.images=#(mainIcon32A[4], mainIcon32Aa[4], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn203.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn203.images=#(mainIcon16A[5]")
+		try btn201.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn201.images=#(mainIcon16A[5]")
+		try btn198.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn198.images=#(mainIcon16A[5]")
+		try btn199.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print " btn199.images=#(mainIcon16A[5]")
+		try btn143.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn143.images=#(mainIcon16A[5]")
+		try ckb230.images=#(mainIcon32A[8], mainIcon32Aa[8], 1,1,1,1,1 ) catch (print "ckb230.images=#(mainIcon32A[8]")
+		try ckP.images=#(mainIcon32A[2], mainIcon32Aa[2], 1,1,1,1,1 ) catch (print "ckP.images=#(mainIcon32A[2]")
+		try ckF.images=#(mainIcon32A[3], mainIcon32Aa[3], 1,1,1,1,1 ) catch (print "ckF.images=#(mainIcon32A[3]")
+		try ckM.images=#(mainIcon32A[4], mainIcon32Aa[4], 1,1,1,1,1 ) catch (print "ckM.images=#(mainIcon32A[4]")
 		
-		try btn49.images=#(MainIcon32b, MainIcon32ab, 1,1,1,1,1 ) catch (print "xxxxxxx")
-		  
-		
+		try btn49.images=#(MainIcon32b, MainIcon32ab, 1,1,1,1,1 ) catch (print "btn49.images=#(MainIcon32b")
+		try btn50.images=#(MainIcon24b, MainIcon24ab, 1,1,1,1,1 ) catch (print "btn50.images=#(MainIcon24b")  
+		try btn51.images=#(MainIcon16b, MainIcon16ab, 1,1,1,1,1 ) catch (print "btn51.images=#(MainIcon16b")
 	)
 	on mainwindow close do
 	(
@@ -633,11 +618,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 	setIniSetting  profilePath "rolloutSetting" "windowState"  (windowState as string)
 	windowsLogic()
 	)
-	on cp6 changed col do
-	(
-		bgColor= col
-	     setIniSetting  profilePath "rolloutSetting" "bgColor"  (bgColor as string)
-		)
 	on btn337 pressed do
 	(
 	if ckX.state==false do 
@@ -667,14 +647,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 	fengx.sendToGitHub  worlkGitHubPath
 	)
 	)
-	on btn145 pressed do
-	(
-	if (queryBox "确定从 GitHub 安装!")==true do
-	(
-	files =getFiles "K:\\VisualFengx_3dmax\\*.mzp"
-	try fileIn files[1] catch messageBox "找不到按装包！"
-	)
-	)
 	on btn32 pressed do
 	(
 		fengx.uninstall()
@@ -686,28 +658,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 	homeGitHubPath="K:\\VisualFengx_3dmax\\VisualFengx\\"
 	fengx.sendToGitHub  homeGitHubPath
 	)
-	)
-	on btn698 pressed do
-	(
-	if (queryBox "确定从 GitHub 安装!")==true do
-	(
-	files =getFiles "E:\\GitHub\\VisualFengx_3dmax\\*.mzp"
-	try fileIn files[1] catch messageBox "找不到按装包！"
-	)
-	)
-	on btn801 pressed do
-		try edit "K:\\VisualFengx_3dmax\\VisualFengx\\install.ms" catch messageBox "cant find the file!"
-	on btn802 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," +"K:\\VisualFengx_3dmax\\VisualFengx\\install.ms" )
-		
-	)
-	on btn803 pressed do
-		try edit "E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\install.ms" catch messageBox "cant find the file!"
-	on btn804 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\VisualFengx\\install.ms" )
-		
 	)
 	on btn53 pressed do
 	(
@@ -729,24 +679,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 		   if updateMsg!="" do checkUpDateWindow.lb01.text= updateMsg
 		--)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
 	--VisualFengxVersions =tempV
-	)
-	on btn531 pressed do
-	(
-		ShellLaunch "notepad++.exe"  "K:\\VisualFengx_3dmax\\update"
-	)
-	on btn55 pressed do
-	(
-		ShellLaunch app  "E:\\GitHub\\VisualFengx_3dmax\\update" 
-		)
-	on btn56 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," + "E:\\GitHub\\VisualFengx_3dmax\\update" )
-		
-	)
-	on btn57 pressed do
-	(
-	ShellLaunch "explorer.exe" ("/select," +"K:\\VisualFengx_3dmax\\update" )
-		
 	)
 	on btn196 pressed do
 	(
@@ -848,11 +780,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 	(
 	macros.run "visualFengx" "PasteObject"
 	)
-	on btn42 pressed do
-	(
-		dir1=getdir #Scripts + "\visualfengx\setMaterials LOG.fengx"
-		edit dir1
-	)
 	on btn43 pressed do
 	(
 		if (queryBox "确定要同步到 SVN!")==true do
@@ -899,8 +826,8 @@ rollout mainwindow mainWindowName width:1178 height:796
 		)
 	on btn48 pressed do
 	(
-		
-		if copyfile (getdir #Scripts +"\\VisualFengx\\openByModelEditor.exe") ("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\openByModelEditor.exe") then
+		copyfile (getdir #Scripts +"\\VisualFengx\\openByModelEditor.exe") ("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\openByModelEditor.exe")
+		if doesFileExist("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\openByModelEditor.exe") then
 		(
 			ShellLaunch (getdir #Scripts +"\\VisualFengx\\register_bigWorldFile.reg") ""
 		
@@ -913,12 +840,22 @@ rollout mainwindow mainWindowName width:1178 height:796
 		)
 	on btn331 pressed do
 	(
-		if (queryBox "确定重启资源浏览器(explorer)?")==true do
-		(
-			ShellLaunch (getdir #Scripts +"\\VisualFengx\\restartExplorer.bat") ""
+		--if (queryBox "确定重启资源浏览器(explorer)?")==true do
+		if (queryBox "在弹出的文件夹里面 手动点击restartExplorer.bat 就可以了! (不知道怎么获得权限...所以要不能自动重启explorer!) ")==true do
+	       (
+	           ShellLaunch  "explorer" ( "/select,"+getdir #Scripts +"\\VisualFengx\\restartExplorer.bat")
+			--ShellLaunch (getdir #Scripts +"\\VisualFengx\\restartExplorer.bat") ""
 			)
 		)
 )
+
+
+
+
+
+
+
+
 
 
 
@@ -982,7 +919,7 @@ rollout mate "材质" width:541 height:615
 		ckb_S.state= intToBool (backMapType[3]	)
 		ckb_E.state= intToBool (backMapType[4]	)
 		ckb_A.state= intToBool (backMapType[5]	)
-		try btn15.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
+		try btn15.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn15.images=#(mainIcon16A[5]")
 	)
 	on mate close do
 	(
@@ -1277,7 +1214,7 @@ rollout mate "材质" width:541 height:615
 					)
 				)else  try log+="\n"+o.name catch()
 			)
-			if log !="" do messageBox ("请将这些物体\n " + log + "\n\n转换成 Editable_Poly ！ 其余的已经处理")	
+			if log !="" do messageBox ("请将这些物体\n " + log + "\n\n转换成 Editable_Poly !")	
 		)
 	)
 	)
@@ -1292,6 +1229,14 @@ rollout mate "材质" width:541 height:615
 
 
 
+
+
+
+
+
+
+
+
 rollout poly "poly " width:864 height:688
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
@@ -1302,15 +1247,15 @@ rollout poly "poly " width:864 height:688
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,446] width:48 height:24
-	button btn13 "Small -" pos:[16,470] width:48 height:24
+	button btn7 "Big +" pos:[16,446] width:48 height:24 toolTip:"放大一倍"
+	button btn13 "Small -" pos:[16,470] width:48 height:24 toolTip:"缩小一倍"
 	button btn151 "重置模型" pos:[64,446] width:64 height:48 
 	button btn159 "Edit UV" pos:[0,602] width:128 height:24
 	checkbutton BS "#" pos:[0,446] width:16 height:48
-	button btn97 "排序" pos:[72,80] width:56 height:48
-	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true checked:true
-	checkbutton sy "y" pos:[24,80] width:24 height:24
-	checkbutton sz "z" pos:[48,80] width:24 height:24
+	button btn97 "排序" pos:[72,80] width:56 height:48 enabled:false
+	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true toolTip:"将选择物体以X轴向排列" checked:true
+	checkbutton sy "y" pos:[24,80] width:24 height:24 toolTip:"将选择物体以Y轴向排列"
+	checkbutton sz "z" pos:[48,80] width:24 height:24 toolTip:"将选择物体以Z轴向排列"
 	button btn51 "Show Infor" pos:[192,20] width:64 height:24 enabled:true
 	checkbutton c1 "1" pos:[128,80] width:24 height:24 enabled:true checked:true
 	checkbutton c2 "2" pos:[152,80] width:16 height:24
@@ -1335,8 +1280,8 @@ rollout poly "poly " width:864 height:688
 	button btn491 "左旋" pos:[0,554] width:64 height:24
 	
 	button btn492 "智能旋转" pos:[0,498] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[72,324] width:56 height:24
-	button btn564 "归中" pos:[72,300] width:56 height:24
+	button btn563 "置底" pos:[72,324] width:56 height:24 toolTip:"枢轴置物体底部"
+	button btn564 "归中" pos:[72,300] width:56 height:24 toolTip:"枢轴置物件中间"
 	button btn565 "Pos" pos:[0,371] width:24 height:24
 	
 	button btn566 "+" pos:[48,276] width:24 height:24
@@ -1353,8 +1298,8 @@ rollout poly "poly " width:864 height:688
 	button btn577 "Scale" pos:[32,395] width:44 height:24
 	button btn578 "所有" pos:[76,371] width:52 height:48
 	button btn579 "重置（所选）属性" pos:[0,352] width:128 height:19 enabled:false
-	button btn580 "置顶" pos:[72,276] width:56 height:24
-	button btn581 "Pivot" pos:[0,258] width:128 height:18 enabled:false
+	button btn580 "置顶" pos:[72,276] width:56 height:24 toolTip:"枢轴置顶"
+	button btn581 "Pivot" pos:[0,258] width:128 height:18 enabled:false toolTip:""
 	button btn582 "" pos:[24,371] width:12 height:24 enabled:false
 	checkbutton ckbnew "New" pos:[0,626] width:48 height:24
 	checkbutton ckbedit "Edit" pos:[48,626] width:48 height:24 checked:true
@@ -1367,13 +1312,13 @@ rollout poly "poly " width:864 height:688
 	button ckb67 "15" pos:[0,534] width:28 height:20 enabled:true checked:false
 	button btn45 "左" pos:[0,178] width:24 height:48
 	button btn46 "右" pos:[64,178] width:24 height:48
-	button btn47 "复制" pos:[88,154] width:40 height:96
+	button btn47 "复制" pos:[88,154] width:40 height:96 toolTip:"复制物体 名字也会一样"
 	button btn48 "上" pos:[0,154] width:88 height:24
 	button btn49 "下" pos:[0,226] width:88 height:24
 	button btn250 "后" pos:[24,178] width:40 height:24
 	button btn251 "前" pos:[24,202] width:40 height:24
-	button btn149 "移动模型" pos:[0,136] width:128 height:18 enabled:false
-	button btn53 "标准排列" pos:[0,104] width:72 height:24
+	button btn149 "移动模型" pos:[0,136] width:128 height:18 enabled:false toolTip:"智能移动"
+	button btn53 "标准排列" pos:[0,104] width:72 height:24 toolTip:"将选择物体以矩阵方式排列"
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -2038,12 +1983,6 @@ rollout poly "poly " width:864 height:688
 
 
 
-
-
-
-
-
-
 rollout uv "UV" width:162 height:300
 (
 	button btn39 "alignU" pos:[0,0] width:40 height:32
@@ -2064,24 +2003,17 @@ rollout uv "UV" width:162 height:300
 
 
 
-
-
-
-
-
-
-
 rollout file "文件" width:720 height:592
 (
-	button btn1 ".visual" pos:[0,24] width:48 height:48 enabled:true toolTip:"快速导出到SVN目录"
-	button btn2 ".obj" pos:[0,528] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
-	button btn3 ".max" pos:[0,504] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
-	button btn17 "显示文件" pos:[88,72] width:40 height:40 enabled:true toolTip:"打开刚刚导出的文件位置"
-	button btn19 "显示文件" pos:[104,528] width:24 height:24 enabled:true
-	button btn20 "显示文件" pos:[104,504] width:24 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,448] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
+	button btn1 ".visual" pos:[0,24] width:48 height:48 enabled:true toolTip:"快速导出.visual到SVN目录 (现在只支持...//common//和//char// 下模型和)"
+	button btn2 ".obj" pos:[0,464] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
+	button btn3 ".max" pos:[0,440] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
+	button btn17 "显示文件" pos:[88,72] width:40 height:40 enabled:true toolTip:"打开刚刚导出的.visual文件位置"
+	button btn19 "显示文件" pos:[104,464] width:24 height:24 enabled:true
+	button btn20 "显示文件" pos:[104,440] width:24 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,384] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
 	button btn239 "快速导出（选择）" pos:[0,0] width:128 height:24 enabled:false
-	button btn216 "存为AB备份格式" pos:[0,200] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn216 "存为AB备份格式" pos:[0,152] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
 	button btn395 "importMaxs" pos:[136,420] width:128 height:24
 	edittext edt1 "import path" pos:[136,0] width:520 height:168
@@ -2097,41 +2029,41 @@ rollout file "文件" width:720 height:592
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 备份文件" pos:[0,472] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn47 "显示 自动备份文件" pos:[0,408] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
 	checkbutton ckb3 "自动贴图" pos:[48,48] width:80 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
 	checkbutton ckb311 "位置归零" pos:[48,24] width:80 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	button btn72 "ModelEditor" pos:[48,72] width:40 height:40 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
-	button btn146 "存为AB备份格式" pos:[0,224] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
-	button btn258 "显示 备份文件" pos:[104,472] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	button btn259 "显示 此文件" pos:[104,448] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
-	button btn333 "打开刚刚备份的文件夹" pos:[64,224] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
-	button btn404 "提取物体贴图" pos:[0,416] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn405 "@" pos:[104,416] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
-	button btn33 "智能打开模型" pos:[0,280] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
-	button btn34 "智能打开模型" pos:[0,304] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
-	button btn35 "智能打开模型" pos:[64,304] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
-	button btn106 "智能导入primitives" pos:[0,352] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn143 "智能导入地形" pos:[0,376] width:128 height:24 enabled:false toolTip:"智能打开模型"
-	button btn75 "拷贝模型地址" pos:[0,128] width:128 height:24 toolTip:"这个地址可以直接填到明显编辑器里面"
-	button btn114 "名字转换成地址" pos:[0,160] width:128 height:32 toolTip:"把名字转换成model地址 现在只支持 物件 建筑 植物.."
-	button btn173 "批量" pos:[0,72] width:48 height:40 enabled:true toolTip:"快速导出到SVN目录"
+	button btn146 "存为AB备份格式" pos:[0,176] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
+	button btn258 "显示 自动备份文件" pos:[104,408] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn259 "显示 此文件" pos:[104,384] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
+	button btn333 "打开刚刚备份的文件夹" pos:[64,176] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
+	button btn404 "提取物体贴图" pos:[0,232] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn405 "@" pos:[104,232] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn33 "智能打开模型" pos:[0,264] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
+	button btn34 "智能打开模型" pos:[0,288] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
+	button btn35 "智能打开模型" pos:[64,288] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
+	button btn106 "智能导入primitives" pos:[0,496] width:128 height:24 enabled:false toolTip:"还没写完"
+	button btn143 "智能导入地形" pos:[0,520] width:128 height:24 enabled:false toolTip:"还没写好"
+	button btn75 "复制模型地址" pos:[0,112] width:128 height:24 toolTip:"复制上次导出.visual文件的地址 这个地址可以直接填到明显编辑器里面"
+	button btn114 "名字转换成地址" pos:[0,336] width:128 height:32 toolTip:"把黏贴板中的名字转换成.model地址(编辑器中可用的模型地址) (现在只支持...//common//和//char// 下模型和)"
+	button btn173 "批量" pos:[0,72] width:48 height:40 enabled:true toolTip:"快速导出.visual到SVN目录"
 	
 
 	on file open do
 	(
 		ckb3.state=visualMateReset
 		ckb311.state=visualPosReset
-		try btn72.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn17.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn35.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn19.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn20.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn258.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn259.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn333.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx")
-		try btn146.images=#(mainIcon32A[7], mainIcon32Aa[7], 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn34.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "xxxxxxx") 
-		try btn405.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "xxxxxxx") 
+		try btn72.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print " btn72.images=#(mainIcon32A[6]")
+		try btn17.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "btn17.images=#(mainIcon32A[5]")
+		try btn35.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "btn35.images=#(mainIcon32A[5]")
+		try btn19.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn19.images=#(mainIcon16A[5]")
+		try btn20.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn20.images=#(mainIcon16A[5]")
+		try btn258.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn258.images=#(mainIcon16A[5]")
+		try btn259.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print " btn259.images=#(mainIcon16A[5]")
+		try btn333.images=#(mainIcon32A[5], mainIcon32Aa[5], 1,1,1,1,1 ) catch (print "btn333.images=#(mainIcon32A[5]")
+		try btn146.images=#(mainIcon32A[7], mainIcon32Aa[7], 1,1,1,1,1 ) catch (print "btn146.images=#(mainIcon32A[7]") 
+		try btn34.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print "btn34.images=#(mainIcon32A[6]") 
+		try btn405.images=#(mainIcon16A[5], mainIcon16Aa[5], 1,1,1,1,1 ) catch (print "btn405.images=#(mainIcon16A[5]") 
 		)
 	on file close do
 	(
@@ -2425,8 +2357,7 @@ rollout file "文件" width:720 height:592
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	  if (fengx.getNamePath(DotNetClipboard.GetText()))=="E:/mf_pangu/tw2/res/scene/common/" then messageBox "转换失败!" else
 	 (
-	  n=(getFilenameFile (DotNetClipboard.GetText()))
-	  mPath= (fengx.getNamePath n) +n+".model"
+	  mPath= fengx.getNamePath(DotNetClipboard.GetText())+DotNetClipboard.GetText()+".model"
 	  mPath=replace mPath 1 20 ""
 	  DotNetClipboard.SetText  mPath
 	  )
@@ -2445,16 +2376,6 @@ rollout file "文件" width:720 height:592
 	)
 	)
 )
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3172,7 +3093,7 @@ function updateClipboardImages=
 		imagePath= fengx.beWindowsPath  (getDir #Scripts+ "/visualFengx/copyPasteDefult.png")
 		if doesFileExist imagePath  do theBmp =openBitMap  imagePath
 		)
-	try clipboard.ckb01.images=#(theBmp, undefined, 1,1,1,1,1 ) catch (print "xxxxxxx")
+	try clipboard.ckb01.images=#(theBmp, undefined, 1,1,1,1,1 ) catch (print "clipboard.ckb01.images")
 	)
 
 
@@ -3305,7 +3226,9 @@ function uninstall=
 	local MacrosPath=getdir #userMacros +"\\visualfengx*.mcr"
 	local Macrosfiles = getFiles MacrosPath
 	for s in Macrosfiles do deleteFile s
-	
+	local copyPastePath=getDir #scripts +"\\VisualFengx\\copyPasteTemp\\*"
+	local files=getFiles copyPastePath
+	for s in files do deleteFile s
 	if (queryBox "卸载完成 最好重启Max！")==true do 
 	(
 		if checkForSave() then (
@@ -3965,13 +3888,13 @@ function toStandardMate mate=
 		--try(
 		for s in mate do(
 			if classof(s)==Standardmaterial do append mateStandard s
-			--if classof(s)==Multimaterial do 
-			--(
-			--	for sm in s do 
-			--	(
-			--		if classof(sm)==Standardmaterial do append mateStandard sm
-			--	)
-			--)
+			if classof(s)==Multimaterial do 
+			(
+				for sm in s do 
+				(
+					if classof(sm)==Standardmaterial do append mateStandard sm
+				)
+			)
 			)
 		--) catch print "no material!"
 	)else append mateStandard mate
