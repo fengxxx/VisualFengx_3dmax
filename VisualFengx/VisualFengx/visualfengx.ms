@@ -347,10 +347,11 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:1178 height:796
+rollout mainwindow "visualFengx_1.53" width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
 	subRollout sub "fengx" pos:[0,35] width:139 height:586 
+ 
  
  
 
@@ -403,7 +404,8 @@ rollout mainwindow mainWindowName width:1178 height:796
 	button btn50 "Button" pos:[316,320] width:474 height:28
 	button btn51 "Button" pos:[316,348] width:363 height:20
 	
-	HyperLink hy_help "帮助" pos:[317,11] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"http://fengxxx.github.io/blog/"
+	HyperLink hy_help "帮助" pos:[317,11] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
 	button btn255 "编辑脚本时用的一些功能..." pos:[444,38] width:166 height:240
 	function 	saveWindowState=
 	(
@@ -507,6 +509,7 @@ rollout mainwindow mainWindowName width:1178 height:796
 	)
 
 	button btn496 "设置" pos:[142,0] width:173 height:36 enabled:false
+	button btn42 "帮助文档" pos:[143,476] width:171 height:62
 	on mainwindow open do
 	(
 	   
@@ -847,6 +850,11 @@ rollout mainwindow mainWindowName width:1178 height:796
 			--ShellLaunch (getdir #Scripts +"\\VisualFengx\\restartExplorer.bat") ""
 			)
 		)
+	on btn42 pressed do
+	(
+	ShellLaunch (getdir #Scripts +"\\VisualFengx\\VisualFengx_help.pdf") ""
+	
+	)
 )
 
 
