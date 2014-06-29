@@ -59,6 +59,7 @@ macroScript mainWindow  category:"visualFengx" tooltip:"visualfengx" buttontext:
 			)
 		destroyDialog mainwindow
 	)else(
+		if fengx.checkSVNdir()==false do fengx.setSVNDir()
 		if mainSize.x*mainSize.y==0 do mainSize=[140,693]
 		createdialog mainWindow mainSize.x mainSize.y pos:mainPos  style:#(#style_minimizebox,#style_resizing,#style_titlebar,#style_border, #style_sysmenu,#style_toolwindow) 
 		mainwindow.windowsLogicStart()

@@ -8,7 +8,6 @@ global  VisualFengxVersions =1.53
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
-global  xxx=""
 
 global smartRotateLW="W"
 ------------------------------------------------
@@ -32,15 +31,24 @@ global saveMapPath=""
 ------------------------------------------------
 ------------------------------------------------
 -------------------- profiling -----------------
+
+
 global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempdir --settings flie path <string>
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
 
+global mfDIR=(getinisetting  profilePath "system" "mfDIR"  ) --"E:\\mf_pangu\\"
+if classOf mfDIR==OkClass or mfDIR ==""do
+(
+	mfDIR="E:\\mf_pangu\\"
+	setinisetting  profilePath "system" "mfDIR"  mfDIR
+	
+)
 global abPath=""
 global modelPath=" "
 global visualPath=(getinisetting  profilePath "visualPath" "path") 
 if classOf visualPath==OkClass do
 (
-	visualPath="E:\\mf_pangu\\tw2\\res\\scene\\common\\"
+	visualPath=mfDIR+"tw2\\res\\scene\\common\\"
 	setinisetting  profilePath "visualPath" "path"  visualPath
 	
 )
@@ -354,6 +362,9 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
  
  
  
+ 
+ 
+ 
 
 
 	checkbutton ckP "Poly" pos:[1,0] width:36 height:36 toolTip:"poly面板： poly 相关处理...."
@@ -400,13 +411,15 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 	button btn47 "修复max文件缩略图" pos:[143,152] width:173 height:68 toolTip:"max文件在文件夹中将会显示缩略图!"
 	button btn48 "注册.Visual等文件" pos:[143,220] width:173 height:79 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
 	button btn331 "重启资源浏览器(explorer)" pos:[143,299] width:173 height:88
-	button btn49 "Button" pos:[316,278] width:821 height:42
-	button btn50 "Button" pos:[316,320] width:474 height:28
-	button btn51 "Button" pos:[316,348] width:363 height:20
+	button btn49 "Button" pos:[894,623] width:821 height:42
+	button btn50 "Button" pos:[894,665] width:474 height:28
+	button btn51 "Button" pos:[894,693] width:363 height:20
 	
 	HyperLink hy_help "帮助" pos:[317,11] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
 --"http://fengxxx.github.io/blog/"
-	button btn255 "编辑脚本时用的一些功能..." pos:[444,38] width:166 height:240
+--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -510,8 +523,16 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 
 	button btn496 "设置" pos:[142,0] width:173 height:36 enabled:false
 	button btn42 "帮助文档" pos:[143,476] width:171 height:62
+	button btn256 "设置SVN 地址" pos:[143,412] width:173 height:43
 	on mainwindow open do
 	(
+		if fengx.checkSVNDir()==false do
+		(
+			mainwindow.btn48.enabled=False
+			mainwindow.btn173.enabled=False
+			
+			)
+		
 	   
 		if windowState==1 then ckX.state=true else  ckX.state=false
 		windowsLogicStart
@@ -806,7 +827,7 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 	on btn173 pressed do
 	(
 		iniFile = (pathConfig.removePathLeaf (getDir #temp)) + "\\plugin.ini"
-		setIniSetting iniFile "Directories" "visualExportPlug" "E:\\mf_pangu\\bigworld\\tools\\exporter_max9\\"
+		setIniSetting iniFile "Directories" "visualExportPlug" (mfDIR+"bigworld\\tools\\exporter_max9\\")
 		if (queryBox "重开MAX生效 是否现在重开MAX")==true do 
 			(
 				if checkForSave() then (
@@ -829,8 +850,9 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 		)
 	on btn48 pressed do
 	(
-		copyfile (getdir #Scripts +"\\VisualFengx\\openByModelEditor.exe") ("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\openByModelEditor.exe")
-		if doesFileExist("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\openByModelEditor.exe") then
+		copyfile (getdir #Scripts +"\\VisualFengx\\openByModelEditor.exe") (mfDIR+"bigworld\\tools\\worldeditor\\openByModelEditor.exe")
+		copyfile (profilePath) (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx")
+	     if doesFileExist(mfDIR+"bigworld\\tools\\worldeditor\\openByModelEditor.exe") then
 		(
 			ShellLaunch (getdir #Scripts +"\\VisualFengx\\register_bigWorldFile.reg") ""
 		
@@ -839,7 +861,7 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 				ShellLaunch (getdir #Scripts +"\\VisualFengx\\restartExplorer.bat") ""
 				)
 		
-			)else messagebox "无法复制openByModelEditor.exe 到 E:\\mf_pangu\\bigworld\\tools\\worldeditor\\"
+			)else messagebox ("无法复制openByModelEditor.exe 到 "+mfDIR+("bigworld\\tools\\worldeditor\\"))
 		)
 	on btn331 pressed do
 	(
@@ -855,6 +877,10 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 	ShellLaunch (getdir #Scripts +"\\VisualFengx\\VisualFengx_help.pdf") ""
 	
 	)
+	on btn256 pressed do
+	(
+	      if fengx.setSVNDir()==false do print "地址不对!"
+		)
 )
 
 
@@ -915,6 +941,17 @@ rollout mate "材质" width:541 height:615
 	button btn61 "从当前目录找回贴图" pos:[128,144] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	on mate open do
 	(
+		
+		if fengx.checkSVNDir()==false do
+		(
+			mate.btn20.enabled=False
+			mate.ckb_D.enabled=False
+			mate.ckb_N.enabled=False
+			mate.ckb_S.enabled=False
+			mate.ckb_A.enabled=False
+			mate.ckb_E.enabled=False
+			)
+		
 		function intToBool i=
 		(
 		   b=False
@@ -2059,6 +2096,22 @@ rollout file "文件" width:720 height:592
 
 	on file open do
 	(
+		if fengx.checkSVNDir()==false do
+		(
+			file.btn1.enabled=False
+			file.btn173.enabled=False
+			
+			file.btn72.enabled=False
+			file.btn17.enabled=False
+			file.btn75.enabled=False
+			file.btn34.enabled=False
+			file.btn35.enabled=False
+			file.ckb311.enabled=False
+			file.ckb3.enabled=False
+			
+			)
+		
+		
 		ckb3.state=visualMateReset
 		ckb311.state=visualPosReset
 		try btn72.images=#(mainIcon32A[6], mainIcon32Aa[6], 1,1,1,1,1 ) catch (print " btn72.images=#(mainIcon32A[6]")
@@ -2263,7 +2316,7 @@ rollout file "文件" width:720 height:592
 		if (getfiles modelPath).count != 0 then(
 		     filePath="-o" +(fengx.beWindowsPath modelPath)
 		     print filePath
-			try  ShellLaunch "E:\\mf_pangu\\bigworld\\tools\\modeleditor\\modeleditor.exe" filePath   catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！"
+			try  ShellLaunch (mfDIR+"bigworld\\tools\\modeleditor\\modeleditor.exe") filePath   catch messageBox("硬是没打开！") title:"擦擦擦擦擦擦！！"
 		)else messageBox "这个路径下没有文件 打不开  ！   "
 		)
 	on btn146 pressed do
@@ -2363,7 +2416,7 @@ rollout file "文件" width:720 height:592
 	on btn114 pressed do
 	(
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
-	  if (fengx.getNamePath(DotNetClipboard.GetText()))=="E:/mf_pangu/tw2/res/scene/common/" then messageBox "转换失败!" else
+	  if (fengx.getNamePath(DotNetClipboard.GetText()))==(mfDIR+"/tw2/res/scene/common/") then messageBox "转换失败!" else
 	 (
 	  mPath= fengx.getNamePath(DotNetClipboard.GetText())+DotNetClipboard.GetText()+".model"
 	  mPath=replace mPath 1 20 ""
@@ -3172,7 +3225,8 @@ struct fengx
 function llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
-	
+
+
 function iconBitmapToArray b=
 (
 	a=#()
@@ -3192,8 +3246,44 @@ function iconBitmapToArray b=
 		)
 	return a
 	),
+
+
+function checkSVNDir=
+(
+	b=True
+	if 	doesFileExist (mfDir +"tw2\\res\\") == false do b=false
+	if 	doesFileExist (mfDir +"bigworld\\tools\\worldeditor\\worldeditor.exe") == false do b=false
+	if 	doesFileExist (mfDir +"bigworld\\tools\\modeleditor\\modeleditor.exe") == false do b=false	
+	return b
+	),
+	
+function setSVNDir=
+(
+	b=False
+	--if  fengx.checkSVNDir()==False do
+
+		
+	if (queryBox "设置  SVN 游戏资源 目录 (mf_pangu 的位置 选择mf_pangu)!")==true then
+		(
+			mfDir=getSavePath()+"\\"
+			setinisetting  profilePath "system" "mfDIR"  mfDIR
+			macros.run "VisualFengx" "mainwindow"
+			macros.run "VisualFengx" "mainwindow"
+			if doesFileExist(profilePath) then
+			(	
+				copyfile (profilePath) (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx")
+				setinisetting  (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx") "system" "mfDIR"  mfDIR
+				
+			)
+		)else( print "不设置的话 涉及到目录里面的 功能将无法使用!")
 	
 	
+	
+	if fengx.checkSVNDir() do b=True
+
+	return b
+	),	
+		
 -------------------------------------------->> for edit script
 -------------------------------------------->> for edit script 
 -------------------------------------------->> for edit script 
@@ -3572,7 +3662,7 @@ function exportSelectToVisual=
 function getNamePath n=
 (
 	n=getFilenameFile n
-	path="E:/mf_pangu/tw2/res/scene/common/"
+	path=(mfDIR+"tw2/res/scene/common/")
 	tw1=""
 	tw2=""
 	count=0
@@ -3597,7 +3687,7 @@ function getNamePath n=
 		-- and tw1[1]!="l"
 		)else
 		(
-			if numOn==True then  path="E:/mf_pangu/tw2/res/char/"+n+"/" else path="E:/mf_pangu/tw2/res/scene/"
+			if numOn==True then  path=mfDIR+"tw2/res/char/"+n+"/" else path=mfDIR+"tw2/res/scene/"
 			
 		)
 
@@ -4095,7 +4185,7 @@ function getPathFromMapName n=
 	local namePart=filterString n "_"
 	-- dsc_jztj_cs0020_3d_wb.tga
 	--dsc_jztj_cs0020_3d_a_wb.tga
-	local path="E:/mf_pangu/tw2/res/scene/common/"
+	local path=(mfDIR+"tw2/res/scene/common/")
 	local tw1=""
 	local tw2=""
 	local count=0
@@ -4120,7 +4210,7 @@ function getPathFromMapName n=
 		)
 		b=getFiles(path+"*")
 		)else (
-			if charOn==True then path="E:/mf_pangu/tw2/res/char/"+n+"/texture/" else   path="E:/mf_pangu/tw2/res/scene/"
+			if charOn==True then path=(mfDIR+"tw2/res/char/"+n+"/texture/") else   path=(mfDIR+"tw2/res/scene/")
 		
 		)
 	path=fengx.beStringPath path
@@ -4131,7 +4221,7 @@ function getPathFromMapName n=
 function mapChangeToResource mapPath=
  (
  	local mapRPath=mapPath
-	local Rdir=":\\mf_pangu\\tw2\\res\\scene\\common\\"
+	local Rdir=(mfDIR+"tw2\\res\\scene\\common\\")
 	local dirs=#("wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,"zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\","jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\","jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\","db\\dbst\\")
 	
 	
@@ -5264,7 +5354,7 @@ if targetPath !=undefined do
 	(
 		if lineParts[2]=="Texture" and lineParts[4]=="/Texture"do
 		(				 
-			 append mapsPath ("E:/mf_pangu/tw2/res/"+lineParts[3])
+			 append mapsPath (mfDIR+"tw2/res/"+lineParts[3])
 		)
 	)
 	)
@@ -5315,7 +5405,7 @@ function ToVisualPath targetPath=
 	tempPathPart = getFilenamePath targetPath
 	
 	if tempPathPart[1]=="/" or tempPathPart[1]== "\\" do tempPathPart =substring tempPathPart 2 tempPathPart.count 
-	if tempPathPart[1]=="e" or tempPathPart[1]=="E" then () else tempPathPart="E:/mf_pangu/tw2/res/"+ tempPathPart
+	if tempPathPart[1]=="e" or tempPathPart[1]=="E" then () else tempPathPart=mfDIR+"tw2/res/"+ tempPathPart
 	rPath=tempPathPart+name
 	rPath=fengx.beStringPath rPath
 	--if (doesFileExist rPath)==true then print "Visal file is Exist" else print "Visal file does not Exist" 
