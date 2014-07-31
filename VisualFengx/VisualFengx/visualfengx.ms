@@ -416,10 +416,8 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 	button btn51 "Button" pos:[894,693] width:363 height:20
 	
 	HyperLink hy_help "帮助" pos:[317,11] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
---"http://fengxxx.github.io/blog/"
---"http://fengxxx.github.io/blog/"
---"http://fengxxx.github.io/blog/"
---"http://fengxxx.github.io/blog/"
+	--"http://fengxxx.github.io/blog/"
+
 	function 	saveWindowState=
 	(
 		ckbs=#(ckP,ckM,ckF,ckS)
@@ -850,18 +848,13 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 		)
 	on btn48 pressed do
 	(
-		copyfile (getdir #Scripts +"\\VisualFengx\\openByModelEditor.exe") (mfDIR+"bigworld\\tools\\worldeditor\\openByModelEditor.exe")
+		copyfile (getdir #Scripts +"\\VisualFengx\\fengxTools.exe") (mfDIR+"bigworld\\tools\\worldeditor\\fengxTools.exe")
 		copyfile (profilePath) (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx")
-	     if doesFileExist(mfDIR+"bigworld\\tools\\worldeditor\\openByModelEditor.exe") then
+	     if doesFileExist(mfDIR+"bigworld\\tools\\worldeditor\\fengxTools.exe") then
 		(
-			ShellLaunch (getdir #Scripts +"\\VisualFengx\\register_bigWorldFile.reg") ""
+			shellLaunch  (getDir #Scripts+ "\\visualFengx\\fengxTools.exe") "-rb"
 		
-			if (queryBox "弹出的注册窗口上 单击 添加到注册表  然后在点击(是)重启资源浏览器(explorer)后生效")==true do
-			(
-				ShellLaunch (getdir #Scripts +"\\VisualFengx\\restartExplorer.bat") ""
-				)
-		
-			)else messagebox ("无法复制openByModelEditor.exe 到 "+mfDIR+("bigworld\\tools\\worldeditor\\"))
+			)else messagebox ("无法复制fengxTools.exe 到 "+mfDIR+("bigworld\\tools\\worldeditor\\"))
 		)
 	on btn331 pressed do
 	(
@@ -899,17 +892,16 @@ rollout mainwindow "visualFengx_1.53" width:1178 height:796
 
 
 
-
 rollout mate "材质" width:541 height:615
 (
 	button btn1 "清除材质" pos:[60,16] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
-	button btn7 "提取物体贴图" pos:[0,232] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn7 "提取物体贴图" pos:[0,240] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
 	button btn8 "关闭所有高显" pos:[0,291] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
 	button btn9 "打开（所择）高显示" pos:[0,315] width:128 height:29 enabled:true toolTip:"打开所选择DX显示"
 	button btn10 "整理 材质名" pos:[0,40] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,184] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[0,16] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
-	button btn15 "@" pos:[104,232] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	button btn15 "@" pos:[104,240] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
 	
 	
 	
@@ -939,6 +931,8 @@ rollout mate "材质" width:541 height:615
 	checkbutton ckb_E "E" pos:[100,112] width:24 height:24 toolTip:"自发光贴图"
 	button btn68 "清除diffuse以外的贴图" pos:[0,184] width:128 height:24 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	button btn61 "从当前目录找回贴图" pos:[128,144] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
+	button btn25 "显示贴图" pos:[0,208] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
+	button btn26 "隐藏贴图" pos:[64,208] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
 	on mate open do
 	(
 		
@@ -1270,10 +1264,35 @@ rollout mate "材质" width:541 height:615
 	  for s in $ do  fengx.findMap (fengx.toStandardMate s.material)
 	)
 	)
+	on btn25 pressed do
+	(
+		undo on(
+			if $ !=undefined do 
+			(
+				for s in $ do 
+				(
+					try(
+						for m in s.material do showTextureMap m on
+						)catch()
+	                   )
+				)
+			)
+		)
+	on btn26 pressed do
+	(
+		undo on(
+			if $ !=undefined do 
+			(
+				for s in $ do 
+				(
+					try(
+						for m in s.material do showTextureMap m false
+						)catch()
+	                   )
+				)
+			)
+		)
 )
-
-
-
 
 
 
@@ -2387,14 +2406,14 @@ rollout file "文件" width:720 height:592
 	on btn34 pressed do
 	(
 	  DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
-	   tempStr=DotNetClipboard.GetText()
-	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\openByModelEditor.exe") tempStr
+	   tempStr="-mi"+DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\fengxTools.exe") tempStr
 	)
 	on btn35 pressed do
 	(
 	 DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
-	 tempStr=DotNetClipboard.GetText()
-	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\openInExplorer.exe") tempStr
+	   tempStr="-ei"+DotNetClipboard.GetText()
+	 shellLaunch  (getDir #Scripts+ "\\visualFengx\\fengxTools.exe") tempStr
 	)
 	on btn106 pressed do
 	(
@@ -2437,9 +2456,6 @@ rollout file "文件" width:720 height:592
 	)
 	)
 )
-
-
-
 
 
 
@@ -3265,15 +3281,19 @@ function setSVNDir=
 		
 	if (queryBox "设置  SVN 游戏资源 目录 (mf_pangu 的位置 选择mf_pangu)!")==true then
 		(
-			mfDir=getSavePath()+"\\"
-			setinisetting  profilePath "system" "mfDIR"  mfDIR
-			macros.run "VisualFengx" "mainwindow"
-			macros.run "VisualFengx" "mainwindow"
-			if doesFileExist(profilePath) then
-			(	
-				copyfile (profilePath) (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx")
-				setinisetting  (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx") "system" "mfDIR"  mfDIR
-				
+			tdir=getSavePath()
+			if tdir!=undefined and tdir!="" and tdir!=" " do 
+			(
+				mfDir=tdir+"\\"
+				setinisetting  profilePath "system" "mfDIR"  mfDIR
+				macros.run "VisualFengx" "mainwindow"
+				macros.run "VisualFengx" "mainwindow"
+				if doesFileExist(profilePath) then
+				(	
+					copyfile (profilePath) (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx")
+					setinisetting  (mfDIR+"bigworld\\tools\\worldeditor\\fengx.fengx") "system" "mfDIR"  mfDIR
+					
+				)
 			)
 		)else( print "不设置的话 涉及到目录里面的 功能将无法使用!")
 	
@@ -3650,7 +3670,9 @@ function exportSelectToVisual=
  			print (fengx.beStringPath(modelPath))
 			if visualMateReset==true do 
 			(
-			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") TargetPath --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
+			 --shellLaunch  (getDir #Scripts+ "\\visualFengx\\VisualFileXML.py") (TargetPath) --"E:\GitHub\VisualFengx_3dmax\VisualFengx\VisualFengx\VisualFileXML.py"  TargetPath
+			 shellLaunch  (getDir #Scripts+ "\\visualFengx\\fengxTools.exe") (("-am"+TargetPath)) 
+
 			)
 		)
 		try $.pos=pos catch()
