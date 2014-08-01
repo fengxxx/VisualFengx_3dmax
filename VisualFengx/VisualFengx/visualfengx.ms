@@ -15,6 +15,10 @@ global smartRotateLW="W"
 global PGround=undefined --snaped ground  <GeometryClass>
 ------------------------------------------------
 
+global lName=#()
+global lPivot=#()
+
+
 ------------------------------------------------
 ------------------- only for fun ---------------
 --global theVoice = CreateOLEObject "SAPI.SpVoice"
@@ -1301,7 +1305,7 @@ rollout mate "材质" width:541 height:615
 
 
 
-rollout poly "poly " width:864 height:688
+rollout poly "poly " width:864 height:770
 (
 	button btn481 "Box" pos:[0,20] width:64 height:24
 	
@@ -1311,11 +1315,11 @@ rollout poly "poly " width:864 height:688
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,446] width:48 height:24 toolTip:"放大一倍"
-	button btn13 "Small -" pos:[16,470] width:48 height:24 toolTip:"缩小一倍"
-	button btn151 "重置模型" pos:[64,446] width:64 height:48 
-	button btn159 "Edit UV" pos:[0,602] width:128 height:24
-	checkbutton BS "#" pos:[0,446] width:16 height:48
+	button btn7 "Big +" pos:[16,454] width:48 height:24 toolTip:"放大一倍"
+	button btn13 "Small -" pos:[16,478] width:48 height:24 toolTip:"缩小一倍"
+	button btn151 "重置模型" pos:[64,454] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,610] width:128 height:24
+	checkbutton BS "#" pos:[0,454] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:48 enabled:false
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true toolTip:"将选择物体以X轴向排列" checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24 toolTip:"将选择物体以Y轴向排列"
@@ -1329,24 +1333,24 @@ rollout poly "poly " width:864 height:688
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,426] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,582] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,650] width:96 height:24
-	button btn335 "Set Uvlayout Path" pos:[128,632] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,434] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,590] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,658] width:96 height:24
+	button btn335 "Set Uvlayout Path" pos:[128,576] width:96 height:24
 	
-	button btn211 "重来" pos:[96,626] width:32 height:48
+	button btn211 "重来" pos:[96,634] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,554] width:64 height:24
+	button btn490 "右旋" pos:[64,562] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,554] width:64 height:24
+	button btn491 "左旋" pos:[0,562] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,498] width:128 height:20 enabled:false
+	button btn492 "智能旋转" pos:[0,506] width:128 height:20 enabled:false
 	button btn563 "置底" pos:[72,324] width:56 height:24 toolTip:"枢轴置物体底部"
 	button btn564 "归中" pos:[72,300] width:56 height:24 toolTip:"枢轴置物件中间"
-	button btn565 "Pos" pos:[0,371] width:24 height:24
+	button btn565 "Pos" pos:[0,379] width:24 height:24
 	
 	button btn566 "+" pos:[48,276] width:24 height:24
 	button btn567 "-" pos:[0,276] width:24 height:24
@@ -1357,23 +1361,23 @@ rollout poly "poly " width:864 height:688
 	button btn572 "X" pos:[24,276] width:24 height:24
 	button btn573 "Y" pos:[24,300] width:24 height:24
 	button btn574 "Z" pos:[24,324] width:24 height:24
-	button btn575 "Pivot" pos:[0,395] width:32 height:24
-	button btn576 "Rotate" pos:[36,371] width:40 height:24
-	button btn577 "Scale" pos:[32,395] width:44 height:24
-	button btn578 "所有" pos:[76,371] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,352] width:128 height:19 enabled:false
+	button btn575 "Pivot" pos:[0,403] width:32 height:24
+	button btn576 "Rotate" pos:[36,379] width:40 height:24
+	button btn577 "Scale" pos:[32,403] width:44 height:24
+	button btn578 "所有" pos:[76,379] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,360] width:128 height:19 enabled:false
 	button btn580 "置顶" pos:[72,276] width:56 height:24 toolTip:"枢轴置顶"
 	button btn581 "Pivot" pos:[0,258] width:128 height:18 enabled:false toolTip:""
-	button btn582 "" pos:[24,371] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,626] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,626] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[36,518] width:34 height:16 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,518] width:36 height:16 enabled:true checked:false
-	spinner spn1 "" pos:[68,518] width:60 height:16 range:[0,360,90]
-	button ckb64 "30" pos:[28,534] width:28 height:20 enabled:true checked:false
-	button ckb65 "45" pos:[56,534] width:36 height:20 enabled:true checked:false
-	button ckb66 "90" pos:[92,534] width:36 height:20 enabled:true checked:false
-	button ckb67 "15" pos:[0,534] width:28 height:20 enabled:true checked:false
+	button btn582 "" pos:[24,379] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,634] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,634] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,526] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,526] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,526] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,542] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,542] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,542] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,542] width:28 height:20 enabled:true checked:false
 	button btn45 "左" pos:[0,178] width:24 height:48
 	button btn46 "右" pos:[64,178] width:24 height:48
 	button btn47 "复制" pos:[88,154] width:40 height:96 toolTip:"复制物体 名字也会一样"
@@ -2045,8 +2049,6 @@ rollout poly "poly " width:864 height:688
 
 
 
-
-
 rollout uv "UV" width:162 height:300
 (
 	button btn39 "alignU" pos:[0,0] width:40 height:32
@@ -2506,6 +2508,8 @@ rollout snap "吸附" width:362 height:562
 	button btn295 "" pos:[112,40] width:16 height:16 enabled:false
 	
 	
+	button btn120 "复制Pivot" pos:[0,264] width:128 height:56 toolTip:""
+	button btn121 "黏贴pivot" pos:[0,320] width:128 height:56 toolTip:""
 	on snap close do
 	(
 	if  canSetWindows==true do 
@@ -2672,9 +2676,44 @@ rollout snap "吸附" width:362 height:562
 				)
 		)
 	)
+	on btn120 pressed do
+	(
+	if $ != undefinnd do 
+	(
+		tempOn=True
+		lname=#()
+	     lpivot=#()
+	     for s in $ do 
+		(
+			try s.pivot catch tempOn=false
+			if tempOn==True do 
+			(
+				append lName s.name
+				append lPivot s.pivot
+			)
+		)
+	)
+	
+	)
+	on btn121 pressed do
+	(
+	if $ != undefinnd do 
+	(
+		tempOn=True
+		for s in $ do 
+		(
+			i=finditem lname s.name
+			if i!=0 do 
+			(s.pivot=lpivot[i]
+			print i
+			print s.pivot
+			print lpivot[i]
+		)
+		)
+	)
+	
+	)
 )
-
-
 
 
 
