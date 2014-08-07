@@ -17,6 +17,8 @@ global PGround=undefined --snaped ground  <GeometryClass>
 
 global lName=#()
 global lPivot=#()
+global lmax=#()
+
 
 
 ------------------------------------------------
@@ -35,7 +37,6 @@ global saveMapPath=""
 ------------------------------------------------
 ------------------------------------------------
 -------------------- profiling -----------------
-
 
 global profilePath= getDir #scripts + "\visualfengx\fengx.fengx" --sysInfo.tempdir --settings flie path <string>
 global copyPastePath= getDir #scripts--sysInfo.tempdir  --copyPaste tempPath <string>
@@ -937,6 +938,7 @@ rollout mate "材质" width:541 height:615
 	button btn61 "从当前目录找回贴图" pos:[128,144] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	button btn25 "显示贴图" pos:[0,208] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
 	button btn26 "隐藏贴图" pos:[64,208] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
+	button btn27 "修复老物件贴图名字" pos:[0,408] width:128 height:64 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	on mate open do
 	(
 		
@@ -1296,9 +1298,17 @@ rollout mate "材质" width:541 height:615
 				)
 			)
 		)
+	on btn27 pressed do
+	(
+	if $!=undefined do
+	(
+	for s in $ do
+		(	 
+		for m in fengx.toStandardMate(s.material) do m.diffusemap.fileName=fengx.fixMapName m
+		)
+	)
+	)
 )
-
-
 
 
 
@@ -2508,8 +2518,9 @@ rollout snap "吸附" width:362 height:562
 	button btn295 "" pos:[112,40] width:16 height:16 enabled:false
 	
 	
-	button btn120 "复制Pivot" pos:[0,264] width:128 height:56 toolTip:""
-	button btn121 "黏贴pivot" pos:[0,320] width:128 height:56 toolTip:""
+	button btn120 "复制Pivot(添加)" pos:[0,256] width:128 height:40 toolTip:""
+	button btn121 "黏贴pivot" pos:[0,336] width:128 height:56 toolTip:""
+	button btn111 "复制Pivot(替换)" pos:[0,296] width:128 height:40 toolTip:""
 	on snap close do
 	(
 	if  canSetWindows==true do 
@@ -2680,47 +2691,87 @@ rollout snap "吸附" width:362 height:562
 	(
 	if $ != undefinnd do 
 	(
-		tempOn=True
-		lname=#()
-	     lpivot=#()
+		local tempOn=True
+		local lname=#()
+	     local lpivot=#()
+	     local vals=getinisetting  profilePath "pivots" "vals"
+	      if classof(vals)==Okclass do vals=""
 	     for s in $ do 
 		(
 			try s.pivot catch tempOn=false
 			if tempOn==True do 
 			(
-				append lName s.name
-				append lPivot s.pivot
+	              val=s.name + " " + (s.pivot.x as string) + " " +(s.pivot.y as string) + " " +(s.pivot.z as string) + " " +(s.max.x as string)+ " " +(s.max.y as string) + " " +(s.max.z as string) 
+	              vals+=val+"|"    
 			)
 		)
+	     setinisetting  profilePath "pivots" "vals"  vals
 	)
-	
 	)
 	on btn121 pressed do
 	(
 	if $ != undefinnd do 
 	(
 		tempOn=True
+		vals=getinisetting  profilePath "pivots" "vals"
+		namePart= filterString vals "|"
+		lName=#()
+		lPivot=#()
+		lmax=#()
+		for s in namePart do
+		(
+			val= filterString s " "
+			if val.count>6 do 
+			(
+				tempOn=True
+				i=1
+				for s in val do 
+				(
+					if i>1 and (s as float)==undefined do tempOn=False 
+					i+=1
+				)
+				if tempOn==True do 
+				(
+				append lName val[1]
+				append lPivot [(val[2] as float),(val[3] as float),(val[4] as float)]
+				append lmax [(val[5] as float),(val[6] as float),(val[7] as float)]
+				)
+			)
+		)
 		for s in $ do 
 		(
 			i=finditem lname s.name
 			if i!=0 do 
-			(s.pivot=lpivot[i]
-			print i
-			print s.pivot
-			print lpivot[i]
+			(
+			s.pivot.x=lpivot[i].x-lmax[i].x + s.max.x
+			s.pivot.y=lpivot[i].y-lmax[i].y + s.max.y
+			s.pivot.z=lpivot[i].z-lmax[i].z + s.max.z
 		)
 		)
+	)
+	)
+	on btn111 pressed do
+	(
+	if $ != undefinnd do 
+	(
+		local tempOn=True
+		local lname=#()
+	     local lpivot=#()
+	     local vals=""
+	     for s in $ do 
+		(
+			try s.pivot catch tempOn=false
+			if tempOn==True do 
+			(
+	              val=s.name + " " + (s.pivot.x as string) + " " +(s.pivot.y as string) + " " +(s.pivot.z as string) + " " +(s.max.x as string)+ " " +(s.max.y as string) + " " +(s.max.z as string) 
+	              vals+=val+"|"    
+			)
+		)
+	     setinisetting  profilePath "pivots" "vals"  vals
 	)
 	
 	)
 )
-
-
-
-
-
-
-
 
 
 
@@ -3601,7 +3652,7 @@ if nodes!=undefined and  exportPath!=undefined then
 	for n in names do 
 	(
 		local namePart= filterString n "_"
-		if namePart.count>-1 do--if namePart.count>2 and namePart[namePart.count]!="coll" do
+		if namePart.count>-1 and namePart[namePart.count]!="coll" do--if namePart.count>2 and namePart[namePart.count]!="coll" do
 		(
 			local saveOn=true
 			local nodePath=exportPath+"\\"+n+"\\max"
@@ -3610,12 +3661,12 @@ if nodes!=undefined and  exportPath!=undefined then
 			local s=getNodeByName n exact:true ignoreCase:true  all:false
 			local coll=getNodeByName (n+"_coll") exact:true ignoreCase:true  all:false
 			local sPos=s.pos
+			s.pos=[0,0,0]
 			local nodeA=#(s)
 			local collPos=[0,0,0]
 			if coll!=undeifend do
 			(
 				append nodeA coll
-				collPos=coll.pos
 				collPos=coll.pos
 				coll.pos=[0,0,0]
 			) 
@@ -3723,7 +3774,7 @@ function exportSelectToVisual=
 function getNamePath n=
 (
 	n=getFilenameFile n
-	path=(mfDIR+"tw2/res/scene/common/")
+	p=(mfDIR+"tw2/res/scene/common/")
 	tw1=""
 	tw2=""
 	count=0
@@ -3740,20 +3791,20 @@ function getNamePath n=
 		tw1=fengx.getLetter(tw1)
 		tw2=fengx.getLetter(tw2)
 		if tw1[1]=="j" and tw1.count>3 then(
-			path=path+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
+			p=p+tw1[1]+tw1[2]+"/"+tw1+"/"+tw1[3]+tw1[4]+tw2+"/"
 		)else(
-			if tw1.count>2 do path=path+tw1[1]+tw1[2]+"/"+tw1+"/"
+			if tw1.count>2 do p=p+tw1[1]+tw1[2]+"/"+tw1+"/"
 		)
-		b=getFiles(path+"*")
+		b=getFiles(p+"*")
 		-- and tw1[1]!="l"
 		)else
 		(
-			if numOn==True then  path=mfDIR+"tw2/res/char/"+n+"/" else path=mfDIR+"tw2/res/scene/"
+			if numOn==True then  p=mfDIR+"tw2/res/char/"+n+"/" else p=mfDIR+"tw2/res/scene/"
 			
 		)
 
 	
-	return path
+	return p
 ),
 
 function getLetter n=
@@ -4606,6 +4657,47 @@ if $!=undifined and classOf(modpanel.getcurrentobject())==Unwrap_UVW do
 
 )
 ),
+
+---------------test
+
+function fixMapName mate=
+(
+	path=""
+	tempOn=true
+
+	try mate.diffusemap.filename catch tempOn=false
+	if tempOn==true do(
+		path=mate.diffusemap.filename 
+		n=getFileNameFile path
+		p=getFileNamePath path
+		t=getFileNameType path
+	
+		namePart=filterString n "_"
+		newName=""
+		
+		if namePart.count>4 do 
+		(
+			newStr=""
+			newStrF=""
+			for i=1 to namePart[3].count do 
+			(
+				if namePart[3][i]>="0" and namePart[3][i]<="9" then newStr+=namePart[3][i] else newStrF+=namePart[3][i]
+				)
+			if newStr.count==3 do newStr+="0"
+			newStr=newStrF+newStr
+		)
+			
+		for i=1 to namePart.count do 
+		(
+			ts="_"
+			if i==1 then ts="" else ts="_"
+			if i!=3 then newName+=ts+namePart[i] else newName+=ts+newStr				
+		)
+		path=p+newName+t
+	)
+	return path
+),
+
 
 
 -------------------------UV tool-----------------------------
