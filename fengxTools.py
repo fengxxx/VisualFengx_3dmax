@@ -20,7 +20,7 @@ dirs=["wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,
     "zw\\zwgm\\","zw\\zwhc\\","zw\\zwshu\\","zw\\zwts\\",
     "jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\",
     "jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\",
-    "db\\dbst\\"]
+    "db\\dbst\\",""]
 
 def getmfDir():
     mf_dir=""
@@ -94,8 +94,7 @@ def getRelativePath(p):
 
     return tp
 
-def showInExplorer(pon):
-    c=pon
+def showInExplorer(c):
     c=c.replace('\"', '')
     c=c.replace('.visual', '.model')
     c=c.replace('.primitives', '.model')
@@ -212,19 +211,18 @@ def setMaterials(VPath,outVPath):
         #shaderType
         
         for m in mid:
-            LOG+=("\n 开始搞起。。。。。。。:   ")
+            LOG+=("\n start............:   ")
             changeMapOn=True
             #---material 
             for mmap in m.findall("property"):
                 try:
                     m.find("fx").text
                 except:
-                    LOG+=("\n 找不到 材质类型 :   ")
+                    LOG+=("\n   can't find material type :   ")
                     changeMapOn=False
                 else:
                     if m.find("fx").text.replace("\t","")=="shaders/std_effects/lightonly.fx":
                         changeMapOn=True
-                        #LOG+=("\n 材质为默认的 :   " +m.find("fx").text)
                     else:
                         changeMapOn=False
                 try:
@@ -233,12 +231,12 @@ def setMaterials(VPath,outVPath):
                     #print mmap.text
                     #print m.text
                     if changeMapOn==True:
-                          LOG+=("\n 找不到diffuse 地址 :   ")
+                          LOG+=("\n     can't find diffuse path :   ")
                     changeMapOn=False
                 else:
                     DPath=mmap.find("Texture").text.replace("\t","")
                     if  os.path.isfile((ROOTDIR+DPath).replace("\t","")) and changeMapOn==True:
-                        LOG+=("\n difusseMap 地址 :   " +DPath)
+                        LOG+=("\n   difusseMap path :   " +DPath)
                         m.find("fx").text="\tshaders/core/scene_dns.fx\t"
                         
                         try:
@@ -255,7 +253,7 @@ def setMaterials(VPath,outVPath):
             if changeMapOn==True:
                 for mmap in m.findall("property"):
                     if len(m.findall("property"))<3:
-                        LOG+=("\n 开始修改材质了。。。。")
+                        LOG+=("\n   start change material......")
                         miOn=False
                         # check mi 
                         #----set mi
@@ -273,27 +271,27 @@ def setMaterials(VPath,outVPath):
                                 if os.path.isfile((miRootPath+p+"/"+name+".mi").replace("\t","")):
                                     miPath="mi/"+p+name+".mi"  
                                     SubElement(m,"mi").text=miPath
-                                    LOG+="\n 设置子材质 ： "+miPath
+                                    LOG+="\n        set material son: "+miPath
                                     miOn=True
                         if miOn==False:
-                            LOG+="\n 子材质不存在开始找贴图  设置属性： "
+                            LOG+="\n        can't find the material son  so starting set map:"
                             #----set normal map and specular map
                             maps=getDNS(DPath)
                             #LOG+="\n找到的法线高光"+str(maps)
                             i=0
-                            LOG+="\n 设置贴图。。。"
+                            LOG+="\n            set map...."
                             for texP in  maps:
                                 if i!=0:
                                     item= Element("property")
                                     item.text=mapTypes[i]
                                     texN=Element("Texture")
                                     if os.path.isfile((ROOTDIR+texP).replace("\t","")):
-                                        LOG+="\n     设置贴图。。。"+mapTypes[i] + " : "+texP
+                                        LOG+="\n                set map ....."+mapTypes[i] + " : "+texP
                                         texN.text=texP
                                         item.append(texN)
                                         m.append(item)
                                     else: 
-                                        LOG+="\n     设置贴图。。。"+mapTypes[i] + " : 没找到"
+                                        LOG+="\n                 set map ....."+mapTypes[i] + " : can't find"
                                         texN.text="   "
                                         item.append(texN)
                                         m.append(item)
@@ -304,7 +302,7 @@ def setMaterials(VPath,outVPath):
                             nameParts=string.split(name,"_")
                             if len(nameParts)>3:
                                 if nameParts[len(nameParts)-2]=="a":
-                                    LOG+="\n 有alpha 设置为透明 "
+                                    LOG+="\n                    set Alpha True"
                                     try:
                                         m.find("\tdoubleSided").text
                                         m.find("\tdoubleSided").find("Int").text
@@ -321,7 +319,7 @@ def setMaterials(VPath,outVPath):
     #print materialChange
     #if materialChange==True:
     outV._setroot(indent(v))
-    LOG+="\n 存储 材质到临时文件 "
+    LOG+="\n        save to a temp "
     print LOG
     #raw_input("LOG")
     outV.write(outVPath,"utf-8")
@@ -329,14 +327,14 @@ def replaceVisual(oldPath):
     global LOG
     tempPath="fengx.temp"
     setMaterials(oldPath,tempPath)
-    LOG+="\n 开始替换材质已经修改好的材质 "
+    LOG+="\nreplace visual file "
     try:
         os.remove(oldPath)
         os.rename(tempPath,oldPath)
     except:
-        LOG+="\n 替换失败"
+        LOG+="\nreplace faith"
     else:
-        LOG+="\n 替换成功"
+        LOG+="\nreplace sucessed"
 
 
 def autoVisualFileMaterial(vp):
@@ -345,7 +343,7 @@ def autoVisualFileMaterial(vp):
     pdir=getmfDir()
 
     try:
-        os.remove('setMaterials LOG'+'.fengx')
+        os.remove('setMaterials LOG.fengx')
     except:
         ()
 
@@ -356,7 +354,7 @@ def autoVisualFileMaterial(vp):
         ROOTDIR="e:/mf_pangu/tw2/res/"
 
     replaceVisual(vp)
-    l = open('d:/setMaterials LOG'+'.fengx', 'w')
+    l = open('setMaterials LOG.fengx', 'w')
     l.write(LOG)
     l.close()
 #--------------change visual file Material
@@ -476,6 +474,8 @@ else:
         print getRelativePath(getText())
 
     elif sys.argv[1][:3]=="-ei":#"-explorer-input" or sys.argv[1]=="-ei":
+        #print sys.argv[1][3:]
+        #print sys.argv
         showInExplorer(sys.argv[1][3:])
 
     elif sys.argv[1][:3]=="-mi":#-modeleditor-input" or sys.argv[1]=="-mi":
@@ -497,8 +497,10 @@ else:
     elif sys.argv[1][:3]=="-gd":#"-getDir"or sys.argv[1]=="-gd":
         print getDir()
 
-    elif sys.argv[1][:3]=="-am":#"-AutoVisualFileMaterial" or sys.argv[1]=="-am":
+    elif sys.argv[1][:3]=="-am":
         autoVisualFileMaterial(sys.argv[1][3:])
+        if sys.argv[1][:4]=="-amd":
+            raw_input("press  Enter to Exit!")
     elif sys.argv[1][:3]=="-rb":#"-registryBigworldFile" or sys.argv[1]=="-rb":
         registryBigworldFile()
     elif sys.argv[1][:3]=="-re"or sys.argv[1][:4]=="--re":
