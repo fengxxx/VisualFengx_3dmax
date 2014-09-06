@@ -22,7 +22,7 @@ dirs=["wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,
     "jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\",
     "db\\dbst\\",""]
 
-def getmfDir():
+def getmfDirB():
     mf_dir=""
     if os.path.isfile(os.getcwd()+"\\fengx.fengx"):
         f=open(os.getcwd()+"\\fengx.fengx","rb")
@@ -31,19 +31,29 @@ def getmfDir():
             if len(line)>6 and line[:5]=="mfDIR":
                 mf_dir=line[6:].replace("\r","").replace("\n","")
             line = f.readline()
-
-        #if checkSVNDir(mf_dir) ==False:
-        #    #print mf_dir
-        #    print "ssxxs"
-        #    #mf_dir=""
-        #else:
-        #    print "sss"
     else:
         ()#print "cant find the setting file (fengx.fengx)"
     return mf_dir
  
 
+def getmfDir():
+    mf_dir=""
+    if os.path.isfile(os.getcwd()+"\\fengxTools.txt"):
+        f=open(os.getcwd()+"\\fengxTools.txt","rb")
+        line = f.readline()
+        while line:
+            if len(line)>7 and line[:7]=="rootDir":
+                mf_dir=line[8:].replace("\r","").replace("\n","")
+            line = f.readline()
+    else:
+        getmfDirB()
+    return mf_dir
+ 
+
+
+
 tdir=getmfDir()
+#print tdir
 if tdir=="":
         tdir="e:\\mf_pangu\\"
 Rdir=tdir+Rdir
@@ -73,26 +83,24 @@ def getAbsolutePath(p):
     global Rdir
     tp=""
     if len(p)>0 and p!="":
-        for dp in  dirs:
-            name=os.path.split(os.path.splitext(p)[0])[1]
-            tempDir=Rdir+dp+name+".model"
-            if os.path.isfile(tempDir):
+        name=os.path.split(os.path.splitext(p)[0])[1]
+        try:
+            int(p)
+        except:
+            for dp in  dirs:
+                tempDir=Rdir+dp+name+".model"
+                if os.path.isfile(tempDir):
+                    tp=tempDir
+        else:
+            tempDir=tdir+ROOTDIR+"char\\"+name+"\\"+name+".model"
+            if os.path.isfile(tempDir): 
                 tp=tempDir
     return tp
 
 
 def getRelativePath(p):
-    global dirs
-    global Rdir
-    tp=""
-    if len(p)>0 and p!="":
-        for dp in  dirs:
-            name=os.path.split(os.path.splitext(p)[0])[1]
-            tempDir=Rdir+dp+name+".model"
-            if os.path.isfile(tempDir):
-                tp=tempDir.replace((tdir+"tw2\\res\\"),"").replace("\\","/")
+    return  getAbsolutePath(p).replace((tdir+"tw2\\res\\"),"").replace("\\","/")
 
-    return tp
 
 def showInExplorer(c):
     c=c.replace('\"', '')
@@ -101,11 +109,13 @@ def showInExplorer(c):
     c=c.replace('.thumbnail.jpg', '.model')
 
     c=getAbsolutePath(c)
+    print c
     if c!="":
         c= "explorer.exe"+"/select,"+c
         os.system(c.replace("\n",""))
     else:
         print "path was none"
+
 
 def openModeEditor(p):
     #print p
@@ -363,8 +373,9 @@ def autoVisualFileMaterial(vp):
 
 
 def registryBigworldFile():
-    print getmfDir()
-    CDir=getmfDir()+"bigworld\\tools\\worldeditor\\"
+    #print getmfDir()
+    #CDir=getmfDir()+"bigworld\\tools\\worldeditor\\"
+    CDir=os.getcwd()+"\\"
     #BDir=os.getcwd()+"\\worldeditor.exe"
     #MDir=os.getcwd()[:-12]+"\\modeleditor\\modeleditor.exe"
     FDir=CDir+"fengxTools.exe"
@@ -444,18 +455,21 @@ def changeGameMap(usd,m):
 
 helpInfor="""
 fengxTools OPTIONS:    
- -ec        | -explorer-clipboard           (showInExplorer)
- -mc        | -modeleditor-clipboard        (openByModeEditor) 
- -ei<path>  | -explorer-input <path>        (showInExplorer by imput a path )
- -em<path>  | -modeleditor-input <path>     (openByModeEditor by imput a path )
- -gf        | -getText-fliterPath           (change Clipboard text to path )
- -gt        | -getText                      (get Clipboard text)
- -st<string>| -setText<string>              (set Clipboard text)
- -am<path>  | -AutoVisualFileMaterial<path> (auto fill Visual material)
- -gs        | -getSVNDir                    (get SVN Dir)
- -rb        | -regBigworldFile<path>        (registry Bigworld File)
- -cm        | -changeMap<filePath><MapName> (change the game map name)
+-ec        | explorer-clipboard           (showInExplorer)
+-mc        | modeleditor-clipboard        (openByModeEditor) 
+-ei<path>  | explorer-input <path>        (showInExplorer by imput a path )
+-em<path>  | modeleditor-input <path>     (openByModeEditor by imput a path )
+-gf        | getText-fliterPath           (change Clipboard text to path )
+-gt        | getText                      (get Clipboard text)
+-st<string>| setText<string>              (set Clipboard text)
+-am<path>  | AutoVisualFileMaterial<path> (auto fill Visual material)
+-gs        | getSVNDir                    (get SVN Dir)
+-rb        | regBigworldFile<path>        (registry Bigworld File)
+-cm        | changeMap<filepath><MapName> (change the game map name)
+-ib        | import bigworld <filepath>   (worlk in process....)
  """
+
+getAbsolutePath("545")
 
 try:
     sys.argv[1]
@@ -466,6 +480,7 @@ else:
     #print sys.argv[1]
     if sys.argv[1][:3]=="-ec":#"-explorer-clipboard" or sys.argv[1]=="-ec" :
         showInExplorer(getText())
+        print getText()
 
     elif sys.argv[1][:3]=="-mc":#"-modeleditor-clipboard" or sys.argv[1]=="-mc":
         openModeEditor(getText())
@@ -513,3 +528,7 @@ else:
         v=sys.argv[1][3:].split("-")
         print v
         changeGameMap(v[0],v[1])
+    elif sys.argv[1][:3]=="-ib":
+        a=getRelativePath(getText())
+        if a.replace(" ","")!="":
+            setText(a) 
