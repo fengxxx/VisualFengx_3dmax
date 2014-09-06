@@ -2428,9 +2428,6 @@ rollout file "文件" width:720 height:665
 	   dir=getFilenamePath pPath
 	   name =getFilenameFile pPath
 	   pPath=dir+name+".primitives"
-	   print "xx"
-	   print (doesFileExist pPath)
-	   print "xx"
 	   if doesFileExist pPath do  
 	   (
 	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
@@ -2443,20 +2440,30 @@ rollout file "文件" width:720 height:665
 	   (
 	   	   
 		   ion=True
+		   fengx.defultObjSettings()
 		   try importFile objPath #noPrompt selectedOnly:true catch (ion=False)
 		   if ion==True do 
 		   (
 			   macros.run "Modifier Stack" "Convert_to_Poly"
 			   for s in $ do(
-			             s.name=name
-			             scale s [10,10,10]
-					    scale s [1,-1,1]
-					    fengx.findMapResource s 
-			             for m in fengx.toStandardMate(s.material) do showTextureMap m on
+							s.name=name
+							--subobjectLevel = 3
+							--max select all
+							--macros.run  "Editable Polygon Object" "EPoly_Convert_Sel_To_Vertex" 
+							--$.GetEdgeVertex($.GetSelection(3)) 
+							--polyop.weldVerts $  ($.GetSelection(2)) (1,1,1)
+							--macros.run   "Editable Polygon Object" "EPoly_Weld"  
+							--subobjectLevel = 0
+							s.pivot=[0,0,0]
+							scale s [10,10,10]
+							scale s [1,-1,1]
+							fengx.findMapResource s 
+							fengx.TexNameToMateName()
+							for m in fengx.toStandardMate(s.material) do showTextureMap m on
 			   )
 			   try(
-			    deleteFile  objPath
-			    deleteFile  (dir+name+".mtl")
+					deleteFile  objPath
+					deleteFile  (dir+name+".mtl")
 			   )catch()
 			  )
 		)else ( messagebox "导入失败!" )
@@ -2506,9 +2513,7 @@ rollout file "文件" width:720 height:665
 	   dir=getFilenamePath pPath
 	   name =getFilenameFile pPath
 	   pPath=dir+name+".primitives"
-	   print "xx"
-	   print (doesFileExist pPath)
-	   print "xx"
+
 	   if doesFileExist pPath do  
 	   (
 	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
@@ -2533,9 +2538,7 @@ rollout file "文件" width:720 height:665
 	   dir=getFilenamePath pPath
 	   name =getFilenameFile pPath
 	   pPath=dir+name+".primitives"
-	   print "xx"
-	   print (doesFileExist pPath)
-	   print "xx"
+
 	   if doesFileExist pPath do  
 	   (
 	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
@@ -2563,15 +2566,20 @@ rollout file "文件" width:720 height:665
 	   macros.run "Modifier Stack" "Convert_to_Poly"
 	   for s in $ do(
 			   s.name=name
+	            s.pivot=[0,0,0]
+			   fengx.defultObjSettings()
+			   try exportFile (objPath) #noPrompt selectedOnly:true using:Wavefront_ObjectExporterPlugin   catch  print "export fail !  "
 			   scale s [10,10,10]
 			   scale s [1,-1,1]
 			   fengx.findMapResource s 
+	            fengx.TexNameToMateName()
 			   for m in fengx.toStandardMate(s.material) do showTextureMap m on
 			   )
 	   )
+	
+	
 	)
 )
-
 
 
 rollout snap "吸附" width:362 height:562
@@ -3492,6 +3500,24 @@ struct fengx
 function llllllllllllllllllllllllllllllllllllllllllllllllsystemToolFn=(),
 --------------------------------------------------------
 -------------------------system tool-------------------------
+
+function defultObjSettings=
+(
+ 	objSetPath= GetDir(#maxData)+"plugcfg\\obj2max.cfg"
+	setinisetting  objSetPath "Obj2Max" "Single" "0"
+	setinisetting  objSetPath "Obj2Max"  "Helper" "0"
+	setinisetting  objSetPath "Obj2Max"  "Grouper" "0"
+	setinisetting  objSetPath "Obj2Max"  "Rotate" "1"
+	setinisetting  objSetPath "Obj2Max"  "Texture" "1"
+	setinisetting  objSetPath "Obj2Max"  "Normals" "1"
+	setinisetting  objSetPath "Obj2Max"  "Unify" "0"
+	setinisetting  objSetPath "Obj2Max"  "ObjSmooth" "1"
+	setinisetting  objSetPath "Obj2Max"  "Smooth" "1"
+	setinisetting  objSetPath "Obj2Max"  "Scale" "100"
+	setinisetting  objSetPath "Obj2Max"  "Center" "0"
+	setinisetting  objSetPath "Obj2Max"  "Materials" "1"
+	setinisetting  objSetPath "Obj2Max"  "Group" "obj"
+),
 
 
 function iconBitmapToArray b=

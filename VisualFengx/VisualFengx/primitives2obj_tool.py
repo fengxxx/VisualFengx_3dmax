@@ -376,11 +376,12 @@ def getModelInfo(modelpath,temppath):
                cleanDir(temppath)
                os.rmdir(temppath)
                return (tiaoguo,vertexs,indexs,groupList,vertexFormat,"","")
-      
+      '''
       file.close()
-      s=open("d:\\test.txt","w")
+      s=open("d:\\test.txt","wb")
       s.write(str(vertexs)+"\n\n\ngroupList\n\n"+str(groupList)+"\n\n\nvertexFormatClean\n\n"+str(vertexFormatClean)+"\n\n\nindexs\n\n"+str(indexs)+"\n\n\nvertexFormat\n\n"+str(vertexFormat))
       s.close()
+      '''
    return (tiaoguo,vertexs,indexs,groupList,vertexFormat,vertexFormatClean,indexFormat)
 
 
@@ -598,7 +599,7 @@ def doconvert(primitivesPath):
 
 def to_OBJFile(pPath):
    mate=writeMtl(pPath)
-   modelData=getModelInfo(pPath,"test")
+   modelData=getModelInfo(pPath,"w")
    oPath=pPath.replace(".primitives",".obj")
    objFile=open(oPath,"w")
 
@@ -613,10 +614,10 @@ def to_OBJFile(pPath):
 
    for s in modelData[1]:
       objFile.write("\nvn "+str(s[2][0])+" "+str(s[2][1])+" "+str(s[2][2]))
-   objFile.write("\ns 0\n")
 
    
    objFile.write("\ng (null)")
+   objFile.write("\ns 1\n")
 
 
    #for s in  modelData[3]:
@@ -637,6 +638,7 @@ def to_OBJFile(pPath):
          i=0
          uvIndex+=1
          objFile.write(("\nusemtl "+mate[uvIndex][3]))
+         objFile.write("\ns "+str(uvIndex+2)+"\n")
       #objFile.write("\nf "+str(modelData[2][s*3])+" "+str(modelData[2][s*3+1])+" "+str(modelData[2][s*3+2]) )
       objFile.write("\nf "+str(modelData[2][s*3]+1)+"/"+str(modelData[2][s*3]+1)+"/"+str(modelData[2][s*3]+1))
       objFile.write(" "+str(modelData[2][s*3+1]+1)+"/"+str(modelData[2][s*3+1]+1)+"/"+str(modelData[2][s*3+1]+1) )
@@ -648,6 +650,7 @@ def to_OBJFile(pPath):
    #print  "f: ",len(modelData[2]),(len(modelData[2])/3-1)
 
    objFile.close()
+to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
 if __name__ == "__main__":
    #getModelInfo("H:\\testPrimitives\\bghm_jztj_yw0040_2545.primitives","H:\\testPrimitives\\bghm_jztj_yw0040_2545")
    #to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
