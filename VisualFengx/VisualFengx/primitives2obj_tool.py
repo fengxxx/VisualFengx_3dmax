@@ -650,7 +650,7 @@ def to_OBJFile(pPath):
    #print  "f: ",len(modelData[2]),(len(modelData[2])/3-1)
 
    objFile.close()
-to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
+#to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
 if __name__ == "__main__":
    #getModelInfo("H:\\testPrimitives\\bghm_jztj_yw0040_2545.primitives","H:\\testPrimitives\\bghm_jztj_yw0040_2545")
    #to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
