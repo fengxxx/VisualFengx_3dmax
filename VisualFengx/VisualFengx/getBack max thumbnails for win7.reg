@@ -1,0 +1,39 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.MAX]
+
+[HKEY_CLASSES_ROOT\.MAX\PersistentHandler]
+@="{98de59a0-d175-11cd-a7bd-00006b827d94}"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.max]
+"ExtendedTileInfo"="prop:System.ItemTypeText;System.Size;System.DateModified;System.Author;System.OfflineAvailability"
+"FullDetails"="prop:System.PropGroup.Description;System.Title;System.Subject;System.Keywords;System.Category;System.Comment;System.PropGroup.Origin;System.Author;System.Document.LastAuthor;System.Document.RevisionNumber;System.Document.Version;System.ApplicationName;System.Company;System.Document.Manager;System.Document.DateCreated;System.Document.DateSaved;System.Document.DatePrinted;System.Document.TotalEditingTime;System.PropGroup.Content;System.ContentStatus;System.ContentType;System.Document.PageCount;System.Document.WordCount;System.Document.CharacterCount;System.Document.LineCount;System.Document.ParagraphCount;System.Document.Template;System.Document.Scale;System.Document.LinksDirty;System.Language;System.PropGroup.FileSystem;System.ItemNameDisplay;System.ItemTypeText;System.ItemFolderPathDisplay;System.DateCreated;System.DateModified;System.Size;System.FileAttributes;System.OfflineAvailability;System.OfflineStatus;System.SharedWith;System.FileOwner;System.ComputerName"
+"InfoTip"="prop:System.ItemTypeText;System.Size;System.DateModified;System.Document.PageCount"
+"PerceivedType"="document"
+"PreviewDetails"="prop:*System.DateModified;System.Author;System.Keywords;*System.Size;System.Title;System.Comment;System.Category;*System.Document.PageCount;System.ContentStatus;System.ContentType;*System.OfflineAvailability;*System.OfflineStatus;System.Subject;*System.DateCreated;*System.SharedWith"
+"ThumbnailCutoff"=dword:00000000
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.max\shellex]
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.max\shellex\{BB2E617C-0920-11d1-9A0B-00C04FC2D6C1}]
+@="{9DBD2C50-62AD-11d0-B806-00C04FD706EC}"
+
+[HKEY_CLASSES_ROOT\.max\PersistentHandler]
+@="{98de59a0-d175-11cd-a7bd-00006b827d94}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Portable Devices\FormatMap\.max]
+"Format"="{BA830000-AE6C-4804-98BA-C57B46965FE7}"
+"ContentType"="{680ADF52-950A-4041-9B41-65E393648155}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\explorer\KindMap]
+".max"="document"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.max]
+@="{97e467b4-98c6-4f19-9588-161b7773d6f6}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows Portable Devices\FormatMap\.max]
+"Format"="{BA830000-AE6C-4804-98BA-C57B46965FE7}"
+"ContentType"="{680ADF52-950A-4041-9B41-65E393648155}"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\PropertySystem\PropertyHandlers\.max]
+@="{97e467b4-98c6-4f19-9588-161b7773d6f6}"
