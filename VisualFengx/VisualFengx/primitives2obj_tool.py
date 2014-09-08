@@ -630,14 +630,17 @@ def to_OBJFile(pPath):
    i=0
    uvIndex=0
    
-   objFile.write(("\nusemtl "+mate[0][3]))
+   objFile.write(("\nusemtl "+os.path.splitext(os.path.split(mate[0][0])[1])[0]))
+
    for s in range(0,(len(modelData[2])/3)):
       #print "i:",i
       if i==modelData[3][uvIndex][1]:
          #print "i,uvIndex : ",i,uvIndex
          i=0
          uvIndex+=1
-         objFile.write(("\nusemtl "+mate[uvIndex][3]))
+          objFile.write(("\nusemtl "+os.path.splitext(os.path.split(mate[uvIndex][0])[1])[0]))
+         #print mate
+         #raw_input("xxxx:")
          objFile.write("\ns "+str(uvIndex+2)+"\n")
       #objFile.write("\nf "+str(modelData[2][s*3])+" "+str(modelData[2][s*3+1])+" "+str(modelData[2][s*3+2]) )
       objFile.write("\nf "+str(modelData[2][s*3]+1)+"/"+str(modelData[2][s*3]+1)+"/"+str(modelData[2][s*3]+1))

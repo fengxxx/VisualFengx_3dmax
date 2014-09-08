@@ -2462,6 +2462,7 @@ rollout file "文件" width:720 height:665
 							for m in fengx.toStandardMate(s.material) do showTextureMap m on
 			   )
 			   try(
+	                  print "xx"
 					deleteFile  objPath
 					deleteFile  (dir+name+".mtl")
 			   )catch()
@@ -2513,7 +2514,7 @@ rollout file "文件" width:720 height:665
 	   dir=getFilenamePath pPath
 	   name =getFilenameFile pPath
 	   pPath=dir+name+".primitives"
-
+	
 	   if doesFileExist pPath do  
 	   (
 	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
@@ -2538,7 +2539,7 @@ rollout file "文件" width:720 height:665
 	   dir=getFilenamePath pPath
 	   name =getFilenameFile pPath
 	   pPath=dir+name+".primitives"
-
+	
 	   if doesFileExist pPath do  
 	   (
 	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
@@ -2580,8 +2581,6 @@ rollout file "文件" width:720 height:665
 	
 	)
 )
-
-
 rollout snap "吸附" width:362 height:562
 (
 	--fn box_filt obj = classof obj == Box 
@@ -4179,7 +4178,7 @@ function restart =
 (
     if checkForSave() then (
         shellLaunch (getdir #maxroot+"\\3dsmax.exe") (maxfilepath+maxfilename)
-        quitmax #noPrompt
+        quitmax z
     )
 ),
     
@@ -4653,7 +4652,9 @@ function  findMapResource nodes=
 		mapOn=true
 		
 		try newPath=m.diffusemap.filename catch(
-			 newPath=m.name+".tga"
+			  if getFilenameType m.name==".tga" or getFilenameType m.name==".TGA" then
+			  	newPath=m.name
+		       else newPath=m.name+".tga"
 			  m.diffusemap= Bitmaptexture fileName:newPath
 			 )
 		if mapOn==true do
