@@ -1,0 +1,1 @@
+rootDir=e:\\mf_pangu\\
