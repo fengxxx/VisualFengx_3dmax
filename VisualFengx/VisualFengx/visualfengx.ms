@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.53
+global  VisualFengxVersions =1.54
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -361,7 +361,7 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.53" width:1178 height:796
+rollout mainwindow mainWindowName width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
 	subRollout sub "fengx" pos:[0,35] width:139 height:586 
@@ -2425,20 +2425,21 @@ rollout file "文件" width:720 height:665
 	   doscommand  ("\""+getDir #Scripts+ "\\visualFengx\\fengxTools.exe" + "\"" +  " -ib" ) 	  
 	   pPath=DotNetClipboard.GetText()
 	   print pPath
-	   dir=getFilenamePath pPath
-	   name =getFilenameFile pPath
-	   pPath=dir+name+".primitives"
+
 	   if doesFileExist pPath do  
 	   (
-	   		a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
-	   		doscommand a
+		   dir=getFilenamePath pPath
+		   name =getFilenameFile pPath
+		   pPath=dir+name+".primitives"
+		   a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
+		   doscommand a
 	   	)
 	   objPath=dir+name+".obj"
 	   print objPath
-	   DotNetClipboard.SetText(objPath)
+	   
 	   if  (doesFileExist objPath) then
 	   (
-	   	   
+	   	   DotNetClipboard.SetText(objPath)
 		   ion=True
 		   fengx.defultObjSettings()
 		   try importFile objPath #noPrompt selectedOnly:true catch (ion=False)
@@ -2454,6 +2455,7 @@ rollout file "文件" width:720 height:665
 							--polyop.weldVerts $  ($.GetSelection(2)) (1,1,1)
 							--macros.run   "Editable Polygon Object" "EPoly_Weld"  
 							--subobjectLevel = 0
+							s.wirecolor=(color 0 0 0)
 							s.pivot=[0,0,0]
 							scale s [10,10,10]
 							scale s [1,-1,1]
@@ -2559,7 +2561,8 @@ rollout file "文件" width:720 height:665
 	(
 	   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	   objPath= DotNetClipboard.GetText()
-	   print objPath
+	   if  (doesFileExist objPath) then
+        (	
 	   name=getFilenameFile objPath
 	   try importFile objPath #noPrompt selectedOnly:true catch ()
 	   if $!=undefined do
@@ -2572,13 +2575,14 @@ rollout file "文件" width:720 height:665
 			   try exportFile (objPath) #noPrompt selectedOnly:true using:Wavefront_ObjectExporterPlugin   catch  print "export fail !  "
 			   scale s [10,10,10]
 			   scale s [1,-1,1]
+			   s.wirecolor=(color 0 0 0)
 			   fengx.findMapResource s 
 	            fengx.TexNameToMateName()
 			   for m in fengx.toStandardMate(s.material) do showTextureMap m on
 			   )
 	   )
 	
-	
+	   )else print "obj file not exist!"
 	)
 )
 rollout snap "吸附" width:362 height:562

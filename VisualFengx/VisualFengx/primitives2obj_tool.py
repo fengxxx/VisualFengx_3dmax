@@ -28,24 +28,7 @@ def cleanDir( Dir ):
             shutil.rmtree(filePath,True)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##################
-
-
 
 
 
@@ -638,7 +621,7 @@ def to_OBJFile(pPath):
          #print "i,uvIndex : ",i,uvIndex
          i=0
          uvIndex+=1
-          objFile.write(("\nusemtl "+os.path.splitext(os.path.split(mate[uvIndex][0])[1])[0]))
+         objFile.write(("\nusemtl "+os.path.splitext(os.path.split(mate[uvIndex][0])[1])[0]))
          #print mate
          #raw_input("xxxx:")
          objFile.write("\ns "+str(uvIndex+2)+"\n")
