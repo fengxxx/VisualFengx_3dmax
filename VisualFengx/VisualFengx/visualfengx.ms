@@ -21,7 +21,7 @@ global lvals=""
 global lmax=#()
 
 
-
+global emin=0.04 --test for tri to qu
 ------------------------------------------------
 ------------------- only for fun ---------------
 --global theVoice = CreateOLEObject "SAPI.SpVoice"
@@ -1324,11 +1324,11 @@ rollout poly "poly " width:864 height:770
 	button btn521 "Plane" pos:[64,44] width:64 height:24
 	button btn531 "比例人" pos:[64,20] width:64 height:24
 	button btn591 "Big Group" pos:[128,20] width:64 height:24 enabled:true
-	button btn7 "Big +" pos:[16,454] width:48 height:24 toolTip:"放大一倍"
-	button btn13 "Small -" pos:[16,478] width:48 height:24 toolTip:"缩小一倍"
-	button btn151 "重置模型" pos:[64,454] width:64 height:48 
-	button btn159 "Edit UV" pos:[0,610] width:128 height:24
-	checkbutton BS "#" pos:[0,454] width:16 height:48
+	button btn7 "Big +" pos:[16,500] width:48 height:24 toolTip:"放大一倍"
+	button btn13 "Small -" pos:[16,524] width:48 height:24 toolTip:"缩小一倍"
+	button btn151 "重置模型" pos:[64,500] width:64 height:48 
+	button btn159 "Edit UV" pos:[0,656] width:128 height:24
+	checkbutton BS "#" pos:[0,500] width:16 height:48
 	button btn97 "排序" pos:[72,80] width:56 height:48 enabled:false
 	checkbutton sx "x" pos:[0,80] width:24 height:24 enabled:true toolTip:"将选择物体以X轴向排列" checked:true
 	checkbutton sy "y" pos:[24,80] width:24 height:24 toolTip:"将选择物体以Y轴向排列"
@@ -1342,51 +1342,51 @@ rollout poly "poly " width:864 height:770
 	checkbutton c6 "6" pos:[216,80] width:16 height:24
 	
 
-	button btn354 "编辑多边形" pos:[0,434] width:128 height:20 enabled:false
-	button btn356 "编辑UV" pos:[0,590] width:128 height:20 enabled:false
-	checkbutton ckb133 "发送到 Uvlayout" pos:[0,658] width:96 height:24
+	button btn354 "编辑多边形" pos:[0,480] width:128 height:20 enabled:false
+	button btn356 "编辑UV" pos:[0,636] width:128 height:20 enabled:false
+	checkbutton ckb133 "发送到 Uvlayout" pos:[0,704] width:96 height:24
 	button btn335 "Set Uvlayout Path" pos:[128,576] width:96 height:24
 	
-	button btn211 "重来" pos:[96,634] width:32 height:48
+	button btn211 "重来" pos:[96,680] width:32 height:48
 	button btn89 "创建多边形" pos:[0,0] width:128 height:20 enabled:false
-	button btn490 "右旋" pos:[64,562] width:64 height:24
+	button btn490 "右旋" pos:[64,608] width:64 height:24
  
  
  
  
-	button btn491 "左旋" pos:[0,562] width:64 height:24
+	button btn491 "左旋" pos:[0,608] width:64 height:24
 	
-	button btn492 "智能旋转" pos:[0,506] width:128 height:20 enabled:false
-	button btn563 "置底" pos:[72,324] width:56 height:24 toolTip:"枢轴置物体底部"
-	button btn564 "归中" pos:[72,300] width:56 height:24 toolTip:"枢轴置物件中间"
-	button btn565 "Pos" pos:[0,379] width:24 height:24
+	button btn492 "智能旋转" pos:[0,552] width:128 height:20 enabled:false
+	button btn563 "置底" pos:[72,370] width:56 height:24 toolTip:"枢轴置物体底部"
+	button btn564 "归中" pos:[72,346] width:56 height:24 toolTip:"枢轴置物件中间"
+	button btn565 "Pos" pos:[0,425] width:24 height:24
 	
-	button btn566 "+" pos:[48,276] width:24 height:24
-	button btn567 "-" pos:[0,276] width:24 height:24
-	button btn568 "+" pos:[48,300] width:24 height:24
-	button btn569 "-" pos:[0,300] width:24 height:24
-	button btn570 "+" pos:[48,324] width:24 height:24
-	button btn571 "-" pos:[0,324] width:24 height:24
-	button btn572 "X" pos:[24,276] width:24 height:24
-	button btn573 "Y" pos:[24,300] width:24 height:24
-	button btn574 "Z" pos:[24,324] width:24 height:24
-	button btn575 "Pivot" pos:[0,403] width:32 height:24
-	button btn576 "Rotate" pos:[36,379] width:40 height:24
-	button btn577 "Scale" pos:[32,403] width:44 height:24
-	button btn578 "所有" pos:[76,379] width:52 height:48
-	button btn579 "重置（所选）属性" pos:[0,360] width:128 height:19 enabled:false
-	button btn580 "置顶" pos:[72,276] width:56 height:24 toolTip:"枢轴置顶"
-	button btn581 "Pivot" pos:[0,258] width:128 height:18 enabled:false toolTip:""
-	button btn582 "" pos:[24,379] width:12 height:24 enabled:false
-	checkbutton ckbnew "New" pos:[0,634] width:48 height:24
-	checkbutton ckbedit "Edit" pos:[48,634] width:48 height:24 checked:true
-	checkbutton ckb_world "world" pos:[36,526] width:34 height:16 enabled:true checked:true
-	checkbutton ckb_local "local" pos:[0,526] width:36 height:16 enabled:true checked:false
-	spinner spn1 "" pos:[68,526] width:60 height:16 range:[0,360,90]
-	button ckb64 "30" pos:[28,542] width:28 height:20 enabled:true checked:false
-	button ckb65 "45" pos:[56,542] width:36 height:20 enabled:true checked:false
-	button ckb66 "90" pos:[92,542] width:36 height:20 enabled:true checked:false
-	button ckb67 "15" pos:[0,542] width:28 height:20 enabled:true checked:false
+	button btn566 "+" pos:[48,322] width:24 height:24
+	button btn567 "-" pos:[0,322] width:24 height:24
+	button btn568 "+" pos:[48,346] width:24 height:24
+	button btn569 "-" pos:[0,346] width:24 height:24
+	button btn570 "+" pos:[48,370] width:24 height:24
+	button btn571 "-" pos:[0,370] width:24 height:24
+	button btn572 "X" pos:[24,322] width:24 height:24
+	button btn573 "Y" pos:[24,346] width:24 height:24
+	button btn574 "Z" pos:[24,370] width:24 height:24
+	button btn575 "Pivot" pos:[0,449] width:32 height:24
+	button btn576 "Rotate" pos:[36,425] width:40 height:24
+	button btn577 "Scale" pos:[32,449] width:44 height:24
+	button btn578 "所有" pos:[76,425] width:52 height:48
+	button btn579 "重置（所选）属性" pos:[0,406] width:128 height:19 enabled:false
+	button btn580 "置顶" pos:[72,322] width:56 height:24 toolTip:"枢轴置顶"
+	button btn581 "Pivot" pos:[0,304] width:128 height:18 enabled:false toolTip:""
+	button btn582 "" pos:[24,425] width:12 height:24 enabled:false
+	checkbutton ckbnew "New" pos:[0,680] width:48 height:24
+	checkbutton ckbedit "Edit" pos:[48,680] width:48 height:24 checked:true
+	checkbutton ckb_world "world" pos:[36,572] width:34 height:16 enabled:true checked:true
+	checkbutton ckb_local "local" pos:[0,572] width:36 height:16 enabled:true checked:false
+	spinner spn1 "" pos:[68,572] width:60 height:16 range:[0,360,90]
+	button ckb64 "30" pos:[28,588] width:28 height:20 enabled:true checked:false
+	button ckb65 "45" pos:[56,588] width:36 height:20 enabled:true checked:false
+	button ckb66 "90" pos:[92,588] width:36 height:20 enabled:true checked:false
+	button ckb67 "15" pos:[0,588] width:28 height:20 enabled:true checked:false
 	button btn45 "左" pos:[0,178] width:24 height:48
 	button btn46 "右" pos:[64,178] width:24 height:48
 	button btn47 "复制" pos:[88,154] width:40 height:96 toolTip:"复制物体 名字也会一样"
@@ -1396,6 +1396,7 @@ rollout poly "poly " width:864 height:770
 	button btn251 "前" pos:[24,202] width:40 height:24
 	button btn149 "移动模型" pos:[0,136] width:128 height:18 enabled:false toolTip:"智能移动"
 	button btn53 "标准排列" pos:[0,104] width:72 height:24 toolTip:"将选择物体以矩阵方式排列"
+	button btn95 "四边化" pos:[0,256] width:128 height:40 toolTip:"四边化所选择poly"
 	on poly close do
 	(
 	if  canSetWindows==true do 
@@ -2034,8 +2035,11 @@ rollout poly "poly " width:864 height:770
 				)
 		)
 	)
+	on btn95 pressed do
+	(
+	createdialog triToRectRollout 
+	)
 )
-
 
 
 
@@ -2062,20 +2066,90 @@ rollout uv "UV" width:162 height:300
 
 
 
+rollout triToRectRollout "三角面转四边面" width:496 height:147
+(
+	button btn_TTR "复位" pos:[320,16] width:48 height:64 toolTip:""
+	spinner sp_FFminAng "近似矩形的程度阀值" pos:[72,64] width:152 height:16 range:[0,100,92]
+	spinner sp_FMinAng "四边面的平整度阀值" pos:[73,16] width:151 height:16 range:[0,100,92]
+	spinner sp_FSameMinAng "四边面的对称度阀值" pos:[64,224] width:153 height:16 range:[0,100,95]
+	button btn2 ">>> 四边化" pos:[376,16] width:104 height:64 toolTip:" min angle threshold"
+	button btn3 "物体很规则" pos:[232,16] width:88 height:32 toolTip:""
+	button btn4 "物体不太规则" pos:[232,48] width:88 height:32 toolTip:""
+	slider sld3 "" pos:[131,98] width:208 height:25 range:[0,20,10] type:#float orient:#horizontal
+	label lbl3 "四四方方的面较多 机械 建筑等 很规则的物件" pos:[16,96] width:112 height:72
+	label lbl5 "圆形球形的 人或动物等  不规则物件 矩形面较少" pos:[344,96] width:128 height:64
+	on btn_TTR pressed do
+	(
+	sp_FMinAng.value=92
+	sp_FFminAng.value=92
+	sp_FSameMinAng.value=92
+	)
+	on btn2 pressed do
+	(
+		if $!=undefined do
+		(
+			polys=#()
+			numVers=0
+			for s in $ do 
+			(
+				if classof(s)==Editable_Poly do
+				(
+					append polys s
+					numVers+=polyOp.getNumVerts s
+				)
+			)
+			if numVers >4600 then
+			(
+				if (queryBox "面数超过较多.. 耐心等待!")==true do
+			     (
+					for obj in polys do fengx.deTrangulator obj (100-sp_FMinAng.value) (100-sp_FFminAng.value) ((100-sp_FFminAng.value)*0.97) --(100-sp_FSameMinAng.value)
+				)
+			)else for obj in polys do fengx.deTrangulator obj (100-sp_FMinAng.value) (100-sp_FFminAng.value) ((100-sp_FFminAng.value)*0.97) --(100-sp_FSameMinAng.value)
+
+		)
+		)
+	on btn3 pressed do
+	(
+	sp_FMinAng.value=97
+	sp_FFminAng.value=97
+	sp_FSameMinAng.value=97
+	)
+	on btn4 pressed do
+	(
+	sp_FMinAng.value=89
+	sp_FFminAng.value=88.2
+	sp_FSameMinAng.value=94
+	)
+	on sld3 changed val do
+	(
+	v= (val-9.5) 
+	sp_FMinAng.value=93.5-v*0.625 
+	sp_FFminAng.value=93.0-v*0.7
+	sp_FSameMinAng.value=96.0-v*0.4
+	
+	)
+)
 
 
 
 
 
-rollout file "文件" width:720 height:665
+
+
+
+
+
+
+
+rollout file "文件" width:736 height:712
 (
 	button btn1 ".visual" pos:[0,24] width:48 height:48 enabled:true toolTip:"快速导出.visual到SVN目录 (现在只支持...//common//和//char// 下模型和)"
-	button btn2 ".obj" pos:[0,624] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
-	button btn3 ".max" pos:[0,600] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
+	button btn2 ".obj" pos:[0,656] width:104 height:24 enabled:true toolTip:"另存所选择为 obj 格式"
+	button btn3 ".max" pos:[0,632] width:104 height:24 enabled:true toolTip:"另存所选择为 max 格式"
 	button btn17 "显示文件" pos:[88,72] width:40 height:40 enabled:true toolTip:"打开刚刚导出的.visual文件位置"
-	button btn19 "显示文件" pos:[104,624] width:24 height:24 enabled:true
-	button btn20 "显示文件" pos:[104,600] width:24 height:24 enabled:true
-	button btn330 "显示 此文件" pos:[0,480] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
+	button btn19 "显示文件" pos:[104,656] width:24 height:24 enabled:true
+	button btn20 "显示文件" pos:[104,632] width:24 height:24 enabled:true
+	button btn330 "显示 此文件" pos:[0,512] width:104 height:24 enabled:true toolTip:"打开当前正在编辑的文件 的文件夹"
 	button btn239 "快速导出（选择）" pos:[0,0] width:128 height:24 enabled:false
 	button btn216 "存为AB备份格式" pos:[0,152] width:128 height:24 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
 	button btn264 "批量分开Maxs文件" pos:[136,388] width:128 height:32
@@ -2093,29 +2167,30 @@ rollout file "文件" width:720 height:665
 	button btn86 "copy" pos:[656,272] width:48 height:32
 	button btn31 "clear" pos:[656,56] width:48 height:32
 	button btn32 "clear" pos:[656,240] width:48 height:32
-	button btn47 "显示 自动备份文件" pos:[0,504] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn47 "显示 自动备份文件" pos:[0,536] width:104 height:24 enabled:true toolTip:"打开自动备份的文件夹"
 	checkbutton ckb3 "自动贴图" pos:[48,48] width:80 height:24 toolTip:"导出VISUAL后自动贴上材质贴图"
 	checkbutton ckb311 "位置归零" pos:[48,24] width:80 height:24 toolTip:"导出Visual 的时候自动把物体归于原点（导出完成后回重新移回之前位置）"
 	button btn72 "ModelEditor" pos:[48,72] width:40 height:40 enabled:true toolTip:"用模型编辑器打开刚刚导出的文件位置"
 	button btn146 "存为AB备份格式" pos:[0,176] width:64 height:48 toolTip:"存储为AB备份格式  会给选中物体 分别备份到所选地址 （BSP物体 命名为物体名字加上 “_coll”后才会随物体一起备份） 材质贴图路径正确的都会被拷贝过去"
-	button btn258 "显示 自动备份文件" pos:[104,504] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
-	button btn259 "显示 此文件" pos:[104,480] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
+	button btn258 "显示 自动备份文件" pos:[104,536] width:24 height:24 enabled:true toolTip:"打开自动备份的文件夹"
+	button btn259 "显示 此文件" pos:[104,512] width:24 height:24 enabled:true toolTip:"打开当前文件的文件夹"
 	button btn333 "打开刚刚备份的文件夹" pos:[64,176] width:64 height:48 toolTip:"打开刚刚备份的文件夹"
-	button btn404 "提取物体贴图" pos:[0,544] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn405 "@" pos:[104,544] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
-	button btn33 "智能打开模型" pos:[0,368] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
-	button btn34 "智能打开模型" pos:[0,392] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
-	button btn35 "智能打开模型" pos:[64,392] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
+	button btn404 "提取物体贴图" pos:[0,576] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn405 "@" pos:[104,576] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"
+	button btn33 "智能打开模型" pos:[0,400] width:128 height:24 enabled:false toolTip:"会通过黏贴版 上面的地址 去寻找"
+	button btn34 "智能打开模型" pos:[0,424] width:64 height:48 toolTip:"复制模型名字或者路径 点击后用模型编辑器打开该模型 （路径不需要完整）"
+	button btn35 "智能打开模型" pos:[64,424] width:64 height:48 toolTip:"复制模型名字或者路径 点击后打开该模型所在文件夹 （路径不需要完整）"
 	button btn106 "自动返导primitives" pos:[0,232] width:128 height:32 enabled:true toolTip:"还没写完"
-	button btn143 "智能返入地形" pos:[0,576] width:128 height:24 enabled:false toolTip:"还没写好"
+	button btn143 "智能返入地形" pos:[0,608] width:128 height:24 enabled:false toolTip:"还没写好"
 	button btn75 "复制模型地址" pos:[0,112] width:128 height:24 toolTip:"复制上次导出.visual文件的地址 这个地址可以直接填到明显编辑器里面"
-	button btn114 "名字转换成地址" pos:[0,440] width:128 height:32 toolTip:"把黏贴板中的名字转换成.model地址(编辑器中可用的模型地址) (现在只支持...//common//和//char// 下模型和)"
+	button btn114 "名字转换成地址" pos:[0,472] width:128 height:32 toolTip:"把黏贴板中的名字转换成.model地址(编辑器中可用的模型地址) (现在只支持...//common//和//char// 下模型和)"
 	button btn173 "批量" pos:[0,72] width:48 height:40 enabled:true toolTip:"快速导出.visual到SVN目录"
 	
 
 	button btn38 "手动返导primitives" pos:[0,264] width:128 height:32 enabled:true toolTip:"还没写完"
-	button btn191 "发送OBJ" pos:[0,304] width:128 height:24 enabled:false toolTip:"还没写完"
-	button btn192 "接收OBJ" pos:[0,328] width:128 height:24 enabled:true toolTip:"还没写完"
+	button btn191 "发送OBJ" pos:[0,336] width:128 height:24 enabled:false toolTip:"还没写完"
+	button btn192 "接收OBJ" pos:[0,360] width:128 height:24 enabled:true toolTip:"还没写完"
+	button btn123 "Reset Poly" pos:[0,296] width:128 height:24 enabled:true toolTip:"还没写完"
 	on file open do
 	(
 		if fengx.checkSVNDir()==false do
@@ -2420,57 +2495,10 @@ rollout file "文件" width:720 height:665
 	)
 	on btn106 pressed do
 	(
-	   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
-	   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
-	   doscommand  ("\""+getDir #Scripts+ "\\visualFengx\\fengxTools.exe" + "\"" +  " -ib" ) 	  
-	   pPath=DotNetClipboard.GetText()
-	   print pPath
-
-	   if doesFileExist pPath do  
-	   (
-		   dir=getFilenamePath pPath
-		   name =getFilenameFile pPath
-		   pPath=dir+name+".primitives"
-		   a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
-		   doscommand a
-	   	)
-	   objPath=dir+name+".obj"
-	   print objPath
-	   
-	   if  (doesFileExist objPath) then
-	   (
-	   	   DotNetClipboard.SetText(objPath)
-		   ion=True
-		   fengx.defultObjSettings()
-		   try importFile objPath #noPrompt selectedOnly:true catch (ion=False)
-		   if ion==True do 
-		   (
-			   macros.run "Modifier Stack" "Convert_to_Poly"
-			   for s in $ do(
-							s.name=name
-							--subobjectLevel = 3
-							--max select all
-							--macros.run  "Editable Polygon Object" "EPoly_Convert_Sel_To_Vertex" 
-							--$.GetEdgeVertex($.GetSelection(3)) 
-							--polyop.weldVerts $  ($.GetSelection(2)) (1,1,1)
-							--macros.run   "Editable Polygon Object" "EPoly_Weld"  
-							--subobjectLevel = 0
-							s.wirecolor=(color 0 0 0)
-							s.pivot=[0,0,0]
-							scale s [10,10,10]
-							scale s [1,-1,1]
-							fengx.findMapResource s 
-							fengx.TexNameToMateName()
-							for m in fengx.toStandardMate(s.material) do showTextureMap m on
-			   )
-			   try(
-	                  print "xx"
-					deleteFile  objPath
-					deleteFile  (dir+name+".mtl")
-			   )catch()
-			  )
-		)else ( messagebox "导入失败!" )
-	
+	   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard" 	  
+	   files=DotNetClipboard.GetText()
+	   filePaths=filterString files "\n"
+	   for s in filePaths do fengx.getModelFromBigworld(s)
 	 
 	)
 	on btn143 pressed do
@@ -2562,7 +2590,7 @@ rollout file "文件" width:720 height:665
 	   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
 	   objPath= DotNetClipboard.GetText()
 	   if  (doesFileExist objPath) then
-        (	
+	    (	
 	   name=getFilenameFile objPath
 	   try importFile objPath #noPrompt selectedOnly:true catch ()
 	   if $!=undefined do
@@ -2584,7 +2612,39 @@ rollout file "文件" width:720 height:665
 	
 	   )else print "obj file not exist!"
 	)
+	on btn123 pressed do
+	(
+	if $!=undefined do
+	(
+	for s in $ do 
+	(
+	   if classof(s)==Editable_Poly do
+	   (
+	         macros.run "Modifiers" "XForm"
+	         macros.run "Modifier Stack" "Convert_to_Poly"
+	    )
+	  ) 
+	)
+	)
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 rollout snap "吸附" width:362 height:562
 (
 	--fn box_filt obj = classof obj == Box 
@@ -4901,6 +4961,236 @@ function fixMapName mate=
 -------------------------UV tool-----------------------------
 function lllllllllllllllllllllllllllllllllllllllllllllllleditModelFn=(),
 -------------------------edit model--------------------------
+function getCosFromRectVer ver edges obj=
+(
+	--print ("xxx: "+edges as string)
+     ang=0
+	angEdge=#()
+	temEdges=(polyOp.getEdgesUsingVert obj  ver) as array
+	for s in temEdges do
+	(
+	 if  (finditem edges s)!=0 do append angEdge s
+	)
+	tempVers=(polyOp.getVertsUsingEdge obj  angEdge) as Array
+	deleteitem tempVers (finditem tempVers ver)
+	o=polyOp.getVert obj ver
+	v1=normalize ( polyOp.getVert obj tempVers[1]-o)
+	v2=normalize ( polyOp.getVert obj tempVers[2]-o)
+	cosAng = (dot v2 v1)
+	if abs(cosAng) >1 then ang=-180 else ang=acos(cosAng)
+	return ang
+	),
+function getLenFromEdge edge obj=
+(
+	verts=polyOp.getVertsUsingEdge obj  edge as array
+	return length((polyOp.getVert obj verts[2])-(polyOp.getVert obj verts[1]))
+),
+function getAPfromFace f obj=
+(
+	ZC=0
+	MJ=0
+	P=ZC/2
+	edgeLs=#()
+	for s in (polyOp.getEdgesUsingFace obj f as array) do
+	(
+		 append edgeLs  (fengx.getLenFromEdge s obj)
+	)
+	for s in edgeLs do ZC+=s
+	MJ=sqrt(P*(P-edgeLs[1])*(P-edgeLs[2])*(P-edgeLs[3]))
+	return #(MJ,ZC)
+	
+),
+function deTrangulator polyobj FMinAng FFminAng FSameMinAng=
+(
+	log=""
+	log+=#("FMinAng FFminAng FSameMinAng",#(FMinAng, FFminAng, FSameMinAng)) as string
+	--FMinAng=20 
+	--FFminAng=5
+	--FSameMinAng=3
+	edgeNum = (polyOp.getNumEdges polyObj)
+	removeEgds=#()
+	
+	for i=1 to edgeNum do 
+	( 
+		faceu=(polyOp.getFacesUsingEdge polyObj i) as array --get each egde 's side face 
+		if faceu.count==2 do
+		(
+			cosAng =(dot (normalize (polyOp.getFaceNormal polyObj faceu[1]))  (normalize (polyOp.getFaceNormal polyObj faceu[2])))
+			ang=acos(cosAng) --two face normal angle  adjue is a panle
+			if ang<FMinAng do
+			(
+				vers=((polyOp.getVertsUsingFace polyObj faceu) as array)
+				if vers.count==4 do
+				(	
+					edges=(polyOp.getEdgesUsingFace polyObj faceu) as array --get rect face four angle 
+					myID=findItem  edges i
+					if myID!=0 do deleteitem edges myID
+					-----------  分开四边为  对边  对边
+					edgesVers=#()
+					for s in edges do 
+					(
+						tempVerts=(polyOp.getVertsUsingEdge polyObj  s) as array
+						append edgesVers #((polyOp.getVert polyObj  tempVerts[1]),(polyOp.getVert polyObj tempVerts[2]))
+					)
+					--print #(edgesVers)
+					newEdges=#(1,2,3,4)
+					newEdges[1]=edges[1]
+										
+					for i=2 to 4 do 
+					(	
+						conect=False
+						for s in edgesVers[i] do
+						(
+							a=(finditem  edgesVers[1] s)
+							--print ("count"+i as string +"   :   "+a as string)
+							if a !=0 do conect=True
+						)
+						if conect==false do 
+						(	
+							newEdges[2]=edges[i]
+							if i==2 do
+							(
+								newEdges[3]=edges[3]
+								newEdges[4]=edges[4]
+							)
+							if i==3 do
+							(
+								newEdges[3]=edges[2]
+								newEdges[4]=edges[4]
+							)
+							if i==4 do
+							(
+								newEdges[3]=edges[3]
+								newEdges[4]=edges[2]
+							)
+							--break
+						)
+					) 
+					edges=newEdges
+					----------------------
+
+					samelar90=0
+					sameAng=0
+					lingxing=0
+					tempV=#(#(1,2),#(1,3),#(1,4),#(2,3),#(2,4),#(4,3))
+					rectAngs=#()
+					vls=#()
+					for v in vers do 
+					(
+					  --------- calc each angle degree
+					  ang=(fengx.getCosFromRectVer v edges polyObj )
+					  append rectAngs ang
+					  
+					  --------- is anlge samelar 90
+					  if abs(ang-90)<FFminAng do samelar90+=1 --if angle close to 90' it a rect samelar 
+					)
+					
+
+					----------- 周长 和 面积
+					
+					mj=(fengx.getAPfromFace faceu[1] polyObj)[1] + (fengx.getAPfromFace faceu[2] polyObj)[1]
+					zc=0
+					------------ 四边形四条边长
+					for e in edges do
+					(
+						el=(fengx.getLenFromEdge e polyObj )
+						zc+=el
+						append vls el						
+					)
+					
+					zbmDegree=(amax vls)/(amin vls)
+					--print zbmDegree
+					--print (emin/zbmDegree)
+					---------- 计算对边的比  如果有一天边相差不很小 那么很可能是梯形
+					duib1=#(vls[1],vls[2])
+					duib2=#(vls[3],vls[4])	
+					
+					per1=1-(amin duib2)/(amax duib2)
+					per2=1-(amin duib1)/(amax duib1)
+					
+					if per1<per2 then 
+					(
+						if per1<emin do lingxing+=1 
+						if per2>emin do lingxing+=1 
+						--print ("pp: "+per1 as string + "  -  " + per2 as string)
+					)else
+					(
+						if per2<emin do lingxing+=1 
+						if per1>emin do lingxing+=1 
+						--print ("pp: "+per1 as string + "  -  " + per2 as string)
+					)
+
+					
+						
+					---------- 计算是不是 类似菱形 有角相同
+					for iv in  tempv do 
+					(	
+						
+						if abs(rectAngs[iv[1]]-rectAngs[iv[2]])<FSameMinAng do  sameAng+=1
+					)
+					--log+= ("\nlingxing: "+lingxing as string)
+					--log+= ("\nsamelar90: "+samelar90 as string)
+					--log+= ("\nsameAng: "+sameAng as string)
+					if samelar90>1 then ---------如果是近似矩形 或者 直角梯形有两个以上的90度角
+					(
+						append removeEgds i 
+					)else               ----------非矩形和直角梯形
+					(
+						if sameAng>1 do --------- 如果近似对称的四边形 
+						(
+							--if lingxing!=2 and lingxing!=0  do --------如果是梯形 或者菱形
+							if lingxing==2  do 
+							(
+							 	if (amax rectAngs)/(amin rectAngs)<2 do append removeEgds i ------如果这个菱形 太细长了 就不减了. 出现凹的近似菱形就不好了
+							)
+						)
+					
+					)
+					
+					
+				)
+			)
+		) 
+	)
+	---------- 除去星状的线 
+	newRemoveEgds=#()
+	print #(removeEgds)
+	for i=1 to  removeEgds.count do
+	(
+		appendOn=0
+		p=polyOp.getVertsUsingEdge polyObj removeEgds[i] as array
+		for pv in p do
+		(
+			plen=1
+			es=polyOp.getEdgesUsingVert polyObj pv as array
+			if es.count >8 do
+			(
+				--print #(es)
+				
+				l=fengx.getLenFromEdge  es[1] polyObj  
+				for ei=2 to es.count do 
+				(
+					ls=#(l,(fengx.getLenFromEdge  es[ei] polyObj ))
+					if (1-(amin ls)/(amax ls))<emin do plen+=1
+				)
+			)
+			--print ("plen: "+plen as string+es.count as string)
+			if 	plen==es.count do appendOn+=1
+		) 
+		
+		--if appendOn!=0 do print ("xxxxxxxxxxxxxx:  "+i as string )
+		if appendOn==0 do append newRemoveEgds removeEgds[i] 
+		
+	)
+	
+	-----------
+	polyOp.setEdgeSelection polyObj newRemoveEgds 
+	undo "deTrangulator" on polyObj.remove selLevel:#edge
+	--print log
+),
+
+
+
 --将选中的模型导出Obj 在导入 借此来重置下
 function showInfor=(
 	if $ != undefined do 
@@ -5761,5 +6051,60 @@ function ToVisualPath targetPath=
 	rPath=fengx.beStringPath rPath
 	--if (doesFileExist rPath)==true then print "Visal file is Exist" else print "Visal file does not Exist" 
 	return rPath
-	)
+	),
+	
+function getModelFromBigworld filePath=
+(
+   DotNetClipboard = DotNetClass "System.Windows.Forms.Clipboard"
+
+   DotNetClipboard.SetText(filePath)
+   doscommand  ("\""+getDir #Scripts+ "\\visualFengx\\fengxTools.exe" + "\"" +  " -ib" ) 	  
+   pPath=DotNetClipboard.GetText()
+   print pPath
+   if doesFileExist pPath do  
+   (
+	   dir=getFilenamePath pPath
+	   name =getFilenameFile pPath
+	   pPath=dir+name+".primitives"
+	   a=("\""+getDir #Scripts+ "\\visualFengx\\primitives2obj_tool.py" +"\""+" -ib"+pPath) 
+	   doscommand a
+   	
+	   objPath=dir+name+".obj"
+	   print objPath
+   )
+   if  (doesFileExist objPath) then
+   (
+   DotNetClipboard.SetText(objPath)
+   ion=True
+   fengx.defultObjSettings()
+   try importFile objPath #noPrompt selectedOnly:true catch (ion=False)
+   if ion==True do 
+   (
+	   macros.run "Modifier Stack" "Convert_to_Poly"
+	   for s in $ do(
+					s.name=name
+					--subobjectLevel = 3
+					--max select all
+					--macros.run  "Editable Polygon Object" "EPoly_Convert_Sel_To_Vertex" 
+					--$.GetEdgeVertex($.GetSelection(3)) 
+					--polyop.weldVerts $  ($.GetSelection(2)) (1,1,1)
+					--macros.run   "Editable Polygon Object" "EPoly_Weld"  
+					--subobjectLevel = 0
+					s.wirecolor=(color 0 0 0)
+					s.pivot=[0,0,0]
+					scale s [10,10,10]
+					scale s [1,-1,1]
+					fengx.findMapResource s 
+					fengx.TexNameToMateName()
+					for m in fengx.toStandardMate(s.material) do showTextureMap m on
+	   )
+	   try(
+                  print "xx"
+			deleteFile  objPath
+			deleteFile  (dir+name+".mtl")
+	   )catch()
+	  )
+	)else ( messagebox "导入失败!" )
+	
+)
 )
