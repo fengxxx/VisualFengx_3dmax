@@ -21,7 +21,7 @@ global lvals=""
 global lmax=#()
 
 
-global emin=0.04 --test for tri to qu
+
 ------------------------------------------------
 ------------------- only for fun ---------------
 --global theVoice = CreateOLEObject "SAPI.SpVoice"
@@ -2066,11 +2066,11 @@ rollout uv "UV" width:162 height:300
 
 
 
-rollout triToRectRollout "三角面转四边面" width:496 height:147
+rollout triToRectRollout "三角面转四边面" width:496 height:152
 (
 	button btn_TTR "复位" pos:[320,16] width:48 height:64 toolTip:""
-	spinner sp_FFminAng "近似矩形的程度阀值" pos:[72,64] width:152 height:16 range:[0,100,92]
-	spinner sp_FMinAng "四边面的平整度阀值" pos:[73,16] width:151 height:16 range:[0,100,92]
+	spinner sp_FFminAng "近似矩形的程度阀值" pos:[72,64] width:152 height:16 range:[75,100,92]
+	spinner sp_FMinAng "四边面的平整度阀值" pos:[73,16] width:151 height:16 range:[75,100,92]
 	spinner sp_FSameMinAng "四边面的对称度阀值" pos:[64,224] width:153 height:16 range:[0,100,95]
 	button btn2 ">>> 四边化" pos:[376,16] width:104 height:64 toolTip:" min angle threshold"
 	button btn3 "物体很规则" pos:[232,16] width:88 height:32 toolTip:""
@@ -2129,11 +2129,6 @@ rollout triToRectRollout "三角面转四边面" width:496 height:147
 	
 	)
 )
-
-
-
-
-
 
 
 
@@ -5009,7 +5004,7 @@ function deTrangulator polyobj FMinAng FFminAng FSameMinAng=
 	--FSameMinAng=3
 	edgeNum = (polyOp.getNumEdges polyObj)
 	removeEgds=#()
-	
+	emin=0.04 --test for tri to qu
 	for i=1 to edgeNum do 
 	( 
 		faceu=(polyOp.getFacesUsingEdge polyObj i) as array --get each egde 's side face 
