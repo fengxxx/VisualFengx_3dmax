@@ -1,15 +1,17 @@
 #coding=utf-8
 import sys
-import os
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
+import os,string,re
 import win32clipboard 
 import win32con
 import _winreg
-from  xml.etree.ElementTree import*
-import string
-
-
-
 import pythoncom
+
+import codecs 
+import xml.etree.ElementTree as ET 
+
+from  xml.etree.ElementTree import*
 from win32com.shell import shell   
 from win32com.shell import shellcon 
 
@@ -21,6 +23,57 @@ dirs=["wj\\wjdx\\","wj\\wjgy\\","wj\\wjjy\\","wj\\wjwy\\" ,
     "jz\\jzsj\\sjcs\\","jz\\jzsj\\sjyw\\","jz\\jztj\\tjcs\\",
     "jz\\jztj\\tjyw\\","db\\dbcd\\","db\\dblm\\","db\\dbsk\\",
     "db\\dbst\\",""]
+
+#----model
+path_model=""
+#  5   2/2+3+4   or  2/2+3+4/3+5    cjsd_jzsj_cs0240_5301.visual
+p_model=r"([a-z]{0,})_([a-z]{2})([a-z]{2})([a-z]{0,})[_]{0,1}([a-z]{0,2})[0-9]{3,5}_[0-9wb]{2,}"      
+p_model_ex=r"([a-z]{0,})_([a-z]{0,})[_]{0,1}([a-z]{0,2})[0-9]{3,5}_[0-9wb]{2,}"      
+
+#----textrue
+path_textrue=""
+#  5   2/2+3+4/ or 2/2+3+4/3+5    cjsd_zwshu_sd002_d_a_1643
+p_textrue=r"([a-z]{0,})_([a-z]{2})([a-z]{2})([a-z]{0,})[_]{0,1}([a-z]{0,2})[0-9]{3,5}_[\d]{0,}[dsnem]{1}_(a){0,1}[_]{0,1}[0-9wb]{2,}"      
+p_textrue_type=r"([a-z]{1,}_)([a-z_]{1,}[0-9]{3,5}_[\d]{0,})[dsnem]{1}[_a]{0,2}([_]{1}[0-9wb]{2,})"
+
+#----skybox
+path_skybox=""
+  #8bceb3f9.4b3c1047.1045dbb3.80065214.xml
+p_skybox=r"[a-zA-Z0-9]{8}\.[a-zA-Z0-9]{8}\.[a-zA-Z0-9]{8}\.[a-zA-Z0-9]{8}"                        
+
+#----effect
+path_effect=""
+ #com_tjy001_1774.xml
+p_effect=r"([a-zA-Z]{0,})_([a-zA-Z]{0,})([0-9]{0,})_([0-9]{0,})"                           
+
+#----chunk
+path_chunk=""
+
+#  1   3/1+"\sep\"2  or  3/2  ffexffex/sep/ffe1ffefo@ycdg@0x0AD77A50     00ff00ffo@fb_jz_02 - Copy_2@0x072A3EE8
+p_chunk=r"([a-z0-9]{0,8})[/sep/]{0,5}([a-f0-9]{8})o@(.{0,})@[xA-Z0-9]{0,}"                                                  
+
+
+FILE_TYPE= {
+"none":0,
+"model":1,
+"textrue":2,
+"skybox":3,
+"effect":4,
+"chunk":5
+}
+# FILE_EXT= {
+# "none":"",
+# "model":".model",
+# "textrue":".tga",
+# "skybox":".xml",
+# "effect":".xml",
+# "chunk":".cdata"
+# }
+FILE_EXT= ["",".model",".tga",".xml",".xml",".chunk"]
+flora=["hua","cao","zwhc","zwsc"]
+
+skybox=["skybox"]
+
 
 def getmfDirB():
     mf_dir=""
@@ -50,8 +103,6 @@ def getmfDir():
     return mf_dir
  
 
-
-
 tdir=getmfDir()
 #print tdir
 if tdir=="":
@@ -60,6 +111,7 @@ Rdir=tdir+Rdir
 
 ROOTDIR="tw2\\res\\"
 
+rootPath=tdir+ROOTDIR
 
 def getText():
     win32clipboard.OpenClipboard()
@@ -78,26 +130,186 @@ def setText(aString):
     win32clipboard.SetClipboardData(win32con.CF_TEXT, aString)
     win32clipboard.CloseClipboard()
 
-def getAbsolutePath(p):
-    global dirs
-    global Rdir
-    tp=""
-    if len(p)>0 and p!="":
-        name=os.path.split(os.path.splitext(p)[0])[1]
-        try:
-            int(p)
-        except:
-            for dp in  dirs:
-                tempDir=Rdir+dp+name+".model"
-                if os.path.isfile(tempDir):
-                    tp=tempDir
+# ----get save path from file(model) name
+def getPathFromName(name,rootPath):
+    path=""
+    if name=="" or name==None:
+        #print "error name"
+        return path
+    else:
+        fpath,fname=os.path.split(name)
+        jname,ext=os.path.splitext(fname)
+    rem=re.match(p_model,jname)
+    if rem:
+        reGroup=rem.groups()
+         #  5   2/2+3+4   or  2/2+3+4/3+5 
+        tarDir=reGroup[1]+reGroup[2]+reGroup[3]
+        #print tarDir
+        if reGroup[4]=="":
+            if tarDir=="skybox":
+                path="env\\skybox"
+            else:
+                fOn=False
+                for f in flora:
+                    if tarDir==f:
+                        fOn=True
+                        break
+                if fOn==True:
+                    path=os.path.join("flora",reGroup[0])
+                    if os.path.isdir(rootPath+path)==False:
+                        path="flora"
+                else:
+                    path=os.path.join("scene\\common",reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]))
         else:
-            tempDir=tdir+ROOTDIR+"char\\"+name+"\\"+name+".model"
-            if os.path.isfile(tempDir): 
-                tp=tempDir
-    return tp
+            path=os.path.join(reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]),(reGroup[2]+reGroup[4]))
+    else:
+        rem=re.match(p_model_ex,jname)
+        if rem:
+            reGroup=rem.groups()
+            path=os.path.join("flora",reGroup[0])
+            if os.path.isdir(rootPath+path)==False:
+                path="flora"
+    return path
+
+#----find the file(model effect tga) path from file name
+def findPathFromName(name,rootPath):
+    path=""
+    fileType=FILE_TYPE["none"]
+    if name=="" or name==None:
+        #print "error name"
+        return path
+    else:
+        fpath,fname=os.path.split(name)
+        jname,ext=os.path.splitext(fname)
+    rem=re.match(p_model,jname)
+    fileType=FILE_TYPE["model"]
+    if rem:
+        reGroup=rem.groups()
+        #  5   2/2+3+4   or  2/2+3+4/3+5 
+        tarDir=reGroup[1]+reGroup[2]+reGroup[3]
+        #print tarDir
+        if reGroup[4]=="":
+            if tarDir=="skybox":
+                path="env\\skybox"
+            else:
+                fOn=False
+                for f in flora:
+                    if tarDir==f:
+                        fOn=True
+                        break
+                if fOn==True:
+                    path=os.path.join("flora",reGroup[0])
+                    if os.path.isdir(rootPath+path)==False:
+                        path="flora"
+                else:
+                    path=os.path.join("scene\\common",reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]))
+        else:
+            path=os.path.join("scene\\common",reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]),(reGroup[2]+reGroup[4]))
+    else:
+        rem=re.match(p_model_ex,jname)
+        fileType=FILE_TYPE["model"]
+        if rem:
+            reGroup=rem.groups()
+            path=os.path.join("flora",reGroup[0])
+            if os.path.isdir(rootPath+path)==False:
+                path="flora"
+        else:
+            rem=re.match(p_textrue,jname)
+            fileType=FILE_TYPE["textrue"]
+            if rem:
+                reGroup=rem.groups()
+                #  5   2/2+3+4/ or 2/2+3+4/3+5  
+                if reGroup[4]=="":
+                    tarDir=(reGroup[1]+reGroup[2])
+                    if tarDir=="skybox":
+                        path="env\\skybox"
+                    else:
+                        fOn=False
+                        for f in flora:
+                            if tarDir==f:
+                                fOn=True
+                                break
+                        if fOn==True:
+                            path=os.path.join("flora",reGroup[0])
+                            if os.path.isdir(rootPath+path)==False:
+                                path="flora"
+                        else:
+                            path=os.path.join("scene\\common",reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]))
+                            if os.path.isdir(rootPath+path)==False:
+                                path=""
+                else:
+                    path=os.path.join("scene\\common",reGroup[1],(reGroup[1]+reGroup[2]+reGroup[3]),(reGroup[2]+reGroup[4]))
+                    if os.path.isdir(rootPath+path)==False:
+                        path="" 
+            else:
+                rem=re.match(p_skybox,jname)
+                fileType=FILE_TYPE["skybox"]
+                if rem:
+                    path="universes\\eg"
+                else:
+                    path=""
+    return path,fileType
+
+    # find file path from file(all) name
+def findFilePath(name,rootPath):
+    path=""
+    flieType=FILE_TYPE["none"]
+    paths=["flora","env\\skybox","scene\\common",]
+    if name=="" or name==None:
+        #print "error name"
+        return path
+    else:
+        fpath,fname=os.path.split(name)
+        jname,ext=os.path.splitext(fname)
+    rem=re.match(p_chunk,name)
+    if rem:
+        path,flieType=findPathFromName(name,rootPath)
+        jname=rem.groups()[1]+"o"
+        flieType=FILE_TYPE["chunk"]
+        if rem:
+            reGroup=rem.groups()
+            #  1   3/1+"\sep\"   or  3 
+            if reGroup[0]=="":
+                path=os.path.join("universes\\eg",reGroup[2])
+            else:
+                path=os.path.join("universes\\eg",reGroup[2],reGroup[0],"sep")
+    else:
+        path,flieType=findPathFromName(jname,rootPath)
+    if ext=="":
+        ext=FILE_EXT[flieType]
+    find=False
+    if path!="":
+       #print (rootPath+path),path,flieType,ext
+       for s in os.walk((rootPath+path)):
+            path=s[0]+"\\"+jname+ext
+            if os.path.isfile(path):
+                find=True
+                return path
+    if find==False:
+        for p in paths:
+           for s in os.walk((rootPath+p)):
+                path=s[0]+"\\"+jname+ext
+                if os.path.isfile(path):
+                    find=True
+                    return path
+    if find==False:
+        return ""
 
 
+def getAbsolutePath(name):
+    global rootPath
+
+    path=""
+    if name=="" or name==None:
+        #print "error name"
+        return path
+    else:
+        fpath,fname=os.path.split(name)
+        jname,ext=os.path.splitext(fname)
+    rem=re.match(p_model,jname)
+    path=findFilePath(name,rootPath)
+    print "test: ",name,"xx",path
+    return path
 def getRelativePath(p):
     return  getAbsolutePath(p).replace((tdir+"tw2\\res\\"),"").replace("\\","/")
 
@@ -146,38 +358,24 @@ def openModeEditor(p):
 LOG=""
 materialChange=False
 
-
+#--- rootPath "E:\\mf_pangu\\tw2\\res\\"
 def getDNS(Dpath):
     paths=[]
-    paths.append(Dpath)
-    tempPath=os.path.split(Dpath)[0]
-    tempType=os.path.splitext(os.path.split(Dpath)[1])[1]
-    name=os.path.splitext(os.path.split(Dpath)[1])[0]
-    nameParts=string.split(name,"_")
-    if len(nameParts)>3:
-        isaOn=False
-        typeName=nameParts[len(nameParts)-2]
-        tempID=len(nameParts)-2
-        if nameParts[len(nameParts)-2]=="a":
-            typeName=nameParts[len(nameParts)-3]
-            tempID=len(nameParts)-3
-            isaOn=True
-        fName=""
-        bName=""
-        for i in range (0,len(nameParts)):
-            aSite=2
-            if isaOn:
-                aSite=3        
-            if i<(len(nameParts)-aSite):
-                fName+=nameParts[i]+"_"
-            elif i>(len(nameParts)-2):#-aSite):
-                bName+="_"+nameParts[i]
-        Npath=tempPath+"/"+fName+nameParts[(len(nameParts)-aSite)].replace("d","n")+bName+tempType
-        Spath=tempPath+"/"+fName+nameParts[(len(nameParts)-aSite)].replace("d","s")+bName+tempType
-        paths.append(Npath)
-        paths.append(Spath)
-
+    if Dpath=="" or Dpath==None:
+        #print "error name"
+        return ""
+    else:
+        fpath,fname=os.path.split(Dpath)
+        jname,ext=os.path.splitext(fname)
+        rem=re.match(p_textrue_type,jname)
+        if rem:
+            paths.append(Dpath)
+            reGroup=rem.groups()
+            paths.append((fpath+"\\"+(reGroup[0]+reGroup[1]+"n"+reGroup[2])+ext))
+            paths.append((fpath+"\\"+(reGroup[0]+reGroup[1]+"s"+reGroup[2])+ext))
         return paths
+        
+
 
 def indent(elem, level=0):
     i = "\n" + level*"  "
@@ -424,8 +622,6 @@ def createDesktopLnk(filename,lnkname):
 
 #createDesktopLnk("E:\\mf_pangu\\bigworld\\tools\\worldeditor\\fengxTools.exe" ,"xxxxxxxxxxxxxxxxxxxxxx")
 
-import codecs 
-import xml.etree.ElementTree as ET 
 
 def getXMLRoot(filepath):
     try:
@@ -438,19 +634,19 @@ def getXMLRoot(filepath):
         return None
 
 
-def changeGameMap(usd,m):
-    uf=getXMLRoot(usd)
+# def changeGameMap(usd,m):
+    # uf=getXMLRoot(usd)
 
-    uf.clear()
+    # uf.clear()
     
-    item=Element("root")
-    itemm=Element(m)
-    itemm.text=" "
-    item.append(itemm)
+    # item=Element("root")
+    # itemm=Element(m)
+    # itemm.text=" "
+    # item.append(itemm)
 
-    outV = ElementTree()
-    outV._setroot(item)
-    outV.write(usd)#,"utf-8")
+    # outV = ElementTree()
+    # outV._setroot(item)
+    # outV.write(usd)#,"utf-8")
 
 
 helpInfor="""
@@ -465,11 +661,11 @@ fengxTools OPTIONS:
 -am<path>  | AutoVisualFileMaterial<path> (auto fill Visual material)
 -gs        | getSVNDir                    (get SVN Dir)
 -rb        | regBigworldFile<path>        (registry Bigworld File)
--cm        | changeMap<filepath><MapName> (change the game map name)
 -ib        | import bigworld <filepath>   (worlk in process....)
+-fp        | findPathFromNameName         (all in clipboard)
  """
+#-cm        | changeMap<filepath><MapName> (change the game map name)
 
-getAbsolutePath("545")
 
 try:
     sys.argv[1]
@@ -479,23 +675,88 @@ except:
 else:
     #print sys.argv[1]
     if sys.argv[1][:3]=="-ec":#"-explorer-clipboard" or sys.argv[1]=="-ec" :
-        showInExplorer(getText())
-        print getText()
+        try:
+            if sys.argv[1][3:]!="" and sys.argv[1][3:]!=" ": 
+                p=findFilePath(sys.argv[1][3:],rootPath)
+                if p!="" and p!=" ":
+                    p= "explorer.exe"+"/select,"+p
+                    os.system(p.replace("\n",""))
+                    print p
+            else:
+                t=getText()
+                if t!="" and t!=" " and t!=None:
+                    p=findFilePath(t,rootPath)
+                    if p!="" and p!=" ":
+                        #setText(p)
+                        p= "explorer.exe"+"/select,"+p
+                        os.system(p.replace("\n",""))
+                        print p   
+        except:
+            print "find  fath!"
+        
 
     elif sys.argv[1][:3]=="-mc":#"-modeleditor-clipboard" or sys.argv[1]=="-mc":
-        openModeEditor(getText())
+        try:
+            if sys.argv[1][3:]!="" and sys.argv[1][3:]!=" ": 
+                p=findFilePath(sys.argv[1][3:],rootPath)
+                if p!="" and p!=" ":
+                    openModeEditor(p)
+                    print p
+            else:
+                t=getText()
+                if t!="" and t!=" " and t!=None:
+                    p=findFilePath(t,rootPath)
+                    if p!="" and p!=" ":
+                        openModeEditor(p)
+                        print p   
+        except:
+            print "find  fath!"
+   
+        
 
     elif sys.argv[1]=="-gf":#"-getText-fliterPath" or sys.argv[1]=="-gf":
         print getRelativePath(getText())
 
     elif sys.argv[1][:3]=="-ei":#"-explorer-input" or sys.argv[1]=="-ei":
-        #print sys.argv[1][3:]
-        #print sys.argv
-        showInExplorer(sys.argv[1][3:])
+        try:
+            if sys.argv[1][3:]!="" and sys.argv[1][3:]!=" ": 
+                p=findFilePath(sys.argv[1][3:],rootPath)
+                if p!="" and p!=" ":
+                    p= "explorer.exe"+"/select,"+p
+                    os.system(p.replace("\n",""))
+                    print p
+            else:
+                t=getText()
+                if t!="" and t!=" " and t!=None:
+                    p=findFilePath(t,rootPath)
+                    if p!="" and p!=" ":
+                        #setText(p)
+                        p= "explorer.exe"+"/select,"+p
+                        os.system(p.replace("\n",""))
+                        print p   
+        except:
+            print "find  fath!"
+        
 
     elif sys.argv[1][:3]=="-mi":#-modeleditor-input" or sys.argv[1]=="-mi":
-        openModeEditor(sys.argv[1][3:])
-        #print sys.argv[1][3:]
+        try:
+            if sys.argv[1][3:]!="" and sys.argv[1][3:]!=" ": 
+                p=findFilePath(sys.argv[1][3:],rootPath)
+                if p!="" and p!=" ":
+                    openModeEditor(p)
+                    print p
+            else:
+                t=getText()
+                if t!="" and t!=" " and t!=None:
+                    p=findFilePath(t,rootPath)
+                    if p!="" and p!=" ":
+                        openModeEditor(p)
+                        print p   
+        except:
+            print "find  fath!"
+   
+        
+
 
     elif sys.argv[1]=="-h" or sys.argv[1]=="-help" or sys.argv[1]=="-H" or sys.argv[1]=="-HELP"  :
         print helpInfor
@@ -519,16 +780,38 @@ else:
     elif sys.argv[1][:3]=="-rb":#"-registryBigworldFile" or sys.argv[1]=="-rb":
         registryBigworldFile()
     elif sys.argv[1][:3]=="-re"or sys.argv[1][:4]=="--re":
-        print "xx"
         os.system("TASKKILL /F /IM EXPLORER.EXE")
         os.system("start explorer")
-    elif sys.argv[1][:3]=="-cm":
-        print sys.argv[1][3:] 
+          
+    elif sys.argv[1][:3]=="-fp":#or sys.argv[1][:4]=="--fp":
+        try:
+            if sys.argv[1][3:]!="" and sys.argv[1][3:]!=" ": 
+                p=findFilePath(sys.argv[1][3:],rootPath)
+                if p!="" and p!=" ":
+                    setText(p)
+                    print p
+            else:
+                t=getText()
+                if t!="" and t!=" " and t!=None:
+                    p=findFilePath(t,rootPath)
+                    if p!="" and p!=" ":
+                        setText(p)
+                        print p   
+        except:
+            print "find  fath!"
+    # elif sys.argv[1][:3]=="-cm":
+        # print sys.argv[1][3:] 
 
-        v=sys.argv[1][3:].split("-")
-        print v
-        changeGameMap(v[0],v[1])
+        # v=sys.argv[1][3:].split("-")
+        # print v
+        # changeGameMap(v[0],v[1])
+        
     elif sys.argv[1][:3]=="-ib":
-        a=getRelativePath(getText())
-        if a.replace(" ","")!="":
-            setText(a) 
+        print "getText",getText()
+        a=getAbsolutePath(getText())
+        print a
+        if a!="" and a!=" " and a!=None:
+            if a.replace(" ","")!="":
+                setText(a) 
+                print a
+            else: print "false!"
