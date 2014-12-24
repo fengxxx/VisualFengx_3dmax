@@ -1,0 +1,9 @@
+name "VisualFengx"
+version 1.6
+run "VisualFengx\install.ms"
+drop "VisualFengx\install.ms"
+
+clear temp on MAX exit
+clear temp on reset
+
+--by Rhion

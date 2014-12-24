@@ -242,12 +242,14 @@ def findPathFromName(name,rootPath):
                     if os.path.isdir(rootPath+path)==False:
                         path="" 
             else:
+                print path
                 rem=re.match(p_skybox,jname)
                 fileType=FILE_TYPE["skybox"]
                 if rem:
                     path="universes\\eg"
                 else:
                     path=""
+    print fileType
     return path,fileType
 
     # find file path from file(all) name
@@ -277,6 +279,7 @@ def findFilePath(name,rootPath):
         path,flieType=findPathFromName(jname,rootPath)
     if ext=="":
         ext=FILE_EXT[flieType]
+        
     find=False
     if path!="":
        #print (rootPath+path),path,flieType,ext
@@ -289,6 +292,8 @@ def findFilePath(name,rootPath):
         for p in paths:
            for s in os.walk((rootPath+p)):
                 path=s[0]+"\\"+jname+ext
+                #print path
+
                 if os.path.isfile(path):
                     find=True
                     return path
@@ -410,10 +415,7 @@ def setMaterials(VPath,outVPath):
     #-----------only support defult export visual
 
     #----get mi dirs
-    for p in os.listdir(miRootPath):
-        miPaths.append((p+"/"))
-    for p in os.listdir(miRootPath+"common/"):
-        miPaths.append(("common/"+p+"/"))
+    for miPath in os.walk(miRootPath): miPaths.append(miPath[0])
     
     for mid in mateID:
         #shaderType
@@ -666,6 +668,8 @@ fengxTools OPTIONS:
  """
 #-cm        | changeMap<filepath><MapName> (change the game map name)
 
+#print findFilePath("22301",rootPath)
+#print getPathFromName("22301",rootPath)
 
 try:
     sys.argv[1]

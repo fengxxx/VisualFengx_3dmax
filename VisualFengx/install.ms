@@ -1,6 +1,6 @@
---VisualFengx 1.53 install MZP
+--VisualFengx 1.60 install MZP
 
-Versions=1.54
+Versions=1.60
 installTool
 setupStart
 setup_progress_update
@@ -197,16 +197,17 @@ function setupStart=
 					install()
 				)
 				
-			)else (
+			)else 
+			(
 				if Versions ==VisualFengxVersions do 
 				(
-				tempM="和当前版本 " +VisualFengxVersions as string  +"一致  确定覆盖安装！"
-				if (queryBox tempM)==true do
-				(
-				 setup_progress_update 1 "-->>> 开始....."
-				 install()
-				)
-				)
+					tempM="和当前版本 " +VisualFengxVersions as string  +"一致  确定覆盖安装！"
+					if (queryBox tempM)==true do
+					(
+						 setup_progress_update 1 "-->>> 开始....."
+						 install()
+						)
+					)
 				)
 			
 			)
@@ -232,13 +233,10 @@ rollout installTool R_name width:232 height:239
 	button btn293 "x" pos:[-1,-1] width:233 height:112 images:#(tempPath, undefined, 1, 1, 1, 1, 1)
 	on btn76 pressed do
 	(
-	installTool.height=230
-	setupStart()
+		installTool.height=230
+		setupStart()
 	)
-	--on btn77 pressed do
-	--(
-	--if  VisualFengxVersions==undefined then messageBox "没有安装过！没法卸载！" else fengx.uninstall()
-	--)
+
 )
 
 
@@ -247,6 +245,6 @@ if VisualFengxVersions!=undefined then
 	setupStart()
 )else
 (
-createdialog installTool  style:#(#style_border,#style_titlebar,#style_toolwindow, #style_sysmenu)
+	createdialog installTool  style:#(#style_border,#style_titlebar,#style_toolwindow, #style_sysmenu)
 )
 --installTool.bt01.images=#(theBmp, undefined, 1, 1, 1, 1, 1)

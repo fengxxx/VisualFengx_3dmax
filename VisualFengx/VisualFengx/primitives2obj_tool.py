@@ -292,16 +292,31 @@ def getModelInfo(modelpath,temppath):
          else:
             break
       #print vertexFormatClean
-      
-      #print vertexFormat[7]
-      #print vertexFormat[8]
-      #print vertexNumber
+      t=len(file.read())
+      readSize=t/vertexNumber
+      #print vertexNumber,t,t/(vertexNumber+0.0),readSize
+      file.seek(68)
+      logPath="d:/ptoo_log.txt"
+      if os.path.isfile(logPath):
+        f=open(logPath,"a")
+        msg=("\nfile:%s \n     vertexFormatClean:%s vertexNumber:%d byte/per:%d sec_size:%d" % (modelpath,vertexFormatClean,vertexNumber,t/(vertexNumber+0.0),t))
+        #print msg
+        f.write(msg)
+        f.close()
+      else:
+        f=open(logPath,"wb")
+        #print msg
+        msg=("\nfile:%s \n     vertexFormatClean:%s vertexNumber:%d byte/per:%d readSize:%d" % (modelpath,vertexFormatClean,vertexNumber,t/(vertexNumber+0.0),t))
+        f.write(msg)
+        f.close()
       #xyznuv xyznuvtb的读取方法一样
+      #xyznuviiiwwtb
       for i in range(0,vertexNumber):
-         vertexDataStr = file.read(32)
-         if len(vertexDataStr) != 32:
+         vertexDataStr = file.read(readSize)
+         if len(vertexDataStr) != readSize:
             tiaoguo = True
             break
+         vertexDataStr=vertexDataStr[:32]
          vertexDataValue = struct.unpack("3f1I2f1I1I",vertexDataStr)
          vPos = (vertexDataValue[0],vertexDataValue[1],vertexDataValue[2])
          vUV = (vertexDataValue[4],vertexDataValue[5])
@@ -359,102 +374,102 @@ def getModelInfo(modelpath,temppath):
                cleanDir(temppath)
                os.rmdir(temppath)
                return (tiaoguo,vertexs,indexs,groupList,vertexFormat,"","")
-      '''
-      file.close()
-      s=open("d:\\test.txt","wb")
-      s.write(str(vertexs)+"\n\n\ngroupList\n\n"+str(groupList)+"\n\n\nvertexFormatClean\n\n"+str(vertexFormatClean)+"\n\n\nindexs\n\n"+str(indexs)+"\n\n\nvertexFormat\n\n"+str(vertexFormat))
-      s.close()
-      '''
+
+   file.close()
+   cleanDir(temppath)
+   os.rmdir(temppath)
    return (tiaoguo,vertexs,indexs,groupList,vertexFormat,vertexFormatClean,indexFormat)
 
 
 def writeMtl(modelPath):
 
-   #print modelPath
-   
-   visualPath = modelPath.replace(".primitives",".visual")
-   mtlPath = modelPath.replace(".primitives",".mtl")
+    #print modelPath
 
-   fxName = 0;
-   content = open(visualPath,"r+").read()
-   content = unicode(content,"cp936").encode("utf-8")
-   doc = parseString(content)
-   root = doc.documentElement
-   texturePathKeys = []
-   primitiveGroupCount = 0
-   renderSets = root.getElementsByTagName("renderSet")
-   primitiveGroups = root.getElementsByTagName("primitiveGroup")
-   primitiveGroupCount = len(primitiveGroups)
-   
-   mtls = []
-   
-   for renderSet in renderSets:
-      geometrys = renderSet.getElementsByTagName("geometry")
-      for geometry in geometrys:
-         primitiveGroups = geometry.getElementsByTagName("primitiveGroup")
-         for primitiveGroup in primitiveGroups:
-            primitiveGroupNum = primitiveGroup.firstChild.data.strip()
-            materials = primitiveGroup.getElementsByTagName("material")
+    visualPath = modelPath.replace(".primitives",".visual")
+    mtlPath = modelPath.replace(".primitives",".mtl")
 
-            for material in materials:
-               diffuseMap = ""
-               specularMap = ""
-               normalMap = ""
-               identifier = material.getElementsByTagName("identifier")[0].firstChild.data.strip()
-               
-               propertys = material.getElementsByTagName("property")
-               for property in propertys:
-                  propertyName = property.firstChild.data.strip()
-                  Textures = property.getElementsByTagName("Texture")
-                  if len(Textures) == 0:
-                     continue
-                  if propertyName.find("diffuse") != -1:
-                     diffuseMap = Textures[0].firstChild.data.strip()
-                  elif propertyName.find("specular") != -1:
-                     specularMap  = Textures[0].firstChild.data.strip()
-                  elif propertyName.find("normal") != -1:
-                     normalMap  = Textures[0].firstChild.data.strip()
-                     
-               if diffuseMap == "":
-                  diffuseMap = "system/maps/default/white.tga"
-               if specularMap == "":
-                  specularMap =  diffuseMap
-               if normalMap == "":
-                  normalMap =  diffuseMap
-               
-               diffuseMap = diffuseMap.replace("\\","\/")
-               #print diffuseMap
-               specularMap = specularMap.replace("\/","\\")
-               normalMap = normalMap.replace("\/","\\")
-               mtls.append((diffuseMap,specularMap,normalMap,identifier))
-               
-   file = open(mtlPath, "w")
-   index = 0
-   for mtl in mtls:
-      file.write("newmtl "+mtl[3]+"\n")
-      file.write("Ns 10.0000\n")
-      file.write("Ni 1.5000\n")
-      file.write("d 1.0000\n")
-      file.write("Tr 0.0000\n")
-      file.write("Tf 1.0000 1.0000 1.0000\n")
-      file.write("illum 2\n")
-      file.write("Kd 0.0000 0.0000 0.0000\n")
-      file.write("Ks 0.0000 0.0000 0.0000\n")
-      file.write("Ke 0.0000 0.0000 0.0000\n")
-      file.write("map_Kd "+ respath+ mtl[0] + "\n")
-      #file.write("map_Ks "+ respath + mtl[1] + "\n")
-      #file.write("bump "+ respath + mtl[2] + "\n")
-      file.write("\n")
-      names = mtl[0].split("/")
-      filename = names[len(names)-1]
-      filename = filename.split(".")[0]
-      #shutil.copy(respath+ mtl[0],"D:\\pic\\"+filename+".tga");
-      index += 1
-   
-   file.close()
-   
-   return mtls
-   
+    if os.path.isfile(visualPath):
+        fxName = 0;
+        content = open(visualPath,"r+").read()
+        content = unicode(content,"cp936").encode("utf-8")
+        doc = parseString(content)
+        root = doc.documentElement
+        texturePathKeys = []
+        primitiveGroupCount = 0
+        renderSets = root.getElementsByTagName("renderSet")
+        primitiveGroups = root.getElementsByTagName("primitiveGroup")
+        primitiveGroupCount = len(primitiveGroups)
+
+        mtls = []
+
+        for renderSet in renderSets:
+          geometrys = renderSet.getElementsByTagName("geometry")
+          for geometry in geometrys:
+             primitiveGroups = geometry.getElementsByTagName("primitiveGroup")
+             for primitiveGroup in primitiveGroups:
+                primitiveGroupNum = primitiveGroup.firstChild.data.strip()
+                materials = primitiveGroup.getElementsByTagName("material")
+
+                for material in materials:
+                   diffuseMap = ""
+                   specularMap = ""
+                   normalMap = ""
+                   identifier = material.getElementsByTagName("identifier")[0].firstChild.data.strip()
+                   
+                   propertys = material.getElementsByTagName("property")
+                   for property in propertys:
+                      propertyName = property.firstChild.data.strip()
+                      Textures = property.getElementsByTagName("Texture")
+                      if len(Textures) == 0:
+                         continue
+                      if propertyName.find("diffuse") != -1:
+                         diffuseMap = Textures[0].firstChild.data.strip()
+                      elif propertyName.find("specular") != -1:
+                         specularMap  = Textures[0].firstChild.data.strip()
+                      elif propertyName.find("normal") != -1:
+                         normalMap  = Textures[0].firstChild.data.strip()
+                         
+                   if diffuseMap == "":
+                      diffuseMap = "system/maps/default/white.tga"
+                   if specularMap == "":
+                      specularMap =  diffuseMap
+                   if normalMap == "":
+                      normalMap =  diffuseMap
+                   
+                   diffuseMap = diffuseMap.replace("\\","\/")
+                   #print diffuseMap
+                   specularMap = specularMap.replace("\/","\\")
+                   normalMap = normalMap.replace("\/","\\")
+                   mtls.append((diffuseMap,specularMap,normalMap,identifier))
+                   
+        file = open(mtlPath, "w")
+        index = 0
+        for mtl in mtls:
+          file.write("newmtl "+mtl[3]+"\n")
+          file.write("Ns 10.0000\n")
+          file.write("Ni 1.5000\n")
+          file.write("d 1.0000\n")
+          file.write("Tr 0.0000\n")
+          file.write("Tf 1.0000 1.0000 1.0000\n")
+          file.write("illum 2\n")
+          file.write("Kd 0.0000 0.0000 0.0000\n")
+          file.write("Ks 0.0000 0.0000 0.0000\n")
+          file.write("Ke 0.0000 0.0000 0.0000\n")
+          file.write("map_Kd "+ respath+ mtl[0] + "\n")
+          #file.write("map_Ks "+ respath + mtl[1] + "\n")
+          #file.write("bump "+ respath + mtl[2] + "\n")
+          file.write("\n")
+          names = mtl[0].split("/")
+          filename = names[len(names)-1]
+          filename = filename.split(".")[0]
+          #shutil.copy(respath+ mtl[0],"D:\\pic\\"+filename+".tga");
+          index += 1
+
+        file.close()
+        
+    else:mtls=[["empty"] for i in range(1,30)]
+    return mtls
+
 #######primitivesHandle
 import os
 import sys
@@ -582,7 +597,7 @@ def doconvert(primitivesPath):
 
 def to_OBJFile(pPath):
    mate=writeMtl(pPath)
-   modelData=getModelInfo(pPath,"w")
+   modelData=getModelInfo(pPath,"tempExtractPlace")
    oPath=pPath.replace(".primitives",".obj")
    objFile=open(oPath,"w")
 
@@ -637,24 +652,36 @@ def to_OBJFile(pPath):
 
    objFile.close()
 #to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
+def start():
+    import Tkinter, tkFileDialog
+    root = Tkinter.Tk()
+    root.withdraw()
+    dirname = tkFileDialog.askopenfilenames(parent=root,initialdir="/",title='select the primitives files',filetypes=[("all","*.*"),("bigworld files", "*.primitives")])
+    filesdir=[]
+    if dirname[0]=="{":
+        for s in dirname.split("} {"):
+            filesdir.append(str(s).replace("{","").replace("}",""))
+    else:filesdir=dirname.split(" ")
+    for s in filesdir:
+        if  os.path.splitext(s)[1]==".primitives":
+            to_OBJFile(s)
 if __name__ == "__main__":
-   #getModelInfo("H:\\testPrimitives\\bghm_jztj_yw0040_2545.primitives","H:\\testPrimitives\\bghm_jztj_yw0040_2545")
-   #to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
-
-   helpInfor="only can use -ib<filePath>  to export bigworld file to  obj !"
-   try:
-      sys.argv[1]
-   except:
-      print helpInfor
-      raw_input("press  Enter to Exit!")
-   else:
-      #print sys.argv[1]
-      if sys.argv[1][:3]=="-ib":#"-explorer-clipboard" or sys.argv[1]=="-ec" :
-
-         to_OBJFile(sys.argv[1][3:]) 
-         
-         #to_OBJFile()
-         #print getText()
-         #raw_input("press  Enter to Exit!")
-      else:
-         print helpInfor
+    #getModelInfo("H:\\testPrimitives\\bghm_jztj_yw0040_2545.primitives","H:\\testPrimitives\\bghm_jztj_yw0040_2545")
+    #to_OBJFile("H:\\testPrimitives\\jz_jzsj_yw0050_wb.primitives")
+    helpInfor="only can use -ib<filePath>  to export bigworld file to  obj !"
+    try:
+        sys.argv[1]
+    except:
+        start()
+        #print helpInfor
+        #raw_input("press  Enter to Exit!")
+    else:
+        if sys.argv[1][:3]=="-ib":#"-explorer-clipboard" or sys.argv[1]=="-ec" :
+            to_OBJFile(sys.argv[1][3:].replace(".model",".primitives")) 
+        else:
+            #print sys.argv[1:]
+            for s in sys.argv[1:]:
+                s=s.replace(".model",".primitives")
+                if os.path.isfile(s) :#and os.path.splitext(s)[1]==".primitives":
+                    to_OBJFile(s)
+                else:"bad file: ",s
