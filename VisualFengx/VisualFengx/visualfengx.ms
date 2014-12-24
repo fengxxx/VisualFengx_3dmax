@@ -914,13 +914,15 @@ rollout mainwindow mainWindowName  width:1178 height:796
 rollout mate "材质" width:958 height:843
 (
 	button btn1 "清除材质" pos:[188,0] width:68 height:24 enabled:true toolTip:"清除材质编辑器里面的材质"
-	button btn7 "提取物体贴图" pos:[0,212] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
-	button btn8 "关闭所有高显" pos:[0,279] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
-	button btn9 "打开（所择）高显示" pos:[0,303] width:128 height:25 enabled:true toolTip:"打开所选择DX显示"
+	button btn7 "提取物体贴图" pos:[0,228] width:104 height:24 enabled:true toolTip:"提取当前物体的所有贴图（只存选择的物体）"
+	button btn8 "关闭所有高显" pos:[0,295] width:128 height:24 enabled:true toolTip:"关闭场景中的所有DX高显"
+	button btn9 "打开（所择）高显示" pos:[0,319] width:128 height:25 enabled:true toolTip:"打开所选择DX显示"
 	button btn10 "整理材质名" pos:[0,20] width:128 height:24 enabled:true toolTip:"将材质名改为和diffuse贴图一样（只改选择的物体）"
 	button btn11 "@" pos:[232,112] width:24 height:24 enabled:true
 	button btn12 "整理材质" pos:[128,0] width:60 height:24 enabled:true toolTip:"整理材质编辑器里面的材质"
-	button btn15 "@" pos:[104,212] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	button btn15 "@" pos:[104,228] width:24 height:24 enabled:true toolTip:"打开提取贴图的地址"	
+	
+	
 	button btn463 "Select Mate" pos:[128,112] width:104 height:24 enabled:false
 	button btn106 "@" pos:[232,136] width:24 height:24
 	button btn107 "Select Object" pos:[128,136] width:104 height:24 enabled:false
@@ -932,29 +934,41 @@ rollout mate "材质" width:958 height:843
 	button bmap "贴图" pos:[128,96] width:128 height:16 enabled:false
 	button btn275 "Directx" pos:[129,336] width:128 height:19 enabled:false
 	button btn21 "去除多余子材质" pos:[0,44] width:128 height:24 enabled:true toolTip:"去除没有使用到的子材质 重新排序材质ID （只改选择的物体）<此功能在菜单 utilities//Clean MultiMaterial 有 但是貌似很多情况先不管用 还卡>(如有什么文件不管用 请联系我 hzzengjf@corp.netease.com)"
-	button btn20 "找回贴图" pos:[0,92] width:64 height:48 enabled:true toolTip:"寻找贴图 D N S A E 可以控制找回贴图种类 SVN 和本地 控制从哪个目录找"
-	button btn210 "全部整理" pos:[0,140] width:128 height:52 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
+	button btn20 "找回贴图" pos:[0,92] width:64 height:64 enabled:true toolTip:"寻找贴图 D N S A E 可以控制找回贴图种类 SVN 和本地 控制从哪个目录找"
+	button btn210 "全部整理" pos:[0,156] width:128 height:52 enabled:true toolTip:"名字命好 贴图贴好 材质整理好"
 	button btn52 "去除重复子材质" pos:[128,296] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	checkbutton ckb_D "D" pos:[96,92] width:16 height:16 toolTip:"Diffuse"
 	checkbutton ckb_N "N" pos:[112,92] width:16 height:16 toolTip:"Normal map"
 	checkbutton ckb_S "S" pos:[112,108] width:16 height:16 toolTip:"Specular map"
 	checkbutton ckb_A "A" pos:[96,108] width:16 height:16 toolTip:"透明贴图"
-	checkbutton ckb_E "E" pos:[96,124] width:32 height:16 toolTip:"自发光贴图"
+	checkbutton ckb_E "E" pos:[112,124] width:16 height:16 toolTip:"自发光贴图"
 	button btn68 "清除diffuse以外的贴图" pos:[0,68] width:128 height:24 enabled:true toolTip:"清除diffuse以外的其余贴图"
 	button btn61 "从当前目录找回贴图" pos:[128,72] width:128 height:24 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
-	button btn25 "显示贴图" pos:[0,236] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
-	button btn26 "隐藏贴图" pos:[64,236] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
+	button btn25 "显示贴图" pos:[0,252] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
+	button btn26 "隐藏贴图" pos:[64,252] width:64 height:24 enabled:true toolTip:"在视图中显示选中物件的贴图"
 	button btn27 "修复老物件贴图名字" pos:[128,208] width:128 height:64 enabled:true toolTip:"从SVN寻找贴图 下面D N S A E 可以控制找回贴图种类"
 	button btn28 "显示没有用的材质" pos:[128,24] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	button btn29 "standarmaterial " pos:[128,48] width:128 height:24 enabled:true toolTip:"将复合材质里面同样diffuse的材质合并成一个ID 都是多余的ID 不会被删除 （只改选择的物体）"
 	button btn838 "◤         整理材质        ◥" pos:[0,0] width:128 height:20 enabled:false toolTip:"Export to BigWorld"
-	button btn839 "◤           Drectx          ◥" pos:[0,260] width:128 height:20 enabled:false toolTip:"Export to BigWorld"
-	button btn840 "◤            贴图           ◥" pos:[0,192] width:128 height:20 enabled:false toolTip:"Export to BigWorld"
-	checkbutton ckb_mate_local "本地" pos:[64,92] width:32 height:24 toolTip:"从本地目录寻找贴图"
-	checkbutton ckb_mate_svn "SVN" pos:[64,116] width:32 height:24 toolTip:"从SVN寻找贴图" checked:true
+	button btn839 "◤           Drectx          ◥" pos:[0,276] width:128 height:20 enabled:false toolTip:"Export to BigWorld"
+	button btn840 "◤            贴图           ◥" pos:[0,208] width:128 height:20 enabled:false toolTip:"Export to BigWorld"
+	checkbutton ckb_mate_local "本地" pos:[64,92] width:32 height:16 toolTip:"从本地目录寻找贴图"
+	checkbutton ckb_mate_svn "SVN" pos:[64,108] width:32 height:16 toolTip:"从SVN寻找贴图" checked:true
+	checkbutton ckb_res "res" pos:[64,124] width:48 height:16 enabled:true toolTip:"res" checked:true
+	checkbutton ckb_res_temp "res_temp" pos:[64,140] width:64 height:16 toolTip:"res"
 	on mate open do
 	(
+		if visualRootPath==1 then
+		(
+			ckb_res.state=True
+			exportPath="tw2/res/scene/common/"
+			ckb_res_temp.state=False
 		
+		)else (
+			ckb_res.state=False
+			ckb_res_temp.state=True
+			exportPath="tw2/res_temp/scene/common/"
+		)
 		if fengx.checkSVNDir()==false do
 		(
 			mate.btn20.enabled=False
@@ -1410,6 +1424,30 @@ rollout mate "材质" width:958 height:843
 	)else (
 	ckb_mate_local.state=true
 	)
+	)
+	on ckb_res changed state do
+	(
+		if ckb_res.state ==false then(
+			ckb_res_temp.state=True
+			exportPath="tw2/res_temp/scene/common/"
+			visualRootPath=2
+		)else(
+			ckb_res_temp.state=False
+			exportPath="tw2/res/scene/common/"
+			visualRootPath=1
+		)
+	)
+	on ckb_res_temp changed state do
+	(
+		if ckb_res_temp.state ==false then(
+			ckb_res.state=True
+			exportPath="tw2/res/scene/common/"
+			visualRootPath=1
+		)else(
+			ckb_res.state=False
+			exportPath="tw2/res_temp/scene/common/"
+			visualRootPath=2
+		)
 	)
 )
 
@@ -3974,7 +4012,7 @@ function checkUpdate=
 	try web.DownloadFile updateFileUrl  updateFilePath catch
 	(
 		tempon=false 
-		messageBox "检测更新失败!"
+		print "检测更新失败!"
 	)
 
 	if (doesFileExist updateFilePath )==true and tempon then 
