@@ -74,11 +74,11 @@ if classOf languageId==OkClass do
 	
 )
 	
-global  alertUpdate= execute (getinisetting  profilePath "upDate" "alertupDate") 
-if (classOf alertUpdate)==OkClass do 
+global  startCheckUpdate= execute (getinisetting  profilePath "upDate" "startCheckUpdate") 
+if (classOf startCheckUpdate)==OkClass do 
 (
-	alertUpdate=true
-	setIniSetting  profilePath "upDate" "alertupDate" "true"
+	startCheckUpdate=true
+	setIniSetting  profilePath "upDate" "startCheckUpdate" "true"
 )
 
  
@@ -383,23 +383,13 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.6" width:1178 height:796
+rollout mainwindow "visualFengx_1.5" width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
 	subRollout sub "fengx" pos:[0,35] width:139 height:586 
  
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 
 	checkbutton ckP "Poly" pos:[0,0] width:32 height:36 toolTip:"poly面板： poly 相关处理...."
 	checkbutton ckM "材质" pos:[32,0] width:32 height:36 toolTip:"材质面板： 材质处理相关....."
@@ -429,7 +419,7 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	button btn207 "notepad++" pos:[233,164] width:64 height:24
 	button btn208 "sublime_text" pos:[297,164] width:64 height:24
 	button btn209 "○" pos:[313,260] width:24 height:24
-	button btn65 "已经是最新版" pos:[140,80] width:92 height:48 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn65 "已经是最新版" pos:[140,96] width:92 height:48 enabled:false toolTip:"有新的更新时 按钮可用"
 	button btn66 "重启MAX" pos:[0,656] width:96 height:36 enabled:true toolTip:"重启MAX"
 	button btn67 "Eixt" pos:[136,656] width:96 height:36 enabled:true toolTip:"退出max"
 	button btn40 "复制" pos:[0,620] width:40 height:36 enabled:true toolTip:"复制选择的模型"
@@ -449,6 +439,9 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	button btn256 "设置SVN 地址" pos:[140,36] width:92 height:44
 	button btn728 "setMaterials LOG.fengx" pos:[233,284] width:128 height:24
 	HyperLink hy_help "帮助" pos:[640,568] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
+--"http://fengxxx.github.io/blog/"
 
 
 
@@ -559,7 +552,8 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 
 	button btn500 "设置" pos:[160,0] width:72 height:36 enabled:false
 	button btn501 " " pos:[232,0] width:128 height:36 enabled:false
-	label lbl1 "" pos:[140,128] width:92 height:128
+	label lbl1 "" pos:[140,144] width:92 height:128
+	checkbox chk1 "自动下载更新" pos:[140,80] width:92 height:16 enabled:true checked:true
 	on mainwindow open do
 	(
 		if fengx.checkSVNDir()==false do
@@ -573,11 +567,12 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 		if windowState==1 then ckX.state=true else  ckX.state=false
 		windowsLogicStart
 		--windowslogic()
-		if  newVersions > VisualFengxVersions  then
+		updateFilePath=(getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp")
+		if  newVersions > VisualFengxVersions and (doesfileexist updateFilepath ) then
 		(
-			mainWindow.btn65.text="更新到 最新版-- " +(newVersions as string)
+			mainWindow.btn65.text="更新到最新版"--  +(newVersions as string)
 			mainWindow.btn65.enabled=true
-			mainwindow.lbl1.text= "最新版\n"+updateMsg
+			mainwindow.lbl1.text= "最新版 "+(newVersions as string)+ " \n"+updateMsg
 			--try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
 		)else ()--try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
 		--（
@@ -585,8 +580,10 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 			--mainWindow.btn65.text="已经是最新版" 
 			--btn65.enabled=false
 		--）
-	
-	
+		
+
+		chk1.state=startCheckUpdate
+
 		try btn66.images=#(mainIcon24A[14], mainIcon24Aa[14], 1,1,1,1,1 ) catch (print "btn66.images=#(mainIcon24A[14]")
 		try btn40.images=#(mainIcon32A[9], mainIcon32Aa[9], 1,1,1,1,1 ) catch (print "btn40.images=#(mainIcon32A[9]")
 		try btn41.images=#(mainIcon32A[10], mainIcon32Aa[10], 1,1,1,1,1 ) catch (print "btn41.images=#(mainIcon32A[10]")
@@ -790,11 +787,8 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	on btn65 pressed do
 	(
 	
-	MainThread = dotnetobject "System.ComponentModel.BackGroundWorker"
-	dotNet.addEventHandler MainThread "DoWork" fengx.updatefiles
-	MainThread.RunWorkerAsync()
-	messagebox "后台获取更新中！等待下载中！"
-	
+	updateFilePath=(getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp")
+	if doesfileexist updateFilepath do filein  updatefilePath
 	)
 	on btn66 pressed do
 	(
@@ -894,6 +888,12 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	on btn728 pressed do
 	(
 		edit (getdir #Scripts + "\\VisualFengx\\setMaterials LOG.fengx")
+	)
+	on chk1 changed state do
+	(
+		startCheckUpdate=state
+		
+		setIniSetting  profilePath "upDate" "startCheckUpdate" (state as string)
 	)
 )
 
@@ -3992,7 +3992,22 @@ function checkUpdate=
 	return updateA		
 ),
 
-function UpdateFiles=
+function downloadUpdateFiles=
+(
+	local downOn=False
+	local web = dotNetObject "System.Net.WebClient"
+	local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
+	local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
+	print ("download to "+installFilePath)
+	if (doesfileexist installFilePath)==False then
+	(
+		try web.DownloadFile installFileUrl  installFilePath catch  downOn=False
+		)else downOn=True
+	print "download finish! "
+	return downOn
+	),
+/*
+function installUpdate=
 (
 	local updateA=False
 	local web = dotNetObject "System.Net.WebClient"
@@ -4018,10 +4033,13 @@ function UpdateFiles=
 
 			local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
 			local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-			deletefile installFilePath
+			--deletefile installFilePath
 			print installFilePath
 			local dt=True
+			if (doesfileexist installFilePath) do 
 			try web.DownloadFile installFileUrl  installFilePath catch  dt=False
+			
+			
 			if dt do 
 			(			
 				if 	newVersions > VisualFengxVersions then
@@ -4038,7 +4056,7 @@ function UpdateFiles=
 		)else messagebox("获取更新失败！")
 	return updateA
 ),
-
+*/
 --------------------------------------->> only test function
 --------------------------------------->> only test function
 --------------------------------------->> only test function
