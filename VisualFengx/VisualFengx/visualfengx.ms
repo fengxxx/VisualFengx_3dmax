@@ -383,7 +383,7 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow "visualFengx_1.5" width:1178 height:796
+rollout mainwindow mainWindowName  width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
 	subRollout sub "fengx" pos:[0,35] width:139 height:586 
