@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.50
+global  VisualFengxVersions =1.6
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -394,57 +394,62 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
  
  
  
+ 
+ 
+ 
+ 
+ 
 
 
 	checkbutton ckP "Poly" pos:[0,0] width:32 height:36 toolTip:"poly面板： poly 相关处理...."
 	checkbutton ckM "材质" pos:[32,0] width:32 height:36 toolTip:"材质面板： 材质处理相关....."
 	checkbutton ckF "文件" pos:[64,0] width:33 height:36 toolTip:"文件面板:  文件导出 相关等等。。。。。"
 	checkbutton ckS "吸附" pos:[97,0] width:32 height:36 toolTip:"吸附"
-	checkbutton ckX "↓↑" pos:[129,0] width:39 height:36 toolTip:"面板打散 收拢"
+	checkbutton ckX "↓↑" pos:[129,0] width:32 height:36 toolTip:"面板打散 收拢"
 	button btn337 "设置" pos:[96,656] width:40 height:36 toolTip:"设置"
 	checkbutton ckb230 "复制选项" pos:[40,620] width:56 height:36 toolTip:"复制选项" checked:false
-	button btn142 "userMacros" pos:[281,308] width:104 height:24
-	button btn143 "@" pos:[385,308] width:24 height:24
-	button btn29 "send to GitHub" pos:[329,380] width:80 height:24
-	button btn32 "卸载！" pos:[136,616] width:144 height:40
-	button btn697 "send to GitHub" pos:[321,332] width:88 height:24
-	button btn699 "home" pos:[281,332] width:40 height:48
-	button btn700 "company" pos:[281,380] width:48 height:48
-	button btn196 "visualfengx.ms" pos:[281,188] width:80 height:24
-	button btn197 "macroScript" pos:[281,212] width:80 height:24
-	button btn198 "@" pos:[385,188] width:24 height:24
-	button btn199 "@" pos:[385,212] width:24 height:24
-	button btn200 "fengx.fengx" pos:[281,260] width:80 height:24
-	button btn201 "@" pos:[385,260] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[281,236] width:80 height:24
-	button btn203 "@" pos:[385,236] width:24 height:24
-	button btn204 "○" pos:[361,188] width:24 height:24
-	button btn205 "○" pos:[361,212] width:24 height:24
-	button btn206 "○" pos:[361,236] width:24 height:24
-	button btn207 "notepad++" pos:[281,164] width:64 height:24
-	button btn208 "sublime_text" pos:[345,164] width:64 height:24
-	button btn209 "○" pos:[361,260] width:24 height:24
-	button btn65 "已经是最新版" pos:[139,547] width:136 height:69 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn142 "userMacros" pos:[233,308] width:104 height:24
+	button btn143 "@" pos:[337,308] width:24 height:24
+	button btn29 "send to GitHub" pos:[281,380] width:80 height:24
+	button btn32 "卸载！" pos:[136,616] width:96 height:40
+	button btn697 "send to GitHub" pos:[273,332] width:88 height:24
+	button btn699 "home" pos:[233,332] width:40 height:48
+	button btn700 "company" pos:[233,380] width:48 height:48
+	button btn196 "visualfengx.ms" pos:[233,188] width:80 height:24
+	button btn197 "macroScript" pos:[233,212] width:80 height:24
+	button btn198 "@" pos:[337,188] width:24 height:24
+	button btn199 "@" pos:[337,212] width:24 height:24
+	button btn200 "fengx.fengx" pos:[233,260] width:80 height:24
+	button btn201 "@" pos:[337,260] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[233,236] width:80 height:24
+	button btn203 "@" pos:[337,236] width:24 height:24
+	button btn204 "○" pos:[313,188] width:24 height:24
+	button btn205 "○" pos:[313,212] width:24 height:24
+	button btn206 "○" pos:[313,236] width:24 height:24
+	button btn207 "notepad++" pos:[233,164] width:64 height:24
+	button btn208 "sublime_text" pos:[297,164] width:64 height:24
+	button btn209 "○" pos:[313,260] width:24 height:24
+	button btn65 "已经是最新版" pos:[140,80] width:92 height:48 enabled:false toolTip:"有新的更新时 按钮可用"
 	button btn66 "重启MAX" pos:[0,656] width:96 height:36 enabled:true toolTip:"重启MAX"
-	button btn67 "Eixt" pos:[136,656] width:144 height:36 enabled:true toolTip:"退出max"
+	button btn67 "Eixt" pos:[136,656] width:96 height:36 enabled:true toolTip:"退出max"
 	button btn40 "复制" pos:[0,620] width:40 height:36 enabled:true toolTip:"复制选择的模型"
 	button btn41 "黏贴" pos:[96,620] width:40 height:36 enabled:true toolTip:"黏贴模型"
-	button btn43 "send to SVN" pos:[329,404] width:80 height:24
-	button btn44 "send to SVN" pos:[321,356] width:88 height:24
-	button btn82 "增加Python27环境变量" pos:[280,36] width:141 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
-	button btn173 "2012ViusalExport to max" pos:[280,60] width:141 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
+	button btn43 "send to SVN" pos:[281,404] width:80 height:24
+	button btn44 "send to SVN" pos:[273,356] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[232,36] width:141 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "2012ViusalExport to max" pos:[232,60] width:141 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
 	
-	button btn47 "修复max文件缩略图" pos:[280,84] width:141 height:24 toolTip:"max文件在文件夹中将会显示缩略图!"
-	button btn48 "注册.Visual等文件" pos:[280,132] width:141 height:24 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
-	button btn331 "重启(explorer)" pos:[280,108] width:141 height:24
-	button btn49 "Button" pos:[280,600] width:821 height:42
-	button btn50 "Button" pos:[280,642] width:474 height:28
-	button btn51 "Button" pos:[280,670] width:363 height:20
-	button btn496 "设置" pos:[139,36] width:141 height:36 enabled:false
-	button btn42 "帮助文档" pos:[139,98] width:142 height:48
-	button btn256 "设置SVN 地址" pos:[140,72] width:141 height:27
-	button btn728 "setMaterials LOG.fengx" pos:[281,284] width:128 height:24
-	HyperLink hy_help "帮助" pos:[409,160] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+	button btn47 "修复max文件缩略图" pos:[232,84] width:141 height:24 toolTip:"max文件在文件夹中将会显示缩略图!"
+	button btn48 "注册.Visual等文件" pos:[232,132] width:141 height:24 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
+	button btn331 "重启(explorer)" pos:[232,108] width:141 height:24
+	button btn49 "Button" pos:[360,600] width:821 height:42
+	button btn50 "Button" pos:[360,642] width:474 height:28
+	button btn51 "Button" pos:[360,670] width:363 height:20
+	button btn42 "帮助文档" pos:[139,576] width:93 height:40
+	button btn256 "设置SVN 地址" pos:[140,36] width:92 height:44
+	button btn728 "setMaterials LOG.fengx" pos:[233,284] width:128 height:24
+	HyperLink hy_help "帮助" pos:[640,568] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+
 
 
 
@@ -481,7 +486,7 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 		if windowState==1 then
 		(	
 			--ckX.state=true
-			mainWindow.width=168
+			mainWindow.width=162
 			mainWindow.height=35
 			
 			tempID=1
@@ -552,9 +557,9 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	)
 
 
-	button btn500 " " pos:[168,0] width:112 height:36 enabled:false
-	button btn501 " " pos:[280,0] width:128 height:36 enabled:false
-	label lbl1 "" pos:[139,432] width:133 height:119
+	button btn500 "设置" pos:[160,0] width:72 height:36 enabled:false
+	button btn501 " " pos:[232,0] width:128 height:36 enabled:false
+	label lbl1 "" pos:[140,128] width:92 height:128
 	on mainwindow open do
 	(
 		if fengx.checkSVNDir()==false do
@@ -680,7 +685,7 @@ rollout mainwindow "visualFengx_1.6" width:1178 height:796
 	if ckX.state==false do 
 	(
 	mainWindow.height=691 
-	if mainWindow.width<=136 then mainWindow.width=280  else mainWindow.width=136 
+	if mainWindow.width<=136 then mainWindow.width=233  else mainWindow.width=136 
 	)
 	
 	)
