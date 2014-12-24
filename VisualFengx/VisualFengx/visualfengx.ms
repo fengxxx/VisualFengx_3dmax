@@ -4,7 +4,7 @@
 --by fengx--------------------------------------
 ------------------------------------------------
 ------------------------------------------------
-global  VisualFengxVersions =1.60
+global  VisualFengxVersions =1.50
 global  V=("VisualFengxVersions   "+VisualFengxVersions as string)
 global  newVersions=0
 global  updateMsg=""
@@ -383,10 +383,14 @@ global app="notepad++.exe"
 mainWindowName="visualFengx_"+ (VisualFengxVersions as string)
 
 
-rollout mainwindow mainWindowName width:1178 height:796
+rollout mainwindow "visualFengx_1.6" width:1178 height:796
 (
     local bm = bitmap 500 50 color: mc_01 pos:[0,0]
 	subRollout sub "fengx" pos:[0,35] width:139 height:586 
+ 
+ 
+ 
+ 
  
  
  
@@ -399,50 +403,49 @@ rollout mainwindow mainWindowName width:1178 height:796
 	checkbutton ckX "↓↑" pos:[129,0] width:39 height:36 toolTip:"面板打散 收拢"
 	button btn337 "设置" pos:[96,656] width:40 height:36 toolTip:"设置"
 	checkbutton ckb230 "复制选项" pos:[40,620] width:56 height:36 toolTip:"复制选项" checked:false
-	button btn142 "userMacros" pos:[280,180] width:104 height:24
-	button btn143 "@" pos:[384,180] width:24 height:24
-	button btn29 "send to GitHub" pos:[328,252] width:80 height:24
+	button btn142 "userMacros" pos:[281,308] width:104 height:24
+	button btn143 "@" pos:[385,308] width:24 height:24
+	button btn29 "send to GitHub" pos:[329,380] width:80 height:24
 	button btn32 "卸载！" pos:[136,616] width:144 height:40
-	button btn697 "send to GitHub" pos:[320,204] width:88 height:24
-	button btn699 "home" pos:[280,204] width:40 height:48
-	button btn700 "company" pos:[280,252] width:48 height:48
-	button btn53 "检查更新！" pos:[138,519] width:94 height:24
-	button btn26 "强制更新！" pos:[138,543] width:94 height:25
-	button btn196 "visualfengx.ms" pos:[280,60] width:80 height:24
-	button btn197 "macroScript" pos:[280,84] width:80 height:24
-	button btn198 "@" pos:[384,60] width:24 height:24
-	button btn199 "@" pos:[384,84] width:24 height:24
-	button btn200 "fengx.fengx" pos:[280,132] width:80 height:24
-	button btn201 "@" pos:[384,132] width:24 height:24
-	button btn202 "fengx_start.ms" pos:[280,108] width:80 height:24
-	button btn203 "@" pos:[384,108] width:24 height:24
-	button btn204 "○" pos:[360,60] width:24 height:24
-	button btn205 "○" pos:[360,84] width:24 height:24
-	button btn206 "○" pos:[360,108] width:24 height:24
-	button btn207 "notepad++" pos:[280,36] width:64 height:24
-	button btn208 "sublime_text" pos:[344,36] width:64 height:24
-	button btn209 "○" pos:[360,132] width:24 height:24
-	button btn65 "已经是最新版" pos:[232,520] width:47 height:48 enabled:false toolTip:"有新的更新时 按钮可用"
+	button btn697 "send to GitHub" pos:[321,332] width:88 height:24
+	button btn699 "home" pos:[281,332] width:40 height:48
+	button btn700 "company" pos:[281,380] width:48 height:48
+	button btn196 "visualfengx.ms" pos:[281,188] width:80 height:24
+	button btn197 "macroScript" pos:[281,212] width:80 height:24
+	button btn198 "@" pos:[385,188] width:24 height:24
+	button btn199 "@" pos:[385,212] width:24 height:24
+	button btn200 "fengx.fengx" pos:[281,260] width:80 height:24
+	button btn201 "@" pos:[385,260] width:24 height:24
+	button btn202 "fengx_start.ms" pos:[281,236] width:80 height:24
+	button btn203 "@" pos:[385,236] width:24 height:24
+	button btn204 "○" pos:[361,188] width:24 height:24
+	button btn205 "○" pos:[361,212] width:24 height:24
+	button btn206 "○" pos:[361,236] width:24 height:24
+	button btn207 "notepad++" pos:[281,164] width:64 height:24
+	button btn208 "sublime_text" pos:[345,164] width:64 height:24
+	button btn209 "○" pos:[361,260] width:24 height:24
+	button btn65 "已经是最新版" pos:[139,547] width:136 height:69 enabled:false toolTip:"有新的更新时 按钮可用"
 	button btn66 "重启MAX" pos:[0,656] width:96 height:36 enabled:true toolTip:"重启MAX"
 	button btn67 "Eixt" pos:[136,656] width:144 height:36 enabled:true toolTip:"退出max"
 	button btn40 "复制" pos:[0,620] width:40 height:36 enabled:true toolTip:"复制选择的模型"
 	button btn41 "黏贴" pos:[96,620] width:40 height:36 enabled:true toolTip:"黏贴模型"
-	button btn43 "send to SVN" pos:[328,276] width:80 height:24
-	button btn44 "send to SVN" pos:[320,228] width:88 height:24
-	button btn82 "增加Python27环境变量" pos:[139,72] width:141 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
-	button btn173 "2012ViusalExport to max" pos:[139,96] width:141 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
+	button btn43 "send to SVN" pos:[329,404] width:80 height:24
+	button btn44 "send to SVN" pos:[321,356] width:88 height:24
+	button btn82 "增加Python27环境变量" pos:[280,36] width:141 height:24 toolTip:"增加Python27系统环境变量 默认值为 c:\Python27"
+	button btn173 "2012ViusalExport to max" pos:[280,60] width:141 height:24 toolTip:"增加VisualExport 补丁max 系统变量 默认值为 E:\mf_pangu\bigworld	ools\exporter_max9\ "
 	
-	button btn47 "修复max文件缩略图" pos:[139,120] width:141 height:24 toolTip:"max文件在文件夹中将会显示缩略图!"
-	button btn48 "注册.Visual等文件" pos:[139,168] width:141 height:24 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
-	button btn331 "重启(explorer)" pos:[139,144] width:141 height:24
+	button btn47 "修复max文件缩略图" pos:[280,84] width:141 height:24 toolTip:"max文件在文件夹中将会显示缩略图!"
+	button btn48 "注册.Visual等文件" pos:[280,132] width:141 height:24 toolTip:".Visual .model .primitives 格式将可以直接点击打开!"
+	button btn331 "重启(explorer)" pos:[280,108] width:141 height:24
 	button btn49 "Button" pos:[280,600] width:821 height:42
 	button btn50 "Button" pos:[280,642] width:474 height:28
 	button btn51 "Button" pos:[280,670] width:363 height:20
 	button btn496 "设置" pos:[139,36] width:141 height:36 enabled:false
-	button btn42 "帮助文档" pos:[138,568] width:142 height:48
-	button btn256 "设置SVN 地址" pos:[138,493] width:141 height:27
-	button btn728 "setMaterials LOG.fengx" pos:[280,156] width:128 height:24
-	HyperLink hy_help "帮助" pos:[408,32] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+	button btn42 "帮助文档" pos:[139,98] width:142 height:48
+	button btn256 "设置SVN 地址" pos:[140,72] width:141 height:27
+	button btn728 "setMaterials LOG.fengx" pos:[281,284] width:128 height:24
+	HyperLink hy_help "帮助" pos:[409,160] width:32 height:24 color:(color 255 255 255 100) hovercolor:(color 0 10 100 10) visitedcolor:(color 255 255 255 100) address:"E:\SVN\VisualFengx_3dmax\index.html"--"http://fengxxx.github.io/blog/"
+
 
 
 
@@ -551,6 +554,7 @@ rollout mainwindow mainWindowName width:1178 height:796
 
 	button btn500 " " pos:[168,0] width:112 height:36 enabled:false
 	button btn501 " " pos:[280,0] width:128 height:36 enabled:false
+	label lbl1 "" pos:[139,432] width:133 height:119
 	on mainwindow open do
 	(
 		if fengx.checkSVNDir()==false do
@@ -566,10 +570,11 @@ rollout mainwindow mainWindowName width:1178 height:796
 		--windowslogic()
 		if  newVersions > VisualFengxVersions  then
 		(
-			mainWindow.btn65.text="最新版-- " +(newVersions as string)
+			mainWindow.btn65.text="更新到 最新版-- " +(newVersions as string)
 			mainWindow.btn65.enabled=true
-			try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
-		)else try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
+			mainwindow.lbl1.text= "最新版\n"+updateMsg
+			--try btn65.images=#(mainIcon24A[12], mainIcon24Aa[12], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
+		)else ()--try btn65.images=#(mainIcon24A[11], mainIcon24Aa[11], 1,1,1,1,1 ) catch (print "btn65.images not exsit")
 		--（
 			--print "jiade xxx"
 			--mainWindow.btn65.text="已经是最新版" 
@@ -711,27 +716,6 @@ rollout mainwindow mainWindowName width:1178 height:796
 	fengx.sendToGitHub  homeGitHubPath
 	)
 	)
-	on btn53 pressed do
-	(
-	if fengx.checkUpdate()==true and newVersions > VisualFengxVersions then
-	( 
-	        createdialog checkUpDateWindow --fengx.update()
-		   checkUpDateWindow.lb01.text= updateMsg
-		)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
-	
-	
-	)
-	on btn26 pressed do
-	(
-	--tempV=VisualFengxVersions 
-	--VisualFengxVersions =1.0
-	--if  newVersions > VisualFengxVersions then--fengx.checkUpdate()==true and
-	--(
-	        createdialog checkUpDateWindow --fengx.update()
-		   if updateMsg!="" do checkUpDateWindow.lb01.text= updateMsg
-		--)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
-	--VisualFengxVersions =tempV
-	)
 	on btn196 pressed do
 	(
 		dir1=getdir #Scripts + "\visualfengx\visualfengx.ms"
@@ -800,14 +784,12 @@ rollout mainwindow mainWindowName width:1178 height:796
 	)
 	on btn65 pressed do
 	(
-	--tempV=VisualFengxVersions 
-	--VisualFengxVersions =1.0
-	--if  newVersions > VisualFengxVersions then --fengx.checkUpdate()==true and
-	--( 
-	createdialog checkUpDateWindow --fengx.update()
-	checkUpDateWindow.lb01.text= updateMsg
-	--	)else messageBox "VsiaulFengx 该版本已经为最新！无需更新!" title:"VisualFengx"
-	--VisualFengxVersions =tempV
+	
+	MainThread = dotnetobject "System.ComponentModel.BackGroundWorker"
+	dotNet.addEventHandler MainThread "DoWork" fengx.updatefiles
+	MainThread.RunWorkerAsync()
+	messagebox "后台获取更新中！等待下载中！"
+	
 	)
 	on btn66 pressed do
 	(
@@ -3780,7 +3762,7 @@ function updateClipboardImages=
 
 
 
-
+/*
 U_bc=color 64 67 65 60 
 U_updateBmp = (BitMap 233 112 color:U_bc) 
 U_imagePath= (getDir #Scripts+ "\\visualFengx\\update_bg.jpg")
@@ -3803,7 +3785,7 @@ rollout checkUpDateWindow "Update" width:232 height:396
 	)
 	on btn55 pressed do
 	(
-	fengx.upDate()
+	fengx.upDatefiles()
 	)
 	on btn56 pressed do
 	(
@@ -3818,7 +3800,7 @@ rollout checkUpDateWindow "Update" width:232 height:396
 )	
 
 
-
+*/
 
 
 
@@ -3974,7 +3956,38 @@ function uninstall=
 
 	
 ---->>check  VisualFengx Update
+
 function checkUpdate=
+(
+	local updateA=False
+	local web = dotNetObject "System.Net.WebClient"
+	local updateFileUrl = "https://raw.github.com/fengxxx/VisualFengx_3dmax/Netease/update"
+	local updateFilePath = getDir #downloads +"\\update"
+	deleteFile  updateFilePath
+	local tempon=true
+	
+	try web.DownloadFile updateFileUrl  updateFilePath catch
+	(
+		tempon=false 
+		messageBox "检测更新失败!"
+	)
+
+	if (doesFileExist updateFilePath )==true and tempon then 
+	(
+		
+		newVersions=(getinisetting  updateFilePath "update" "lastVersion") as float 
+		upDateMsg=getinisetting  updateFilePath "update" "lastChangeLog" 
+		
+		if classof(newVersions )==Float or  classof(newVersions)== Integer then
+		(
+			if newVersions > VisualFengxVersions do updateA=True
+			
+			)else print ("获取更新失败！")
+		)else print ("获取更新失败！")
+	return updateA		
+),
+
+function UpdateFiles=
 (
 	local updateA=False
 	local web = dotNetObject "System.Net.WebClient"
@@ -4021,23 +4034,6 @@ function checkUpdate=
 	return updateA
 ),
 
-
----->> update VisualFengx
-function update=
-(
-	installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-	if (doesFileExist installFilePath)==true then (try fileIn installFilePath catch ()) else(
-		if (queryBox "更新文件不存在！是否下载")==true do(
-			local web = dotNetObject "System.Net.WebClient"
-			local installFileUrl="https://github.com/fengxxx/VisualFengx_3dmax/raw/Netease/VisualFengx_"+(newVersions as string )+".mzp"
-			local installFilePath= getDir #downloads +"\\VisualFengx_"+(newVersions as string )+".mzp"
-			print installFileUrl
-			print installFilePath
-			try  web.DownloadFile installFileUrl  installFilePath catch print "下载失败！"
-			try fileIn installFilePath catch messageBox "下载失败！下次重开在试试吧！"	
-			)
-			)
-),
 --------------------------------------->> only test function
 --------------------------------------->> only test function
 --------------------------------------->> only test function

@@ -150,6 +150,7 @@ function install=
 		try deleteFile  newPath catch ()
 		try copyFile  f  newPath catch  print (f +" copy fath!")
 		setup_progress_update 90 "-->> ¿½±´startScriptÎÄ¼ş"
+		fileIn (getdir #Scripts +"\\visualfengx\\visualfengx_macroScript.ms")
 		filein (beWindowsPath  ((getDir #startupScripts) +"/fengx_start.ms") )
 	)
 	
