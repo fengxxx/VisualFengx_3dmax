@@ -1,0 +1,8 @@
+title: Visualfengx 3dmax
+description: a tool for max
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-midnight
+
+gems:
+  - jekyll-mentions
